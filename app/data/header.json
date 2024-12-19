@@ -1,0 +1,151 @@
+{
+  "header": {
+    "logo": {
+      "src": "/assets/images/logo.png",
+      "alt": "logo",
+      "width": 90,
+      "height": 22
+    }
+  },
+  "menuItems": [
+    {
+      "label": "Bags",
+      "link": "/bags"
+    },
+    {
+      "label": "Shoes",
+      "link": "/shoes"
+    },
+    {
+      "label": "Lookbook",
+      "link": "/lookbook"
+    }
+  ],
+  "footer": {
+    "userSection": {
+      "login": {
+        "label": "Log in",
+        "href": "/login"
+      }
+    },
+    "locations": [
+      {
+        "country": "Algeria",
+        "currency": "DZD",
+        "language": "Arabic"
+      },
+      {
+        "country": "Austria",
+        "currency": "EUR",
+        "language": "German"
+      },
+      {
+        "country": "Brazil",
+        "currency": "BRL",
+        "language": "Portuguese"
+      },
+      {
+        "country": "Canada",
+        "currency": "CaD $",
+        "language": "English/French"
+      },
+      {
+        "country": "China",
+        "currency": "CNY",
+        "language": "Chinese"
+      },
+      {
+        "country": "Egypt",
+        "currency": "EGP",
+        "language": "Arabic"
+      },
+      {
+        "country": "France",
+        "currency": "EUR",
+        "language": "French"
+      },
+      {
+        "country": "Germany",
+        "currency": "EUR",
+        "language": "German"
+      },
+      {
+        "country": "Italy",
+        "currency": "EUR",
+        "language": "Italian"
+      },
+      {
+        "country": "Mexico",
+        "currency": "MXN",
+        "language": "Spanish"
+      },
+      {
+        "country": "New Zealand",
+        "currency": "NZD",
+        "language": "English"
+      },
+      {
+        "country": "Nigeria",
+        "currency": "NGN",
+        "language": "English"
+      },
+      {
+        "country": "Saudi Arabia",
+        "currency": "SAR",
+        "language": "Arabic"
+      },
+      {
+        "country": "Senegal",
+        "currency": "XOF",
+        "language": "French"
+      },
+      {
+        "country": "South Africa",
+        "currency": "ZAR",
+        "language": "English"
+      },
+      {
+        "country": "Spain",
+        "currency": "EUR",
+        "language": "Spanish"
+      },
+      {
+        "country": "Switzerland",
+        "currency": "CHF",
+        "language": "German/French/Italian"
+      },
+      {
+        "country": "Turkey",
+        "currency": "TRY",
+        "language": "Turkish"
+      },
+      {
+        "country": "United States",
+        "currency": "USD",
+        "language": "English"
+      }
+    ],
+    "socialLinks": [
+      {
+        "platform": "Facebook",
+        "link": "https://facebook.com",
+        "icon": "FaFacebook"
+      },
+      {
+        "platform": "Instagram",
+        "link": "https://instagram.com",
+        "icon": "FaInstagram"
+      },
+      {
+        "platform": "Twitter",
+        "link": "https://twitter.com",
+        "icon": "FaTwitter"
+      },
+      {
+        "platform": "YouTube",
+        "link": "https://youtube.com",
+        "icon": "FaYoutube"
+      }
+    ]
+  }
+}
