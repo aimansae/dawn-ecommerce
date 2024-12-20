@@ -10,14 +10,16 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import Image from "next/image";
 import Logo from "../public/assets/images/logo.png";
 import data from "../app/data/header.json";
-import Footer from "./MobileFooter";
 import MobileFooter from "./MobileFooter";
+import { FiUser } from "react-icons/fi";
 
 const Header = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   return (
-    <header className="z-50 relative py-[10px] px-[30px] border-b border-gray-200 ">
+    <header
+      className={`z-50 relative py-[10px] px-[30px] border-b border-gray-200 ${""}`}
+    >
       <nav className="items-center grid grid-cols-[1fr_2fr_1fr]">
         <div className="flex items-center justify-start">
           <button onClick={() => setIsMobile((prev) => !prev)}>
@@ -53,7 +55,10 @@ const Header = () => {
             size={26}
             className="transition-transform transform hover:scale-110 duration-300"
           />
-          <IoIosSearch size={26} className="hidden md:block" />
+          <FiUser
+            className="transition-transform transform hover:scale-110 duration-300 hidden md:block"
+            size={26}
+          />
           <PiShoppingBag
             size={26}
             className="transition-transform transform hover:scale-110 duration-300"
@@ -64,8 +69,8 @@ const Header = () => {
       {isMobile && (
         <>
           {/* Mobile Menu */}
-          <div className="absolute left-0 top-full w-full h-[calc(100vh)] md:w-2/4 grid grid-rows-[2fr_1fr] bg-white z-50">
-            <ul className="flex flex-col py-12 text-lg list-none px-[30px] items-start justify-evenly  bg-yellow-400 ">
+          <div className="absolute left-0 top-full w-full h-[calc(100vh)] md:w-2/4 grid grid-rows-[2fr_1fr] bg-white">
+            <ul className="flex flex-col py-12 text-lg list-none px-[30px] items-start gap-8  z-10">
               {data.menuItems.map((item, i) => (
                 <button
                   key={i}
@@ -81,13 +86,6 @@ const Header = () => {
             <MobileFooter />
           </div>
         </>
-      )}
-
-      {isMobile && (
-        <div
-          className="fixed top-[60px] left-0 w-full h-[calc(100vh-60px)] bg-black bg-opacity-60 z-40"
-          onClick={() => setIsMobile((prev) => !prev)}
-        ></div>
       )}
     </header>
   );

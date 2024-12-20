@@ -7,12 +7,8 @@ import { IoIosArrowDown } from "react-icons/io";
 import data from "../app/data/header.json";
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa6";
 import { IconType } from "react-icons";
+import SelectCountries from "./SelectCountries";
 
-type Location = {
-  country: string;
-  currency: string;
-  language: string;
-};
 const iconMap: { [jey: string]: IconType } = {
   FaFacebook: FaFacebook,
   FaInstagram: FaInstagram,
@@ -25,21 +21,33 @@ type SocialLink = {
   link: string;
   icon: keyof typeof iconMap;
 };
+export type Location = {
+  country: string;
+  currency: string;
+  language?: string;
+};
 
-const Footer = () => {
+const MobileFooter = () => {
   const [showLocations, setShowLocations] = useState(false);
+  const [currentLocation, setCurrentLocation] = useState<Location>({
+    country: "Canada",
+    currency: "US",
+  });
+  useState<string>("Canada");
 
-  const sortLocations = (locations: Location[]) => {
-    return locations.sort((a, b) => {
-      if (a.country < b.country) {
-        return -1;
-      } else return 2;
-    });
+  const handleCountyChange = (newLocation: Location) => {
+    setCurrentLocation(newLocation);
+    setShowLocations(false);
+    console.log(newLocation);
   };
-  const sortedLocations = sortLocations(data.footer.locations);
+
+  const handleCountryDivClose = () => {
+    setShowLocations(false);
+    console.log("apply overlay");
+  };
 
   return (
-    <footer className="bg-gray-200 text-lg flex flex-col p-[30px] gap-4 justify-evenly items-start">
+    <footer className="bg-gray-200 text-lg flex flex-col p-[30px] gap-4 justify-evenly items-start z-40  ">
       <button className="flex gap-2 items-center">
         <FiUser className="transition-transform transform hover:scale-110 duration-300" />
         <Link href={data.footer.userSection.login.href}>
@@ -48,26 +56,21 @@ const Footer = () => {
       </button>
       <div className="div">
         <button
-          className="flex gap-2 items-center justify-center text-sm"
+          className="flex  gap-2 items-center justify-center text-sm"
           onClick={() => setShowLocations(!showLocations)}
         >
-          <span>Canada | US</span>
-          <span className="text-sm">
-            <IoIosArrowDown className="transition-transform transform hover:scale-110 duration-300" />
-          </span>{" "}
+          {" "}
+          <span className="hover:underline">
+            {currentLocation.country} | {currentLocation.currency}
+          </span>
+          <IoIosArrowDown className="transition-transform transform hover:scale-110 duration-300" />
         </button>
-
         {showLocations && (
-          <div className="bg-purple-300">
-            {sortedLocations.map((location, index) => (
-              <div key={index}>
-                <span className="text-sm">
-                  {" "}
-                  {location.country} | {location.currency}
-                </span>
-              </div>
-            ))}
-          </div>
+          <SelectCountries
+            onSelectCountry={handleCountyChange}
+            onClose={() => handleCountryDivClose}
+            currentlySelectedLocation={currentLocation.country}
+          ></SelectCountries>
         )}
       </div>
       <ul className="flex  items-center justify-between gap-6">
@@ -90,4 +93,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default MobileFooter;

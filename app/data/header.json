@@ -31,97 +31,97 @@
     "locations": [
       {
         "country": "Algeria",
-        "currency": "DZD",
+        "currency": "DZD دج",
         "language": "Arabic"
       },
       {
         "country": "Austria",
-        "currency": "EUR",
+        "currency": "EUR €",
         "language": "German"
       },
       {
         "country": "Brazil",
-        "currency": "BRL",
+        "currency": "BRL $",
         "language": "Portuguese"
       },
       {
         "country": "Canada",
-        "currency": "CaD $",
+        "currency": "CaD $ ",
         "language": "English/French"
       },
       {
         "country": "China",
-        "currency": "CNY",
+        "currency": "CNY ¥",
         "language": "Chinese"
       },
       {
         "country": "Egypt",
-        "currency": "EGP",
+        "currency": "EGP £",
         "language": "Arabic"
       },
       {
         "country": "France",
-        "currency": "EUR",
+        "currency": "EUR €",
         "language": "French"
       },
       {
         "country": "Germany",
-        "currency": "EUR",
+        "currency": "EUR €",
         "language": "German"
       },
       {
         "country": "Italy",
-        "currency": "EUR",
+        "currency": "EUR €",
         "language": "Italian"
       },
       {
         "country": "Mexico",
-        "currency": "MXN",
+        "currency": "MXN $",
         "language": "Spanish"
       },
       {
         "country": "New Zealand",
-        "currency": "NZD",
+        "currency": "NZD $",
         "language": "English"
       },
       {
         "country": "Nigeria",
-        "currency": "NGN",
+        "currency": "NGN ₦",
         "language": "English"
       },
       {
         "country": "Saudi Arabia",
-        "currency": "SAR",
+        "currency": "SAR ﷼",
         "language": "Arabic"
       },
       {
         "country": "Senegal",
-        "currency": "XOF",
+        "currency": "XOF CFA",
         "language": "French"
       },
       {
         "country": "South Africa",
-        "currency": "ZAR",
+        "currency": "ZAR R",
         "language": "English"
       },
       {
         "country": "Spain",
-        "currency": "EUR",
+        "currency": "EUR €",
         "language": "Spanish"
       },
       {
         "country": "Switzerland",
-        "currency": "CHF",
+        "currency": "CHF Fr",
         "language": "German/French/Italian"
       },
       {
         "country": "Turkey",
-        "currency": "TRY",
+        "currency": "TRY ₺",
         "language": "Turkish"
       },
       {
         "country": "United States",
-        "currency": "USD",
+        "currency": "USD $",
         "language": "English"
       }
     ],
