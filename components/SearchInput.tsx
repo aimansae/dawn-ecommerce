@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { RiCloseLargeFill } from "react-icons/ri";
-import data from "../app/data/header.json";
 
 type SearchInputProps = {
   onClose: () => void;

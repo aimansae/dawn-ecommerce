@@ -43,25 +43,23 @@ const SelectCountries = ({
     });
   };
   const sortedLocations = sortLocations(data.footer.locations);
+  console.log(sortedLocations, "sortedLocation");
 
-  // const countries = data.footer.locations.map((country) => country.country);
-  // console.log("logging countries", countries);
-
-  const filteredLocations = query
+  const filteredData = query
     ? sortedLocations.filter((location) =>
         location.country.toLocaleLowerCase().includes(query.toLocaleLowerCase())
       )
     : sortedLocations;
 
-  console.log(filteredLocations, "filtered");
+  console.log("loggind giltered", filteredData, "sorted", sortLocations);
   return (
     <>
       <div className="absolute z-50 bg-white w-full top-0 left-0 min-h-screen p-[30px] ">
         <SearchInput onClose={onClose} onSearch={setQuery} />
 
         <ul className=" flex flex-col items-center justify-between ">
-          {filteredLocations.length > 0 ? (
-            filteredLocations.map((location, index) => (
+          {filteredData.length > 0 ? (
+            filteredData.map((location, index) => (
               <li
                 key={index}
                 className="w-full p-2 relative flex justify-between items-center"

@@ -9,6 +9,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        customBlack: "var(--customBlack)",
+        darkGray: "var(--darkGray)",
+        whiteTransparent: "var(--whiteTransparent)",
         background: "var(--background)",
         foreground: "var(--foreground)",
         headerIcons: "var(--headerIcons)",

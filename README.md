@@ -40,3 +40,6 @@ TODO
 
 add dark background
 make z index for selected country div hightr
+
+cstoll for image
+colors customiization

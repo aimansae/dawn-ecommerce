@@ -2,11 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --customBlack: #121212;
+  --darkGray: #121212bf;
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-    --headerIcons: #121212;
   }
 }
 
