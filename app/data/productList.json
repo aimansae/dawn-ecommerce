@@ -1,0 +1,82 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Small Convertible Flex Bag",
+      "slug": "small-convertible-flex-bag",
+      "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "prices": {
+        "regular": "449.00 AUD",
+        "sale": "From 364.00 AUD"
+      },
+      "category": "Bags"
+    },
+    {
+      "id": 2,
+      "name": "Studio Bag",
+      "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "prices": {
+        "regular": "528.00 AUD"
+      },
+      "category": "Bags"
+    },
+    {
+      "id": 3,
+      "name": "Louise Slide Sandal",
+      "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "prices": {
+        "regular": "489.00 AUD",
+        "sale": "449.00 AUD"
+      },
+      "category": "Sandals",
+      "tags": ["Sale"]
+    },
+    {
+      "id": 4,
+      "name": "Mini Naomi Bag",
+      "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "prices": {
+        "regular": "358.00 AUD",
+        "sale": "From 340.00 AUD"
+      },
+      "category": "Bags",
+      "tags": ["Sale"]
+    },
+    {
+      "id": 5,
+      "name": "Helix",
+      "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "prices": {
+        "regular": "534.00 AUD"
+      },
+      "category": "Bags"
+    },
+    {
+      "id": 6,
+      "name": "Bo Ivy",
+      "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "prices": {
+        "regular": "443.00 AUD"
+      },
+      "category": "Bags"
+    },
+    {
+      "id": 7,
+      "name": "Pleated Heel Mule",
+      "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "prices": {
+        "regular": "562.00 AUD"
+      },
+      "category": "Shoes"
+    },
+    {
+      "id": 8,
+      "name": "Brick",
+      "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "prices": {
+        "regular": "438.00 AUD"
+      },
+      "category": "Bags"
+    }
+  ]
+}

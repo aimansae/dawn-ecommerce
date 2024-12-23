@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 import { Assistant } from "next/font/google";
 
 import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import ShippingBanner from "@/components/ShippingBanner";
 
 const assistant = Assistant({
   weight: ["300", "400", "500", "700"],
@@ -22,7 +25,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${assistant.className} `}>{children}</body>
+      <body className={`${assistant.className} `}>
+        <ShippingBanner />
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

@@ -1,0 +1,60 @@
+{
+  "footer": {
+    "quickLinks": {
+      "title": "Quick Links",
+      "links": [
+        { "name": "Bags", "url": "/bags" },
+        { "name": "Shoes", "url": "/shoes" },
+        { "name": "Lookbook", "url": "/lookbook" }
+      ]
+    },
+    "info": {
+      "title": "Info",
+      "links": [
+        { "name": "About", "url": "/about" },
+        { "name": "Contact Us", "url": "/contact-us" },
+        { "name": "Shipping Policy", "url": "/shipping-policy" },
+        { "name": "Blog", "url": "/blog" }
+      ]
+    },
+    "mission": {
+      "title": "Our Mission",
+      "text": "Quality materials, good designs, craftsmanship, and sustainability."
+    },
+    "subscribe": {
+      "title": "Subscribe to our emails",
+      "placeholder": "Enter your email",
+      "buttonText": "Subscribe"
+    },
+    "socialLinks": [
+      {
+        "platform": "Facebook",
+        "link": "https://facebook.com",
+        "icon": "FaFacebook"
+      },
+      {
+        "platform": "Instagram",
+        "link": "https://instagram.com",
+        "icon": "FaInstagram"
+      },
+      {
+        "platform": "Twitter",
+        "link": "https://twitter.com",
+        "icon": "FaTwitter"
+      },
+      {
+        "platform": "YouTube",
+        "link": "https://youtube.com",
+        "icon": "FaYoutube"
+      }
+    ],
+    "country": {
+      "title": "Country/Region",
+      "value": "Australia | AUD $"
+    },
+    "paymentMethods": {
+      "title": "Payment Methods",
+      "methods": ["Visa", "MasterCard", "PayPal"]
+    }
+  }
+}

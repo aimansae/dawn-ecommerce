@@ -47,16 +47,19 @@ const MobileFooter = () => {
   };
 
   return (
-    <footer className="bg-gray-200 text-lg flex flex-col p-[30px] gap-4 justify-evenly items-start z-40  ">
+    <footer className="bg-lightGray text-lg flex flex-col justify-end items-start p-4 gap-6 z-50    ">
       <button className="flex gap-2 items-center">
-        <FiUser className="transition-transform transform hover:scale-110 duration-300" />
+        <FiUser
+          className="transition-transform transform hover:scale-110 duration-300"
+          size={26}
+        />
         <Link href={data.footer.userSection.login.href}>
           <span className="text-sm">{data.footer.userSection.login.label}</span>
         </Link>
       </button>
-      <div className="div">
+      <div>
         <button
-          className="flex  gap-2 items-center justify-center text-sm"
+          className="flex gap-2 items-center justify-center text-sm"
           onClick={() => setShowLocations(!showLocations)}
         >
           {" "}
@@ -82,7 +85,7 @@ const MobileFooter = () => {
               <Link href={item.link} target="_blank">
                 <Icon
                   className="transition-transform transform hover:scale-110 duration-300"
-                  size={26}
+                  size={20}
                 ></Icon>
               </Link>
             </li>

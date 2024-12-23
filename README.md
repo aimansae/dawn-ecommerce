@@ -43,3 +43,7 @@ make z index for selected country div hightr
 
 cstoll for image
 colors customiization
+
+nav for mobile
+input subscribe style and function
+mission text
