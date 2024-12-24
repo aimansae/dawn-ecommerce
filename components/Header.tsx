@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import React, { useState } from "react";
-import { FaArrowRightLong } from "react-icons/fa6";
 import { IoIosArrowDown, IoIosSearch } from "react-icons/io";
 import { PiShoppingBag } from "react-icons/pi";
 import { RiCloseLargeFill } from "react-icons/ri";
@@ -10,7 +9,6 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import Image from "next/image";
 import Logo from "../public/assets/images/logo.png";
 import data from "../app/data/header.json";
-import MobileFooter from "./MobileFooter";
 import { FiUser } from "react-icons/fi";
 import SearchInput from "./SearchInput";
 import MobileNav from "./MobileNav";

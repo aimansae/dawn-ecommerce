@@ -3,7 +3,8 @@ import data from "../app/data/productList.json";
 import Image from "next/image";
 import Link from "next/link";
 import { createSlugFromName } from "@/app/utils/functions";
-type ProductType = {
+
+export type ProductType = {
   id: number;
   name: string;
   image: string;
@@ -11,7 +12,9 @@ type ProductType = {
     regular: string;
     sale?: string;
   };
+  colors?: string[];
   category: string;
+  description?: string;
 };
 const ProductList = () => {
   return (
