@@ -93,6 +93,7 @@ const Header = () => {
               size={26}
             />
             <PiShoppingBag
+              onClick={() => console.log("cart is clicked")}
               size={26}
               className="transition-transform transform hover:scale-110 duration-300"
             />
