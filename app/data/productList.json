@@ -6,10 +6,11 @@
 
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
-        "regular": "449.00 AUD",
-        "sale": "From 364.00 AUD"
+        "currency": "AUD",
+        "regular": "449.00",
+        "sale": " 364.00 "
       },
-      "colors": ["cappuccino", "clay", "denim", "harvest"],
+      "availableColors": ["cappuccino", "clay", "denim", "harvest"],
       "category": "Bags",
       "description": "This is a demonstration store. You can purchase products like this from Mlouye. Our architectural, origami inspired shoulder bag, now has a new dimension. It can be converted into a wrist bag just with a quick move. The shoulder strap can easily be removed, so you can slung it from your wrist or use as a clutch. It has plenty of room inside for your essentials including a large phone, small wallet, and 300 ml water bottle. Made from smooth leather and has a suede top with two-way zip fastening. Interior features two slip pockets."
     },
@@ -18,7 +19,8 @@
       "name": "Studio Bag",
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
-        "regular": "528.00 AUD"
+        "currency": "AUD",
+        "regular": "528.00 "
       },
       "category": "Bags",
       "description": "Both pragmatically perfect in design and a unique style statement, The Studio is made for avid fans of 90’s fashion, modern and geometric shapes, and versatile handbags for every occasion. The Studio is easily thrown over the shoulder with a short, removable strap and nestled under the arm, or carried as a clutch with a sturdy acetate handle. As any new style edition should, The Studio fits seamlessly into any wardrobe, with just the right dash of playful femininity. It’s expertly crafted from calf leather with velvet lining and sized to stow your wallet, phone, 500ml water bottle, and sunglasses."
@@ -28,8 +30,9 @@
       "name": "Louise Slide Sandal",
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
-        "regular": "489.00 AUD",
-        "sale": "449.00 AUD"
+        "currency": "AUD",
+        "regular": "489.00 ",
+        "sale": "449.00 "
       },
       "category": "Sandals",
       "tags": ["Sale"],
@@ -40,8 +43,9 @@
       "name": "Mini Naomi Bag",
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
-        "regular": "358.00 AUD",
-        "sale": "From 340.00 AUD"
+        "currency": "AUD",
+        "regular": "358.00 ",
+        "sale": "From 340.00 "
       },
       "category": "Bags",
       "tags": ["Sale"],
@@ -52,7 +56,8 @@
       "name": "Helix",
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
-        "regular": "534.00 AUD"
+        "currency": "AUD",
+        "regular": "534.00 "
       },
       "category": "Bags",
       "description": "Featuring a unique combination of modern art and minimalist perspective, our Helix Bag is perfectly sized to fit just the essentials - think small wallet, keys, sunglasses and large phone. It has a wind spinner silhouette that will remind you summer breezes out on the porch. The top handle is cleverly linked to the body through its hidden joint; it can fall down when you use the bag with shoulder strap. Made from smooth leather and has a suede internal with a drawstring top to keep all you have stowed inside safe and secure."
@@ -62,7 +67,8 @@
       "name": "Bo Ivy",
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
-        "regular": "443.00 AUD"
+        "currency": "AUD",
+        "regular": "443.00 "
       },
       "category": "Bags",
       "description": "Our latest creation is designed and engineered with inspiration from the Streamline Moderne style of the Art Deco movement. A cylindrical form with gorgeously curved details. The collection has 2 designs: Bo Ivy and Bo Soft Strap, two sister bags having the same body with different straps. Specially developed in-house, the strap of the Bo Ivy is a piece of art. Emulating an ivy branch, the unique curvy strap has a laser-cut skeleton built from stainless steel underneath the leather and is shaped by hand as a last step of the production process."
@@ -72,7 +78,8 @@
       "name": "Pleated Heel Mule",
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
-        "regular": "562.00 AUD"
+        "currency": "AUD",
+        "regular": "562.00 "
       },
       "category": "Shoes",
       "description": "The Pleated Heel Mules take a cue from our iconic Pleated Lantern Bag, but this time, reimagining pleats using solid oak. Features a square toe and a padded insole for extra comfort. Materials"
@@ -82,7 +89,8 @@
       "name": "Brick",
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
-        "regular": "438.00 AUD"
+        "currency": "AUD",
+        "regular": "438.00 "
       },
       "category": "Bags",
       "description": "Inspired by the structural boxy form and shape of a brick, which lends its name, the bag is perfectly sized for your everyday essentials, from a large phone to your wallet and lipstick."

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { IoIosArrowDown, IoIosSearch } from "react-icons/io";
 import { PiShoppingBag } from "react-icons/pi";
 import { RiCloseLargeFill } from "react-icons/ri";
@@ -12,6 +12,7 @@ import data from "../app/data/header.json";
 import { FiUser } from "react-icons/fi";
 import SearchInput from "./SearchInput";
 import MobileNav from "./MobileNav";
+import { useCart } from "@/app/context/CartContext";
 
 const Header = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
@@ -20,6 +21,9 @@ const Header = () => {
   const handleShowSearchBar = () => {
     setShowSearchBar(!showSearchBar);
   };
+
+  const { cart } = useCart();
+  console.log(cart.length);
 
   return (
     <>
@@ -92,14 +96,21 @@ const Header = () => {
               className="transition-transform transform hover:scale-110 duration-300 hidden md:block"
               size={26}
             />
-            <PiShoppingBag
-              onClick={() => console.log("cart is clicked")}
-              size={26}
-              className="transition-transform transform hover:scale-110 duration-300"
-            />
+            <Link href={"/cart"}>
+              <PiShoppingBag
+                onClick={() => console.log("cart is clicked")}
+                size={26}
+                className="transition-transform transform hover:scale-110 duration-300"
+              />
+            </Link>
           </div>
         </nav>
       </header>
+
+      <div>
+        <span>0</span>
+      </div>
+
       {isMobile && <MobileNav />}
     </>
   );

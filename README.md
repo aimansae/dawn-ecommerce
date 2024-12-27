@@ -47,3 +47,10 @@ colors customiization
 nav for mobile
 input subscribe style and function
 mission text
+view Cart image resizing
+multimple color selection
+local storage after adding things to cart
+
+jdonfor view cart and single product
+
+error if no selected color

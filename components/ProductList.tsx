@@ -5,21 +5,30 @@ import Link from "next/link";
 import { createSlugFromName } from "@/app/utils/functions";
 
 export type ProductType = {
-  id: number;
+  id: string;
   name: string;
   image: string;
   prices: {
-    regular: string;
-    sale?: string;
+    regular: number;
+    sale?: number;
   };
-  colors?: string[];
+  availableColors?: string[];
   category: string;
   description?: string;
 };
 const ProductList = () => {
+  const transformedProducts = data.products.map((product) => ({
+    ...product,
+    id: product.id.toString(), // Convert id to string
+    prices: {
+      ...product.prices,
+      regular: Number(product.prices.regular), // Convert regular price to number
+      sale: product.prices.sale ? Number(product.prices.sale) : undefined, // Convert sale price to number if it exists
+    },
+  }));
   return (
     <section className="grid grid-cols-2 lg:grid-cols-4  gap-2 lg:max-w-7xl   mx-auto px-4 md:px-[50px] ">
-      {data.products.map((product: ProductType) => (
+      {transformedProducts.map((product: ProductType) => (
         <Link
           href={`/product/${createSlugFromName(product.name)}`}
           key={product.id}
@@ -39,7 +48,7 @@ const ProductList = () => {
             <span className="text-customBlack text-xs  truncate sm:text-[13px] group-hover:underline">
               {product.name}
             </span>
-            <span className="">{product.prices.regular}</span>
+            <span className="">{product.prices.regular.toFixed(2)}</span>
           </div>
         </Link>
       ))}
