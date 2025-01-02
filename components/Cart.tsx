@@ -1,34 +1,13 @@
 "use client";
-
 import { useCart } from "@/app/context/CartContext";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import QuantitySelector from "./QuantitySelector";
 const Cart = () => {
-  const { cart, removeFromCart, setCart, totalQuantity } = useCart();
+  const { cart, getTotalQuantity, updateQuantity } = useCart();
+  console.log("cart is*******************", cart);
 
-  const handleQuantityChange = (
-    productId: string,
-    selectedColor: string,
-    newQuantity: number
-  ) => {
-    if (newQuantity < 1) return;
-
-    const updatedCart = cart.map((item) =>
-      item.product.id === productId && item.selectedColor === selectedColor
-        ? { ...item, quantity: newQuantity }
-        : item
-    );
-    setCart(updatedCart);
-    console.log("CART", cart);
-
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-
-    // Trigger state update
-    window.dispatchEvent(new Event("storage"));
-  };
-  console.log(totalQuantity, "************");
   return (
     <section className="px-[30px] py-6 flex flex-col gap-4 md:max-w-[26rem] md:left-auto md:right-6 ">
       <div className="flex items-center justify-between">
@@ -47,7 +26,10 @@ const Cart = () => {
             <li className="flex gap-4">
               <div className="">
                 <Image
-                  src={item.product.image}
+                  src={
+                    item.selectedImage ||
+                    item.product.availableColors[0].imageUrl
+                  }
                   alt={item.product.name}
                   width={100}
                   height={65}
@@ -59,22 +41,19 @@ const Cart = () => {
                   Color:
                   <span className="capitalize"> {item.selectedColor}</span>
                 </h4>
-                <QuantitySelector
-                  quantity={item.quantity}
-                  onQuantityChange={(newQuantity) => {
-                    handleQuantityChange(
-                      item.product.id,
-                      item.selectedColor,
-                      newQuantity
-                    );
-                  }}
-                ></QuantitySelector>
+                quantity price: {item.product.prices.regular}
               </div>
+              <QuantitySelector
+                quantity={item.quantity}
+                onChangeQuantity={(change) =>
+                  updateQuantity(item.product.id, item.selectedColor, change)
+                }
+              ></QuantitySelector>
             </li>
           ))}
         </ul>
-        {totalQuantity}
       </div>
+      Total is: {getTotalQuantity()}
     </section>
   );
 };

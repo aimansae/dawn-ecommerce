@@ -112,12 +112,13 @@ const Footer = () => {
           {showLocations && (
             <SelectCountries
               onSelectCountry={handleCountyChange}
-              onClose={() => handleCountryDivClose}
+              onClose={handleCountryDivClose}
               currentlySelectedLocation={currentLocation.country}
             ></SelectCountries>
           )}
         </div>
-        <div className=" ">
+        {/*Payment icons*/}
+        <div >
           <ul className="flex items-center justify-between gap-3">
             <li>
               <PaymentIcon type="Visa" format="logoBorder" width={35} />

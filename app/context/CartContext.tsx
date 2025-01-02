@@ -1,6 +1,4 @@
 "use client";
-
-import { ProductType } from "@/components/ProductList";
 import {
   createContext,
   ReactNode,
@@ -8,24 +6,103 @@ import {
   useEffect,
   useState,
 } from "react";
+import { ProductType } from "../types/types";
 
-type CartItem = {
+export type CartItemType = {
   product: ProductType;
   quantity: number;
   selectedColor: string;
+  selectedImage?: string;
+  selectedSize?: string;
 };
 
-type CartContext = {
-  cart: CartItem[];
-  setCart: (cart: CartItem[]) => void;
-  addToCart: (item: CartItem) => void;
-  removeFromCart: (id: string) => void;
-  totalQuantity: number;
-  totalPrice: number;
+type CartContextType = {
+  cart: CartItemType[];
+  addToCart: (item: CartItemType) => void;
+  updateQuantity: (
+    productId: string,
+    selectedColor: string,
+    change: number
+  ) => void;
+  getTotalQuantity: () => number;
+  removeFromCart: (productId: string) => void;
 };
+const CartContext = createContext<CartContextType | undefined>(undefined);
+export function CartProvider({ children }: { children: ReactNode }) {
+  const [cart, setCart] = useState<CartItemType[]>(() => {
+    if (typeof window !== "undefined") {
+      const storedCart = localStorage.getItem("cart");
+      return storedCart ? JSON.parse(storedCart) : [];
+    }
+  });
 
-const CartContext = createContext<CartContext | undefined>(undefined);
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
+  const addToCart = (item: CartItemType) => {
+    setCart((prevCart) => {
+      const existingItem = prevCart.find(
+        (cartItem) =>
+          cartItem.product.id === item.product.id &&
+          cartItem.selectedColor === item.selectedColor &&
+          cartItem.selectedSize === item.selectedSize
+      );
+
+      if (existingItem) {
+        return prevCart.map((cartItem) =>
+          cartItem.product.id === item.product.id &&
+          item.selectedColor === item.selectedColor
+            ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
+            : cartItem
+        );
+      }
+      // Find the image corresponding to the selected color
+
+      const selectedImage = item.product.availableColors.find(
+        (color) => color.color === item.selectedColor
+      )?.imageUrl;
+
+      return [...prevCart, { ...item, selectedImage }];
+    });
+  };
+  const updateQuantity = (
+    productId: string,
+    selectedColor: string,
+    change: number
+  ) => {
+    setCart((prevCart) =>
+      prevCart.map((cartItem) =>
+        cartItem.product.id === productId &&
+        cartItem.selectedColor === selectedColor
+          ? { ...cartItem, quantity: Math.max(cartItem.quantity + change, 1) } // Ensure quantity is at least 1
+          : cartItem
+      )
+    );
+  };
+  const removeFromCart = (productId: string) => {
+    setCart((prevCart) =>
+      prevCart.filter((cartItem) => cartItem.product.id !== productId)
+    );
+  };
+
+  const getTotalQuantity = () => {
+    return cart.reduce((acc, item) => acc + item.quantity, 0);
+  };
+  return (
+    <CartContext.Provider
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        getTotalQuantity,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
+}
 export function useCart() {
   const context = useContext(CartContext);
   if (!context) {
@@ -33,62 +110,4 @@ export function useCart() {
   }
 
   return context;
-}
-
-export function CartProvider({ children }: { children: ReactNode }) {
-  const [cart, setCart] = useState<CartItem[]>(() => {
-    const storedCart = localStorage.getItem("cart");
-    return storedCart ? JSON.parse(storedCart) : [];
-  });
-
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
-
-  const addToCart = (item: CartItem) => {
-    setCart((prevCart) => {
-      const existingItem = prevCart.find(
-        (cartItem) =>
-          cartItem.product.id === item.product.id &&
-          cartItem.selectedColor === item.selectedColor
-      );
-
-      if (existingItem) {
-        return prevCart.map((cartItem) =>
-          cartItem.product.id === item.product.id &&
-          cartItem.selectedColor === item.selectedColor
-            ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
-            : cartItem
-        );
-      }
-      const newCart = [...prevCart, item];
-      console.log("New Cart*****************:", newCart);
-      return newCart;
-    });
-  };
-
-  const removeFromCart = (id: string) => {
-    setCart((prevCart) => prevCart.filter((item) => item.product.id !== id));
-  };
-
-  const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
-  const totalPrice = cart.reduce(
-    (acc, item) => acc + item.product.prices.regular * item.quantity,
-    0
-  );
-
-  return (
-    <CartContext.Provider
-      value={{
-        cart,
-        setCart,
-        addToCart,
-        removeFromCart,
-        totalQuantity,
-        totalPrice,
-      }}
-    >
-      {children}
-    </CartContext.Provider>
-  );
 }

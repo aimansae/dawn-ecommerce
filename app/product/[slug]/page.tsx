@@ -1,8 +1,8 @@
-import { ProductType } from "@/components/ProductList";
 import SingleProduct from "@/components/SingleProduct";
 import React from "react";
 import data from "@/app/data/productList.json";
 import { createSlugFromName } from "@/app/utils/functions";
+import { transformProduct } from "@/app/utils/transformProduct";
 
 const page = ({ params }: { params: { slug: string } }) => {
   const getProductBySlug = (slug: string) => {
@@ -14,11 +14,11 @@ const page = ({ params }: { params: { slug: string } }) => {
   const product = getProductBySlug(params.slug);
 
   if (!product) return <p>Product not found</p>;
-  console.log("current product", product?.image);
+  const transformedProduct = transformProduct(product);
   return (
     <>
       {/* single product {params.slug} */}
-      <SingleProduct product={product}></SingleProduct>
+      <SingleProduct product={transformedProduct}></SingleProduct>
     </>
   );
 };

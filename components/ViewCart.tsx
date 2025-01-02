@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { ProductType } from "./ProductList";
 import { IoCloseOutline } from "react-icons/io5";
 import { IoCheckmark } from "react-icons/io5";
+import { ProductType } from "@/app/types/types";
+import Link from "next/link";
 
 type AddToCartProps = {
   product: ProductType;
@@ -16,6 +17,10 @@ const AddToCart = ({ product, quantity, selectedColor }: AddToCartProps) => {
     setIsCartOpen(false);
   };
 
+  const selectedImage = product.availableColors.find(
+    (color) => color.color === selectedColor
+  )?.imageUrl;
+  console.log(selectedImage);
   if (!isCartOpen) return null;
   return (
     <div className="z-50 bg-white absolute top-0 left-0 w-full px-[30px] py-6 flex flex-col gap-4 md:max-w-[26rem] md:left-auto md:right-6 ">
@@ -33,7 +38,12 @@ const AddToCart = ({ product, quantity, selectedColor }: AddToCartProps) => {
         </button>
       </div>
       <div className="flex  items-start gap-2">
-        <Image src={product.image} alt={product.name} width={70} height={65} />
+        <Image
+          src={selectedImage || ""}
+          alt={product.name}
+          width={70}
+          height={65}
+        />
         <div className="">
           <h3 className="text-[15px]  ">{product.name}</h3>
           <h4 className="text-[14px] text-darkGray">
@@ -42,9 +52,12 @@ const AddToCart = ({ product, quantity, selectedColor }: AddToCartProps) => {
         </div>
       </div>
       <div className="flex flex-col  items-start justify-between gap-4 mt-2 ">
-        <button className="border border-darkGray w-full sm:w-4/5 md:w-full p-3 ">
+        <Link
+          href="/cart"
+          className="border border-darkGray w-full sm:w-4/5 md:w-full p-3 "
+        >
           View cart ({quantity})
-        </button>
+        </Link>
         <button className="border border-darkGray w-full sm:w-4/5  md:w-full p-3 bg-black text-white ">
           Check out
         </button>

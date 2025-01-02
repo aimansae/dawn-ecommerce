@@ -12,7 +12,6 @@ import data from "../app/data/header.json";
 import { FiUser } from "react-icons/fi";
 import SearchInput from "./SearchInput";
 import MobileNav from "./MobileNav";
-import { useCart } from "@/app/context/CartContext";
 
 const Header = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
@@ -21,9 +20,6 @@ const Header = () => {
   const handleShowSearchBar = () => {
     setShowSearchBar(!showSearchBar);
   };
-
-  const { cart } = useCart();
-  console.log(cart.length);
 
   return (
     <>
@@ -106,10 +102,6 @@ const Header = () => {
           </div>
         </nav>
       </header>
-
-      <div>
-        <span>0</span>
-      </div>
 
       {isMobile && <MobileNav />}
     </>

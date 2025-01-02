@@ -1,98 +1,147 @@
 {
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Small Convertible Flex Bag",
-
-      "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "category": "Bags",
       "prices": {
         "currency": "AUD",
         "regular": "449.00",
         "sale": " 364.00 "
       },
-      "availableColors": ["cappuccino", "clay", "denim", "harvest"],
-      "category": "Bags",
+      "availableColors": [
+        {
+          "color": "cappuccino",
+          "imageUrl": "/assets/images/flexBag/flex-bag-cappuccino.png",
+          "imageSides": [
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
+        },
+        {
+          "color": "clay",
+          "imageUrl": "/assets/images/flexBag/flex-bag-clay.png"
+        },
+        {
+          "color": "denim",
+          "imageUrl": "/assets/images/flexBag/flex-bag-denim.png"
+        },
+        {
+          "color": "red",
+          "imageUrl": "/assets/images/flexBag/flex-bag-red.png"
+        }
+      ],
       "description": "This is a demonstration store. You can purchase products like this from Mlouye. Our architectural, origami inspired shoulder bag, now has a new dimension. It can be converted into a wrist bag just with a quick move. The shoulder strap can easily be removed, so you can slung it from your wrist or use as a clutch. It has plenty of room inside for your essentials including a large phone, small wallet, and 300 ml water bottle. Made from smooth leather and has a suede top with two-way zip fastening. Interior features two slip pockets."
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Studio Bag",
+      "category": "Bags",
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
         "currency": "AUD",
         "regular": "528.00 "
       },
-      "category": "Bags",
+      "availableColors": ["denim", "oyster"],
+
       "description": "Both pragmatically perfect in design and a unique style statement, The Studio is made for avid fans of 90’s fashion, modern and geometric shapes, and versatile handbags for every occasion. The Studio is easily thrown over the shoulder with a short, removable strap and nestled under the arm, or carried as a clutch with a sturdy acetate handle. As any new style edition should, The Studio fits seamlessly into any wardrobe, with just the right dash of playful femininity. It’s expertly crafted from calf leather with velvet lining and sized to stow your wallet, phone, 500ml water bottle, and sunglasses."
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Louise Slide Sandal",
+      "category": "Sandals",
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
         "currency": "AUD",
         "regular": "489.00 ",
         "sale": "449.00 "
       },
-      "category": "Sandals",
+      "availableColors": ["buttermilk", "gummy", "white"],
+
+      "availableSizes": ["35", "36", "37", "38", "39", "40", "41"],
       "tags": ["Sale"],
       "description": "Our experimentation with texture continues. Elevated sense of design and craftsmanship manifests in our Italian-made Louise sandals. They have a square-toed silhouette with a wide band formed with leather pleats and extra comfortable leather-wrapped fussbett for day-long wear."
     },
     {
-      "id": 4,
+      "id": "4",
+
       "name": "Mini Naomi Bag",
+      "category": "Bags",
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
         "currency": "AUD",
         "regular": "358.00 ",
         "sale": "From 340.00 "
       },
-      "category": "Bags",
+      "availableColors": ["harvest", "pastel"],
       "tags": ["Sale"],
       "description": "This is a demonstration store. You can purchase products like this from Mlouye.     Mini Naomi Bag is perfectly proportioned for your essentials like a big-screen phone, cardholder, and lipstick. You can wear it around your waist or slung over one shoulder, and it comes with an extra shoulder strap, so you can also wear it crossbody."
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Helix",
+      "category": "Bags",
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
         "currency": "AUD",
         "regular": "534.00 "
       },
-      "category": "Bags",
+      "availableColors": ["multicolor", "denim", "off white", "south america"],
+
       "description": "Featuring a unique combination of modern art and minimalist perspective, our Helix Bag is perfectly sized to fit just the essentials - think small wallet, keys, sunglasses and large phone. It has a wind spinner silhouette that will remind you summer breezes out on the porch. The top handle is cleverly linked to the body through its hidden joint; it can fall down when you use the bag with shoulder strap. Made from smooth leather and has a suede internal with a drawstring top to keep all you have stowed inside safe and secure."
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Bo Ivy",
+      "category": "Bags",
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
         "currency": "AUD",
         "regular": "443.00 "
       },
-      "category": "Bags",
+      "availableColors": [
+        "emerald",
+        "black",
+        "cognac",
+        "denim",
+        "brown",
+        "violet",
+        "latte"
+      ],
+
       "description": "Our latest creation is designed and engineered with inspiration from the Streamline Moderne style of the Art Deco movement. A cylindrical form with gorgeously curved details. The collection has 2 designs: Bo Ivy and Bo Soft Strap, two sister bags having the same body with different straps. Specially developed in-house, the strap of the Bo Ivy is a piece of art. Emulating an ivy branch, the unique curvy strap has a laser-cut skeleton built from stainless steel underneath the leather and is shaped by hand as a last step of the production process."
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Pleated Heel Mule",
+      "category": "Shoes",
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
         "currency": "AUD",
         "regular": "562.00 "
       },
-      "category": "Shoes",
+      "availableColors": ["beige", "offWhite", "olive", "bordeaux", "denim"],
+      "availableSizes": ["35", "36", "37", "38", "39", "40", "41"],
+
       "description": "The Pleated Heel Mules take a cue from our iconic Pleated Lantern Bag, but this time, reimagining pleats using solid oak. Features a square toe and a padded insole for extra comfort. Materials"
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "Brick",
+      "category": "Bags",
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
         "currency": "AUD",
         "regular": "438.00 "
       },
-      "category": "Bags",
+      "availableColors": [
+        "cashmere rose",
+        "chocolate",
+        "denim",
+        "dry rose",
+        "earth",
+        "jade"
+      ],
       "description": "Inspired by the structural boxy form and shape of a brick, which lends its name, the bag is perfectly sized for your everyday essentials, from a large phone to your wallet and lipstick."
     }
   ]

@@ -3,32 +3,14 @@ import data from "../app/data/productList.json";
 import Image from "next/image";
 import Link from "next/link";
 import { createSlugFromName } from "@/app/utils/functions";
+import { transformProduct } from "@/app/utils/transformProduct";
 
-export type ProductType = {
-  id: string;
-  name: string;
-  image: string;
-  prices: {
-    regular: number;
-    sale?: number;
-  };
-  availableColors?: string[];
-  category: string;
-  description?: string;
-};
 const ProductList = () => {
-  const transformedProducts = data.products.map((product) => ({
-    ...product,
-    id: product.id.toString(), // Convert id to string
-    prices: {
-      ...product.prices,
-      regular: Number(product.prices.regular), // Convert regular price to number
-      sale: product.prices.sale ? Number(product.prices.sale) : undefined, // Convert sale price to number if it exists
-    },
-  }));
+  const transformedProducts = data.products.map(transformProduct);
+
   return (
     <section className="grid grid-cols-2 lg:grid-cols-4  gap-2 lg:max-w-7xl   mx-auto px-4 md:px-[50px] ">
-      {transformedProducts.map((product: ProductType) => (
+      {transformedProducts.map((product) => (
         <Link
           href={`/product/${createSlugFromName(product.name)}`}
           key={product.id}
@@ -36,7 +18,7 @@ const ProductList = () => {
         >
           <div className="bg-red-400 w-full relative aspect-square  ">
             <Image
-              src={product.image}
+              src={product.availableColors[0].imageUrl}
               alt={product.name}
               quality={75}
               fill
