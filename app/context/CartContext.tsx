@@ -24,8 +24,13 @@ type CartContextType = {
     selectedColor: string,
     change: number
   ) => void;
-  getTotalQuantity: () => number;
-  removeFromCart: (productId: string) => void;
+  getTotalQuantity: () => string;
+  getTotalPrice: () => string;
+  removeFromCart: (
+    productId: string,
+    selectedColor: string,
+    selectedSize?: string
+  ) => void;
 };
 const CartContext = createContext<CartContextType | undefined>(undefined);
 export function CartProvider({ children }: { children: ReactNode }) {
@@ -59,9 +64,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
       }
       // Find the image corresponding to the selected color
 
-      const selectedImage = item.product.availableColors.find(
+      const selectedImage = item.product.availableColors?.find(
         (color) => color.color === item.selectedColor
       )?.imageUrl;
+
+      console.log("Selected color:", item.selectedColor);
+      console.log("Selected image:", selectedImage);
 
       return [...prevCart, { ...item, selectedImage }];
     });
@@ -80,15 +88,34 @@ export function CartProvider({ children }: { children: ReactNode }) {
       )
     );
   };
-  const removeFromCart = (productId: string) => {
+  const removeFromCart = (
+    productId: string,
+    selectedColor: string,
+    selectedSize?: string
+  ) => {
     setCart((prevCart) =>
-      prevCart.filter((cartItem) => cartItem.product.id !== productId)
+      prevCart.filter(
+        (cartItem) =>
+          cartItem.product.id !== productId ||
+          cartItem.selectedColor !== selectedColor ||
+          cartItem.selectedSize !== selectedSize
+      )
     );
   };
 
   const getTotalQuantity = () => {
     return cart.reduce((acc, item) => acc + item.quantity, 0);
   };
+
+  const getTotalPrice = () => {
+    return cart
+      .reduce(
+        (acc, item) => acc + item.product.prices.regular * item.quantity,
+        0
+      )
+      .toFixed(2);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -97,6 +124,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         removeFromCart,
         updateQuantity,
         getTotalQuantity,
+        getTotalPrice,
       }}
     >
       {children}

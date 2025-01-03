@@ -5,15 +5,20 @@ import { GoPlus } from "react-icons/go";
 type QuantitySelectorType = {
   quantity: number;
   onChangeQuantity: (change: number) => void;
+  label?: string;
+  className?: string;
 };
 const QuantitySelector = ({
   quantity,
   onChangeQuantity,
+  label,
+  className,
 }: QuantitySelectorType) => {
+  // {*w-36*/}
   return (
-    <div className="flex flex-col w-36 mb-2">
-      <span className="text-darkGray text-sm py-1">Quantity</span>
-      <div className="flex border border-darkGray items-center justify-between p-3 px-4">
+    <div className={`flex flex-col mb-2 ${className}`}>
+      <span className="text-darkGray text-sm py-1">{label}</span>
+      <div className="flex border border-darkGray items-center justify-between py-2 px-3">
         <button disabled={quantity < 1} onClick={() => onChangeQuantity(-1)}>
           <FiMinus className={`${quantity === 1 ? "text-darkGray" : ""}`} />
         </button>

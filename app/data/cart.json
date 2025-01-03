@@ -1,0 +1,19 @@
+{
+  "cart": {
+    "title": "Your Cart",
+    "continueShopping": "continue shopping",
+    "subheader": {
+      "product": "product",
+      "quantity": "quantity",
+      "total": "total"
+    },
+
+    "productDetails": {
+      "color": "color",
+      "quantity": "quantity",
+      "estimatedTotal": "Estimated total:",
+      "taxInfo": "Taxes,  discounts and shipping calculated at checkout.",
+      "checkout": "Check out"
+    }
+  }
+}

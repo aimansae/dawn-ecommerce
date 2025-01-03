@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { IoIosArrowDown, IoIosSearch } from "react-icons/io";
-import { PiShoppingBag } from "react-icons/pi";
+import { IoBagHandleOutline } from "react-icons/io5";
 import { RiCloseLargeFill } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Image from "next/image";
@@ -12,6 +12,7 @@ import data from "../app/data/header.json";
 import { FiUser } from "react-icons/fi";
 import SearchInput from "./SearchInput";
 import MobileNav from "./MobileNav";
+import { useCart } from "@/app/context/CartContext";
 
 const Header = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
@@ -21,6 +22,8 @@ const Header = () => {
     setShowSearchBar(!showSearchBar);
   };
 
+  const { getTotalQuantity } = useCart();
+  const quantity = getTotalQuantity();
   return (
     <>
       <header
@@ -92,13 +95,18 @@ const Header = () => {
               className="transition-transform transform hover:scale-110 duration-300 hidden md:block"
               size={26}
             />
-            <Link href={"/cart"}>
-              <PiShoppingBag
+            <Link href={"/cart"} className=" relative">
+              <IoBagHandleOutline
                 onClick={() => console.log("cart is clicked")}
                 size={26}
-                className="transition-transform transform hover:scale-110 duration-300"
+                className=" transition-transform transform hover:scale-110 duration-300"
               />
             </Link>
+            {quantity && (
+              <span className="text-white right-7 bottom-4 absolute text-[9px] bg-black  px-1 rounded-full">
+                {quantity}
+              </span>
+            )}
           </div>
         </nav>
       </header>

@@ -20,7 +20,7 @@ const AddToCart = ({ product, quantity, selectedColor }: AddToCartProps) => {
   const selectedImage = product.availableColors.find(
     (color) => color.color === selectedColor
   )?.imageUrl;
-  console.log(selectedImage);
+  console.log("image is", selectedImage);
   if (!isCartOpen) return null;
   return (
     <div className="z-50 bg-white absolute top-0 left-0 w-full px-[30px] py-6 flex flex-col gap-4 md:max-w-[26rem] md:left-auto md:right-6 ">

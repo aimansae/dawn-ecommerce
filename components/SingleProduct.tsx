@@ -137,6 +137,7 @@ const SingleProduct = ({ product }: SingleProductType) => {
         <QuantitySelector
           onChangeQuantity={handleQuantity}
           quantity={quantity}
+          label="Quantity"
         ></QuantitySelector>
 
         {/* Add to Cart and Buy Now */}
