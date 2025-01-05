@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useReducer, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Location } from "./MobileFooter";
 import { BsCheck2 } from "react-icons/bs";
 
@@ -9,32 +9,15 @@ type SelectCountriesProps = {
   currentlySelectedLocation: string;
 };
 import data from "../app/data/header.json";
-import { RiCloseLargeFill } from "react-icons/ri";
-import { IoIosSearch } from "react-icons/io";
+
 import SearchInput from "./SearchInput";
+import { useCountry } from "@/app/context/LocationContext";
 
-const SelectCountries = ({
-  onSelectCountry,
-  onClose,
-  currentlySelectedLocation,
-}: SelectCountriesProps) => {
+const SelectCountries = ({ onClose }: SelectCountriesProps) => {
   const [query, setQuery] = useState("");
-  // const [isOpen, setIsOpen] = useState(true);
 
-  // const ref = useRef<HTMLDivElement>(null);
-  // useEffect(() => {
-  //   const handleClick = (e: MouseEvent) => {
-  //     if (ref.current && !ref.current.contains(e.target as Node)) {
-  //       setIsOpen(false);
-  //       console.log("div open");
-  //     }
-  //   };
+  const { selectedLocation, setSelectedLocation } = useCountry();
 
-  //   document.addEventListener("mousedown", handleClick);
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClick);
-  //   };
-  // }, []);
   const sortLocations = (locations: Location[]) => {
     return locations.sort((a, b) => {
       if (a.country < b.country) {
@@ -51,41 +34,68 @@ const SelectCountries = ({
       )
     : sortedLocations;
 
-  console.log("loggind giltered", filteredData, "sorted", sortLocations);
+  console.log("logging filtered", filteredData, "sorted", sortLocations);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+
+  //   document.body.style.overflow = "hidden";
+  //   document.body.style.paddingRight = "15px";
+
+  //   const header = document.querySelector("header");
+  //   if (header) {
+  //     header.classList.add("fixed", "top-0", "left-0", "w-full", "z-50");
+  //   }
+
+  //   return () => {
+  //     document.body.style.overflow = "auto";
+  //     document.body.style.paddingRight = "0";
+  //     if (header) {
+  //       header.classList.remove("fixed", "top-0", "left-0", "w-full", "z-50");
+  //     }
+  //   };
+  // }, []);
   return (
     <>
-      <div className="absolute z-50 bg-white w-full top-0 left-0 min-h-screen p-[30px] ">
+      {/* <div
+        className="md:hidden fixed top-[106px] left-0 w-full h-full bg-black bg-opacity-50 z-40 md:w-auto"
+        onClick={onClose} // Clicking the overlay closes the modal
+      /> */}
+
+      <div
+        className={
+          "fixed w-full p-[15px] md:absolute left-0   bottom-0 md:bottom-[9rem] bg-white z-50 md:w-auto h-3/4 md:h-full overflow-y-auto md:border"
+        }
+      >
         <SearchInput onClose={onClose} onSearch={setQuery} />
 
-        <ul className=" flex flex-col items-center justify-between ">
+        <ul className="flex flex-col items-center justify-between  ">
           {filteredData.length > 0 ? (
             filteredData.map((location, index) => (
               <li
                 key={index}
-                className="w-full p-2 relative flex justify-between items-center"
+                className="w-full p-2 md:p-3   flex justify-between items-center"
               >
                 <button
-                  className=" flex gap-2 text-gray-500  hover:text-black w-full justify-between items-center hover:underline"
-                  onClick={() => onSelectCountry(location)}
+                  className=" relative flex gap-2 text-gray-500 hover:text-black w-full justify-between items-center hover:underline"
+                  onClick={() => setSelectedLocation(location)}
                 >
-                  {location.country === currentlySelectedLocation && (
-                    <span className="absolute left-[-12px] top-2">
-                      <BsCheck2 />{" "}
+                  {location.country === selectedLocation.country && (
+                    <span className="absolute left-[-18px] top-1">
+                      <BsCheck2 />
                     </span>
                   )}
 
-                  <span className="text-sm  font-medium flex items-center">
-                    {" "}
+                  <span className="text-sm font-medium flex items-center">
                     {location.country}
                   </span>
                   <span className="text-sm font-medium">
-                    {location.currency}
+                    {location.currency} {location.currencySymbol}
                   </span>
                 </button>
               </li>
             ))
           ) : (
-            <span className=" text-sm  my-2 text-center">No results found</span>
+            <span className="text-sm my-2 text-center">No results found</span>
           )}
         </ul>
       </div>

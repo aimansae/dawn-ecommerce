@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ShippingBanner from "@/components/ShippingBanner";
 import { CartProvider } from "./context/CartContext";
+import { CountryProvider } from "./context/LocationContext";
 
 const assistant = Assistant({
   weight: ["300", "400", "500", "700"],
@@ -26,14 +27,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <CartProvider>
-        <body className={`${assistant.className} `}>
-          <ShippingBanner />
-          <Header />
-          {children}
-          <Footer />
-        </body>{" "}
-      </CartProvider>
+      <CountryProvider>
+        <CartProvider>
+          <body className={`${assistant.className} `}>
+            <ShippingBanner />
+            <Header />
+            {children}
+            <Footer />
+          </body>{" "}
+        </CartProvider>
+      </CountryProvider>
     </html>
   );
 }

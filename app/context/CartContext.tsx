@@ -7,6 +7,7 @@ import {
   useState,
 } from "react";
 import { ProductType } from "../types/types";
+import { createStyleRegistry } from "styled-jsx";
 
 export type CartItemType = {
   product: ProductType;
@@ -24,8 +25,8 @@ type CartContextType = {
     selectedColor: string,
     change: number
   ) => void;
-  getTotalQuantity: () => string;
-  getTotalPrice: () => string;
+  getTotalQuantity: () => number;
+  getTotalPrice: () => number;
   removeFromCart: (
     productId: string,
     selectedColor: string,
@@ -39,6 +40,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       const storedCart = localStorage.getItem("cart");
       return storedCart ? JSON.parse(storedCart) : [];
     }
+    return [];
   });
 
   useEffect(() => {
@@ -104,10 +106,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const getTotalQuantity = () => {
-    return cart.reduce((acc, item) => acc + item.quantity, 0);
+    if (!cart || cart.length === 0) {
+      return 0;
+    }
+    return cart.reduce((acc, item) => acc + (item.quantity || 0), 0);
   };
 
   const getTotalPrice = () => {
+    if (!cart || cart.length === 0) {
+      return 0;
+    }
     return cart
       .reduce(
         (acc, item) => acc + item.product.prices.regular * item.quantity,

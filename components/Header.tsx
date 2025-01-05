@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { IoIosArrowDown, IoIosSearch } from "react-icons/io";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { RiCloseLargeFill } from "react-icons/ri";
@@ -17,13 +17,15 @@ import { useCart } from "@/app/context/CartContext";
 const Header = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
+
   const [query, setQuery] = useState("");
+
   const handleShowSearchBar = () => {
     setShowSearchBar(!showSearchBar);
   };
 
   const { getTotalQuantity } = useCart();
-  const quantity = getTotalQuantity();
+  const quantity = getTotalQuantity() || 0;
   return (
     <>
       <header
@@ -31,7 +33,7 @@ const Header = () => {
       >
         {query ? (
           setShowSearchBar && (
-            <div className="">
+            <div>
               <SearchInput
                 onClose={() => setShowSearchBar(false)}
                 onSearch={setQuery}
@@ -102,8 +104,9 @@ const Header = () => {
                 className=" transition-transform transform hover:scale-110 duration-300"
               />
             </Link>
-            {quantity && (
-              <span className="text-white right-7 bottom-4 absolute text-[9px] bg-black  px-1 rounded-full">
+
+            {quantity > 0 && (
+              <span className="absolute text-white bg-black px-1 text-[9px] rounded-full right-7 bottom-4">
                 {quantity}
               </span>
             )}

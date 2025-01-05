@@ -4,6 +4,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import { IoCheckmark } from "react-icons/io5";
 import { ProductType } from "@/app/types/types";
 import Link from "next/link";
+import { useCart } from "@/app/context/CartContext";
 
 type AddToCartProps = {
   product: ProductType;
@@ -13,6 +14,9 @@ type AddToCartProps = {
 
 const AddToCart = ({ product, quantity, selectedColor }: AddToCartProps) => {
   const [isCartOpen, setIsCartOpen] = useState(true);
+
+  const { getTotalQuantity } = useCart();
+
   const handleCartClose = () => {
     setIsCartOpen(false);
   };
@@ -54,9 +58,9 @@ const AddToCart = ({ product, quantity, selectedColor }: AddToCartProps) => {
       <div className="flex flex-col  items-start justify-between gap-4 mt-2 ">
         <Link
           href="/cart"
-          className="border border-darkGray w-full sm:w-4/5 md:w-full p-3 "
+          className="border border-darkGray w-full sm:w-4/5 md:w-full p-3 text-center "
         >
-          View cart ({quantity})
+          View cart ({getTotalQuantity()})
         </Link>
         <button className="border border-darkGray w-full sm:w-4/5  md:w-full p-3 bg-black text-white ">
           Check out

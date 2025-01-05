@@ -54,3 +54,8 @@ local storage after adding things to cart
 jdonfor view cart and single product
 
 error if no selected color
+
+border for footer
+add to cart, scroll on top
+close if clicked outside for county div
+small devices make non scrollable

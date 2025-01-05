@@ -1,13 +1,23 @@
+"use client";
 import React from "react";
 import data from "../app/data/productList.json";
 import Image from "next/image";
 import Link from "next/link";
 import { createSlugFromName } from "@/app/utils/functions";
 import { transformProduct } from "@/app/utils/transformProduct";
+import { useCountry } from "../app/context/LocationContext";
+import { useCart } from "@/app/context/CartContext";
 
 const ProductList = () => {
   const transformedProducts = data.products.map(transformProduct);
 
+  const { selectedLocation, setSelectedLocation } = useCountry();
+  console.log(useCart());
+  console.log(
+    "******************currently selected location is",
+    selectedLocation.country,
+    setSelectedLocation
+  );
   return (
     <section className="grid grid-cols-2 lg:grid-cols-4  gap-2 lg:max-w-7xl   mx-auto px-4 md:px-[50px] ">
       {transformedProducts.map((product) => (
@@ -30,7 +40,10 @@ const ProductList = () => {
             <span className="text-customBlack text-xs  truncate sm:text-[13px] group-hover:underline">
               {product.name}
             </span>
-            <span className="">{product.prices.regular.toFixed(2)}</span>
+            <span className="">
+              {selectedLocation.currencySymbol}
+              {product.prices.regular.toFixed(2)} {selectedLocation.currency}
+            </span>
           </div>
         </Link>
       ))}

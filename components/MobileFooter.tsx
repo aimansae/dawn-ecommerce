@@ -24,6 +24,7 @@ type SocialLink = {
 export type Location = {
   country: string;
   currency: string;
+  currencySymbol?: string;
   language?: string;
 };
 

@@ -8,6 +8,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import SelectCountries from "./SelectCountries";
 import { IoIosArrowDown } from "react-icons/io";
 import { PaymentIcon } from "react-svg-credit-card-payment-icons";
+import { useCountry } from "@/app/context/LocationContext";
 
 export type Location = {
   country: string;
@@ -17,14 +18,12 @@ export type Location = {
 
 const Footer = () => {
   const [showLocations, setShowLocations] = useState(false);
-  const [currentLocation, setCurrentLocation] = useState<Location>({
-    country: "Canada",
-    currency: "US",
-  });
+  const { selectedLocation, setSelectedLocation } = useCountry();
+
   useState<string>("Canada");
 
   const handleCountyChange = (newLocation: Location) => {
-    setCurrentLocation(newLocation);
+    setSelectedLocation(newLocation);
     setShowLocations(false);
     console.log(newLocation);
   };
@@ -71,7 +70,7 @@ const Footer = () => {
             {data.footer.subscribe.title}
           </h3>
 
-          <div className="flex  ">
+          <div className="flex hover:border  hover:border-darkGray">
             <input
               id="subscribe"
               type="email"
@@ -80,7 +79,7 @@ const Footer = () => {
             />
             <button
               type="submit"
-              className="pr-3 border-r border-y border-gray-400 hover:border-2 "
+              className="pr-3 border-r border-y border-gray-400 "
             >
               <span>
                 <FaArrowRightLong className="transition-transform transform hover:scale-110 duration-300 text-customBlack font-thin" />
@@ -95,30 +94,33 @@ const Footer = () => {
       <hr className="w-full border-t border-gray-300 mb-4" />
 
       {/*Country section*/}
-      <section className=" flex flex-col lg: md:flex-wrap   md:flex-row items-center justify-center md:justify-between md:items-end gap-6 md:md:py-8 ">
-        <div className=" ">
+      <section className="relative  flex flex-col lg: md:flex-wrap    md:flex-row items-center justify-center md:justify-between md:items-end gap-6 md:md:py-8  ">
+        <div className="">
           <h3 className="my-4 text-xs text-darkGray">
             {data.footer.country.title}
           </h3>
           <button
-            className="flex px-6 gap-2 items-center justify-center text-sm w-full  border border-gray-400 py-3  "
+            className="flex px-6 gap-2   items-center justify-center text-sm w-full  border border-gray-400 py-3  "
             onClick={() => setShowLocations(!showLocations)}
           >
             <span className="hover:underline text-xs">
-              {currentLocation.country} | {currentLocation.currency}
+              {selectedLocation.country} | {selectedLocation.currency}
             </span>
             <IoIosArrowDown className="transition-transform transform hover:scale-110 duration-300" />
           </button>
+        </div>
+        <div>
           {showLocations && (
             <SelectCountries
               onSelectCountry={handleCountyChange}
               onClose={handleCountryDivClose}
-              currentlySelectedLocation={currentLocation.country}
+              currentlySelectedLocation={selectedLocation.country}
             ></SelectCountries>
           )}
         </div>
+
         {/*Payment icons*/}
-        <div >
+        <div>
           <ul className="flex items-center justify-between gap-3">
             <li>
               <PaymentIcon type="Visa" format="logoBorder" width={35} />
