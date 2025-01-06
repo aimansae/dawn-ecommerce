@@ -7,7 +7,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ShippingBanner from "@/components/ShippingBanner";
 import { CartProvider } from "./context/CartContext";
-import { CountryProvider } from "./context/LocationContext";
+import { CountryProvider } from "./context/CountryContext";
 
 const assistant = Assistant({
   weight: ["300", "400", "500", "700"],

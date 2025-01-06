@@ -5,8 +5,8 @@
       "name": "Small Convertible Flex Bag",
       "category": "Bags",
       "prices": {
-        "currency": "AUD",
-        "regular": "449.00",
+        "currency": "USD",
+        "regular": "229.00",
         "sale": " 364.00 "
       },
       "availableColors": [
@@ -37,12 +37,24 @@
       "id": "2",
       "name": "Studio Bag",
       "category": "Bags",
-      "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
-        "currency": "AUD",
-        "regular": "528.00 "
+        "currency": "USD",
+        "regular": "332.00 "
       },
-      "availableColors": ["denim", "oyster"],
+      "availableColors": [
+        {
+          "color": "oyster",
+          "imageUrl": "/assets/images/studioBag/studio-bag-oyster.png",
+          "imageSides": [
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
+        },
+        {
+          "color": "denim",
+          "imageUrl": "/assets/images/studioBag/studio-bag-denim.png"
+        }
+      ],
 
       "description": "Both pragmatically perfect in design and a unique style statement, The Studio is made for avid fans of 90’s fashion, modern and geometric shapes, and versatile handbags for every occasion. The Studio is easily thrown over the shoulder with a short, removable strap and nestled under the arm, or carried as a clutch with a sturdy acetate handle. As any new style edition should, The Studio fits seamlessly into any wardrobe, with just the right dash of playful femininity. It’s expertly crafted from calf leather with velvet lining and sized to stow your wallet, phone, 500ml water bottle, and sunglasses."
     },
@@ -50,13 +62,30 @@
       "id": "3",
       "name": "Louise Slide Sandal",
       "category": "Sandals",
-      "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+
       "prices": {
-        "currency": "AUD",
-        "regular": "489.00 ",
-        "sale": "449.00 "
+        "currency": "USD",
+        "regular": "307.00 ",
+        "sale": "282.00 "
       },
-      "availableColors": ["buttermilk", "gummy", "white"],
+      "availableColors": [
+        {
+          "color": "buttermilk",
+          "imageUrl": "/assets/images/louiseSlideSandal/louise-slide-sandal-buttermilk.png",
+          "imageSides": [
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
+        },
+        {
+          "color": "gummy",
+          "imageUrl": "/assets/images/louiseSlideSandal/louise-slide-sandal-gummy.png"
+        },
+        {
+          "color": "white",
+          "imageUrl": "/assets/images/louiseSlideSandal/louise-slide-sandal-white.png"
+        }
+      ],
 
       "availableSizes": ["35", "36", "37", "38", "39", "40", "41"],
       "tags": ["Sale"],
@@ -69,9 +98,9 @@
       "category": "Bags",
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
-        "currency": "AUD",
-        "regular": "358.00 ",
-        "sale": "From 340.00 "
+        "currency": "USD",
+        "regular": "225.00 ",
+        "sale": "From 214.00 "
       },
       "availableColors": ["harvest", "pastel"],
       "tags": ["Sale"],
@@ -83,8 +112,8 @@
       "category": "Bags",
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
-        "currency": "AUD",
-        "regular": "534.00 "
+        "currency": "USD",
+        "regular": "336.00 "
       },
       "availableColors": ["multicolor", "denim", "off white", "south america"],
 
@@ -96,8 +125,8 @@
       "category": "Bags",
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
-        "currency": "AUD",
-        "regular": "443.00 "
+        "currency": "USD",
+        "regular": "279.00 "
       },
       "availableColors": [
         "emerald",
@@ -117,8 +146,8 @@
       "category": "Shoes",
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
-        "currency": "AUD",
-        "regular": "562.00 "
+        "currency": "USD",
+        "regular": "353.00 "
       },
       "availableColors": ["beige", "offWhite", "olive", "bordeaux", "denim"],
       "availableSizes": ["35", "36", "37", "38", "39", "40", "41"],
@@ -131,8 +160,8 @@
       "category": "Bags",
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
-        "currency": "AUD",
-        "regular": "438.00 "
+        "currency": "USD",
+        "regular": "275.00 "
       },
       "availableColors": [
         "cashmere rose",

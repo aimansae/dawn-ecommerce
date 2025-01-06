@@ -1,23 +1,29 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import data from "../app/data/productList.json";
 import Image from "next/image";
 import Link from "next/link";
 import { createSlugFromName } from "@/app/utils/functions";
 import { transformProduct } from "@/app/utils/transformProduct";
-import { useCountry } from "../app/context/LocationContext";
-import { useCart } from "@/app/context/CartContext";
+import { useCountry } from "../app/context/CountryContext";
 
 const ProductList = () => {
   const transformedProducts = data.products.map(transformProduct);
 
-  const { selectedLocation, setSelectedLocation } = useCountry();
-  console.log(useCart());
+  const { selectedLocation, loading } = useCountry();
+
   console.log(
-    "******************currently selected location is",
+    "Current location and currency",
     selectedLocation.country,
-    setSelectedLocation
+    selectedLocation.currency
   );
+
+  const convertPrice = (price: number) => {
+    return price * (selectedLocation.exchangeRate || 1);
+  };
+  if (loading) {
+    return <div>Loading exchange rate...</div>; // You can replace this with a spinner or better UI
+  }
   return (
     <section className="grid grid-cols-2 lg:grid-cols-4  gap-2 lg:max-w-7xl   mx-auto px-4 md:px-[50px] ">
       {transformedProducts.map((product) => (
@@ -28,7 +34,7 @@ const ProductList = () => {
         >
           <div className="bg-red-400 w-full relative aspect-square  ">
             <Image
-              src={product.availableColors[0].imageUrl}
+              src={product.availableColors[0]?.imageUrl}
               alt={product.name}
               quality={75}
               fill
@@ -42,7 +48,8 @@ const ProductList = () => {
             </span>
             <span className="">
               {selectedLocation.currencySymbol}
-              {product.prices.regular.toFixed(2)} {selectedLocation.currency}
+              {convertPrice(product.prices.regular).toFixed(2)}{" "}
+              {selectedLocation.currency}
             </span>
           </div>
         </Link>

@@ -11,7 +11,7 @@ type SelectCountriesProps = {
 import data from "../app/data/header.json";
 
 import SearchInput from "./SearchInput";
-import { useCountry } from "@/app/context/LocationContext";
+import { useCountry } from "@/app/context/CountryContext";
 
 const SelectCountries = ({ onClose }: SelectCountriesProps) => {
   const [query, setQuery] = useState("");
@@ -26,7 +26,6 @@ const SelectCountries = ({ onClose }: SelectCountriesProps) => {
     });
   };
   const sortedLocations = sortLocations(data.footer.locations);
-  console.log(sortedLocations, "sortedLocation");
 
   const filteredData = query
     ? sortedLocations.filter((location) =>
@@ -34,7 +33,6 @@ const SelectCountries = ({ onClose }: SelectCountriesProps) => {
       )
     : sortedLocations;
 
-  console.log("logging filtered", filteredData, "sorted", sortLocations);
   // useEffect(() => {
   //   window.scrollTo(0, 0);
 

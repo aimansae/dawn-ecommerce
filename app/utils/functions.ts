@@ -5,3 +5,4 @@ export const createSlugFromName = (name: string) => {
     .replace(/\s+/g, "-")
     .trim();
 };
+

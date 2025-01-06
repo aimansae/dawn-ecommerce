@@ -3,6 +3,8 @@ export type Color = {
   imageUrl: string;
   imageSides?: string[];
 };
+export type Size = string;
+
 export type ProductType = {
   id: string;
   name: string;
@@ -12,6 +14,7 @@ export type ProductType = {
     sale?: number;
   };
   availableColors: Color[];
+  availableSizes?: Size[];
   category: string;
   description?: string;
 };

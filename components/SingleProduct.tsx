@@ -8,16 +8,21 @@ import { useRouter } from "next/navigation";
 import { usePathname, useSearchParams } from "next/navigation";
 
 import AddToCart from "./ViewCart";
-import { Color, SingleProductType } from "@/app/types/types";
+import { Color, SingleProductType, Size } from "@/app/types/types";
 import { useCart } from "@/app/context/CartContext";
 import QuantitySelector from "./QuantitySelector";
+import { useCountry } from "@/app/context/CountryContext";
 
 const SingleProduct = ({ product }: SingleProductType) => {
   const { cart, addToCart } = useCart();
+  const { selectedLocation } = useCountry();
   const searchParams = useSearchParams();
 
   const [selectedColor, setSelectedColor] = useState(() => {
     return searchParams.get("color") || product.availableColors?.[0].color;
+  });
+  const [selectedSize, setSelectedSize] = useState(() => {
+    return searchParams.get("size") || "";
   });
   const [currentImage, setCurrentImage] = useState(
     product.availableColors?.[0].imageUrl
@@ -34,9 +39,14 @@ const SingleProduct = ({ product }: SingleProductType) => {
   const pathName = usePathname();
   const router = useRouter();
 
-  const updateURLParams = (color?: string, quantity?: number) => {
+  const updateURLParams = (
+    color?: string,
+    size?: string,
+    quantity?: number
+  ) => {
     const newParams = new URLSearchParams(searchParams);
     if (color) newParams.set("color", color);
+    if (size) newParams.set("size", size);
     if (quantity !== undefined) newParams.set("quantity", quantity.toString());
     router.push(`${pathName}?${newParams.toString().toLowerCase()}`, {
       scroll: false,
@@ -45,6 +55,7 @@ const SingleProduct = ({ product }: SingleProductType) => {
 
   const handleColorClick = (color: Color) => {
     setSelectedColor(color.color);
+    setSelectedSize("");
     setQuantity(1);
     const imageWithSelectedColor = product.availableColors?.find(
       (colorItem) => colorItem.color === color.color
@@ -53,24 +64,38 @@ const SingleProduct = ({ product }: SingleProductType) => {
     if (imageWithSelectedColor) {
       setCurrentImage(imageWithSelectedColor);
     }
-    updateURLParams(color.color, quantity);
+    updateURLParams(color.color, selectedSize, quantity);
+  };
+
+  const handleSizeClick = (size: string) => {
+    setSelectedSize(size); // Update the selected size
+    updateURLParams(selectedColor, size, quantity);
   };
 
   const handleQuantity = (change: number) => {
     const newQuantity = quantity + change;
     setQuantity(newQuantity);
-    updateURLParams(selectedColor, newQuantity);
+    updateURLParams(selectedColor, selectedSize, newQuantity);
   };
 
   const handleAddToCart = () => {
     if (!selectedColor) {
       console.log("error: No color selected");
     }
+    if (!selectedSize && product.availableSizes) {
+      console.log("No size selected");
+    }
 
     const selectedImage = product.availableColors?.find(
       (colorItem) => colorItem.color === selectedColor
     )?.imageUrl;
-    addToCart({ product, quantity, selectedColor, selectedImage });
+    addToCart({
+      product,
+      quantity,
+      selectedColor,
+      selectedImage,
+      selectedSize,
+    });
     setViewCart(true);
     console.log("cart clicked", cart);
   };
@@ -108,7 +133,10 @@ const SingleProduct = ({ product }: SingleProductType) => {
         <div className="items-start justify-center">
           <h1 className="text-[30px]">{product.name}</h1>
           <div>
-            <h2>{product.prices.regular}</h2>
+            <h2>
+              {selectedLocation.currencySymbol}
+              {product.prices.regular.toFixed(2)} {selectedLocation.currency}
+            </h2>
           </div>
         </div>
 
@@ -130,9 +158,32 @@ const SingleProduct = ({ product }: SingleProductType) => {
                 </li>
               ))}
             </ul>
-          </div>
+            {/* Size selection (only for shoes) */}
+            {product.availableSizes && (
+              <div className="flex flex-col gap-2">
+                <span className="text-xs text-darkGray">Size</span>
+                <div>
+                  <ul className="flex flex-wrap gap-2">
+                    {product.availableSizes?.map(
+                      (size: Size, index: number) => (
+                        <li key={index}>
+                          <button
+                            onClick={() => handleSizeClick(size)}
+                            className={`border capitalize py-1 rounded-2xl px-5 hover:border-black ${
+                              selectedSize === size ? "bg-black text-white" : ""
+                            }`}
+                          >
+                            {size}
+                          </button>
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </div>
+              </div>
+            )}
+          </div>{" "}
         </div>
-
         {/* Quantity Selection */}
         <QuantitySelector
           onChangeQuantity={handleQuantity}

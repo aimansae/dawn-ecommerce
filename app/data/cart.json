@@ -10,10 +10,16 @@
 
     "productDetails": {
       "color": "color",
-      "quantity": "quantity",
+      "quantity": "quantity"
+    },
+    "footer": {
       "estimatedTotal": "Estimated total:",
       "taxInfo": "Taxes,  discounts and shipping calculated at checkout.",
-      "checkout": "Check out"
+      "checkout": "Check out",
+      "empty": " Your cart is empty",
+      "account": "Have an account",
+      "login": "Log in",
+      "checkoutFaster": "to check out faster"
     }
   }
 }

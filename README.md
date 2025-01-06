@@ -59,3 +59,5 @@ border for footer
 add to cart, scroll on top
 close if clicked outside for county div
 small devices make non scrollable
+sized 
+bubble nr

@@ -8,7 +8,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import SelectCountries from "./SelectCountries";
 import { IoIosArrowDown } from "react-icons/io";
 import { PaymentIcon } from "react-svg-credit-card-payment-icons";
-import { useCountry } from "@/app/context/LocationContext";
+import { useCountry } from "@/app/context/CountryContext";
 
 export type Location = {
   country: string;
@@ -87,9 +87,9 @@ const Footer = () => {
             </button>
           </div>
         </div>
-        <div className="mt-4 ">
+        {/* <div className="mt-4 ">
           <SocialMedia />
-        </div>
+        </div> */}
       </section>
       <hr className="w-full border-t border-gray-300 mb-4" />
 

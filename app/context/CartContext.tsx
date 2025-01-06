@@ -7,7 +7,6 @@ import {
   useState,
 } from "react";
 import { ProductType } from "../types/types";
-import { createStyleRegistry } from "styled-jsx";
 
 export type CartItemType = {
   product: ProductType;
@@ -23,10 +22,11 @@ type CartContextType = {
   updateQuantity: (
     productId: string,
     selectedColor: string,
+    selectedSize: string | undefined,
     change: number
   ) => void;
   getTotalQuantity: () => number;
-  getTotalPrice: () => number;
+  getTotalPrice: () => any;
   removeFromCart: (
     productId: string,
     selectedColor: string,
@@ -59,7 +59,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
       if (existingItem) {
         return prevCart.map((cartItem) =>
           cartItem.product.id === item.product.id &&
-          item.selectedColor === item.selectedColor
+          item.selectedColor === item.selectedColor &&
+          cartItem.selectedSize === item.selectedSize
             ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
             : cartItem
         );
@@ -79,12 +80,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const updateQuantity = (
     productId: string,
     selectedColor: string,
+    selectedSize: string,
     change: number
   ) => {
     setCart((prevCart) =>
       prevCart.map((cartItem) =>
-        cartItem.product.id === productId &&
-        cartItem.selectedColor === selectedColor
+        (cartItem.product.id === productId &&
+          cartItem.selectedColor === selectedColor) ||
+        cartItem.selectedSize === selectedSize
           ? { ...cartItem, quantity: Math.max(cartItem.quantity + change, 1) } // Ensure quantity is at least 1
           : cartItem
       )
