@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import data from "../app/data/footer.json";
 import Link from "next/link";
 import SocialMedia from "./SocialMedia";
@@ -19,19 +19,31 @@ export type Location = {
 const Footer = () => {
   const [showLocations, setShowLocations] = useState(false);
   const { selectedLocation, setSelectedLocation } = useCountry();
+  const locationsRef = useRef<HTMLDivElement>(null);
 
-  useState<string>("Canada");
+  const handleCountryChange = (newLocation: Location) => {
+    console.log(newLocation, "CHange of location");
 
-  const handleCountyChange = (newLocation: Location) => {
     setSelectedLocation(newLocation);
     setShowLocations(false);
-    console.log(newLocation);
   };
 
-  const handleCountryDivClose = () => {
-    setShowLocations(false);
-    console.log("apply overlay");
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      locationsRef.current &&
+      !locationsRef.current.contains(event.target as Node)
+    ) {
+      setShowLocations(false);
+    }
   };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
   return (
     <footer className=" px-[30px] md:px-[50px] items-center  grid grid-cols-1 mt-16  xs:gap-8 sm:gap-0 lg:max-w-7xl mx-auto w-full">
       <div className="  flex flex-col md:flex-row justify-between gap-6 md:gap-3 ">
@@ -95,30 +107,29 @@ const Footer = () => {
 
       {/*Country section*/}
       <section className="relative  flex flex-col lg: md:flex-wrap    md:flex-row items-center justify-center md:justify-between md:items-end gap-6 md:md:py-8  ">
-        <div className="">
+        <div ref={locationsRef}>
           <h3 className="my-4 text-xs text-darkGray">
             {data.footer.country.title}
           </h3>
           <button
             className="flex px-6 gap-2   items-center justify-center text-sm w-full  border border-gray-400 py-3  "
-            onClick={() => setShowLocations(!showLocations)}
+            onClick={() => setShowLocations(true)}
           >
             <span className="hover:underline text-xs">
-              {selectedLocation.country} | {selectedLocation.currency}
+              {selectedLocation.country} | {selectedLocation.currency}{" "}
+              {selectedLocation.currencySymbol}
             </span>
             <IoIosArrowDown className="transition-transform transform hover:scale-110 duration-300" />
           </button>
-        </div>
-        <div>
+
           {showLocations && (
             <SelectCountries
-              onSelectCountry={handleCountyChange}
-              onClose={handleCountryDivClose}
+              onSelectCountry={handleCountryChange}
+              onClose={() => setShowLocations(false)}
               currentlySelectedLocation={selectedLocation.country}
             ></SelectCountries>
           )}
         </div>
-
         {/*Payment icons*/}
         <div>
           <ul className="flex items-center justify-between gap-3">

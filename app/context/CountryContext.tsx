@@ -1,24 +1,31 @@
 "use client";
 
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+
+import fetchCurrencyRates from "../utils/fetchCurrencyRates";
 
 type Location = {
   country: string;
   currency: string;
   currencySymbol?: string;
-  exchangeRate?: number;
 };
 
 type LocationContextType = {
   selectedLocation: Location;
   setSelectedLocation: (location: Location) => void;
+  exchangeRate?: number | null;
 };
 
 const defaultLocation: Location = {
   country: "USA",
   currency: "USD",
   currencySymbol: "$",
-  exchangeRate: 1,
 };
 
 const CountryContext = createContext<LocationContextType | undefined>(
@@ -26,14 +33,36 @@ const CountryContext = createContext<LocationContextType | undefined>(
 );
 
 export const CountryProvider = ({ children }: { children: ReactNode }) => {
-  const [selectedLocation, setSelectedLocation] = useState(defaultLocation);
-  const [loading, setLoading] = useState<boolean>(false); // Track loading state
+  const [selectedLocation, setSelectedLocation] = useState(() => {
+    if (typeof window !== "undefined") {
+      const storedLocation = localStorage.getItem("location");
+      return storedLocation ? JSON.parse(storedLocation) : defaultLocation;
+    }
+    return defaultLocation;
+  });
 
+  const [exchangeRate, setExchangeRate] = useState<number | null>(null);
+  useEffect(() => {
+    localStorage.setItem("location", JSON.stringify(selectedLocation));
+  }, [selectedLocation]);
+
+  useEffect(() => {
+    const fetchRate = async () => {
+      const rate = await fetchCurrencyRates(selectedLocation.currency, "USD");
+      console.log("FETCHING RATE", rate);
+      if (rate) {
+        setExchangeRate(rate);
+      }
+    };
+
+    fetchRate();
+  }, [selectedLocation]);
   return (
     <CountryContext.Provider
       value={{
         selectedLocation,
         setSelectedLocation,
+        exchangeRate,
       }}
     >
       {children}

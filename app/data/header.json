@@ -32,12 +32,12 @@
       {
         "country": "Algeria",
         "currency": "DZD",
-        "currencySymbol": "دج",
+        "currencySymbol": "DA",
         "language": "Arabic"
       },
       {
         "country": "Austria",
-        "currency": "EUR ",
+        "currency": "EUR",
         "currencySymbol": "€",
         "language": "German"
       },
@@ -49,8 +49,8 @@
       },
       {
         "country": "Canada",
-        "currency": "CaD ",
-        "currencySymbol": " $",
+        "currency": "CAD",
+        "currencySymbol": "$",
         "language": "English/French"
       },
       {
@@ -61,7 +61,7 @@
       },
       {
         "country": "Egypt",
-        "currency": "EGP ",
+        "currency": "EGP",
         "currencySymbol": " £",
         "language": "Arabic"
       },
@@ -73,75 +73,81 @@
       },
       {
         "country": "Germany",
-        "currency": "EUR ",
+        "currency": "EUR",
         "currencySymbol": " €",
         "language": "German"
       },
       {
         "country": "Italy",
-        "currency": "EUR ",
+        "currency": "EUR",
         "currencySymbol": " €",
         "language": "Italian"
       },
       {
         "country": "Mexico",
-        "currency": "MXN ",
+        "currency": "MXN",
         "currencySymbol": " $",
         "language": "Spanish"
       },
       {
         "country": "New Zealand",
-        "currency": "NZD ",
+        "currency": "NZD",
         "currencySymbol": " $",
         "language": "English"
       },
       {
         "country": "Nigeria",
-        "currency": "NGN ₦",
+        "currency": "NGN",
         "currencySymbol": "  ₦",
         "language": "English"
       },
       {
         "country": "Saudi Arabia",
-        "currency": "SAR ",
+        "currency": "SAR",
         "currencySymbol": " ﷼",
 
         "language": "Arabic"
       },
       {
         "country": "Senegal",
-        "currency": "XOF ",
+        "currency": "XOF",
         "currencySymbol": " CFA",
         "language": "French"
       },
       {
         "country": "South Africa",
-        "currency": "CAD",
+        "currency": "ZAR",
         "currencySymbol": "$",
         "language": "English"
       },
       {
         "country": "Spain",
-        "currency": "EUR ",
+        "currency": "EUR",
         "currencySymbol": " €",
         "language": "Spanish"
       },
       {
         "country": "Switzerland",
-        "currency": "CHF ",
-        "currencySymbol": "Fr",
+        "currency": "CHF",
+        "currencySymbol": "CHF",
         "language": "German/French/Italian"
       },
       {
         "country": "Turkey",
-        "currency": "TRY ",
+        "currency": "TRY",
         "currencySymbol": " ₺",
         "language": "Turkish"
       },
       {
         "country": "United States",
-        "currency": "USD ",
+        "currency": "USD",
         "currencySymbol": " $",
+        "language": "English"
+      },
+      {
+        "country": "United kingdom",
+        "currency": "GBP",
+        "currencySymbol": "£",
         "language": "English"
       }
     ],

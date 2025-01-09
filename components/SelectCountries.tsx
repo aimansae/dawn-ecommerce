@@ -75,7 +75,10 @@ const SelectCountries = ({ onClose }: SelectCountriesProps) => {
               >
                 <button
                   className=" relative flex gap-2 text-gray-500 hover:text-black w-full justify-between items-center hover:underline"
-                  onClick={() => setSelectedLocation(location)}
+                  onClick={() => {
+                    setSelectedLocation(location);
+                    onClose();
+                  }}
                 >
                   {location.country === selectedLocation.country && (
                     <span className="absolute left-[-18px] top-1">

@@ -1,29 +1,20 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import data from "../app/data/productList.json";
 import Image from "next/image";
 import Link from "next/link";
-import { createSlugFromName } from "@/app/utils/functions";
+import {
+  convertPriceToCurrency,
+  createSlugFromName,
+} from "@/app/utils/functions";
 import { transformProduct } from "@/app/utils/transformProduct";
 import { useCountry } from "../app/context/CountryContext";
 
 const ProductList = () => {
   const transformedProducts = data.products.map(transformProduct);
 
-  const { selectedLocation, loading } = useCountry();
+  const { selectedLocation, exchangeRate } = useCountry();
 
-  console.log(
-    "Current location and currency",
-    selectedLocation.country,
-    selectedLocation.currency
-  );
-
-  const convertPrice = (price: number) => {
-    return price * (selectedLocation.exchangeRate || 1);
-  };
-  if (loading) {
-    return <div>Loading exchange rate...</div>; // You can replace this with a spinner or better UI
-  }
   return (
     <section className="grid grid-cols-2 lg:grid-cols-4  gap-2 lg:max-w-7xl   mx-auto px-4 md:px-[50px] ">
       {transformedProducts.map((product) => (
@@ -46,9 +37,9 @@ const ProductList = () => {
             <span className="text-customBlack text-xs  truncate sm:text-[13px] group-hover:underline">
               {product.name}
             </span>
-            <span className="">
-              {selectedLocation.currencySymbol}
-              {convertPrice(product.prices.regular).toFixed(2)}{" "}
+            <span>
+              {selectedLocation.currencySymbol}{" "}
+              {convertPriceToCurrency(product.prices.regular, exchangeRate)}{" "}
               {selectedLocation.currency}
             </span>
           </div>

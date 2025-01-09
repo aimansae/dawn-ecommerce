@@ -52,7 +52,7 @@ const SearchInput = ({ onClose, onSearch }: SearchInputProps) => {
           </span>
         </button>
       </div>
-      <div className="">
+      <div>
         <button onClick={onClose}>
           <TfiClose
             size={26}
