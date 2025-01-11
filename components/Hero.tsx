@@ -32,7 +32,7 @@ const Hero = () => {
               {hero.content.subheading}
             </span>
             <button className="mt-4 px-6 py-3 bg-transparent text-white border-white border">
-              <Link href="/">{hero.content.button.text}</Link>
+              <Link href="/collections/">{hero.content.button.text}</Link>
             </button>
           </div>
         </div>

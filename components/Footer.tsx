@@ -45,7 +45,7 @@ const Footer = () => {
     };
   }, []);
   return (
-    <footer className=" px-[30px] md:px-[50px] items-center  grid grid-cols-1 mt-16  xs:gap-8 sm:gap-0 lg:max-w-7xl mx-auto w-full">
+    <footer className=" px-[25px] md:px-[50px] items-center  grid grid-cols-1 mt-16  xs:gap-8 sm:gap-0 lg:max-w-7xl mx-auto w-full">
       <div className="  flex flex-col md:flex-row justify-between gap-6 md:gap-3 ">
         {/*Links section*/}
         <section className="flex flex-col gap-2 flex-1  ">
@@ -113,9 +113,9 @@ const Footer = () => {
           </h3>
           <button
             className="flex px-6 gap-2   items-center justify-center text-sm w-full  border border-gray-400 py-3  "
-            onClick={() => setShowLocations(true)}
+            onClick={() => setShowLocations(!showLocations)}
           >
-            <span className="hover:underline text-xs">
+            <span className="hover:underline text-xs whitespace-nowrap">
               {selectedLocation.country} | {selectedLocation.currency}{" "}
               {selectedLocation.currencySymbol}
             </span>
@@ -123,11 +123,13 @@ const Footer = () => {
           </button>
 
           {showLocations && (
-            <SelectCountries
-              onSelectCountry={handleCountryChange}
-              onClose={() => setShowLocations(false)}
-              currentlySelectedLocation={selectedLocation.country}
-            ></SelectCountries>
+            <div className="fixed w-full p-[15px] md:absolute left-0   bottom-0 md:bottom-[9rem] bg-white z-50 md:w-auto h-3/4 md:h-full overflow-y-auto md:border">
+              <SelectCountries
+                onSelectCountry={handleCountryChange}
+                onClose={() => setShowLocations(false)}
+                currentlySelectedLocation={selectedLocation.country}
+              />
+            </div>
           )}
         </div>
         {/*Payment icons*/}

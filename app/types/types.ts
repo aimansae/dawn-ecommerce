@@ -13,6 +13,7 @@ export type ProductType = {
     regular: number;
     sale?: number;
   };
+  status?: string;
   availableColors: Color[];
   availableSizes?: Size[];
   category: string;

@@ -6,9 +6,10 @@
       "category": "Bags",
       "prices": {
         "currency": "USD",
-        "regular": "229.00",
+        "regular": "227.00",
         "sale": " 364.00 "
       },
+      "status": "out of stock",
       "availableColors": [
         {
           "color": "cappuccino",
@@ -39,8 +40,9 @@
       "category": "Bags",
       "prices": {
         "currency": "USD",
-        "regular": "332.00 "
+        "regular": "330.00 "
       },
+      "status": "in stock",
       "availableColors": [
         {
           "color": "oyster",
@@ -65,9 +67,10 @@
 
       "prices": {
         "currency": "USD",
-        "regular": "307.00 ",
-        "sale": "282.00 "
+        "regular": "305.00 ",
+        "sale": "280.00 "
       },
+      "status": "out of stock",
       "availableColors": [
         {
           "color": "buttermilk",
@@ -96,13 +99,23 @@
 
       "name": "Mini Naomi Bag",
       "category": "Bags",
-      "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
         "currency": "USD",
-        "regular": "225.00 ",
-        "sale": "From 214.00 "
+        "regular": "223.00 ",
+        "sale": "From 212.00 "
       },
-      "availableColors": ["harvest", "pastel"],
+      "status": "out of stock",
+      "availableColors": [
+        {
+          "color": "harvest",
+          "imageUrl": "/assets/images/naomiBag/naomi-bag-harvest.png",
+          "imageSides": []
+        },
+        {
+          "color": "pastel",
+          "imageUrl": "/assets/images/naomiBag/naomi-bag-pastel.png"
+        }
+      ],
       "tags": ["Sale"],
       "description": "This is a demonstration store. You can purchase products like this from Mlouye.     Mini Naomi Bag is perfectly proportioned for your essentials like a big-screen phone, cardholder, and lipstick. You can wear it around your waist or slung over one shoulder, and it comes with an extra shoulder strap, so you can also wear it crossbody."
     },
@@ -110,32 +123,78 @@
       "id": "5",
       "name": "Helix",
       "category": "Bags",
-      "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
         "currency": "USD",
-        "regular": "336.00 "
+        "regular": "333.00 "
       },
-      "availableColors": ["multicolor", "denim", "off white", "south america"],
-
+      "status": "in stock",
+      "availableColors": [
+        {
+          "color": "multicolor",
+          "imageUrl": "/assets/images/helixBag/helix-bag-multicolor.png",
+          "imageSides": []
+        },
+        {
+          "color": "denim",
+          "imageUrl": "/assets/images/helixBag/helix-bag-denim.png"
+        },
+        {
+          "color": "off white",
+          "imageUrl": "/assets/images/helixBag/helix-bag-offWhite.png"
+        },
+        {
+          "color": "south america",
+          "imageUrl": "/assets/images/helixBag/helix-bag-southAmerica.png"
+        }
+      ],
       "description": "Featuring a unique combination of modern art and minimalist perspective, our Helix Bag is perfectly sized to fit just the essentials - think small wallet, keys, sunglasses and large phone. It has a wind spinner silhouette that will remind you summer breezes out on the porch. The top handle is cleverly linked to the body through its hidden joint; it can fall down when you use the bag with shoulder strap. Made from smooth leather and has a suede internal with a drawstring top to keep all you have stowed inside safe and secure."
     },
     {
       "id": "6",
       "name": "Bo Ivy",
       "category": "Bags",
-      "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
         "currency": "USD",
-        "regular": "279.00 "
+        "regular": "276.00 "
       },
+      "status": "in stock",
+
       "availableColors": [
-        "emerald",
-        "black",
-        "cognac",
-        "denim",
-        "brown",
-        "violet",
-        "latte"
+        {
+          "color": "emerald",
+          "imageUrl": "/assets/images/boIviBag/boIvi-bag-emerald.png",
+          "imageSides": []
+        },
+        {
+          "color": "black",
+          "imageUrl": "/assets/images/boIviBag/boIvi-bag-black.png",
+          "imageSides": []
+        },
+        {
+          "color": "cognac",
+          "imageUrl": "/assets/images/boIviBag/boIvi-bag-cognac.png",
+          "imageSides": []
+        },
+        {
+          "color": "denim",
+          "imageUrl": "/assets/images/boIviBag/boIvi-bag-denim.png",
+          "imageSides": []
+        },
+        {
+          "color": "brown",
+          "imageUrl": "/assets/images/boIviBag/boIvi-bag-brown.png",
+          "imageSides": []
+        },
+        {
+          "color": "latte",
+          "imageUrl": "/assets/images/boIviBag/boIvi-bag-latte.png",
+          "imageSides": []
+        },
+        {
+          "color": "violet",
+          "imageUrl": "/assets/images/boIviBag/boIvi-bag-violet.png",
+          "imageSides": []
+        }
       ],
 
       "description": "Our latest creation is designed and engineered with inspiration from the Streamline Moderne style of the Art Deco movement. A cylindrical form with gorgeously curved details. The collection has 2 designs: Bo Ivy and Bo Soft Strap, two sister bags having the same body with different straps. Specially developed in-house, the strap of the Bo Ivy is a piece of art. Emulating an ivy branch, the unique curvy strap has a laser-cut skeleton built from stainless steel underneath the leather and is shaped by hand as a last step of the production process."
@@ -144,12 +203,40 @@
       "id": "7",
       "name": "Pleated Heel Mule",
       "category": "Shoes",
-      "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
         "currency": "USD",
-        "regular": "353.00 "
+        "regular": "351.00 "
       },
-      "availableColors": ["beige", "offWhite", "olive", "bordeaux", "denim"],
+      "status": "in stock",
+
+      "availableColors": [
+        {
+          "color": "beige",
+          "imageUrl": "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-beige.png",
+          "imageSides": []
+        },
+        {
+          "color": "white",
+          "imageUrl": "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-white.png",
+          "imageSides": []
+        },
+        {
+          "color": "olive",
+          "imageUrl": "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-olive.png",
+          "imageSides": []
+        },
+
+        {
+          "color": "bordeaux",
+          "imageUrl": "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-bordeaux.png",
+          "imageSides": []
+        },
+        {
+          "color": "denim",
+          "imageUrl": "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-denim.png",
+          "imageSides": []
+        }
+      ],
       "availableSizes": ["35", "36", "37", "38", "39", "40", "41"],
 
       "description": "The Pleated Heel Mules take a cue from our iconic Pleated Lantern Bag, but this time, reimagining pleats using solid oak. Features a square toe and a padded insole for extra comfort. Materials"
@@ -161,17 +248,277 @@
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
         "currency": "USD",
-        "regular": "275.00 "
+        "regular": "273.00 "
       },
+      "status": "out of stock",
       "availableColors": [
-        "cashmere rose",
-        "chocolate",
-        "denim",
-        "dry rose",
-        "earth",
-        "jade"
+        {
+          "color": "cashmere rose",
+          "imageUrl": "/assets/images/brickBag/brick-bag-cashmereRose.png",
+          "imageSides": []
+        },
+        {
+          "color": "chocolate",
+          "imageUrl": "/assets/images/brickBag/brick-bag-chocolate.png",
+          "imageSides": []
+        },
+        {
+          "color": "denim",
+          "imageUrl": "/assets/images/brickBag/brick-bag-denim.png",
+          "imageSides": []
+        },
+        {
+          "color": "dry rose",
+          "imageUrl": "/assets/images/brickBag/brick-bag-dryRose.png",
+          "imageSides": []
+        },
+        {
+          "color": "earth",
+          "imageUrl": "/assets/images/brickBag/brick-bag-cashmereRose.png",
+          "imageSides": []
+        },
+        {
+          "color": "jade",
+          "imageUrl": "/assets/images/brickBag/brick-bag-jade.png",
+          "imageSides": []
+        }
       ],
       "description": "Inspired by the structural boxy form and shape of a brick, which lends its name, the bag is perfectly sized for your everyday essentials, from a large phone to your wallet and lipstick."
+    },
+    {
+      "id": "9",
+      "name": "Mini Eddy",
+      "category": "Bags",
+      "prices": {
+        "currency": "USD",
+        "regular": "226.00",
+        "sale": ""
+      },
+      "status": "in stock",
+
+      "availableColors": [
+        {
+          "color": "mocha",
+          "imageUrl": "/assets/images/eddiBag/eddi-bag-mocha.png",
+          "imageSides": []
+        },
+        {
+          "color": "clay",
+          "imageUrl": "/assets/images/eddiBag/eddi-bag-mocha.png"
+        },
+        {
+          "color": "denim",
+          "imageUrl": "/assets/images/eddiBag/eddi-bag-mocha.png"
+        },
+        {
+          "color": "red",
+          "imageUrl": "/assets/images/eddiBag/eddi-bag-mocha.png"
+        }
+      ],
+      "description": "This is a demonstration store. You can purchase products like this from Mlouye. Our architectural, origami inspired shoulder bag, now has a new dimension. It can be converted into a wrist bag just with a quick move. The shoulder strap can easily be removed, so you can slung it from your wrist or use as a clutch. It has plenty of room inside for your essentials including a large phone, small wallet, and 300 ml water bottle. Made from smooth leather and has a suede top with two-way zip fastening. Interior features two slip pockets."
+    },
+    {
+      "id": "10",
+      "name": "Art Deco",
+      "category": "Bags",
+      "prices": {
+        "currency": "USD",
+        "regular": "266.00",
+        "sale": "117.00"
+      },
+      "status": "in stock",
+      "availableColors": [
+        {
+          "color": "cyclamen",
+          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+          "imageSides": []
+        },
+        {
+          "color": "mediterranean blue",
+          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-mediterranean-blue.png"
+        },
+        {
+          "color": "mosstone",
+          "imageUrl": "/assets/images/eddiBag/eddi-bag-mocha.png"
+        },
+        {
+          "color": "sand",
+          "imageUrl": "/assets/images/eddiBag/eddi-bag-mocha.png"
+        }
+      ],
+      "description": "This is a demonstration store. You can purchase products like this from Mlouye. Our architectural, origami inspired shoulder bag, now has a new dimension. It can be converted into a wrist bag just with a quick move. The shoulder strap can easily be removed, so you can slung it from your wrist or use as a clutch. It has plenty of room inside for your essentials including a large phone, small wallet, and 300 ml water bottle. Made from smooth leather and has a suede top with two-way zip fastening. Interior features two slip pockets."
+    },
+    {
+      "id": "11",
+      "name": "Business Bad",
+      "category": "Bags",
+      "prices": {
+        "currency": "USD",
+        "regular": "368.00",
+        "sale": " "
+      },
+      "status": "in stock",
+
+      "availableColors": [
+        {
+          "color": "black and gray",
+          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+          "imageSides": []
+        },
+        {
+          "color": "earth",
+          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-mediterranean-blue.png"
+        },
+        {
+          "color": "vegan leather",
+          "imageUrl": "/assets/images/eddiBag/eddi-bag-mocha.png"
+        }
+      ],
+      "description": "Designed in a silhouette inspired by Art-Deco style, this bag is expertly crafted from Italian calf leather with microsuede lining. Packs a ton of features in a slim, compact space so you can carry your office life in the bag — including a 16” Macbook Pro. It has additional two tight slots on the front that you can fit your notebook, phone or tablet."
+    },
+    {
+      "id": "12",
+      "name": "Hobo Large",
+      "category": "Bags",
+      "prices": {
+        "currency": "USD",
+        "regular": "435.00",
+        "sale": " "
+      },
+      "status": "out of stock",
+      "availableColors": [
+        {
+          "color": "latte",
+          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+          "imageSides": []
+        },
+        {
+          "color": "off white",
+          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-mediterranean-blue.png"
+        },
+        {
+          "color": "yellow",
+          "imageUrl": "/assets/images/eddiBag/eddi-bag-mocha.png"
+        }
+      ],
+      "description": "Versatile and minimally designed in a curved silhouette. Hobo is made from smooth Italian leather detailed with contrasting black leather trim. Sleek interior is lined in micro suede textile. The stud closure at the top keeps your belongings secure. It comes with a detachable pouch, which is perfect for securing smaller essentials. This oversized version is ultra-roomy to see you through long days in the city or weekend trips."
+    },
+    {
+      "id": "13",
+      "name": "Hobo medium",
+      "category": "Bags",
+      "prices": {
+        "currency": "USD",
+        "regular": "297.00",
+        "sale": " "
+      },
+      "status": "in stock",
+
+      "availableColors": [
+        {
+          "color": "latte",
+          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+          "imageSides": []
+        },
+        {
+          "color": "off white",
+          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-mediterranean-blue.png"
+        },
+        {
+          "color": "yellow",
+          "imageUrl": "/assets/images/eddiBag/eddi-bag-mocha.png"
+        }
+      ],
+      "description": "Versatile and minimally designed in a curved silhouette. Hobo is made from smooth Italian leather detailed with contrasting black leather trim. Sleek interior is lined in micro suede textile. The stud closure at the top keeps your belongings secure. It comes with a detachable pouch, which is perfect for securing smaller essentials. This oversized version is ultra-roomy to see you through long days in the city or weekend trips."
+    },
+    {
+      "id": "14",
+      "name": "lantern bag pleated",
+      "category": "Bags",
+      "prices": {
+        "currency": "USD",
+        "regular": "326.00",
+        "sale": " "
+      },
+      "status": "in stock",
+
+      "availableColors": [
+        {
+          "color": "blue",
+          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+          "imageSides": []
+        }
+      ],
+      "description": "Our coveted design gets a dramatic look and textured surface quality by folding leather in an elegant zig-zag pattern. This mini version of the Lantern Bag is designed to fit just the essentials - keys, lipstick and a large phone. You can carry it by the top handle or go hands-free with the shoulder strap."
+    },
+    {
+      "id": "15",
+      "name": "mini sera tote",
+      "category": "Bags",
+      "prices": {
+        "currency": "USD",
+        "regular": "259.00",
+        "sale": " "
+      },
+      "status": "in stock",
+
+      "availableColors": [
+        {
+          "color": "butter",
+          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+          "imageSides": []
+        },
+        {
+          "color": "denim",
+          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+          "imageSides": []
+        },
+        {
+          "color": "dry rose",
+          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+          "imageSides": []
+        },
+        {
+          "color": "oceania",
+          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+          "imageSides": []
+        },
+        {
+          "color": "olive leaf",
+          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+          "imageSides": []
+        },
+        {
+          "color": "shark",
+          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+          "imageSides": []
+        }
+      ],
+      "description": "Mix of symmetry and fluid, clean lines, Mini Sera Tote is designed to carry your daily essentials, a large phone(like iPhone 11 Pro Max), mini wallet or cardholder, and lipstick, etc.Its exterior design is a surrealist dream, reminiscent of a maze-like structure protruding outwards, with sharp, clean lines, and a 3D façade. It has a suede drawstring top, securing your belongings on the go.Folding inwards like an accordion and then stretching outwards to store those last-minute belongings. The Sera Tote also features a detachable shoulder strap. Carry it your way and relish every thoughtful detail."
+    },
+    {
+      "id": "16",
+      "name": "mini woven bag",
+      "category": "Bags",
+      "prices": {
+        "currency": "USD",
+        "regular": "266.00",
+        "sale": "174.00 "
+      },
+      "status": "in stock",
+      "availableColors": [
+        {
+          "color": "latte",
+          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+          "imageSides": []
+        },
+        {
+          "color": "fairy blue",
+          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+          "imageSides": []
+        }
+      ],
+      "description": "Soft suede leather houses a spacious main compartment, sealed with a solid colored zipper in a fresh, contrasting tone. Mini Woven Bag houses one inner pocket and a bottom pouch for your travel card, allowing you to swipe easily without rummaging in line to take it out. Designed to carry mini wallet, large phone, and your daily essentials. Easily carried with two handles toted on your arm or worn with a removable strap across your body."
     }
   ]
 }

@@ -12,18 +12,18 @@ import { useCountry } from "../app/context/CountryContext";
 
 const ProductList = () => {
   const transformedProducts = data.products.map(transformProduct);
-
+  const limitedProducts = transformedProducts.slice(0, 8);
   const { selectedLocation, exchangeRate } = useCountry();
 
   return (
     <section className="grid grid-cols-2 lg:grid-cols-4  gap-2 lg:max-w-7xl   mx-auto px-4 md:px-[50px] ">
-      {transformedProducts.map((product) => (
+      {limitedProducts.map((product) => (
         <Link
           href={`/product/${createSlugFromName(product.name)}`}
           key={product.id}
           className="group  flex flex-col "
         >
-          <div className="bg-red-400 w-full relative aspect-square  ">
+          <div className="  w-full relative aspect-square  ">
             <Image
               src={product.availableColors[0]?.imageUrl}
               alt={product.name}

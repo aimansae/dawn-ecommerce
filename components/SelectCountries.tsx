@@ -56,14 +56,12 @@ const SelectCountries = ({ onClose }: SelectCountriesProps) => {
     <>
       {/* <div
         className="md:hidden fixed top-[106px] left-0 w-full h-full bg-black bg-opacity-50 z-40 md:w-auto"
-        onClick={onClose} // Clicking the overlay closes the modal
-      /> */}
-
-      <div
-        className={
+        onClick={onClose} // Clicking the overlay closes the modal className={
           "fixed w-full p-[15px] md:absolute left-0   bottom-0 md:bottom-[9rem] bg-white z-50 md:w-auto h-3/4 md:h-full overflow-y-auto md:border"
         }
-      >
+      /> */}
+
+      <div>
         <SearchInput onClose={onClose} onSearch={setQuery} />
 
         <ul className="flex flex-col items-center justify-between  ">

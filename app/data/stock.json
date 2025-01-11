@@ -1,0 +1,13 @@
+{
+  "backInStock": {
+    "mainImage": "/assets/images/back-in-stock.png",
+    "alt": "Bags"
+  },
+  "title": "Back in stock",
+  "shoeCollection": {
+    "image": "/assets/images/shoe-collection-main.png",
+    "alt": "Shoe"
+  },
+  "bagsLink": "Bags",
+  "shoesLink": "Shoes"
+}

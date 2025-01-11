@@ -1,74 +1,196 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
+import { PiSlidersHorizontalThin } from "react-icons/pi";
+import productsData from "@/app/data/productList.json";
+import { TfiClose } from "react-icons/tfi";
+import content from "../app/data/filter.json";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { FaArrowLeftLong } from "react-icons/fa6";
+import { ProductType } from "@/app/types/types";
+import { transformProduct } from "@/app/utils/transformProduct";
 
-const Example = () => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const product = {
-    id: "1",
-    name: "Small Convertible Flex Bag",
-    availableColors: [
-      {
-        color: "cappuccino",
-        imageUrl: "/assets/images/flexBag/flex-bag-cappuccino.png",
-      },
-      {
-        color: "clay",
-        imageUrl: "/assets/images/flexBag/flex-bag-clay.png",
-      },
-    ],
+type collectionFilterProps = {
+  setFilteredProducts: (products: ProductType[]) => void;
+  filteredProducts: ProductType[];
+  availabilityFilter: {
+    inStock: boolean;
+    outOfStock: boolean;
   };
+  setAvailabilityFilter: React.Dispatch<
+    React.SetStateAction<{ inStock: boolean; outOfStock: boolean }>
+  >;
+};
 
-  const [selectedColor, setSelectedColor] = useState(
-    product.availableColors[0].color
-  );
-  const [selectedImage, setSelectedImage] = useState(
-    product.availableColors[0].imageUrl
-  );
-  useEffect(() => {
-    const colorFromUrl = searchParams.get("color");
-    if (colorFromUrl) {
-      const colorExistsInProducts = product.availableColors.find(
-        (color) => color.color === colorFromUrl
-      );
+const CollectionsFilter = ({
+  setFilteredProducts,
+  setAvailabilityFilter,
+  availabilityFilter,
+  filteredProducts,
+}: collectionFilterProps) => {
+  const [showFilters, setShowFilters] = useState(false);
+  const [activeFilters, setActiveFilters] = useState<Record<string, boolean>>({
+    availability: false,
+    color: false,
+  });
 
-      const image = product.availableColors.find(
-        (color) => color.color === colorFromUrl
-      )?.imageUrl;
+  const handleFilterChange = (filterType: string) => {
+    setActiveFilters((prev) => ({
+      ...prev,
+      [filterType]: !prev[filterType], // Toggle the state of the filter
+    }));
+  };
+  const handleAvailabilityChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = e.target;
+    setAvailabilityFilter((prev) => {
+      const updatedFilter = { ...prev, [name]: checked };
+      const transformedProducts = productsData.products.map(transformProduct);
 
-      if (image) {
-        setSelectedImage(image);
+      //all products
+      let products = [...transformedProducts];
+
+      if (updatedFilter.inStock && updatedFilter.outOfStock) {
+        setFilteredProducts(products);
+      } else {
+        //in stock products
+        if (updatedFilter.inStock) {
+          products = products.filter(
+            (product) => product.status === "in stock"
+          );
+        }
+        if (updatedFilter.outOfStock) {
+          products = products.filter(
+            (product) => product.status === "out of stock"
+          );
+        }
+        setFilteredProducts(products);
       }
-      if (colorExistsInProducts) setSelectedColor(colorFromUrl);
-    }
-  }, [searchParams]);
-
-  const handleColorClick = (color: string) => {
-    setSelectedColor(color);
-
-    router.push(`?color=${color.toLocaleLowerCase()}`);
-    console.log(selectedColor, "LOGGING SELECTED COLOR");
+      return updatedFilter;
+    });
   };
+  // In-stock and out-of-stock product counts
 
+  const inStock = productsData.products.filter(
+    (product) => product.status === "in stock"
+  );
+  const outOfStock = productsData.products.filter(
+    (product) => product.status === "out of stock"
+  );
+
+  console.log("Products in stock", productsData.products, inStock, outOfStock);
   return (
-    <div>
-      <img src={selectedImage} className="" />
-      Image
-      {product.availableColors.map((colors) => (
-        <button
-          onClick={() => handleColorClick(colors.color)}
-          className={`flex border my-5 ${
-            colors.color === selectedColor ? "bg-black text-white" : ""
-          }`}
-        >
-          {colors.color}
+    <>
+      <aside className="py-3 flex text-darkGray items-center justify-between">
+        <button>
+          <PiSlidersHorizontalThin onClick={() => setShowFilters(true)} />
         </button>
-      ))}
-    </div>
+        <h2 className="text-[15px]">{content.title}</h2>
+        <span className="text-sm">
+          {filteredProducts.length} {content.products}
+        </span>
+      </aside>
+      {showFilters && (
+        <section className="flex flex-col bg-white  py-3 justify-between">
+          <div className="flex items-center justify-between px-[15px]">
+            <div>
+              <h2 className="text-sm ">{content.title}</h2>
+              <p className="text-sm text-darkGray">
+                {productsData.products.length} {content.products}
+              </p>
+            </div>
+            <button>
+              <TfiClose onClick={() => setShowFilters(false)} />
+            </button>
+          </div>
+
+          {/* <div className="py-3 px-[15px] border-y border-gray-500 my-2"> */}
+          <ul></ul>
+          <div className="flex flex-col gap-2 ">
+            <button
+              className="flex items-center gap-2"
+              onClick={() => {
+                console.log("click to go back");
+              }}
+            >
+              <FaArrowLeftLong />
+              <span> </span>
+            </button>
+            {/*Availability filters*/}
+          </div>
+          {/* {activeFilter === "availability" ? (
+                      <div className="flex flex-col">
+                        <div className="flex items-center gap-2 py-3">
+                          <input
+                            name="inStock"
+                            id="inStock"
+                            type="checkbox"
+                            checked={availabilityFilter.inStock}
+                            onChange={handleAvailabilityChange}
+                          />
+                          <label htmlFor="inStock">
+                            {content.filterBy.availability.options.inStock} ( (
+                            {inStock.length})
+                          </label>
+                        </div>
+                        <div className="flex items-center gap-2 py-3">
+                          <input
+                            name="outOfStock"
+                            id="outOfStock"
+                            type="checkbox"
+                            checked={availabilityFilter.outOfStock}
+                            onChange={handleAvailabilityChange}
+                          />
+                          <label htmlFor="outOfStock">
+                            {content.filterBy.availability.options.outOfStock} (
+                            {outOfStock.length})
+                          </label>
+                        </div>
+                      </div>
+                    ) : (
+                      <p>color info</p>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                content.filterBy.map((item, i) => (
+                  <li
+                    key={i}
+                    className="hover:bg-lightGray w-full flex items-center py-2"
+                  >
+                    <button
+                      className=" flex justify-between w-full "
+                      onClick={() =>
+                        handleAvailabilityFilter(
+                          item as "availability" | "color"
+                        )
+                      }
+                    >
+                      <span className="flex items-center gap-2">
+                        {item}
+
+                        <FaArrowRightLong className="text-gray-500 transition-transform transform hover:scale-110 duration-300 font-thin" />
+                      </span>
+                    </button>
+                  </li>
+                ))
+              )}
+            </ul>
+          </div>
+          <div className="flex items-center justify-between gap-2 px-[15px]">
+            <button className="hover:underline text-left">
+              {activeFilter ? content.clear : content.remove}
+            </button>
+            <button
+              className="text-white bg-black p-3 px-6"
+              onClick={() => setShowFilters(false)}
+            >
+              {content.apply}
+            </button>
+          </div> */}
+        </section>
+      )}
+    </>
   );
 };
 
-export default Example;
+export default CollectionsFilter;

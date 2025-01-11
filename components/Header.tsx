@@ -17,6 +17,32 @@ import { useCart } from "@/app/context/CartContext";
 const Header = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
+  const mobileNavRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (isMobile) {
+      document.body.style.overflow = "hidden"; // Disable scrolling
+    } else {
+      document.body.style.overflow = "auto"; // Enable scrolling
+    }
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        mobileNavRef.current &&
+        !mobileNavRef.current.contains(event.target as Node)
+      ) {
+        setIsMobile(false); // Close mobile menu if clicked outside
+      }
+    };
+
+    // Clean up function to reset styles when the component is unmounted or the footer is closed
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Cleanup event listener
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "auto"; // Reset overflow when unmounting
+    };
+  }, [isMobile]);
 
   const [query, setQuery] = useState("");
 
@@ -44,7 +70,7 @@ const Header = () => {
           <p></p>
         )}
         <nav className="items-center grid grid-cols-[1fr_2fr_1fr] lg:grid-cols-[1fr_5fr_1fr]  ">
-          <div className="lg:hidden flex items-center justify-start md:items-center  selection:">
+          <div className="lg:hidden flex items-center justify-start md:items-center   ">
             <button className=" " onClick={() => setIsMobile((prev) => !prev)}>
               <span>
                 {isMobile ? (
@@ -103,18 +129,24 @@ const Header = () => {
                 size={26}
                 className=" transition-transform transform hover:scale-110 duration-300"
               />
+              {quantity > 0 && (
+                <span className="absolute  right-0 bottom-0 text-white bg-black px-1 text-[9px] rounded-full ">
+                  {quantity}
+                </span>
+              )}
             </Link>
-
-            {quantity > 0 && (
-              <span className="absolute text-white bg-black px-1 text-[9px] rounded-full right-7 bottom-4">
-                {quantity}
-              </span>
-            )}
           </div>
         </nav>
       </header>
 
-      {isMobile && <MobileNav />}
+      {isMobile && (
+        <>
+          <div className="fixed top-[106px] left-0 right-0 bottom-0  bg-black bg-opacity-50 z-40 lg:hidden"></div>
+          <div ref={mobileNavRef}>
+            <MobileNav />
+          </div>
+        </>
+      )}
     </>
   );
 };

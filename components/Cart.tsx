@@ -6,6 +6,8 @@ import Image from "next/image";
 import QuantitySelector from "./QuantitySelector";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import data from "../app/data/cart.json";
+import { useCountry } from "@/app/context/CountryContext";
+import { createSlugFromName } from "@/app/utils/functions";
 const Cart = () => {
   const {
     cart,
@@ -14,10 +16,9 @@ const Cart = () => {
     getTotalPrice,
     removeFromCart,
   } = useCart();
-  console.log("cart is*******************", cart, getTotalPrice);
-  const quantity = getTotalQuantity();
-  console.log(quantity, "loggind the quantity");
 
+  const { selectedLocation } = useCountry();
+  const quantity = getTotalQuantity();
   return (
     <section className="  flex flex-col gap-4 md:px-[50px] md:max-w-7xl  py-[14px] px-[15px] lg:px-[50px] md:mx-auto ">
       {quantity > 0 && (
@@ -55,10 +56,18 @@ const Cart = () => {
                     </div>
                     {/*Product Details */}
                     <div className="flex flex-col gap-2 w-2/3">
-                      <h3 className="text-[15px] break-words hover:underline">
+                      <Link
+                        href={`/product/${createSlugFromName(
+                          item.product.name
+                        )}`}
+                        className="text-[15px] break-words hover:underline"
+                      >
                         {item.product.name}
-                      </h3>
-                      <p> {item.product.prices.regular.toFixed(2)}</p>
+                      </Link>
+                      <p>
+                        <span>{selectedLocation.currencySymbol}</span>{" "}
+                        {item.product.prices.regular.toFixed(2)}
+                      </p>
                       <p className="text-[14px] text-darkGray">
                         Color:
                         <span className="capitalize">
@@ -128,6 +137,7 @@ const Cart = () => {
                   </td>
 
                   <td>
+                    <span>{selectedLocation.currencySymbol}</span>{" "}
                     {(item.product.prices.regular * item.quantity).toFixed(2)}
                   </td>
                 </tr>
@@ -138,12 +148,12 @@ const Cart = () => {
       )}
       {/*Cart Footer*/}
       {quantity > 0 ? (
-        <div className="flex flex-col justify-center md:items-end items-center gap-4 my-[30px] ">
+        <div className="flex flex-col justify-center md:items-end items-center gap-4 my-[30px] text-center ">
           <p>
-            {data.cart.footer.estimatedTotal}
+            {data.cart.footer.estimatedTotal}{" "}
             <span className="text-darkGray capitalize text-lg">
-              {" "}
-              {getTotalPrice()}
+              <span>{selectedLocation.currencySymbol}</span> {getTotalPrice()}{" "}
+              {selectedLocation.currency}
             </span>
           </p>
           <p className="text-darkGray text-[13px]">
@@ -175,8 +185,6 @@ const Cart = () => {
           </div>
         </div>
       )}
-      quantity is: {getTotalQuantity()}
-      Total cart amount: {getTotalPrice()}
     </section>
   );
 };

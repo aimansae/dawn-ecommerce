@@ -59,7 +59,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       if (existingItem) {
         return prevCart.map((cartItem) =>
           cartItem.product.id === item.product.id &&
-          item.selectedColor === item.selectedColor &&
+          cartItem.selectedColor === item.selectedColor &&
           cartItem.selectedSize === item.selectedSize
             ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
             : cartItem
@@ -85,8 +85,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
   ) => {
     setCart((prevCart) =>
       prevCart.map((cartItem) =>
-        (cartItem.product.id === productId &&
-          cartItem.selectedColor === selectedColor) ||
+        cartItem.product.id === productId &&
+        cartItem.selectedColor === selectedColor &&
         cartItem.selectedSize === selectedSize
           ? { ...cartItem, quantity: Math.max(cartItem.quantity + change, 1) } // Ensure quantity is at least 1
           : cartItem

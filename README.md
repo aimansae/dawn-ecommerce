@@ -61,3 +61,10 @@ close if clicked outside for county div
 small devices make non scrollable
 sized 
 bubble nr
+
+mobileopen
+soldout
+pagination for single products
+links
+filtered products count
+color

@@ -15,7 +15,7 @@ const SearchInput = ({ onClose, onSearch }: SearchInputProps) => {
   };
 
   return (
-    <div className="flex justify-between items-center gap-2 md:gap-0 pb-4">
+    <div className="flex justify-between items-center gap-2 md:gap-1 pb-4">
       <div className="w-[90%] md:w-full flex relative md:sticky md:z-50 ">
         <label className="sr-only" htmlFor="search">
           Search
@@ -56,7 +56,7 @@ const SearchInput = ({ onClose, onSearch }: SearchInputProps) => {
         <button onClick={onClose}>
           <TfiClose
             size={26}
-            className="md:hidden transition-transform transform hover:scale-110 duration-300"
+            className="  transition-transform transform hover:scale-110 duration-300 mt-1"
           />
         </button>
       </div>

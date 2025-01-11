@@ -8,6 +8,7 @@ import data from "../app/data/header.json";
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa6";
 import { IconType } from "react-icons";
 import SelectCountries from "./SelectCountries";
+import { useCountry } from "@/app/context/CountryContext";
 
 const iconMap: { [jey: string]: IconType } = {
   FaFacebook: FaFacebook,
@@ -30,26 +31,18 @@ export type Location = {
 
 const MobileFooter = () => {
   const [showLocations, setShowLocations] = useState(false);
-  const [currentLocation, setCurrentLocation] = useState<Location>({
-    country: "Canada",
-    currency: "US",
-  });
-  useState<string>("Canada");
+  const { selectedLocation, setSelectedLocation } = useCountry();
 
-  const handleCountyChange = (newLocation: Location) => {
-    setCurrentLocation(newLocation);
-    setShowLocations(false);
-    console.log(newLocation);
-  };
+  const handleCountryChange = (newLocation: Location) => {
+    console.log(newLocation, "CHange of location");
 
-  const handleCountryDivClose = () => {
+    setSelectedLocation(newLocation);
     setShowLocations(false);
-    console.log("apply overlay");
   };
 
   return (
-    <footer className="bg-lightGray text-lg flex flex-col justify-end items-start p-4 gap-6 z-50    ">
-      <button className="flex gap-2 items-center">
+    <footer className=" bg-lightGray text-lg flex flex-col  gap-6 items-start z-50 p-[30px]    ">
+      <button className="flex gap-2 ">
         <FiUser
           className="transition-transform transform hover:scale-110 duration-300"
           size={26}
@@ -63,18 +56,23 @@ const MobileFooter = () => {
           className="flex gap-2 items-center justify-center text-sm"
           onClick={() => setShowLocations(!showLocations)}
         >
-          {" "}
           <span className="hover:underline">
-            {currentLocation.country} | {currentLocation.currency}
+            {selectedLocation.country} | {selectedLocation.currency}
           </span>
           <IoIosArrowDown className="transition-transform transform hover:scale-110 duration-300" />
         </button>
         {showLocations && (
-          <SelectCountries
-            onSelectCountry={handleCountyChange}
-            onClose={() => handleCountryDivClose}
-            currentlySelectedLocation={currentLocation.country}
-          ></SelectCountries>
+          <>
+            <div className="fixed top-[96px] left-0 right-0 bottom-0  bg-black bg-opacity-50 z-40 lg:hidden"></div>
+
+            <div className="absolute  h-4/5 left-0 bottom-0 z-50 bg-white w-full px-[15px] py-6 overflow-y-auto">
+              <SelectCountries
+                onSelectCountry={handleCountryChange}
+                onClose={() => setShowLocations(false)}
+                currentlySelectedLocation={selectedLocation.country}
+              />
+            </div>
+          </>
         )}
       </div>
       <ul className="flex  items-center justify-between gap-6">

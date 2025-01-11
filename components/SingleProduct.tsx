@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
@@ -36,6 +36,12 @@ const SingleProduct = ({ product }: SingleProductType) => {
 
   const [viewCart, setViewCart] = useState(false);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   const pathName = usePathname();
   const router = useRouter();
 
@@ -97,6 +103,7 @@ const SingleProduct = ({ product }: SingleProductType) => {
       selectedSize,
     });
     setViewCart(true);
+    scrollToTop();
     console.log("cart clicked", cart);
   };
 
@@ -182,7 +189,7 @@ const SingleProduct = ({ product }: SingleProductType) => {
                 </div>
               </div>
             )}
-          </div>{" "}
+          </div>
         </div>
         {/* Quantity Selection */}
         <QuantitySelector
@@ -210,12 +217,13 @@ const SingleProduct = ({ product }: SingleProductType) => {
       </div>
 
       {/* View Cart Div */}
+
       {viewCart && (
         <AddToCart
           quantity={quantity}
           product={product}
           selectedColor={selectedColor}
-        ></AddToCart>
+        />
       )}
     </section>
   );

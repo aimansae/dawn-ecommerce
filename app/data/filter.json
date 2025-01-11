@@ -1,0 +1,22 @@
+{
+  "title": "Filter and sort",
+  "products": "products",
+  "sortBy": "Sort by",
+  "remove": "Remove all",
+  "clear": "Clear  ",
+  "apply": "Apply",
+  "filterBy": [
+    {
+      "name": "availability",
+      "label": "Availability",
+      "options": {
+        "inStock": "In Stock",
+        "outOfStock": "Out of Stock"
+      }
+    },
+    {
+      "name": "colors",
+      "label": "Colors"
+    }
+  ]
+}

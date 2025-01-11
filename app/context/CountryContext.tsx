@@ -23,7 +23,7 @@ type LocationContextType = {
 };
 
 const defaultLocation: Location = {
-  country: "USA",
+  country: "United States",
   currency: "USD",
   currencySymbol: "$",
 };
@@ -46,10 +46,18 @@ export const CountryProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("location", JSON.stringify(selectedLocation));
   }, [selectedLocation]);
 
+  console.log("Current location", selectedLocation.country);
   useEffect(() => {
     const fetchRate = async () => {
-      const rate = await fetchCurrencyRates(selectedLocation.currency, "USD");
-      console.log("FETCHING RATE", rate);
+      const rate = await fetchCurrencyRates(selectedLocation.currency);
+      console.log(
+        "Current location",
+        selectedLocation.location,
+        "Current currency",
+        selectedLocation.currency,
+        "rate for currency",
+        rate
+      );
       if (rate) {
         setExchangeRate(rate);
       }
