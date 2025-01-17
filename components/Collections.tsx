@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import data from "@/app/data/collections.json";
 import productsData from "@/app/data/productList.json";
 import Link from "next/link";
@@ -19,38 +19,95 @@ const Collections = () => {
   const transformedProducts = productsData.products.map(transformProduct);
 
   const [filteredProducts, setFilteredProducts] = useState(transformedProducts);
-  const [availabilityFilter, setAvailabilityFilter] = useState({
-    inStock: false,
-    outOfStock: false,
+  const [filters, setFilters] = useState({
+    availability: {
+      inStock: false,
+      outOfStock: false,
+    },
+    colors: new Set<string>(), // Holds selected colors
   });
 
+  const applyFilters = () => {
+    let products = filteredProducts;
+
+    // Filter by availability
+    if (filters.availability.inStock) {
+      products = products.filter((product) => product.status === "in stock");
+    }
+    if (filters.availability.outOfStock) {
+      products = products.filter(
+        (product) => product.status === "out of stock"
+      );
+    }
+    if (filters.colors.size > 0) {
+      products = products.filter((product) =>
+        product.availableColors.some((color) => filters.colors.has(color.color))
+      );
+    }
+
+    setFilteredProducts(products);
+  };
+
+  const activeFiltersSummary = () => {
+    const filterList: string[] = [];
+
+    // Check availability filters
+
+    const { inStock, outOfStock } = filters.availability;
+    if (inStock) filterList.push("Availability: In Stock");
+    if (outOfStock) filterList.push("Availability: Out of Stock");
+    // Check color filters
+    if (filters.colors.size > 0) {
+      filters.colors.forEach((color) => {
+        filterList.push(`Color: ${color}`);
+      });
+    }
+
+    return filterList;
+  };
+
+  const removeFilter = (filterType: string, filterValue: string) => {
+    console.log("sdfvgbh");
+  };
   const { selectedLocation } = useCountry();
+
   return (
-    <section className=" lg:max-w-7xl mx-auto px-[25px] md:px-[50px] ">
+    <section className="lg:max-w-6xl mx-auto px-[25px] md:px-[50px] ">
       <h1 className="text-[30px] sm:text-[40px] my-[25px]">
         {data.collections.title}
       </h1>
-
       <CollectionsFilter
         filteredProducts={filteredProducts}
         setFilteredProducts={setFilteredProducts}
-        availabilityFilter={availabilityFilter}
-        setAvailabilityFilter={setAvailabilityFilter}
+        filters={filters}
+        setFilters={setFilters}
+        applyFilters={applyFilters}
       />
-      {/*Filters*/}
+      {/*Show applied Filters*/}
+      {activeFiltersSummary().length > 0 && (
+        <div className="flex gap-2 my-3">
+          {activeFiltersSummary().map((filter, index) => {
+            const [filterType, filterValue] = filter.split(": ");
+            return (
+              <>
+                <div
+                  key={index}
+                  className="flex items-center gap-1 border rounded-3xl px-1 text-[10px] border-gray-400 hover:border-black"
+                >
+                  <span>{filter}</span>
 
-      <div className=" flex  my-4">
-        <button
-          onClick={() => console.log("filter")}
-          className="text-[10px] border rounded-full px-2 gap-1 flex items-center justify-between "
-        >
-          <span className="whitespace-nowrap">Availability:</span>
-          <span>
-            {" "}
-            <TfiClose onClick={() => {}} size={8} />
-          </span>
-        </button>
-      </div>
+                  <TfiClose
+                    size={7}
+                    onClick={() => {
+                      removeFilter(filterType.toLowerCase(), filterValue); // Immediately apply the filters after removing
+                    }}
+                  />
+                </div>
+              </>
+            );
+          })}
+        </div>
+      )}
 
       <div className=" grid grid-cols-2 lg:grid-cols-4  gap-2">
         {filteredProducts.map((product) => (

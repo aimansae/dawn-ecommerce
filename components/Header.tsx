@@ -55,7 +55,7 @@ const Header = () => {
   return (
     <>
       <header
-        className={`z-50 relative py-[14px] px-[30px] lg:px-[50px] border-t border-b border-gray-200 md:max-w-7xl md:mx-auto  ${""}`}
+        className={`z-50   py-[14px] px-[30px] lg:px-[50px] sticky lg:relative bg-white top-0 border-t border-b border-gray-200 md:max-w-6xl md:mx-auto  ${""}`}
       >
         {query ? (
           setShowSearchBar && (
@@ -141,10 +141,9 @@ const Header = () => {
 
       {isMobile && (
         <>
-          <div className="fixed top-[106px] left-0 right-0 bottom-0  bg-black bg-opacity-50 z-40 lg:hidden"></div>
-          <div ref={mobileNavRef}>
-            <MobileNav />
-          </div>
+          <div className="fixed top-16 left-0 right-0 bottom-0  bg-black bg-opacity-50 z-40 lg:hidden"></div>
+
+          <MobileNav ref={mobileNavRef} />
         </>
       )}
     </>

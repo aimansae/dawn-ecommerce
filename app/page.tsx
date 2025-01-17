@@ -1,5 +1,4 @@
 import BackInStock from "@/components/BackInStock";
-import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import ProductList from "@/components/ProductList";
 
@@ -8,7 +7,7 @@ const Home = () => {
     <main>
       <Hero />
       <ProductList />
-      <BackInStock /> 
+      <BackInStock />
     </main>
   );
 };

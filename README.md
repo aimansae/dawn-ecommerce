@@ -37,8 +37,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 
 TODO
+Home: sale/soldout tags
+      Country button:add dark background, on bigger screen, close if clicked outside
 
-add dark background
+
 make z index for selected country div hightr
 
 cstoll for image
@@ -68,3 +70,13 @@ pagination for single products
 links
 filtered products count
 color
+
+shop now button border on hover
+
+
+Struggles: filtering and js working with data , putting multiple things together, organizing the data
+remove filter andc count
+
+
+
+Struggles, height calculation how to avoid fixed top heights

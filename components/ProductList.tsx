@@ -9,19 +9,19 @@ import {
 } from "@/app/utils/functions";
 import { transformProduct } from "@/app/utils/transformProduct";
 import { useCountry } from "../app/context/CountryContext";
-
+import AvailabilityTag from "../components/AvailabilityTag";
 const ProductList = () => {
   const transformedProducts = data.products.map(transformProduct);
   const limitedProducts = transformedProducts.slice(0, 8);
   const { selectedLocation, exchangeRate } = useCountry();
 
   return (
-    <section className="grid grid-cols-2 lg:grid-cols-4  gap-2 lg:max-w-7xl   mx-auto px-4 md:px-[50px] ">
+    <section className="grid grid-cols-2 lg:grid-cols-4  gap-2 lg:max-w-6xl   mx-auto px-4 md:px-[50px] ">
       {limitedProducts.map((product) => (
         <Link
           href={`/product/${createSlugFromName(product.name)}`}
           key={product.id}
-          className="group  flex flex-col "
+          className="group  flex flex-col   "
         >
           <div className="  w-full relative aspect-square  ">
             <Image
@@ -32,6 +32,9 @@ const ProductList = () => {
               className="w-full h-full top-0 left-0 object-cover"
               sizes="(max-width:375px)100vw,(max-width:560px)80vw, (max-width:768px) 60vw, 33vw"
             />
+            <div className="absolute bottom-2 left-4 ">
+              <AvailabilityTag availability={product.availability} />
+            </div>
           </div>
           <div className="flex flex-col gap-2 my-2  ">
             <span className="text-customBlack text-xs  truncate sm:text-[13px] group-hover:underline">

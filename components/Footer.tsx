@@ -19,7 +19,6 @@ export type Location = {
 const Footer = () => {
   const [showLocations, setShowLocations] = useState(false);
   const { selectedLocation, setSelectedLocation } = useCountry();
-  const locationsRef = useRef<HTMLDivElement>(null);
 
   const handleCountryChange = (newLocation: Location) => {
     console.log(newLocation, "CHange of location");
@@ -28,24 +27,21 @@ const Footer = () => {
     setShowLocations(false);
   };
 
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      locationsRef.current &&
-      !locationsRef.current.contains(event.target as Node)
-    ) {
-      setShowLocations(false);
-    }
-  };
-
+  //  background content not scrollable if select country div is open
   useEffect(() => {
-    document.addEventListener("click", handleClickOutside);
+    if (showLocations) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
 
     return () => {
-      document.removeEventListener("click", handleClickOutside);
+      document.body.style.overflow = "auto";
     };
-  }, []);
+  }, [showLocations]);
+
   return (
-    <footer className=" px-[25px] md:px-[50px] items-center  grid grid-cols-1 mt-16  xs:gap-8 sm:gap-0 lg:max-w-7xl mx-auto w-full">
+    <footer className=" px-[25px] md:px-[50px] items-center  grid grid-cols-1 mt-16  xs:gap-8 sm:gap-0 lg:max-w-6xl mx-auto w-full">
       <div className="  flex flex-col md:flex-row justify-between gap-6 md:gap-3 ">
         {/*Links section*/}
         <section className="flex flex-col gap-2 flex-1  ">
@@ -99,15 +95,15 @@ const Footer = () => {
             </button>
           </div>
         </div>
-        {/* <div className="mt-4 ">
+        <div className="mt-4 ">
           <SocialMedia />
-        </div> */}
+        </div>
       </section>
       <hr className="w-full border-t border-gray-300 mb-4" />
 
       {/*Country section*/}
       <section className="relative  flex flex-col lg: md:flex-wrap    md:flex-row items-center justify-center md:justify-between md:items-end gap-6 md:md:py-8  ">
-        <div ref={locationsRef}>
+        <div>
           <h3 className="my-4 text-xs text-darkGray">
             {data.footer.country.title}
           </h3>
@@ -123,13 +119,21 @@ const Footer = () => {
           </button>
 
           {showLocations && (
-            <div className="fixed w-full p-[15px] md:absolute left-0   bottom-0 md:bottom-[9rem] bg-white z-50 md:w-auto h-3/4 md:h-full overflow-y-auto md:border">
-              <SelectCountries
-                onSelectCountry={handleCountryChange}
-                onClose={() => setShowLocations(false)}
-                currentlySelectedLocation={selectedLocation.country}
-              />
-            </div>
+            <>
+              {/*dark overlay*/}
+              <div
+                onClick={() => setShowLocations(false)}
+                className="fixed top-0 left-0 right-0 bottom-0  bg-black bg-opacity-50 z-40 lg:hidden"
+              ></div>
+
+              <div className="fixed w-full p-[15px]    md:absolute left-0   bottom-0 md:bottom-[9rem] bg-white z-50 md:w-auto h-3/4 md:h-full overflow-y-auto md:border">
+                <SelectCountries
+                  onSelectCountry={handleCountryChange}
+                  onClose={() => setShowLocations(false)}
+                  currentlySelectedLocation={selectedLocation.country}
+                />
+              </div>
+            </>
           )}
         </div>
         {/*Payment icons*/}

@@ -24,7 +24,7 @@ const BackInStock = () => {
     return <div>Product not found</div>;
   }
   return (
-    <section className="py-[36px] mx-auto px-4 md:px-[50px] items-center grid grid-cols-2 md:grid-cols-4 gap-4 lg:max-w-7xl">
+    <section className="py-[36px] mx-auto px-4 md:px-[50px] items-center grid grid-cols-2 md:grid-cols-4 gap-4 lg:max-w-6xl">
       <div className="col-span-4">
         <h2 className="my-4">{stockData.title}</h2>
       </div>

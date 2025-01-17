@@ -6,13 +6,15 @@
       "category": "Bags",
       "prices": {
         "currency": "USD",
-        "regular": "227.00",
-        "sale": " 364.00 "
+        "regular": "280.00",
+        "sale": " 227.00 "
       },
       "status": "out of stock",
+      "availability": "sold out",
       "availableColors": [
         {
           "color": "cappuccino",
+          "tag": "sold out",
           "imageUrl": "/assets/images/flexBag/flex-bag-cappuccino.png",
           "imageSides": [
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
@@ -21,14 +23,17 @@
         },
         {
           "color": "clay",
+          "tag": "sold out",
           "imageUrl": "/assets/images/flexBag/flex-bag-clay.png"
         },
         {
           "color": "denim",
+          "tag": "sold out",
           "imageUrl": "/assets/images/flexBag/flex-bag-denim.png"
         },
         {
           "color": "red",
+          "tag": "sold out",
           "imageUrl": "/assets/images/flexBag/flex-bag-red.png"
         }
       ],
@@ -43,9 +48,12 @@
         "regular": "330.00 "
       },
       "status": "in stock",
+      "availability": "",
       "availableColors": [
         {
           "color": "oyster",
+
+          "tag": "available",
           "imageUrl": "/assets/images/studioBag/studio-bag-oyster.png",
           "imageSides": [
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
@@ -54,6 +62,7 @@
         },
         {
           "color": "denim",
+          "tag": "sold out",
           "imageUrl": "/assets/images/studioBag/studio-bag-denim.png"
         }
       ],
@@ -71,9 +80,11 @@
         "sale": "280.00 "
       },
       "status": "out of stock",
+      "availability": "sale",
       "availableColors": [
         {
           "color": "buttermilk",
+          "tag": "available",
           "imageUrl": "/assets/images/louiseSlideSandal/louise-slide-sandal-buttermilk.png",
           "imageSides": [
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
@@ -82,16 +93,18 @@
         },
         {
           "color": "gummy",
+          "tag": "available",
           "imageUrl": "/assets/images/louiseSlideSandal/louise-slide-sandal-gummy.png"
         },
         {
           "color": "white",
+          "tag": "available",
           "imageUrl": "/assets/images/louiseSlideSandal/louise-slide-sandal-white.png"
         }
       ],
 
       "availableSizes": ["35", "36", "37", "38", "39", "40", "41"],
-      "tags": ["Sale"],
+
       "description": "Our experimentation with texture continues. Elevated sense of design and craftsmanship manifests in our Italian-made Louise sandals. They have a square-toed silhouette with a wide band formed with leather pleats and extra comfortable leather-wrapped fussbett for day-long wear."
     },
     {
@@ -105,18 +118,20 @@
         "sale": "From 212.00 "
       },
       "status": "out of stock",
+      "availability": "sale",
       "availableColors": [
         {
           "color": "harvest",
+          "tag": "sold out",
           "imageUrl": "/assets/images/naomiBag/naomi-bag-harvest.png",
           "imageSides": []
         },
         {
           "color": "pastel",
+          "tag": "available",
           "imageUrl": "/assets/images/naomiBag/naomi-bag-pastel.png"
         }
       ],
-      "tags": ["Sale"],
       "description": "This is a demonstration store. You can purchase products like this from Mlouye.     Mini Naomi Bag is perfectly proportioned for your essentials like a big-screen phone, cardholder, and lipstick. You can wear it around your waist or slung over one shoulder, and it comes with an extra shoulder strap, so you can also wear it crossbody."
     },
     {
@@ -128,22 +143,27 @@
         "regular": "333.00 "
       },
       "status": "in stock",
+      "availability": "",
       "availableColors": [
         {
           "color": "multicolor",
+          "tag": "available",
           "imageUrl": "/assets/images/helixBag/helix-bag-multicolor.png",
           "imageSides": []
         },
         {
           "color": "denim",
+          "tag": "available",
           "imageUrl": "/assets/images/helixBag/helix-bag-denim.png"
         },
         {
           "color": "off white",
+          "tag": "available",
           "imageUrl": "/assets/images/helixBag/helix-bag-offWhite.png"
         },
         {
           "color": "south america",
+          "tag": "available",
           "imageUrl": "/assets/images/helixBag/helix-bag-southAmerica.png"
         }
       ],
@@ -158,40 +178,47 @@
         "regular": "276.00 "
       },
       "status": "in stock",
-
+      "avaialibity": "",
       "availableColors": [
         {
           "color": "emerald",
+          "tag": "available",
           "imageUrl": "/assets/images/boIviBag/boIvi-bag-emerald.png",
           "imageSides": []
         },
         {
           "color": "black",
+          "tag": "available",
           "imageUrl": "/assets/images/boIviBag/boIvi-bag-black.png",
           "imageSides": []
         },
         {
           "color": "cognac",
+          "tag": "available",
           "imageUrl": "/assets/images/boIviBag/boIvi-bag-cognac.png",
           "imageSides": []
         },
         {
           "color": "denim",
+          "tag": "available",
           "imageUrl": "/assets/images/boIviBag/boIvi-bag-denim.png",
           "imageSides": []
         },
         {
           "color": "brown",
+          "tag": "available",
           "imageUrl": "/assets/images/boIviBag/boIvi-bag-brown.png",
           "imageSides": []
         },
         {
           "color": "latte",
+          "tag": "available",
           "imageUrl": "/assets/images/boIviBag/boIvi-bag-latte.png",
           "imageSides": []
         },
         {
           "color": "violet",
+          "tag": "available",
           "imageUrl": "/assets/images/boIviBag/boIvi-bag-violet.png",
           "imageSides": []
         }
@@ -208,7 +235,7 @@
         "regular": "351.00 "
       },
       "status": "in stock",
-
+      "availability": "sale",
       "availableColors": [
         {
           "color": "beige",
@@ -251,6 +278,7 @@
         "regular": "273.00 "
       },
       "status": "out of stock",
+      "availability": "sold out",
       "availableColors": [
         {
           "color": "cashmere rose",
@@ -327,6 +355,7 @@
         "sale": "117.00"
       },
       "status": "in stock",
+      "availability": "sale",
       "availableColors": [
         {
           "color": "cyclamen",
@@ -358,6 +387,7 @@
         "sale": " "
       },
       "status": "in stock",
+      "availability": "available",
 
       "availableColors": [
         {
@@ -386,6 +416,7 @@
         "sale": " "
       },
       "status": "out of stock",
+      "availability": "sold out",
       "availableColors": [
         {
           "color": "latte",
@@ -413,6 +444,7 @@
         "sale": " "
       },
       "status": "in stock",
+      "availability": "available",
 
       "availableColors": [
         {
@@ -441,6 +473,7 @@
         "sale": " "
       },
       "status": "in stock",
+      "availability": "available",
 
       "availableColors": [
         {
@@ -461,6 +494,7 @@
         "sale": " "
       },
       "status": "in stock",
+      "availability": "available",
 
       "availableColors": [
         {
@@ -506,6 +540,8 @@
         "sale": "174.00 "
       },
       "status": "in stock",
+      "availability": "available",
+
       "availableColors": [
         {
           "color": "latte",

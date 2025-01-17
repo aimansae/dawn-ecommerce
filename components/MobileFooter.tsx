@@ -63,7 +63,7 @@ const MobileFooter = () => {
         </button>
         {showLocations && (
           <>
-            <div className="fixed top-[96px] left-0 right-0 bottom-0  bg-black bg-opacity-50 z-40 lg:hidden"></div>
+            <div className="fixed top-[105px] left-0 right-0 bottom-0  bg-black bg-opacity-50 z-40 lg:hidden"></div>
 
             <div className="absolute  h-4/5 left-0 bottom-0 z-50 bg-white w-full px-[15px] py-6 overflow-y-auto">
               <SelectCountries

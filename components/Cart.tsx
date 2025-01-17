@@ -20,7 +20,7 @@ const Cart = () => {
   const { selectedLocation } = useCountry();
   const quantity = getTotalQuantity();
   return (
-    <section className="  flex flex-col gap-4 md:px-[50px] md:max-w-7xl  py-[14px] px-[15px] lg:px-[50px] md:mx-auto ">
+    <section className="  flex flex-col gap-4 md:px-[50px] md:max-w-6xl  py-[14px] px-[15px] lg:px-[50px] md:mx-auto ">
       {quantity > 0 && (
         <>
           <div className="block sm:flex items-center justify-between  ">

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
@@ -12,7 +12,7 @@ import { Color, SingleProductType, Size } from "@/app/types/types";
 import { useCart } from "@/app/context/CartContext";
 import QuantitySelector from "./QuantitySelector";
 import { useCountry } from "@/app/context/CountryContext";
-
+import AvailabilityTag from "../components/AvailabilityTag";
 const SingleProduct = ({ product }: SingleProductType) => {
   const { cart, addToCart } = useCart();
   const { selectedLocation } = useCountry();
@@ -108,7 +108,7 @@ const SingleProduct = ({ product }: SingleProductType) => {
   };
 
   return (
-    <section className="z-10 relative py-7 px-4 md:px-[50px] grid gap-2 grid-cols-1 md:grid-cols-2 items-center sm:items-start mx-auto lg:max-w-7xl lg:grid-cols-[2fr_1fr] md:gap-4">
+    <section className="z-10 relative py-7 px-4 md:px-[50px] grid gap-2 grid-cols-1 md:grid-cols-2 items-center sm:items-start mx-auto lg:max-w-6xl lg:grid-cols-[2fr_1fr] md:gap-4">
       <div className="w-full relative aspect-square">
         <Image
           src={currentImage} // Display selected color image or default image
@@ -137,13 +137,20 @@ const SingleProduct = ({ product }: SingleProductType) => {
             </span>
           </button>
         </div>
-        <div className="items-start justify-center">
+        <div className="flex flex-col gap-4 items-start justify-center">
           <h1 className="text-[30px]">{product.name}</h1>
-          <div>
-            <h2>
+          <div className="flex items-center gap-6 ">
+            <span className="text-darkGray line-through">
+              {selectedLocation.currencySymbol}
+              {product.prices.sale.toFixed(2)} {selectedLocation.currency}
+            </span>
+            <span>
               {selectedLocation.currencySymbol}
               {product.prices.regular.toFixed(2)} {selectedLocation.currency}
-            </h2>
+            </span>
+            <AvailabilityTag
+              availability={product.availability}
+            ></AvailabilityTag>
           </div>
         </div>
 
@@ -152,18 +159,25 @@ const SingleProduct = ({ product }: SingleProductType) => {
           <span className="text-xs text-darkGray">Color</span>
           <div>
             <ul className="flex flex-wrap gap-2">
-              {product.availableColors?.map((color, index: number) => (
-                <li key={index}>
-                  <button
-                    onClick={() => handleColorClick(color)}
-                    className={`border capitalize py-1 rounded-2xl px-5 hover:border-black ${
-                      selectedColor === color.color ? "bg-black text-white" : ""
-                    }`}
-                  >
-                    {color.color}
-                  </button>
-                </li>
-              ))}
+              {product.availableColors?.map((color, index: number) => {
+                console.log("tag", color.tag);
+                return (
+                  <li key={index}>
+                    <button
+                      onClick={() => handleColorClick(color)}
+                      className={` border capitalize py-1 rounded-2xl px-5 hover:border-black ${
+                        selectedColor === color.color
+                          ? "bg-black text-white"
+                          : ""
+                      } ${
+                        color.tag?.trim() === "sold out" ? "line-through  " : ""
+                      }`}
+                    >
+                      {color.color}
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
             {/* Size selection (only for shoes) */}
             {product.availableSizes && (
