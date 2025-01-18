@@ -12,7 +12,7 @@ export type CartItemType = {
   product: ProductType;
   quantity: number;
   selectedColor: string;
-  selectedImage?: string;
+  selectedImage?: string[];
   selectedSize?: string;
 };
 
@@ -26,7 +26,7 @@ type CartContextType = {
     change: number
   ) => void;
   getTotalQuantity: () => number;
-  getTotalPrice: () => any;
+  getTotalPrice: () => number;
   removeFromCart: (
     productId: string,
     selectedColor: string,

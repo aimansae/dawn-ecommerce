@@ -15,8 +15,8 @@
         {
           "color": "cappuccino",
           "tag": "sold out",
-          "imageUrl": "/assets/images/flexBag/flex-bag-cappuccino.png",
-          "imageSides": [
+          "imageUrl": [
+            "/assets/images/flexBag/flex-bag-cappuccino.png",
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -24,17 +24,29 @@
         {
           "color": "clay",
           "tag": "sold out",
-          "imageUrl": "/assets/images/flexBag/flex-bag-clay.png"
+          "imageUrl": [
+            "/assets/images/flexBag/flex-bag-clay.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "denim",
           "tag": "sold out",
-          "imageUrl": "/assets/images/flexBag/flex-bag-denim.png"
+          "imageUrl": [
+            "/assets/images/flexBag/flex-bag-denim.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "red",
           "tag": "sold out",
-          "imageUrl": "/assets/images/flexBag/flex-bag-red.png"
+          "imageUrl": [
+            "/assets/images/flexBag/flex-bag-red.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         }
       ],
       "description": "This is a demonstration store. You can purchase products like this from Mlouye. Our architectural, origami inspired shoulder bag, now has a new dimension. It can be converted into a wrist bag just with a quick move. The shoulder strap can easily be removed, so you can slung it from your wrist or use as a clutch. It has plenty of room inside for your essentials including a large phone, small wallet, and 300 ml water bottle. Made from smooth leather and has a suede top with two-way zip fastening. Interior features two slip pockets."
@@ -54,8 +66,9 @@
           "color": "oyster",
 
           "tag": "available",
-          "imageUrl": "/assets/images/studioBag/studio-bag-oyster.png",
-          "imageSides": [
+          "imageUrl": [
+            "/assets/images/studioBag/studio-bag-oyster.png",
+
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -63,7 +76,11 @@
         {
           "color": "denim",
           "tag": "sold out",
-          "imageUrl": "/assets/images/studioBag/studio-bag-denim.png"
+          "imageUrl": [
+            "/assets/images/studioBag/studio-bag-denim.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         }
       ],
 
@@ -85,8 +102,9 @@
         {
           "color": "buttermilk",
           "tag": "available",
-          "imageUrl": "/assets/images/louiseSlideSandal/louise-slide-sandal-buttermilk.png",
-          "imageSides": [
+          "imageUrl": [
+            "/assets/images/louiseSlideSandal/louise-slide-sandal-buttermilk.png",
+
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -94,12 +112,21 @@
         {
           "color": "gummy",
           "tag": "available",
-          "imageUrl": "/assets/images/louiseSlideSandal/louise-slide-sandal-gummy.png"
+          "imageUrl": [
+            "/assets/images/louiseSlideSandal/louise-slide-sandal-gummy.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "white",
           "tag": "available",
-          "imageUrl": "/assets/images/louiseSlideSandal/louise-slide-sandal-white.png"
+          "imageUrl": [
+            "/assets/images/louiseSlideSandal/louise-slide-sandal-white.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         }
       ],
 
@@ -123,13 +150,21 @@
         {
           "color": "harvest",
           "tag": "sold out",
-          "imageUrl": "/assets/images/naomiBag/naomi-bag-harvest.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/naomiBag/naomi-bag-harvest.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "pastel",
           "tag": "available",
-          "imageUrl": "/assets/images/naomiBag/naomi-bag-pastel.png"
+          "imageUrl": [
+            "/assets/images/naomiBag/naomi-bag-pastel.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         }
       ],
       "description": "This is a demonstration store. You can purchase products like this from Mlouye.     Mini Naomi Bag is perfectly proportioned for your essentials like a big-screen phone, cardholder, and lipstick. You can wear it around your waist or slung over one shoulder, and it comes with an extra shoulder strap, so you can also wear it crossbody."
@@ -148,23 +183,39 @@
         {
           "color": "multicolor",
           "tag": "available",
-          "imageUrl": "/assets/images/helixBag/helix-bag-multicolor.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/helixBag/helix-bag-multicolor.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "denim",
           "tag": "available",
-          "imageUrl": "/assets/images/helixBag/helix-bag-denim.png"
+          "imageUrl": [
+            "/assets/images/helixBag/helix-bag-denim.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "off white",
           "tag": "available",
-          "imageUrl": "/assets/images/helixBag/helix-bag-offWhite.png"
+          "imageUrl": [
+            "/assets/images/helixBag/helix-bag-offWhite.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "south america",
           "tag": "available",
-          "imageUrl": "/assets/images/helixBag/helix-bag-southAmerica.png"
+          "imageUrl": [
+            "/assets/images/helixBag/helix-bag-southAmerica.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         }
       ],
       "description": "Featuring a unique combination of modern art and minimalist perspective, our Helix Bag is perfectly sized to fit just the essentials - think small wallet, keys, sunglasses and large phone. It has a wind spinner silhouette that will remind you summer breezes out on the porch. The top handle is cleverly linked to the body through its hidden joint; it can fall down when you use the bag with shoulder strap. Made from smooth leather and has a suede internal with a drawstring top to keep all you have stowed inside safe and secure."
@@ -183,44 +234,72 @@
         {
           "color": "emerald",
           "tag": "available",
-          "imageUrl": "/assets/images/boIviBag/boIvi-bag-emerald.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/boIviBag/boIvi-bag-emerald.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "black",
           "tag": "available",
-          "imageUrl": "/assets/images/boIviBag/boIvi-bag-black.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/boIviBag/boIvi-bag-black.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "cognac",
           "tag": "available",
-          "imageUrl": "/assets/images/boIviBag/boIvi-bag-cognac.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/boIviBag/boIvi-bag-cognac.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "denim",
           "tag": "available",
-          "imageUrl": "/assets/images/boIviBag/boIvi-bag-denim.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/boIviBag/boIvi-bag-denim.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "brown",
           "tag": "available",
-          "imageUrl": "/assets/images/boIviBag/boIvi-bag-brown.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/boIviBag/boIvi-bag-brown.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "latte",
           "tag": "available",
-          "imageUrl": "/assets/images/boIviBag/boIvi-bag-latte.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/boIviBag/boIvi-bag-latte.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "violet",
           "tag": "available",
-          "imageUrl": "/assets/images/boIviBag/boIvi-bag-violet.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/boIviBag/boIvi-bag-violet.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         }
       ],
 
@@ -239,29 +318,49 @@
       "availableColors": [
         {
           "color": "beige",
-          "imageUrl": "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-beige.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-beige.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "white",
-          "imageUrl": "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-white.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-white.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "olive",
-          "imageUrl": "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-olive.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-olive.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
 
         {
           "color": "bordeaux",
-          "imageUrl": "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-bordeaux.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-bordeaux.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "denim",
-          "imageUrl": "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-denim.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-denim.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         }
       ],
       "availableSizes": ["35", "36", "37", "38", "39", "40", "41"],
@@ -282,33 +381,57 @@
       "availableColors": [
         {
           "color": "cashmere rose",
-          "imageUrl": "/assets/images/brickBag/brick-bag-cashmereRose.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/brickBag/brick-bag-cashmereRose.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "chocolate",
-          "imageUrl": "/assets/images/brickBag/brick-bag-chocolate.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/brickBag/brick-bag-chocolate.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "denim",
-          "imageUrl": "/assets/images/brickBag/brick-bag-denim.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/brickBag/brick-bag-denim.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "dry rose",
-          "imageUrl": "/assets/images/brickBag/brick-bag-dryRose.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/brickBag/brick-bag-dryRose.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "earth",
-          "imageUrl": "/assets/images/brickBag/brick-bag-cashmereRose.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/brickBag/brick-bag-cashmereRose.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "jade",
-          "imageUrl": "/assets/images/brickBag/brick-bag-jade.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/brickBag/brick-bag-jade.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         }
       ],
       "description": "Inspired by the structural boxy form and shape of a brick, which lends its name, the bag is perfectly sized for your everyday essentials, from a large phone to your wallet and lipstick."
@@ -327,20 +450,39 @@
       "availableColors": [
         {
           "color": "mocha",
-          "imageUrl": "/assets/images/eddiBag/eddi-bag-mocha.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/eddiBag/eddi-bag-mocha.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "clay",
-          "imageUrl": "/assets/images/eddiBag/eddi-bag-mocha.png"
+          "imageUrl": [
+            "/assets/images/eddiBag/eddi-bag-mocha.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "denim",
-          "imageUrl": "/assets/images/eddiBag/eddi-bag-mocha.png"
+          "imageUrl": [
+            "/assets/images/eddiBag/eddi-bag-mocha.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "red",
-          "imageUrl": "/assets/images/eddiBag/eddi-bag-mocha.png"
+          "imageUrl": [
+            "/assets/images/eddiBag/eddi-bag-mocha.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         }
       ],
       "description": "This is a demonstration store. You can purchase products like this from Mlouye. Our architectural, origami inspired shoulder bag, now has a new dimension. It can be converted into a wrist bag just with a quick move. The shoulder strap can easily be removed, so you can slung it from your wrist or use as a clutch. It has plenty of room inside for your essentials including a large phone, small wallet, and 300 ml water bottle. Made from smooth leather and has a suede top with two-way zip fastening. Interior features two slip pockets."
@@ -359,20 +501,39 @@
       "availableColors": [
         {
           "color": "cyclamen",
-          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "mediterranean blue",
-          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-mediterranean-blue.png"
+          "imageUrl": [
+            "/assets/images/artDecoBag/art-deco-bag-mediterranean-blue.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "mosstone",
-          "imageUrl": "/assets/images/eddiBag/eddi-bag-mocha.png"
+          "imageUrl": [
+            "/assets/images/eddiBag/eddi-bag-mocha.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "sand",
-          "imageUrl": "/assets/images/eddiBag/eddi-bag-mocha.png"
+          "imageUrl": [
+            "/assets/images/eddiBag/eddi-bag-mocha.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         }
       ],
       "description": "This is a demonstration store. You can purchase products like this from Mlouye. Our architectural, origami inspired shoulder bag, now has a new dimension. It can be converted into a wrist bag just with a quick move. The shoulder strap can easily be removed, so you can slung it from your wrist or use as a clutch. It has plenty of room inside for your essentials including a large phone, small wallet, and 300 ml water bottle. Made from smooth leather and has a suede top with two-way zip fastening. Interior features two slip pockets."
@@ -392,16 +553,30 @@
       "availableColors": [
         {
           "color": "black and gray",
-          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "earth",
-          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-mediterranean-blue.png"
+          "imageUrl": [
+            "/assets/images/artDecoBag/art-deco-bag-mediterranean-blue.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "vegan leather",
-          "imageUrl": "/assets/images/eddiBag/eddi-bag-mocha.png"
+          "imageUrl": [
+            "/assets/images/eddiBag/eddi-bag-mocha.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         }
       ],
       "description": "Designed in a silhouette inspired by Art-Deco style, this bag is expertly crafted from Italian calf leather with microsuede lining. Packs a ton of features in a slim, compact space so you can carry your office life in the bag — including a 16” Macbook Pro. It has additional two tight slots on the front that you can fit your notebook, phone or tablet."
@@ -420,16 +595,30 @@
       "availableColors": [
         {
           "color": "latte",
-          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "off white",
-          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-mediterranean-blue.png"
+          "imageUrl": [
+            "/assets/images/artDecoBag/art-deco-bag-mediterranean-blue.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "yellow",
-          "imageUrl": "/assets/images/eddiBag/eddi-bag-mocha.png"
+          "imageUrl": [
+            "/assets/images/eddiBag/eddi-bag-mocha.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         }
       ],
       "description": "Versatile and minimally designed in a curved silhouette. Hobo is made from smooth Italian leather detailed with contrasting black leather trim. Sleek interior is lined in micro suede textile. The stud closure at the top keeps your belongings secure. It comes with a detachable pouch, which is perfect for securing smaller essentials. This oversized version is ultra-roomy to see you through long days in the city or weekend trips."
@@ -449,16 +638,28 @@
       "availableColors": [
         {
           "color": "latte",
-          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "off white",
-          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-mediterranean-blue.png"
+          "imageUrl": [
+            "/assets/images/artDecoBag/art-deco-bag-mediterranean-blue.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "yellow",
-          "imageUrl": "/assets/images/eddiBag/eddi-bag-mocha.png"
+          "imageUrl": [
+            "/assets/images/artDecoBag/art-deco-bag-mediterranean-yellow.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         }
       ],
       "description": "Versatile and minimally designed in a curved silhouette. Hobo is made from smooth Italian leather detailed with contrasting black leather trim. Sleek interior is lined in micro suede textile. The stud closure at the top keeps your belongings secure. It comes with a detachable pouch, which is perfect for securing smaller essentials. This oversized version is ultra-roomy to see you through long days in the city or weekend trips."
@@ -478,8 +679,12 @@
       "availableColors": [
         {
           "color": "blue",
-          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         }
       ],
       "description": "Our coveted design gets a dramatic look and textured surface quality by folding leather in an elegant zig-zag pattern. This mini version of the Lantern Bag is designed to fit just the essentials - keys, lipstick and a large phone. You can carry it by the top handle or go hands-free with the shoulder strap."
@@ -499,33 +704,57 @@
       "availableColors": [
         {
           "color": "butter",
-          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "denim",
-          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "dry rose",
-          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "oceania",
-          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "olive leaf",
-          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "shark",
-          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         }
       ],
       "description": "Mix of symmetry and fluid, clean lines, Mini Sera Tote is designed to carry your daily essentials, a large phone(like iPhone 11 Pro Max), mini wallet or cardholder, and lipstick, etc.Its exterior design is a surrealist dream, reminiscent of a maze-like structure protruding outwards, with sharp, clean lines, and a 3D façade. It has a suede drawstring top, securing your belongings on the go.Folding inwards like an accordion and then stretching outwards to store those last-minute belongings. The Sera Tote also features a detachable shoulder strap. Carry it your way and relish every thoughtful detail."
@@ -545,13 +774,21 @@
       "availableColors": [
         {
           "color": "latte",
-          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         },
         {
           "color": "fairy blue",
-          "imageUrl": "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-          "imageSides": []
+          "imageUrl": [
+            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
         }
       ],
       "description": "Soft suede leather houses a spacious main compartment, sealed with a solid colored zipper in a fresh, contrasting tone. Mini Woven Bag houses one inner pocket and a bottom pouch for your travel card, allowing you to swipe easily without rummaging in line to take it out. Designed to carry mini wallet, large phone, and your daily essentials. Easily carried with two handles toted on your arm or worn with a removable strap across your body."

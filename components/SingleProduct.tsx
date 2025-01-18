@@ -24,11 +24,12 @@ const SingleProduct = ({ product }: SingleProductType) => {
   const [selectedSize, setSelectedSize] = useState(() => {
     return searchParams.get("size") || "";
   });
-  const [currentImage, setCurrentImage] = useState(
-    product.availableColors?.[0].imageUrl
+  const [selectedImage, setSelectedImage] = useState(
+    product.availableColors?.find(
+      (colorItem) => colorItem.color === selectedColor
+    )?.imageUrl || []
   );
-
-  // find image based on color
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const [quantity, setQuantity] = useState(
     Number(searchParams.get("quantity")) || 1
@@ -63,12 +64,14 @@ const SingleProduct = ({ product }: SingleProductType) => {
     setSelectedColor(color.color);
     setSelectedSize("");
     setQuantity(1);
-    const imageWithSelectedColor = product.availableColors?.find(
-      (colorItem) => colorItem.color === color.color
-    )?.imageUrl;
+    const imagesForSelectedColor =
+      product.availableColors?.find(
+        (colorItem) => colorItem.color === color.color
+      )?.imageUrl || [];
 
-    if (imageWithSelectedColor) {
-      setCurrentImage(imageWithSelectedColor);
+    if (imagesForSelectedColor) {
+      setSelectedImage(imagesForSelectedColor);
+      setCurrentImageIndex(0);
     }
     updateURLParams(color.color, selectedSize, quantity);
   };
@@ -91,15 +94,13 @@ const SingleProduct = ({ product }: SingleProductType) => {
     if (!selectedSize && product.availableSizes) {
       console.log("No size selected");
     }
+    const image = selectedImage[currentImageIndex]; // Get the selected image
 
-    const selectedImage = product.availableColors?.find(
-      (colorItem) => colorItem.color === selectedColor
-    )?.imageUrl;
     addToCart({
       product,
       quantity,
       selectedColor,
-      selectedImage,
+      selectedImage: [image],
       selectedSize,
     });
     setViewCart(true);
@@ -107,11 +108,20 @@ const SingleProduct = ({ product }: SingleProductType) => {
     console.log("cart clicked", cart);
   };
 
+  const handlePreviousImage = () => {
+    setCurrentImageIndex(
+      (prevIndex) =>
+        (prevIndex - 1 + selectedImage.length) % selectedImage.length
+    );
+  };
+  const handleNextImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % selectedImage.length);
+  };
   return (
     <section className="z-10 relative py-7 px-4 md:px-[50px] grid gap-2 grid-cols-1 md:grid-cols-2 items-center sm:items-start mx-auto lg:max-w-6xl lg:grid-cols-[2fr_1fr] md:gap-4">
       <div className="w-full relative aspect-square">
         <Image
-          src={currentImage} // Display selected color image or default image
+          src={selectedImage[currentImageIndex]} // Display selected color image or default image
           alt={product.name}
           quality={75}
           fill
@@ -122,45 +132,48 @@ const SingleProduct = ({ product }: SingleProductType) => {
 
       {/* Info section */}
       <div className="flex flex-col justify-center gap-4">
+        {/* Pagination for Image */}
         <div className="text-darkGray mt-4 flex items-center justify-center gap-4">
-          <button onClick={() => {}}>
+          <button onClick={handlePreviousImage}>
             <span>
               <MdOutlineKeyboardArrowLeft />
             </span>
           </button>
 
-          <span className="text-[10px] imageSides">{1}/ 10</span>
+          <span className="text-[10px] imageSides">
+            {currentImageIndex + 1}/ {selectedImage.length}
+          </span>
 
-          <button onClick={() => {}}>
+          <button onClick={handleNextImage}>
             <span>
               <MdOutlineKeyboardArrowRight />
             </span>
           </button>
         </div>
+
         <div className="flex flex-col gap-4 items-start justify-center">
           <h1 className="text-[30px]">{product.name}</h1>
-          <div className="flex items-center gap-6 ">
-            <span className="text-darkGray line-through">
+          <div className="flex items-center gap-6  text-darkGray ">
+            <span className="line-through">
               {selectedLocation.currencySymbol}
-              {product.prices.sale.toFixed(2)} {selectedLocation.currency}
+              {product.prices.regular.toFixed(2)} {selectedLocation.currency}
             </span>
             <span>
               {selectedLocation.currencySymbol}
-              {product.prices.regular.toFixed(2)} {selectedLocation.currency}
+              {product.prices.sale?.toFixed(2)} {selectedLocation.currency}
             </span>
             <AvailabilityTag
               availability={product.availability}
             ></AvailabilityTag>
           </div>
         </div>
-
         {/* Color selection Selection */}
         <div className="flex flex-col gap-2">
           <span className="text-xs text-darkGray">Color</span>
           <div>
             <ul className="flex flex-wrap gap-2">
-              {product.availableColors?.map((color, index: number) => {
-                console.log("tag", color.tag);
+              {product.availableColors.map((color, index: number) => {
+                console.log("tag (", color);
                 return (
                   <li key={index}>
                     <button
@@ -211,7 +224,6 @@ const SingleProduct = ({ product }: SingleProductType) => {
           quantity={quantity}
           label="Quantity"
         ></QuantitySelector>
-
         {/* Add to Cart and Buy Now */}
         <div className="flex flex-col items-start justify-between gap-4">
           <button
@@ -224,7 +236,6 @@ const SingleProduct = ({ product }: SingleProductType) => {
             Buy Now
           </button>
         </div>
-
         <div>
           <h3 className="text-darkGray">{product.description}</h3>
         </div>

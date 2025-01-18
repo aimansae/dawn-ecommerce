@@ -14,7 +14,6 @@ const ProductList = () => {
   const transformedProducts = data.products.map(transformProduct);
   const limitedProducts = transformedProducts.slice(0, 8);
   const { selectedLocation, exchangeRate } = useCountry();
-
   return (
     <section className="grid grid-cols-2 lg:grid-cols-4  gap-2 lg:max-w-6xl   mx-auto px-4 md:px-[50px] ">
       {limitedProducts.map((product) => (
@@ -23,9 +22,9 @@ const ProductList = () => {
           key={product.id}
           className="group  flex flex-col   "
         >
-          <div className="  w-full relative aspect-square  ">
+          <div className="w-full relative aspect-square  ">
             <Image
-              src={product.availableColors[0]?.imageUrl}
+              src={product.availableColors?.[0]?.imageUrl?.[0]}
               alt={product.name}
               quality={75}
               fill

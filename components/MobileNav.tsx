@@ -3,13 +3,9 @@ import data from "../app/data/header.json";
 import { FaArrowRightLong } from "react-icons/fa6";
 import MobileFooter from "./MobileFooter";
 
-type MobileNavProps = { ref: React.LegacyRef<HTMLDivElement> };
-const MobileNav = ({ ref }: MobileNavProps) => {
+const MobileNav = () => {
   return (
-    <div
-      ref={ref}
-      className="fixed   left-0 w-full md:w-2/4 z-50 grid grid-rows-2-[1fr_auto] h-full  bg-white lg:hidden"
-    >
+    <div className="fixed   left-0 w-full md:w-2/4 z-50 grid grid-rows-2-[1fr_auto] h-full  bg-white lg:hidden">
       <ul className="flex flex-col py-8 text-lg list-none items-start px-[30px]  ">
         {data.menuItems.map((item, i) => (
           <li

@@ -24,25 +24,26 @@ const Header = () => {
     } else {
       document.body.style.overflow = "auto"; // Enable scrolling
     }
+  });
 
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        mobileNavRef.current &&
-        !mobileNavRef.current.contains(event.target as Node)
-      ) {
-        setIsMobile(false); // Close mobile menu if clicked outside
-      }
-    };
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     if (
+  //       mobileNavRef.current &&
+  //       !mobileNavRef.current.contains(event.target as Node)
+  //     ) {
+  //       setIsMobile(false); // Close mobile menu if clicked outside
+  //     }
+  //   };
 
-    // Clean up function to reset styles when the component is unmounted or the footer is closed
-    document.addEventListener("mousedown", handleClickOutside);
+  //   // Clean up function to reset styles when the component is unmounted or the footer is closed
+  //   document.addEventListener("mousedown", handleClickOutside);
 
-    // Cleanup event listener
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.body.style.overflow = "auto"; // Reset overflow when unmounting
-    };
-  }, [isMobile]);
+  //   // Cleanup event listener
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //     document.body.style.overflow = "auto"; // Reset overflow when unmounting
+  //   };
+  // }, [isMobile]);
 
   const [query, setQuery] = useState("");
 
@@ -141,9 +142,12 @@ const Header = () => {
 
       {isMobile && (
         <>
-          <div className="fixed top-16 left-0 right-0 bottom-0  bg-black bg-opacity-50 z-40 lg:hidden"></div>
+          <div
+            onClick={() => setIsMobile(false)}
+            className="fixed top-16 left-0 right-0 bottom-0  bg-black bg-opacity-50 z-40 lg:hidden"
+          ></div>
 
-          <MobileNav ref={mobileNavRef} />
+          <MobileNav />
         </>
       )}
     </>

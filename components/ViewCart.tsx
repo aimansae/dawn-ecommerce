@@ -21,10 +21,15 @@ const AddToCart = ({ product, quantity, selectedColor }: AddToCartProps) => {
     setIsCartOpen(false);
   };
 
-  const selectedImage = product.availableColors.find(
+  const selectedColorObj = product.availableColors.find(
     (color) => color.color === selectedColor
-  )?.imageUrl;
-  console.log("image is", selectedImage);
+  );
+
+  // Get the image URLs for the selected color, or fall back to an empty array
+  const selectedImage = selectedColorObj?.imageUrl || [];
+
+  // Use the first image if available, or fall back to a default image
+  const imageToDisplay = selectedImage.length > 0 ? selectedImage[0] : "";
   if (!isCartOpen) return null;
   return (
     <div className="z-50 bg-white absolute top-0 left-0 w-full px-[30px] py-6 flex flex-col gap-4 md:max-w-[26rem] md:left-auto md:right-6 ">
@@ -42,12 +47,7 @@ const AddToCart = ({ product, quantity, selectedColor }: AddToCartProps) => {
         </button>
       </div>
       <div className="flex  items-start gap-2">
-        <Image
-          src={selectedImage || ""}
-          alt={product.name}
-          width={70}
-          height={65}
-        />
+        <Image src={imageToDisplay} alt={product.name} width={70} height={65} />
         <div className="">
           <h3 className="text-[15px]  ">{product.name}</h3>
           <h4 className="text-[14px] text-darkGray">

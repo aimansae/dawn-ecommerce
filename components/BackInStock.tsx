@@ -24,35 +24,35 @@ const BackInStock = () => {
     return <div>Product not found</div>;
   }
   return (
-    <section className="py-[36px] mx-auto px-4 md:px-[50px] items-center grid grid-cols-2 md:grid-cols-4 gap-4 lg:max-w-6xl">
-      <div className="col-span-4">
-        <h2 className="my-4">{stockData.title}</h2>
+    <section className="py-[36px] mx-auto px-4 md:px-[50px] items-center grid  grid-cols-2  lg:max-w-6xl">
+      <div className="col-span-2  ">
+        <h2 className=" ">{stockData.title}</h2>
       </div>
-      <div className="col-span-4 md:col-span-3 flex flex-col  h-full">
-        <Link href="/bags" className=" relative w-full h-full">
+      <Link href="/bags" className=" flex flex-col ">
+        <div className="relative  w-full h-[300px]  bg-green-400">
           <Image
             src={stockData.backInStock.mainImage}
             quality={100}
             fill
-            className="w-full h-full object-fit"
-            sizes="(max-width:375px)80vw,(max-width:560px)60vw, (max-width:768px) 80vw, 33vw"
+            className="w-full h-full object-fit "
             alt=""
+            sizes="(max-width:375px) 100vw, (max-width:768px) 50vw, (max-width:1024px) 33vw, 25vw"
           />
-        </Link>
+        </div>
+      </Link>
 
-        <Link
-          href="/bags"
-          className=" flex items-center gap-2 hover:underline my-4"
-        >
-          <span>{stockData.bagsLink}</span>
-          <span>
-            <FaArrowRightLong className="transition-transform transform hover:scale-110 duration-300 text-customBlack font-thin" />
-          </span>
-        </Link>
-      </div>
+      <Link
+        href="/bags"
+        className="col-span-4  flex items-center gap-2 hover:underline my-4"
+      >
+        <span>{stockData.bagsLink}</span>
+        <span>
+          <FaArrowRightLong className="transition-transform transform hover:scale-110 duration-300 text-customBlack font-thin" />
+        </span>
+      </Link>
 
       {/* 2 images section */}
-      <div className="col-span-4 md:col-span-1 flex flex-col gap-2 h-full  ">
+      <div className="col-span-4   flex flex-col gap-2 h-full  ">
         <Link
           href={`/product/${createSlugFromName(showEddieBagInStock.name)}`}
           className="w-full h-full relative"

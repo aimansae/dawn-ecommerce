@@ -1,8 +1,7 @@
 export type Color = {
   color: string;
-  imageUrl: string;
-  imageSides?: string[];
   tag?: string;
+  imageUrl: string[];
 };
 export type Size = string;
 

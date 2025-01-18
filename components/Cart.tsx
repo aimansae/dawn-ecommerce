@@ -19,6 +19,7 @@ const Cart = () => {
 
   const { selectedLocation } = useCountry();
   const quantity = getTotalQuantity();
+
   return (
     <section className="  flex flex-col gap-4 md:px-[50px] md:max-w-6xl  py-[14px] px-[15px] lg:px-[50px] md:mx-auto ">
       {quantity > 0 && (
@@ -43,11 +44,18 @@ const Cart = () => {
 
             <tbody className="border-b border-darkGray">
               {cart.map((item) => (
-                <tr className="flex justify-between items-start md:items-center my-8 ">
-                  <td key={item.product.id} className="flex gap-4">
+                <tr
+                  key={item.product.id}
+                  className="flex justify-between items-start md:items-center my-8 "
+                >
+                  <td className="flex gap-4">
                     <div className="div">
                       <Image
-                        src={item.selectedImage || ""}
+                        src={
+                          Array.isArray(item.selectedImage)
+                            ? item.selectedImage[0]
+                            : ""
+                        }
                         alt={item.product.name}
                         width={100}
                         height={50}
@@ -60,7 +68,7 @@ const Cart = () => {
                         href={`/product/${createSlugFromName(
                           item.product.name
                         )}`}
-                        className="text-[15px] break-words hover:underline"
+                        className="text-[15px] whitespace-nowrap hover:underline"
                       >
                         {item.product.name}
                       </Link>
