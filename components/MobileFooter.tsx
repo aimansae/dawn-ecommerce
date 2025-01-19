@@ -41,8 +41,8 @@ const MobileFooter = () => {
   };
 
   return (
-    <footer className=" bg-lightGray text-lg flex flex-col  gap-6 items-start z-50 p-[30px]    ">
-      <button className="flex gap-2 ">
+    <footer className="fixed w-full md:w-2/4 bottom-0 bg-lightGray text-lg flex flex-col  gap-6 items-start z-50 p-[30px]     ">
+      <button className="flex gap-2 w-full ">
         <FiUser
           className="transition-transform transform hover:scale-110 duration-300"
           size={26}
