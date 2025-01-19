@@ -63,9 +63,14 @@ const MobileFooter = () => {
         </button>
         {showLocations && (
           <>
-            <div className="fixed top-[105px] left-0 right-0 bottom-0  bg-black bg-opacity-50 z-40 lg:hidden"></div>
+            <div
+              className="fixed top-[85px] md:top-[106px] left-0 md:left-1/2 right-0 bottom-0  bg-black bg-opacity-50 z-40 lg:hidden"
+              onClick={() => {
+                setShowLocations(false);
+              }}
+            ></div>
 
-            <div className="absolute  h-4/5 left-0 bottom-0 z-50 bg-white w-full px-[15px] py-6 overflow-y-auto">
+            <div className="fixed w-full p-[15px]    left-0   bottom-0 md:bottom-24 md:left-5  bg-white z-50 md:w-auto h-3/4  md:h-2/5 overflow-y-auto md:border">
               <SelectCountries
                 onSelectCountry={handleCountryChange}
                 onClose={() => setShowLocations(false)}

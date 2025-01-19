@@ -13,9 +13,11 @@ import { useCart } from "@/app/context/CartContext";
 import QuantitySelector from "./QuantitySelector";
 import { useCountry } from "@/app/context/CountryContext";
 import AvailabilityTag from "../components/AvailabilityTag";
+import { convertPriceToCurrency } from "@/app/utils/functions";
+import { transformProduct } from "@/app/utils/transformProduct";
 const SingleProduct = ({ product }: SingleProductType) => {
   const { cart, addToCart } = useCart();
-  const { selectedLocation } = useCountry();
+  const { selectedLocation, exchangeRate } = useCountry();
   const searchParams = useSearchParams();
 
   const [selectedColor, setSelectedColor] = useState(() => {
@@ -153,15 +155,26 @@ const SingleProduct = ({ product }: SingleProductType) => {
 
         <div className="flex flex-col gap-4 items-start justify-center">
           <h1 className="text-[30px]">{product.name}</h1>
-          <div className="flex items-center gap-6  text-darkGray ">
-            <span className="line-through">
-              {selectedLocation.currencySymbol}
-              {product.prices.regular.toFixed(2)} {selectedLocation.currency}
+          <div className="flex flex-col items-start  gap-3 sm:flex-row sm:items-center sm:gap-6  text-darkGray whitespace-nowrap">
+            <span className={`${product.prices.sale ? "line-through" : ""}`}>
+              {selectedLocation.currencySymbol}{" "}
+              {convertPriceToCurrency(
+                Number(product.prices.regular.toFixed(2)),
+                exchangeRate
+              )}{" "}
+              {selectedLocation.currency}
             </span>
-            <span>
-              {selectedLocation.currencySymbol}
-              {product.prices.sale?.toFixed(2)} {selectedLocation.currency}
-            </span>
+
+            {product.prices.sale !== undefined && (
+              <span>
+                {selectedLocation.currencySymbol}{" "}
+                {convertPriceToCurrency(
+                  Number(product.prices.sale.toFixed(2)),
+                  exchangeRate
+                )}{" "}
+                {selectedLocation.currency}
+              </span>
+            )}
             <AvailabilityTag
               availability={product.availability}
             ></AvailabilityTag>

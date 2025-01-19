@@ -3,8 +3,9 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { IoIosArrowDown, IoIosSearch } from "react-icons/io";
+import { AiOutlineSearch } from "react-icons/ai";
 import { IoBagHandleOutline } from "react-icons/io5";
-import { RiCloseLargeFill } from "react-icons/ri";
+import { IoCloseOutline } from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Image from "next/image";
 import Logo from "../public/assets/images/logo.png";
@@ -16,9 +17,9 @@ import { useCart } from "@/app/context/CartContext";
 import products from "@/app/data/productList.json";
 import { createSlugFromName } from "@/app/utils/functions";
 import { FaArrowRight } from "react-icons/fa6";
+import { link } from "../app/utils/functions";
 
 const Header = () => {
-  const suggestions = ["bag", "bags", "tote bags", "sandals", "crossbody"];
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [query, setQuery] = useState("");
@@ -31,7 +32,7 @@ const Header = () => {
     )
     .sort(() => 0.5 - Math.random())
     .slice(0, 5);
-  const filteredSuggestions = suggestions.filter((suggestion) =>
+  const filteredSuggestions = data.header.suggestions.filter((suggestion) =>
     suggestion.toLowerCase().includes(query.toLowerCase())
   );
 
@@ -53,7 +54,7 @@ const Header = () => {
   return (
     <>
       <header
-        className={`z-50 py-[14px] md:px-[50px] sticky lg:relative bg-white top-0 border-t border-b border-gray-200 md:max-w-6xl md:mx-auto ${
+        className={`z-50 py-[14px] lg:px-[50px] sticky lg:relative bg-white top-0 border-t border-b border-gray-200 md:max-w-6xl md:mx-auto ${
           showSearchBar ? "px-[15px] py-2" : "px-[30px]"
         }`}
       >
@@ -79,7 +80,7 @@ const Header = () => {
                 ) : (
                   <div className="fixed left-0    bg-white z-50 h-2/3 md:h-auto w-full md:absolute md:mx-auto md:pt-4   overflow-y-scroll md:overflow-y-auto">
                     <div className="grid grid-cols-1  md:grid-cols-3 gap-4">
-                      {suggestions.length > 0 && (
+                      {filteredSuggestions.length > 0 && (
                         <div className="flex flex-col ">
                           <h1 className="py-2 text-darkGray uppercase  text-[10px] px-[15px]  border-b border-gray-200">
                             Suggestions
@@ -88,7 +89,7 @@ const Header = () => {
                             <ul key={i} className=" ">
                               <li className="text-xs px-[15px] hover:bg-gray-100 w-full ">
                                 <Link
-                                  href={`/bags`}
+                                  href={link.bags}
                                   className="flex py-[10px]  gap-2 hover:underline"
                                   onClick={() => setShowSearchBar(false)}
                                 >
@@ -106,7 +107,6 @@ const Header = () => {
                         {filterProductByQuery.map((product) => (
                           <ul key={product.id} className="py-4">
                             <li className="text-xs px-[15px] hover:bg-gray-100 w-full ">
-                              {" "}
                               <Link
                                 href={`/product/${createSlugFromName(
                                   product.name
@@ -129,7 +129,7 @@ const Header = () => {
                           </ul>
                         ))}
                       </div>
-                    </div>{" "}
+                    </div>
                   </div>
                 )}
               </div>
@@ -140,8 +140,8 @@ const Header = () => {
             <div className="lg:hidden flex items-center justify-start">
               <button onClick={() => setIsMobile((prev) => !prev)}>
                 {isMobile ? (
-                  <RiCloseLargeFill
-                    size={26}
+                  <IoCloseOutline
+                    size={30}
                     className="transition-transform transform hover:scale-110 duration-300"
                   />
                 ) : (
@@ -154,32 +154,36 @@ const Header = () => {
             </div>
             <div className="flex items-center justify-center lg:justify-start lg:block">
               <h1 className="p-[7.5px]">
-                <Link href="/">
+                <Link href={link.home}>
                   <Image
                     src={Logo}
                     alt={data.header.logo.alt}
                     width={data.header.logo.width}
                     height={data.header.logo.height}
+                    quality={100}
                   />
                 </Link>
               </h1>
             </div>
             <div className="hidden lg:flex">
-              <ul className="flex text-sm list-none px-[30px] items-start justify-between gap-6 z-10">
+              <ul className="flex text-sm list-none items-start justify-between gap-6 z-10">
                 {data.menuItems.map((item, i) => (
                   <li key={i} className="text-darkGray py-4">
-                    <button className="flex gap-1 justify-center items-center">
+                    <Link
+                      className="hover:underline flex gap-1 justify-center items-center"
+                      href={item.href}
+                    >
                       <span>{item.label}</span>
                       <span>
-                        <IoIosArrowDown />
+                        <IoIosArrowDown className="" />
                       </span>
-                    </button>
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
             <div className="flex items-center justify-end gap-6">
-              <IoIosSearch
+              <AiOutlineSearch
                 onClick={handleShowSearchBar}
                 size={26}
                 className="text-customBlack transition-transform transform hover:scale-110 duration-300"
@@ -188,7 +192,7 @@ const Header = () => {
                 className="transition-transform transform hover:scale-110 duration-300 hidden md:block"
                 size={26}
               />
-              <Link href="/cart" className="relative">
+              <Link href={link.cart} className="relative">
                 <IoBagHandleOutline
                   size={26}
                   className="transition-transform transform hover:scale-110 duration-300"

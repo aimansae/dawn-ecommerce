@@ -119,12 +119,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
     if (!cart || cart.length === 0) {
       return 0;
     }
-    return cart
-      .reduce(
-        (acc, item) => acc + item.product.prices.regular * item.quantity,
-        0
-      )
-      .toFixed(2);
+    return cart.reduce(
+      (acc, item) =>
+        acc +
+        (item.product.prices.sale || item.product.prices.regular) *
+          item.quantity,
+      0
+    );
   };
 
   return (

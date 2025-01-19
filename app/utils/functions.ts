@@ -16,3 +16,9 @@ export const convertPriceToCurrency = (
   }
   return price.toFixed(2); // If exchange rate is not available, return the original price
 };
+
+export const link = {
+  home: "/",
+  cart: "/cart",
+  bags: "/bags",
+};

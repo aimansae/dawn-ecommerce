@@ -39,11 +39,29 @@ const ProductList = () => {
             <span className="text-customBlack text-xs  truncate sm:text-[13px] group-hover:underline">
               {product.name}
             </span>
-            <span>
+            <span
+              className={`${
+                product.prices.sale ? "line-through text-darkGray" : ""
+              }`}
+            >
               {selectedLocation.currencySymbol}{" "}
-              {convertPriceToCurrency(product.prices.regular, exchangeRate)}{" "}
+              {convertPriceToCurrency(
+                Number(product.prices.regular.toFixed(2)),
+                exchangeRate
+              )}{" "}
               {selectedLocation.currency}
             </span>
+
+            {product.prices.sale !== undefined && (
+              <span>
+                {selectedLocation.currencySymbol}{" "}
+                {convertPriceToCurrency(
+                  Number(product.prices.sale.toFixed(2)),
+                  exchangeRate
+                )}{" "}
+                {selectedLocation.currency}
+              </span>
+            )}
           </div>
         </Link>
       ))}

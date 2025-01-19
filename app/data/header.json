@@ -5,20 +5,21 @@
       "alt": "logo",
       "width": 90,
       "height": 22
-    }
+    },
+    "suggestions": ["bag", "bags", "tote bags", "sandals", "crossbody"]
   },
   "menuItems": [
     {
       "label": "Bags",
-      "link": "/bags"
+      "href": "/bags"
     },
     {
       "label": "Shoes",
-      "link": "/shoes"
+      "href": "/shoes"
     },
     {
       "label": "Lookbook",
-      "link": "/lookbook"
+      "href": "/lookbook"
     }
   ],
   "footer": {

@@ -33,20 +33,20 @@ const SearchInput = ({ onClose, onSearch }: SearchInputProps) => {
           className={`${
             search
               ? "absolute right-2 top-3 border rounded-full p-1"
-              : "absolute p-2 right-0"
+              : "absolute top-0 p-2 right-0"
           }`}
         >
           <span>
             {search ? (
               <TfiClose
                 onClick={() => setSearch("")}
-                size={12}
-                className=" transition-transform transform hover:scale-110 duration-300"
+                size={10}
+                className="text-darkGray  transition-transform transform hover:scale-110 duration-300"
               />
             ) : (
               <IoIosSearch
-                size={26}
-                className=" transition-transform transform hover:scale-110 duration-300 md:hidden"
+                size={23}
+                className="text-darkGray transition-transform transform hover:scale-110 duration-300 md:hidden"
               />
             )}
           </span>
@@ -55,8 +55,8 @@ const SearchInput = ({ onClose, onSearch }: SearchInputProps) => {
       <div>
         <button onClick={onClose}>
           <TfiClose
-            size={26}
-            className="  transition-transform transform hover:scale-110 duration-300 mt-1"
+            size={22}
+            className="text-darkGray md:hidden transition-transform transform hover:scale-110 duration-300 mt-1"
           />
         </button>
       </div>

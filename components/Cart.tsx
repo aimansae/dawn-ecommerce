@@ -7,7 +7,10 @@ import QuantitySelector from "./QuantitySelector";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import data from "../app/data/cart.json";
 import { useCountry } from "@/app/context/CountryContext";
-import { createSlugFromName } from "@/app/utils/functions";
+import {
+  convertPriceToCurrency,
+  createSlugFromName,
+} from "@/app/utils/functions";
 const Cart = () => {
   const {
     cart,
@@ -17,9 +20,9 @@ const Cart = () => {
     removeFromCart,
   } = useCart();
 
-  const { selectedLocation } = useCountry();
+  const { selectedLocation, exchangeRate } = useCountry();
   const quantity = getTotalQuantity();
-
+  const totalPrice = getTotalPrice();
   return (
     <section className="  flex flex-col gap-4 md:px-[50px] md:max-w-6xl  py-[14px] px-[15px] lg:px-[50px] md:mx-auto ">
       {quantity > 0 && (
@@ -74,14 +77,19 @@ const Cart = () => {
                       </Link>
                       <p>
                         <span>{selectedLocation.currencySymbol}</span>{" "}
-                        {item.product.prices.regular.toFixed(2)}
+                        {item.product.prices.sale
+                          ? convertPriceToCurrency(
+                              Number(item.product.prices.sale.toFixed(2)),
+                              exchangeRate
+                            )
+                          : convertPriceToCurrency(
+                              Number(item.product.prices.regular.toFixed(2)),
+                              exchangeRate
+                            )}
                       </p>
                       <p className="text-[14px] text-darkGray">
                         Color:
-                        <span className="capitalize">
-                          {" "}
-                          {item.selectedColor}
-                        </span>
+                        <span className="capitalize">{item.selectedColor}</span>
                       </p>
                       <div className="flex items-center justify-between md:hidden ">
                         <div className="w-3/4">
@@ -112,7 +120,6 @@ const Cart = () => {
                       </div>
                     </div>
                   </td>
-                  {/*Product info*/}
 
                   {/*Quantity info medium devices*/}
                   <td className="hidden md:flex gap-4 items-center">
@@ -143,10 +150,18 @@ const Cart = () => {
                       <RiDeleteBin6Line />
                     </button>
                   </td>
-
+                  {/*total per product*/}
                   <td>
                     <span>{selectedLocation.currencySymbol}</span>{" "}
-                    {(item.product.prices.regular * item.quantity).toFixed(2)}
+                    {item.product.prices.sale
+                      ? convertPriceToCurrency(
+                          item.product.prices.sale * item.quantity,
+                          exchangeRate
+                        )
+                      : convertPriceToCurrency(
+                          item.product.prices.regular * item.quantity,
+                          exchangeRate
+                        )}
                   </td>
                 </tr>
               ))}
@@ -160,7 +175,8 @@ const Cart = () => {
           <p>
             {data.cart.footer.estimatedTotal}{" "}
             <span className="text-darkGray capitalize text-lg">
-              <span>{selectedLocation.currencySymbol}</span> {getTotalPrice()}{" "}
+              <span>{selectedLocation.currencySymbol}</span>{" "}
+              {convertPriceToCurrency(totalPrice, exchangeRate)}{" "}
               {selectedLocation.currency}
             </span>
           </p>

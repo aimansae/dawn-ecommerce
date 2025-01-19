@@ -126,7 +126,7 @@ const Footer = () => {
                 className="fixed top-0 left-0 right-0 bottom-0  bg-black bg-opacity-50 z-40 lg:hidden"
               ></div>
 
-              <div className="fixed w-full p-[15px]    md:absolute left-0   bottom-0 md:bottom-[9rem] bg-white z-50 md:w-auto h-3/4 md:h-full overflow-y-auto md:border">
+              <div className="fixed w-full p-[15px] md:absolute left-0   bottom-0 md:bottom-[9rem] bg-white z-50 md:w-auto h-3/4 md:h-full overflow-y-auto md:border">
                 <SelectCountries
                   onSelectCountry={handleCountryChange}
                   onClose={() => setShowLocations(false)}

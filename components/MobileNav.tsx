@@ -5,12 +5,12 @@ import MobileFooter from "./MobileFooter";
 
 const MobileNav = () => {
   return (
-    <div className="fixed  left-0 w-full md:w-2/4 z-50 grid grid-rows-2-[1fr_auto] h-full  bg-white lg:hidden">
-      <ul className="flex flex-col py-8 text-lg list-none items-start px-[30px]  ">
+    <div className="fixed bg-white  left-0 w-full md:w-2/4 z-50 grid grid-rows-2-[1fr_auto] h-full  lg:hidden">
+      <ul className="flex flex-col py-8 text-lg list-none items-start ">
         {data.menuItems.map((item, i) => (
           <li
             key={i}
-            className="hover:bg-lightGray w-full flex justify-between items-center py-2"
+            className=" px-[30px]  hover:bg-lightGray w-full flex justify-between items-center py-2"
           >
             <button>
               <span>{item.label}</span>

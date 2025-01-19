@@ -64,7 +64,7 @@ const SelectCountries = ({ onClose }: SelectCountriesProps) => {
       <div>
         <SearchInput onClose={onClose} onSearch={setQuery} />
 
-        <ul className="flex flex-col items-center justify-between  ">
+        <ul className="flex flex-col items-center justify-between   ">
           {filteredData.length > 0 ? (
             filteredData.map((location, index) => (
               <li
@@ -80,7 +80,7 @@ const SelectCountries = ({ onClose }: SelectCountriesProps) => {
                 >
                   {location.country === selectedLocation.country && (
                     <span className="absolute left-[-18px] top-1">
-                      <BsCheck2 />
+                      <BsCheck2 size={15} />
                     </span>
                   )}
 
