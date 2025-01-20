@@ -194,7 +194,7 @@ const Cart = () => {
           <h1 className="text-[30px]  whitespace-nowrap mt-[40px]">
             {data.cart.footer.empty}
           </h1>
-          <Link className=" " href={"/collections/all"}>
+          <Link className=" " href={"/collections"}>
             <button className="px-10 py-3 text-sm text-white bg-black capitalize">
               {data.cart.continueShopping}
             </button>

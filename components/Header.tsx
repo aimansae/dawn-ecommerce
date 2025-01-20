@@ -47,7 +47,11 @@ const Header = () => {
   const handleShowSearchBar = () => {
     setShowSearchBar((prev) => !prev);
   };
-
+  const [selectedLinkItem, setSelectedLinkItem] = useState<string | null>(null);
+  const handleItemClick = (label: string) => {
+    console.log("item clicked in header", selectedLinkItem?.toLowerCase());
+    setSelectedLinkItem((prev) => (prev === label ? null : label));
+  };
   const { getTotalQuantity } = useCart();
   const quantity = getTotalQuantity() || 0;
   console.log("logging query", query.length);
@@ -166,21 +170,44 @@ const Header = () => {
               </h1>
             </div>
             <div className="hidden lg:flex">
-              <ul className="flex text-sm list-none items-start justify-between gap-6 z-10">
+              <ul className=" flex text-sm list-none items-start justify-between gap-6 z-10">
                 {data.menuItems.map((item, i) => (
                   <li key={i} className="text-darkGray py-4">
-                    <Link
-                      className="hover:underline flex gap-1 justify-center items-center"
-                      href={item.href}
+                    <button
+                      onClick={() => handleItemClick(item.label)}
+                      className={`  hover:underline flex gap-1 justify-center items-center ${
+                        selectedLinkItem === item.label
+                          ? "underline relative"
+                          : ""
+                      }`}
                     >
                       <span>{item.label}</span>
                       <span>
-                        <IoIosArrowDown className="" />
+                        <IoIosArrowDown
+                          className={`transition-transform duration-300 ${
+                            selectedLinkItem === item.label
+                              ? "rotate-180"
+                              : "rotate-0"
+                          } `}
+                        />
                       </span>
-                    </Link>
+                    </button>
+                    {selectedLinkItem === item.label && (
+                      <div className="bg-gray-100 absolute top-[60px] mt-2 p-4 w-1/5">
+                        <ul className="capitalize text-darkGray text-sm flex flex-col gap-2">
+                          {item.options?.map((option, j) => (
+                            <li key={j} className="hover:underline">
+                              {option.label}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </li>
                 ))}
               </ul>
+
+              {/*so options*/}
             </div>
             <div className="flex items-center justify-end gap-6">
               <AiOutlineSearch

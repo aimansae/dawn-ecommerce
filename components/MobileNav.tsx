@@ -1,26 +1,69 @@
-import React from "react";
+import React, { useState } from "react";
 import data from "../app/data/header.json";
 import { FaArrowRightLong } from "react-icons/fa6";
 import MobileFooter from "./MobileFooter";
+import { IoIosArrowRoundBack } from "react-icons/io";
+import Link from "next/link";
 
 const MobileNav = () => {
+  const [selectedLinkItem, setSelectedLinkItem] = useState<string | null>(null);
+
+  const handleItemClick = (label: string) => {
+    console.log("BGSSSSSSS", selectedLinkItem?.toLowerCase());
+    setSelectedLinkItem(label);
+  };
   return (
-    <div className="fixed bg-white  left-0 w-full md:w-2/4 z-50 grid grid-rows-2-[1fr_auto] h-full  lg:hidden">
-      <ul className="flex flex-col py-8 text-lg list-none items-start ">
+    <div className="fixed bg-blue-300 left-0 w-full md:w-2/4 z-50 grid grid-rows-2-[1fr_auto] h-full  lg:hidden">
+      <div className="flex flex-col py-8 text-lg list-none   w-full ">
         {data.menuItems.map((item, i) => (
-          <li
-            key={i}
-            className=" px-[30px]  hover:bg-lightGray w-full flex justify-between items-center py-2"
-          >
-            <button>
-              <span>{item.label}</span>
-            </button>
-            <span>
-              <FaArrowRightLong className="transition-transform transform hover:scale-110 duration-300 text-customBlack font-thin" />
-            </span>
-          </li>
+          <div key={i} className=" w-full    py-2">
+            {selectedLinkItem === item.label ? (
+              <div className="">
+                <button
+                  onClick={() => setSelectedLinkItem(null)}
+                  className="px-[30px] my-2  flex items-center gap-1"
+                >
+                  <IoIosArrowRoundBack
+                    size={30}
+                    className="transition-transform transform hover:scale-110 duration-300 text-customBlack font-thin"
+                  />
+
+                  {item.label}
+                </button>
+                <ul className="flex flex-col w-full">
+                  {item.options?.map((option, j) => (
+                    <li
+                      key={j}
+                      className=" px-[30px]  hover:bg-lightGray w-full flex justify-between items-center py-2"
+                    >
+                      <Link
+                        onClick={() => handleItemClick(option.label)}
+                        className="flex w-full items-center justify-between"
+                        href={option.href}
+                      >
+                        <span className="capitalize">{option.label}</span>
+                        <FaArrowRightLong className="transition-transform transform hover:scale-110 duration-300 text-customBlack font-thin" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : selectedLinkItem !== "bags" && selectedLinkItem !== "shoes" ? (
+              <ul className="flex flex-col w-full  ">
+                <li className="px-[30px] hover:bg-lightGray w-full flex justify-between items-center py-2">
+                  <button
+                    onClick={() => handleItemClick(item.label)}
+                    className="flex w-full items-center justify-between"
+                  >
+                    <span className="capitalize">{item.label}</span>
+                    <FaArrowRightLong className="transition-transform transform hover:scale-110 duration-300 text-customBlack font-thin" />
+                  </button>
+                </li>
+              </ul>
+            ) : null}
+          </div>
         ))}
-      </ul>
+      </div>
 
       <MobileFooter />
     </div>

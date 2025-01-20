@@ -10,15 +10,27 @@
   },
   "menuItems": [
     {
-      "label": "Bags",
-      "href": "/bags"
+      "label": "bags",
+      "href": "/bags",
+      "options": [
+        { "label": "shop all", "href": "/bags" },
+        { "label": "tote bags", "href": "/tote bags" },
+        { "label": "tote bags", "href": "/tote bags" },
+        { "label": "crossbody bags", "href": "/crossbody-bags" },
+        { "label": "top handle bags", "href": "/top-handle-bags" },
+        { "label": "mini bags", "href": "/mini-bags" }
+      ]
     },
     {
-      "label": "Shoes",
-      "href": "/shoes"
+      "label": "shoes",
+      "href": "/shoes",
+      "options": [
+        { "label": "shop all", "href": "/shoes" },
+        { "label": "sandals", "href": "/tote bags" }
+      ]
     },
     {
-      "label": "Lookbook",
+      "label": "lookbook",
       "href": "/lookbook"
     }
   ],
