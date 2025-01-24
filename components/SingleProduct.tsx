@@ -14,7 +14,6 @@ import QuantitySelector from "./QuantitySelector";
 import { useCountry } from "@/app/context/CountryContext";
 import AvailabilityTag from "../components/AvailabilityTag";
 import { convertPriceToCurrency } from "@/app/utils/functions";
-import { transformProduct } from "@/app/utils/transformProduct";
 const SingleProduct = ({ product }: SingleProductType) => {
   const { cart, addToCart } = useCart();
   const { selectedLocation, exchangeRate } = useCountry();

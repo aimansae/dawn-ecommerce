@@ -118,7 +118,7 @@ const Collections = () => {
           >
             <div className="  w-full relative aspect-square  ">
               <Image
-                src={product.availableColors[0]?.imageUrl}
+                src={product.availableColors?.[0]?.imageUrl?.[0]}
                 alt={product.name}
                 quality={75}
                 fill

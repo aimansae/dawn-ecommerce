@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { IoIosArrowDown, IoIosSearch } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { IoCloseOutline } from "react-icons/io5";
@@ -18,17 +18,31 @@ import products from "@/app/data/productList.json";
 import { createSlugFromName } from "@/app/utils/functions";
 import { FaArrowRight } from "react-icons/fa6";
 import { link } from "../app/utils/functions";
+import HeaderSearch from "./HeaderSearch";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Header = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [query, setQuery] = useState("");
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  console.log("query is", query);
+  const searchQuery = searchParams.get("query");
+
+  useEffect(() => {
+    if (searchQuery) {
+      setQuery(searchQuery);
+    }
+  }, [searchParams]);
 
   const filterProductByQuery = products.products
     .filter(
       (product) =>
         product.name.toLowerCase().includes(query.toLowerCase()) ||
-        product.category.toLowerCase().includes(query.toLowerCase())
+        product.category.some((category) =>
+          category.toLowerCase().includes(query.toLowerCase())
+        )
     )
     .sort(() => 0.5 - Math.random())
     .slice(0, 5);
@@ -54,7 +68,20 @@ const Header = () => {
   };
   const { getTotalQuantity } = useCart();
   const quantity = getTotalQuantity() || 0;
-  console.log("logging query", query.length);
+  console.log(
+    "logging query",
+    query.length,
+    "productLength",
+    filterProductByQuery.length
+  );
+
+  const handleGeneralSearch = (query: string) => {
+    console.log(query, "general");
+    if (query.trim().toLowerCase()) {
+      router.push(`/?query=${encodeURIComponent(query.toString())}`);
+    }
+    setShowSearchBar(false);
+  };
   return (
     <>
       <header
@@ -64,18 +91,22 @@ const Header = () => {
       >
         {showSearchBar ? (
           <div className="relative">
-            <SearchInput
+            <HeaderSearch
               onClose={() => setShowSearchBar(false)}
-              onSearch={setQuery}
+              term={query}
+              setTerm={setQuery}
             />
             {query && (
               <div>
-                {filterProductByQuery.length === 0 ? (
+                {filterProductByQuery.length === 0 || query.length === 0 ? (
                   <div className="px-2 flex items-center justify-between">
                     <span className="py-2">
                       Search for: &quot;{query}&quot;
                     </span>
-                    <button className="flex">
+                    <button
+                      className="flex"
+                      onClick={() => handleGeneralSearch(query)}
+                    >
                       <Link href="">
                         <FaArrowRight />
                       </Link>
@@ -93,7 +124,7 @@ const Header = () => {
                             <ul key={i} className=" ">
                               <li className="text-xs px-[15px] hover:bg-gray-100 w-full ">
                                 <Link
-                                  href={link.bags}
+                                  href={`/?query=${suggestion}`}
                                   className="flex py-[10px]  gap-2 hover:underline"
                                   onClick={() => setShowSearchBar(false)}
                                 >
@@ -104,12 +135,13 @@ const Header = () => {
                           ))}
                         </div>
                       )}
+
                       <div className="md:col-span-2">
                         <h1 className="py-2 text-darkGray uppercase  text-[10px] px-[15px]  border-b border-gray-200">
                           Products
                         </h1>
                         {filterProductByQuery.map((product) => (
-                          <ul key={product.id} className="py-4">
+                          <ul key={product.id} className="py-4 bg-yellow">
                             <li className="text-xs px-[15px] hover:bg-gray-100 w-full ">
                               <Link
                                 href={`/product/${createSlugFromName(
@@ -206,10 +238,8 @@ const Header = () => {
                   </li>
                 ))}
               </ul>
-
-              {/*so options*/}
             </div>
-            <div className="flex items-center justify-end gap-6">
+            <div className="flex items-center justify-end gap-3 md:gap-6">
               <AiOutlineSearch
                 onClick={handleShowSearchBar}
                 size={26}

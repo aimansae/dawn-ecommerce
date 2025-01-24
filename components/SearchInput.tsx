@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { TfiClose } from "react-icons/tfi";
@@ -8,6 +9,8 @@ type SearchInputProps = {
 };
 const SearchInput = ({ onClose, onSearch }: SearchInputProps) => {
   const [search, setSearch] = useState("");
+  const router = useRouter();
+
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
     setSearch(query);

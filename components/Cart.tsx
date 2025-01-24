@@ -49,9 +49,9 @@ const Cart = () => {
               {cart.map((item) => (
                 <tr
                   key={item.product.id}
-                  className="flex justify-between items-start md:items-center my-8 "
+                  className="flex bg-orange-300    justify-between items-start md:items-center my-8  "
                 >
-                  <td className="flex gap-4">
+                  <td className="flex gap-4 flex-grow-0  bg-yellow-200">
                     <div className="div">
                       <Image
                         src={
@@ -66,12 +66,12 @@ const Cart = () => {
                       />
                     </div>
                     {/*Product Details */}
-                    <div className="flex flex-col gap-2 w-2/3">
+                    <div className="flex flex-col gap-2  ">
                       <Link
                         href={`/product/${createSlugFromName(
                           item.product.name
                         )}`}
-                        className="text-[15px] whitespace-nowrap hover:underline"
+                        className="text-[15px] truncate hover:underline"
                       >
                         {item.product.name}
                       </Link>

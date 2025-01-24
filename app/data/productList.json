@@ -3,11 +3,11 @@
     {
       "id": "1",
       "name": "Small Convertible Flex Bag",
-      "category": "Bags",
+      "category": ["Bags"],
       "prices": {
         "currency": "USD",
         "regular": "280.00",
-        "sale": " 227.00 "
+        "sale": "227.00"
       },
       "status": "out of stock",
       "availability": "sold out",
@@ -54,7 +54,7 @@
     {
       "id": "2",
       "name": "Studio Bag",
-      "category": "Bags",
+      "category": ["Bags"],
       "prices": {
         "currency": "USD",
         "regular": "330.00 ",
@@ -90,12 +90,12 @@
     {
       "id": "3",
       "name": "Louise Slide Sandal",
-      "category": "Sandals",
+      "category": ["Sandals", "shoes"],
 
       "prices": {
         "currency": "USD",
         "regular": "305.00 ",
-        "sale": "280.00 "
+        "sale": "280.00"
       },
       "status": "out of stock",
       "availability": "sale",
@@ -139,7 +139,7 @@
       "id": "4",
 
       "name": "Mini Naomi Bag",
-      "category": "Bags",
+      "category": ["bags"],
       "prices": {
         "currency": "USD",
         "regular": "223.00 ",
@@ -173,7 +173,7 @@
     {
       "id": "5",
       "name": "Helix",
-      "category": "Bags",
+      "category": ["Bags", "crossbody bags"],
       "prices": {
         "currency": "USD",
         "regular": "333.00 "
@@ -224,7 +224,7 @@
     {
       "id": "6",
       "name": "Bo Ivy",
-      "category": "Bags",
+      "category": ["Bags"],
       "prices": {
         "currency": "USD",
         "regular": "276.00 "
@@ -309,7 +309,8 @@
     {
       "id": "7",
       "name": "Pleated Heel Mule",
-      "category": "Shoes",
+      "category": ["Sandals", "shoes"],
+
       "prices": {
         "currency": "USD",
         "regular": "351.00 "
@@ -371,7 +372,7 @@
     {
       "id": "8",
       "name": "Brick",
-      "category": "Bags",
+      "category": ["Bags"],
       "image": "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "prices": {
         "currency": "USD",
@@ -440,7 +441,7 @@
     {
       "id": "9",
       "name": "Mini Eddy",
-      "category": "Bags",
+      "category": ["Bags"],
       "prices": {
         "currency": "USD",
         "regular": "226.00",
@@ -491,7 +492,7 @@
     {
       "id": "10",
       "name": "Art Deco",
-      "category": "Bags",
+      "category": ["Bags"],
       "prices": {
         "currency": "USD",
         "regular": "266.00",
@@ -542,11 +543,11 @@
     {
       "id": "11",
       "name": "Business Bad",
-      "category": "Bags",
+      "category": ["Bags"],
       "prices": {
         "currency": "USD",
         "regular": "368.00",
-        "sale": " "
+        "sale": ""
       },
       "status": "in stock",
       "availability": "available",
@@ -585,11 +586,11 @@
     {
       "id": "12",
       "name": "Hobo Large",
-      "category": "Bags",
+      "category": ["Bags"],
       "prices": {
         "currency": "USD",
         "regular": "435.00",
-        "sale": " "
+        "sale": ""
       },
       "status": "out of stock",
       "availability": "sold out",
@@ -627,11 +628,11 @@
     {
       "id": "13",
       "name": "Hobo medium",
-      "category": "Bags",
+      "category": ["Bags"],
       "prices": {
         "currency": "USD",
         "regular": "297.00",
-        "sale": " "
+        "sale": ""
       },
       "status": "in stock",
       "availability": "available",
@@ -668,11 +669,11 @@
     {
       "id": "14",
       "name": "lantern bag pleated",
-      "category": "Bags",
+      "category": ["Bags"],
       "prices": {
         "currency": "USD",
         "regular": "326.00",
-        "sale": " "
+        "sale": ""
       },
       "status": "in stock",
       "availability": "available",
@@ -693,13 +694,13 @@
     {
       "id": "15",
       "name": "mini sera tote",
-      "category": "Bags",
+      "category": ["Bags", "tote bags"],
       "prices": {
         "currency": "USD",
         "regular": "259.00",
-        "sale": " "
+        "sale": ""
       },
-      "status": "in stock",
+      "status": "out of stock",
       "availability": "available",
 
       "availableColors": [
@@ -763,7 +764,7 @@
     {
       "id": "16",
       "name": "mini woven bag",
-      "category": "Bags",
+      "category": ["Bags"],
       "prices": {
         "currency": "USD",
         "regular": "266.00",

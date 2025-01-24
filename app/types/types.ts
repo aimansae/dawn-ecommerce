@@ -17,7 +17,7 @@ export type ProductType = {
   availability: string;
   availableColors: Color[];
   availableSizes?: Size[];
-  category: string;
+  category: string[];
   description?: string;
 };
 export type SingleProductType = {
