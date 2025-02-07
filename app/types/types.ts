@@ -1,5 +1,6 @@
 export type Color = {
   color: string;
+  colorCategory: string;
   tag?: string;
   imageUrl: string[];
 };

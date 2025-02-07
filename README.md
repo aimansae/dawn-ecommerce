@@ -39,7 +39,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 TODO
 Home: sale/soldout tags
       Country button:add dark background, on bigger screen, close if clicked outside
-
+space for NAb for small screens
 
 make z index for selected country div hightr
 

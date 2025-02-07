@@ -20,10 +20,13 @@ import { FaArrowRight } from "react-icons/fa6";
 import { link } from "../app/utils/functions";
 import HeaderSearch from "./HeaderSearch";
 import { useRouter, useSearchParams } from "next/navigation";
+import ShippingBanner from "./ShippingBanner";
 
 const Header = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
+  const [selectedLinkItem, setSelectedLinkItem] = useState<string | null>(null);
+
   const [query, setQuery] = useState("");
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -61,7 +64,6 @@ const Header = () => {
   const handleShowSearchBar = () => {
     setShowSearchBar((prev) => !prev);
   };
-  const [selectedLinkItem, setSelectedLinkItem] = useState<string | null>(null);
   const handleItemClick = (label: string) => {
     console.log("item clicked in header", selectedLinkItem?.toLowerCase());
     setSelectedLinkItem((prev) => (prev === label ? null : label));
@@ -84,8 +86,10 @@ const Header = () => {
   };
   return (
     <>
+      {" "}
+      <ShippingBanner />
       <header
-        className={`z-50 py-[14px] lg:px-[50px] sticky lg:relative bg-white top-0 border-t border-b border-gray-200 md:max-w-6xl md:mx-auto ${
+        className={`z-50 py-[14px] lg:px-[50px]  lg:relative bg-white top-0 border-t border-b border-gray-200 md:max-w-6xl md:mx-auto ${
           showSearchBar ? "px-[15px] py-2" : "px-[30px]"
         }`}
       >
@@ -147,7 +151,7 @@ const Header = () => {
                                 href={`/product/${createSlugFromName(
                                   product.name
                                 )}`}
-                                className="flex items-center gap-2 hover:underline"
+                                className="capitalize flex items-center gap-2 hover:underline"
                                 onClick={() => setShowSearchBar(false)}
                               >
                                 <Image
@@ -268,7 +272,7 @@ const Header = () => {
         <>
           <div
             onClick={() => setIsMobile(false)}
-            className="fixed top-16 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-40 lg:hidden"
+            className="fixed top-[107px] left-0 right-0 bottom-0 bg-black bg-opacity-50 z-40 lg:hidden"
           ></div>
           <MobileNav />
         </>

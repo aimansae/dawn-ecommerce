@@ -24,7 +24,7 @@ const BackInStock = () => {
     return <div>Product not found</div>;
   }
   return (
-    <section className="py-[36px] mx-auto px-4 md:px-[50px] items-center grid grid-cols-3 lg:max-w-6xl">
+    <section className="py-[36px] mx-auto px-4 md:px-[50px] items-center grid grid-cols-3 lg:max-w-6xl gap-3">
       <div className="col-span-3 ">
         <h2 className=" ">{stockData.title}</h2>
       </div>
@@ -43,7 +43,7 @@ const BackInStock = () => {
           />
         </div>
 
-        <div className="gap-2 flex items-center bg-fuchsia-300 hover:underline  ">
+        <div className="gap-2 flex items-center hover:underline my-2">
           <span>{stockData.bagsLink}</span>
           <span>
             <FaArrowRightLong className="transition-transform transform hover:scale-110 duration-300 text-customBlack font-thin" />
@@ -52,21 +52,22 @@ const BackInStock = () => {
       </Link>
 
       {/* 2 images section */}
-      <div className="gap-2 flex items-center w-full h-full bg-orange-300 col-span-3 md:col-span-1 ">
+      <div className="gap-2 flex w-full h-full md:flex-col  col-span-3  md:col-span-1 ">
         <Link
           href={`/product/${createSlugFromName(showEddieBagInStock.name)}`}
-          className=" "
+          className="w-full h-28 md:h-full md:flex md:flex-col "
         >
-          <div className="w-full h-full  relative aspect-square">
+          <div className="w-full h-full relative">
             <Image
               src={showEddieBagInStock.availableColors[0].imageUrl[0]}
-              className=" object-cover"
+              quality={75}
+              className="w-full h-full top-0 left-0 object-cover"
               sizes="(max-width:375px)100vw,(max-width:560px)80vw, (max-width:768px) 60vw, 33vw"
-              alt={""}
+              alt={showEddieBagInStock.name}
               fill
             />
           </div>
-          <div className=" gap-2 my-2 flex flex-col  ">
+          <div className="gap-2 my-3 flex flex-col  ">
             <span className="text-customBlack text-xs truncate sm:text-[13px] group-hover:underline">
               {showEddieBagInStock.name}
             </span>
@@ -83,11 +84,12 @@ const BackInStock = () => {
 
         {/*second image*/}
 
-        <Link href="/shoes">
-          <div className="w-full relative aspect-square">
+        <Link href="/shoes" className="  w-full h-full  md:flex md:flex-col">
+          <div className="w-full h-28 md:h-full relative">
             <Image
               src={stockData.shoeCollection.image}
               alt={stockData.shoeCollection.alt}
+              quality={75}
               className="w-full h-full top-0 left-0 object-cover"
               sizes="(max-width:375px)100vw,(max-width:560px)80vw, (max-width:768px) 60vw, 33vw"
               fill

@@ -30,7 +30,6 @@ export default function RootLayout({
       <CountryProvider>
         <CartProvider>
           <body className={`${assistant.className} `}>
-            <ShippingBanner />
             <Header />
             {children}
             <Footer />

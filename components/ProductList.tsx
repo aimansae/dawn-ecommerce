@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import data from "../app/data/productList.json";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,8 +20,8 @@ const ProductList = () => {
   const query = searchParams.get("query") || "";
 
   console.log("query for productList", query);
-  const limitedProducts: ProductType[] = transformedProducts
-    .sort(() => 0.5 - Math.random())
+  const productsForMainPage: ProductType[] = transformedProducts
+    .sort(() => 0.5)
     .slice(0, 8);
   const { selectedLocation, exchangeRate } = useCountry();
 
@@ -46,15 +46,12 @@ const ProductList = () => {
 
         return nameMatches || categoryMatches || colorMatches;
       })
-    : limitedProducts;
-
-  console.log("length FOR ALL P", filteredProducts.length);
+    : productsForMainPage;
 
   return (
     <section className=" lg:max-w-6xl   mx-auto px-4 md:px-[50px] ">
       {filteredProducts.length === 0 ? (
-        // Display limited products if no search results are found
-        <div className="">
+        <div>
           <p className="text-center my-6">
             No results found for
             <span className=" italic  font-semibold ">
@@ -64,7 +61,7 @@ const ProductList = () => {
           </p>
 
           <div className=" grid grid-cols-2 lg:grid-cols-4  gap-2   ">
-            {limitedProducts.map((product) => (
+            {productsForMainPage.map((product) => (
               <Link
                 href={`/product/${createSlugFromName(product.name)}`}
                 key={product.id}
@@ -72,7 +69,7 @@ const ProductList = () => {
               >
                 <div className="w-full relative aspect-square">
                   <Image
-                    src={product.availableColors?.[0]?.imageUrl?.[0]}
+                    src={product.availableColors[0]?.imageUrl?.[0]}
                     alt={product.name}
                     quality={75}
                     fill
@@ -83,11 +80,11 @@ const ProductList = () => {
                     <AvailabilityTag availability={product.availability} />
                   </div>
                 </div>
-                <div className="flex flex-col gap-2 my-2">
+                <div className="flex flex-row gap-2 my-2">
                   <span className="text-customBlack text-xs truncate sm:text-[13px] group-hover:underline">
                     {product.name}
                   </span>
-                  <div className="flex flex-col md:flex-row gap-1 md:gap-2">
+                  <div className=" flex gap-1 md:gap-2 ">
                     <span
                       className={`${
                         product.prices.sale ? "line-through text-darkGray" : ""
@@ -123,7 +120,7 @@ const ProductList = () => {
             <Link
               href={`/product/${createSlugFromName(product.name)}`}
               key={product.id}
-              className="group  flex flex-col   "
+              className="group  flex flex-col capitalize   "
             >
               <div className="w-full relative aspect-square  ">
                 <Image
@@ -138,15 +135,15 @@ const ProductList = () => {
                   <AvailabilityTag availability={product.availability} />
                 </div>
               </div>
-              <div className="flex flex-col gap-2 my-2  ">
+              <div className="flex flex-col gap-2 my-2   ">
                 <span className="text-customBlack text-xs  truncate sm:text-[13px] group-hover:underline">
                   {product.name}
                 </span>
-                <div className="flex gap-2 ">
+                <div className="gap-1 md:gap-2 text-sm flex flex-col sm:flex-row ">
                   <span
                     className={`${
                       product.prices.sale ? "line-through text-darkGray" : ""
-                    }`}
+                    }  mr-2`}
                   >
                     {selectedLocation.currencySymbol}{" "}
                     {convertPriceToCurrency(
@@ -155,17 +152,18 @@ const ProductList = () => {
                     )}{" "}
                     {selectedLocation.currency}
                   </span>
-
-                  {product.prices.sale !== undefined && (
-                    <span>
-                      {selectedLocation.currencySymbol}{" "}
-                      {convertPriceToCurrency(
-                        Number(product.prices.sale.toFixed(2)),
-                        exchangeRate
-                      )}{" "}
-                      {selectedLocation.currency}
-                    </span>
-                  )}
+                  <span>
+                    {product.prices.sale !== undefined && (
+                      <span>
+                        {selectedLocation.currencySymbol}{" "}
+                        {convertPriceToCurrency(
+                          Number(product.prices.sale.toFixed(2)),
+                          exchangeRate
+                        )}{" "}
+                        {selectedLocation.currency}
+                      </span>
+                    )}{" "}
+                  </span>
                 </div>
               </div>
             </Link>

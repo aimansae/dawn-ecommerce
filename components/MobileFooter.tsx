@@ -64,7 +64,7 @@ const MobileFooter = () => {
         {showLocations && (
           <>
             <div
-              className="fixed top-[85px] md:top-[106px] left-0 md:left-1/2 right-0 bottom-0  bg-black bg-opacity-50 z-40 lg:hidden"
+              className="fixed top-0 md:top-[104px]  left-0 md:left-1/2 right-0 bottom-0  bg-black bg-opacity-50 z-40 lg:hidden"
               onClick={() => {
                 setShowLocations(false);
               }}

@@ -8,7 +8,6 @@ const Home = () => {
     <main>
       <Hero />
       <ProductList />
-
       <BackInStock />
     </main>
   );

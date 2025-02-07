@@ -2,7 +2,6 @@ import React from "react";
 import bgImage from "@/public/assets/images/hero.png";
 import Image from "next/image";
 import Link from "next/link";
-
 import hero from "../app/data/hero.json";
 
 const Hero = () => {

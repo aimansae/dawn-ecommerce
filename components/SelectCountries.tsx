@@ -64,12 +64,12 @@ const SelectCountries = ({ onClose }: SelectCountriesProps) => {
       <div>
         <SearchInput onClose={onClose} onSearch={setQuery} />
 
-        <ul className="flex flex-col items-center justify-between   ">
+        <ul className="flex flex-col items-center justify-between  mt-4 ">
           {filteredData.length > 0 ? (
             filteredData.map((location, index) => (
               <li
                 key={index}
-                className="w-full p-2 md:p-3   flex justify-between items-center"
+                className="w-full p-2 md:p-3   flex justify-between items-center gap-2"
               >
                 <button
                   className=" relative flex gap-2 text-gray-500 hover:text-black w-full justify-between items-center hover:underline"

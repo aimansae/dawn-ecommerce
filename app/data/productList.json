@@ -14,6 +14,7 @@
       "availableColors": [
         {
           "color": "cappuccino",
+          "colorCategory": "beige",
           "tag": "sold out",
           "imageUrl": [
             "/assets/images/flexBag/flex-bag-cappuccino.png",
@@ -23,6 +24,7 @@
         },
         {
           "color": "clay",
+          "colorCategory": "gray",
           "tag": "sold out",
           "imageUrl": [
             "/assets/images/flexBag/flex-bag-clay.png",
@@ -32,6 +34,7 @@
         },
         {
           "color": "denim",
+          "colorCategory": "blue",
           "tag": "sold out",
           "imageUrl": [
             "/assets/images/flexBag/flex-bag-denim.png",
@@ -41,6 +44,7 @@
         },
         {
           "color": "red",
+          "colorCategory": "red",
           "tag": "sold out",
           "imageUrl": [
             "/assets/images/flexBag/flex-bag-red.png",
@@ -65,7 +69,7 @@
       "availableColors": [
         {
           "color": "oyster",
-
+          "colorCategory": "gray",
           "tag": "available",
           "imageUrl": [
             "/assets/images/studioBag/studio-bag-oyster.png",
@@ -76,6 +80,7 @@
         },
         {
           "color": "denim",
+          "colorCategory": "blue",
           "tag": "sold out",
           "imageUrl": [
             "/assets/images/studioBag/studio-bag-denim.png",
@@ -84,7 +89,6 @@
           ]
         }
       ],
-
       "description": "Both pragmatically perfect in design and a unique style statement, The Studio is made for avid fans of 90’s fashion, modern and geometric shapes, and versatile handbags for every occasion. The Studio is easily thrown over the shoulder with a short, removable strap and nestled under the arm, or carried as a clutch with a sturdy acetate handle. As any new style edition should, The Studio fits seamlessly into any wardrobe, with just the right dash of playful femininity. It’s expertly crafted from calf leather with velvet lining and sized to stow your wallet, phone, 500ml water bottle, and sunglasses."
     },
     {
@@ -102,6 +106,7 @@
       "availableColors": [
         {
           "color": "buttermilk",
+          "colorCategory": "beige",
           "tag": "available",
           "imageUrl": [
             "/assets/images/louiseSlideSandal/louise-slide-sandal-buttermilk.png",
@@ -112,6 +117,7 @@
         },
         {
           "color": "gummy",
+          "colorCategory": "multicolor",
           "tag": "available",
           "imageUrl": [
             "/assets/images/louiseSlideSandal/louise-slide-sandal-gummy.png",
@@ -121,6 +127,7 @@
         },
         {
           "color": "white",
+          "colorCategory": "white",
           "tag": "available",
           "imageUrl": [
             "/assets/images/louiseSlideSandal/louise-slide-sandal-white.png",
@@ -130,9 +137,7 @@
           ]
         }
       ],
-
       "availableSizes": ["35", "36", "37", "38", "39", "40", "41"],
-
       "description": "Our experimentation with texture continues. Elevated sense of design and craftsmanship manifests in our Italian-made Louise sandals. They have a square-toed silhouette with a wide band formed with leather pleats and extra comfortable leather-wrapped fussbett for day-long wear."
     },
     {
@@ -150,16 +155,17 @@
       "availableColors": [
         {
           "color": "harvest",
+          "colorCategory": "yellow",
           "tag": "sold out",
           "imageUrl": [
             "/assets/images/naomiBag/naomi-bag-harvest.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
         },
         {
           "color": "pastel",
+          "colorCategory": "multicolor",
           "tag": "available",
           "imageUrl": [
             "/assets/images/naomiBag/naomi-bag-pastel.png",
@@ -183,6 +189,7 @@
       "availableColors": [
         {
           "color": "multicolor",
+          "colorCategory": "multicolor",
           "tag": "available",
           "imageUrl": [
             "/assets/images/helixBag/helix-bag-multicolor.png",
@@ -193,6 +200,7 @@
         },
         {
           "color": "denim",
+          "colorCategory": "blue",
           "tag": "available",
           "imageUrl": [
             "/assets/images/helixBag/helix-bag-denim.png",
@@ -202,6 +210,7 @@
         },
         {
           "color": "off white",
+          "colorCategory": "white",
           "tag": "available",
           "imageUrl": [
             "/assets/images/helixBag/helix-bag-offWhite.png",
@@ -211,6 +220,7 @@
         },
         {
           "color": "south america",
+          "colorCategory": "multicolor",
           "tag": "available",
           "imageUrl": [
             "/assets/images/helixBag/helix-bag-southAmerica.png",
@@ -230,10 +240,11 @@
         "regular": "276.00 "
       },
       "status": "in stock",
-      "avaialibity": "",
+      "availability": "",
       "availableColors": [
         {
           "color": "emerald",
+          "colorCategory": "green",
           "tag": "available",
           "imageUrl": [
             "/assets/images/boIviBag/boIvi-bag-emerald.png",
@@ -244,6 +255,7 @@
         },
         {
           "color": "black",
+          "colorCategory": "black",
           "tag": "available",
           "imageUrl": [
             "/assets/images/boIviBag/boIvi-bag-black.png",
@@ -254,6 +266,7 @@
         },
         {
           "color": "cognac",
+          "colorCategory": "brown",
           "tag": "available",
           "imageUrl": [
             "/assets/images/boIviBag/boIvi-bag-cognac.png",
@@ -264,6 +277,7 @@
         },
         {
           "color": "denim",
+          "colorCategory": "blue",
           "tag": "available",
           "imageUrl": [
             "/assets/images/boIviBag/boIvi-bag-denim.png",
@@ -274,6 +288,7 @@
         },
         {
           "color": "brown",
+          "colorCategory": "brown",
           "tag": "available",
           "imageUrl": [
             "/assets/images/boIviBag/boIvi-bag-brown.png",
@@ -284,6 +299,7 @@
         },
         {
           "color": "latte",
+          "colorCategory": "beige",
           "tag": "available",
           "imageUrl": [
             "/assets/images/boIviBag/boIvi-bag-latte.png",
@@ -294,6 +310,7 @@
         },
         {
           "color": "violet",
+          "colorCategory": "purple",
           "tag": "available",
           "imageUrl": [
             "/assets/images/boIviBag/boIvi-bag-violet.png",
@@ -303,7 +320,6 @@
           ]
         }
       ],
-
       "description": "Our latest creation is designed and engineered with inspiration from the Streamline Moderne style of the Art Deco movement. A cylindrical form with gorgeously curved details. The collection has 2 designs: Bo Ivy and Bo Soft Strap, two sister bags having the same body with different straps. Specially developed in-house, the strap of the Bo Ivy is a piece of art. Emulating an ivy branch, the unique curvy strap has a laser-cut skeleton built from stainless steel underneath the leather and is shaped by hand as a last step of the production process."
     },
     {
@@ -320,6 +336,7 @@
       "availableColors": [
         {
           "color": "beige",
+          "colorCategory": "beige",
           "imageUrl": [
             "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-beige.png",
 
@@ -329,6 +346,7 @@
         },
         {
           "color": "white",
+          "colorCategory": "white",
           "imageUrl": [
             "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-white.png",
 
@@ -338,6 +356,7 @@
         },
         {
           "color": "olive",
+          "colorCategory": "green",
           "imageUrl": [
             "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-olive.png",
 
@@ -345,9 +364,9 @@
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
         },
-
         {
           "color": "bordeaux",
+          "colorCategory": "red",
           "imageUrl": [
             "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-bordeaux.png",
 
@@ -357,6 +376,7 @@
         },
         {
           "color": "denim",
+          "colorCategory": "blue",
           "imageUrl": [
             "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-denim.png",
 
@@ -383,6 +403,7 @@
       "availableColors": [
         {
           "color": "cashmere rose",
+          "colorCategory": "pink",
           "imageUrl": [
             "/assets/images/brickBag/brick-bag-cashmereRose.png",
 
@@ -392,6 +413,7 @@
         },
         {
           "color": "chocolate",
+          "colorCategory": "brown",
           "imageUrl": [
             "/assets/images/brickBag/brick-bag-chocolate.png",
 
@@ -401,6 +423,7 @@
         },
         {
           "color": "denim",
+          "colorCategory": "blue",
           "imageUrl": [
             "/assets/images/brickBag/brick-bag-denim.png",
 
@@ -410,6 +433,7 @@
         },
         {
           "color": "dry rose",
+          "colorCategory": "pink",
           "imageUrl": [
             "/assets/images/brickBag/brick-bag-dryRose.png",
 
@@ -419,6 +443,7 @@
         },
         {
           "color": "earth",
+          "colorCategory": "beige",
           "imageUrl": [
             "/assets/images/brickBag/brick-bag-cashmereRose.png",
 
@@ -428,6 +453,7 @@
         },
         {
           "color": "jade",
+          "colorCategory": "green",
           "imageUrl": [
             "/assets/images/brickBag/brick-bag-jade.png",
 
@@ -448,10 +474,10 @@
         "sale": ""
       },
       "status": "in stock",
-
       "availableColors": [
         {
           "color": "mocha",
+          "colorCategory": "brown",
           "imageUrl": [
             "/assets/images/eddiBag/eddi-bag-mocha.png",
 
@@ -461,6 +487,7 @@
         },
         {
           "color": "clay",
+          "colorCategory": "gray",
           "imageUrl": [
             "/assets/images/eddiBag/eddi-bag-mocha.png",
 
@@ -470,15 +497,16 @@
         },
         {
           "color": "denim",
+          "colorCategory": "blue",
           "imageUrl": [
             "/assets/images/eddiBag/eddi-bag-mocha.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
         },
         {
           "color": "red",
+          "colorCategory": "red",
           "imageUrl": [
             "/assets/images/eddiBag/eddi-bag-mocha.png",
 
@@ -503,24 +531,25 @@
       "availableColors": [
         {
           "color": "cyclamen",
+          "colorCategory": "pink",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
         },
         {
           "color": "mediterranean blue",
+          "colorCategory": "blue",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-mediterranean-blue.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
         },
         {
           "color": "mosstone",
+          "colorCategory": "green",
           "imageUrl": [
             "/assets/images/eddiBag/eddi-bag-mocha.png",
 
@@ -530,9 +559,9 @@
         },
         {
           "color": "sand",
+          "colorCategory": "brown",
           "imageUrl": [
             "/assets/images/eddiBag/eddi-bag-mocha.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -551,31 +580,30 @@
       },
       "status": "in stock",
       "availability": "available",
-
       "availableColors": [
         {
           "color": "black and gray",
+          "colorCategory": "black",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
         },
         {
           "color": "earth",
+          "colorCategory": "beige",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-mediterranean-blue.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
         },
         {
           "color": "vegan leather",
+          "colorCategory": "green",
           "imageUrl": [
             "/assets/images/eddiBag/eddi-bag-mocha.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -597,27 +625,27 @@
       "availableColors": [
         {
           "color": "latte",
+          "colorCategory": "beige",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
         },
         {
           "color": "off white",
+          "colorCategory": "white",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-mediterranean-blue.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
         },
         {
           "color": "yellow",
+          "colorCategory": "yellow",
           "imageUrl": [
             "/assets/images/eddiBag/eddi-bag-mocha.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -636,10 +664,10 @@
       },
       "status": "in stock",
       "availability": "available",
-
       "availableColors": [
         {
           "color": "latte",
+          "colorCategory": "beige",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
 
@@ -649,6 +677,7 @@
         },
         {
           "color": "off white",
+          "colorCategory": "white",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-mediterranean-blue.png",
 
@@ -658,6 +687,7 @@
         },
         {
           "color": "yellow",
+          "colorCategory": "yellow",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-mediterranean-yellow.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
@@ -681,6 +711,7 @@
       "availableColors": [
         {
           "color": "blue",
+          "colorCategory": "blue",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
 
@@ -706,6 +737,7 @@
       "availableColors": [
         {
           "color": "butter",
+          "colorCategory": "white",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
 
@@ -715,45 +747,45 @@
         },
         {
           "color": "denim",
+          "colorCategory": "blue",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
         },
         {
           "color": "dry rose",
+          "colorCategory": "pink",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
         },
         {
           "color": "oceania",
+          "colorCategory": "blue",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
         },
         {
           "color": "olive leaf",
+          "colorCategory": "green",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
         },
         {
           "color": "shark",
+          "colorCategory": "pink",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -772,22 +804,21 @@
       },
       "status": "in stock",
       "availability": "available",
-
       "availableColors": [
         {
           "color": "latte",
+          "colorCategory": "beige",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
         },
         {
           "color": "fairy blue",
+          "colorCategory": "blue",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -795,5 +826,19 @@
       ],
       "description": "Soft suede leather houses a spacious main compartment, sealed with a solid colored zipper in a fresh, contrasting tone. Mini Woven Bag houses one inner pocket and a bottom pouch for your travel card, allowing you to swipe easily without rummaging in line to take it out. Designed to carry mini wallet, large phone, and your daily essentials. Easily carried with two handles toted on your arm or worn with a removable strap across your body."
     }
-  ]
+  ],
+  "colorClasses": {
+    "beige": "bg-stone-300",
+    "gray": "bg-gray-400",
+    "blue": "bg-blue-400",
+    "red": "bg-red-400",
+    "multicolor": "bg-gradient-to-r from-red-400 via-yellow-400 to-blue-400",
+    "white": "bg-gray-100",
+    "yellow": "bg-yellow-200",
+    "green": "bg-green-400",
+    "black": "bg-gray-900",
+    "brown": "bg-yellow-800",
+    "purple": "bg-purple-400",
+    "pink": "bg-pink-400"
+  }
 }

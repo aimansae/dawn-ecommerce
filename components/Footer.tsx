@@ -7,9 +7,24 @@ import SocialMedia from "./SocialMedia";
 import { FaArrowRightLong } from "react-icons/fa6";
 import SelectCountries from "./SelectCountries";
 import { IoIosArrowDown } from "react-icons/io";
-import { PaymentIcon } from "react-svg-credit-card-payment-icons";
+import {
+  PaymentIcon,
+  PaymentCategory,
+  PaymentType,
+} from "react-svg-credit-card-payment-icons";
 import { useCountry } from "@/app/context/CountryContext";
-
+const paymentIcons: {
+  type: PaymentType;
+  format?: PaymentCategory;
+  width: number;
+}[] = [
+  { type: "Visa", format: "logoBorder", width: 35 },
+  { type: "Mastercard", format: "logoBorder", width: 30 },
+  { type: "Amex", format: "flatRounded", width: 30 },
+  { type: "Paypal", format: "logoBorder", width: 30 },
+  { type: "Diners", format: "logoBorder", width: 30 },
+  { type: "Discover", format: "logoBorder", width: 30 },
+];
 export type Location = {
   country: string;
   currency: string;
@@ -41,10 +56,10 @@ const Footer = () => {
   }, [showLocations]);
 
   return (
-    <footer className=" px-[25px] md:px-[50px] items-center  grid grid-cols-1 mt-16  xs:gap-8 sm:gap-0 lg:max-w-6xl mx-auto w-full">
+    <footer className=" px-[25px] md:px-[50px] items-center  grid grid-cols-1 mt-16  xs:gap-8 sm:gap-0 lg:max-w-6xl mx-auto w-full  my-2">
       <div className="  flex flex-col md:flex-row justify-between gap-6 md:gap-3 ">
         {/*Links section*/}
-        <section className="flex flex-col gap-2 flex-1  ">
+        <section className="flex flex-col gap-2 flex-1 ">
           <h3>{data.footer.quickLinks.title}</h3>
           <ul className="text-darkGray text-sm">
             {data.footer.quickLinks.links.map((item, index) => (
@@ -64,7 +79,7 @@ const Footer = () => {
             ))}
           </ul>
         </section>
-        <section className="flex flex-col gap-2 flex-1">
+        <section className="flex flex-col gap-2 flex-1 ">
           <h3 className="mb-4">{data.footer.mission.title}</h3>
           <h4 className="text-darkGray text-sm md:text-base leading-7 text-ellipsis ">
             {data.footer.mission.text}
@@ -102,7 +117,7 @@ const Footer = () => {
       <hr className="w-full border-t border-gray-300 mb-4" />
 
       {/*Country section*/}
-      <section className="relative  flex flex-col lg: md:flex-wrap    md:flex-row items-center justify-center md:justify-between md:items-end gap-6 md:md:py-8  ">
+      <section className="relative bg-yellow-300  flex flex-col lg: md:flex-wrap    md:flex-row items-center justify-center md:justify-between md:items-end gap-6 md:md:py-8  ">
         <div>
           <h3 className="my-4 text-xs text-darkGray">
             {data.footer.country.title}
@@ -137,30 +152,19 @@ const Footer = () => {
           )}
         </div>
         {/*Payment icons*/}
-        <div>
-          <ul className="flex items-center justify-between gap-3">
-            <li>
-              <PaymentIcon type="Visa" format="logoBorder" width={35} />
+        <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+          {paymentIcons.map((icon, index) => (
+            <li key={index} className="list-none">
+              <PaymentIcon
+                type={icon.type}
+                format={icon.format}
+                width={icon.width}
+              />
             </li>
-            <li>
-              <PaymentIcon type="Mastercard" format="logoBorder" width={30} />
-            </li>
-            <li>
-              <PaymentIcon type="Amex" format="flatRounded" width={30} />
-            </li>
-            <li>
-              <PaymentIcon type="Paypal" format="flatRounded" width={30} />
-            </li>
-            <li>
-              <PaymentIcon type="Diners" format="logoBorder" width={30} />
-            </li>
-            <li>
-              <PaymentIcon type="Discover" format="logoBorder" width={30} />
-            </li>
-          </ul>
+          ))}
         </div>
 
-        <div className="mb-4 lg:w-full">
+        <div className="lg:w-full">
           <p className="text-center lg:text-left">
             <small className="text-darkGray text-xs">
               © 2024, personal educational exercise project inspired by
