@@ -116,6 +116,7 @@ const Collections = () => {
     indexOfFirstProduct,
     indexOfLastProduct
   );
+  // image display
 
   return (
     <section className="mx-auto bg-white px-[25px] md:px-[50px] lg:max-w-6xl">
@@ -180,6 +181,14 @@ const Collections = () => {
         <>
           <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">
             {currentProducts.map(product => {
+              const selectedColor = searchParams.get("colors");
+
+              // Find the correct image based on the selected color
+              const productColor = selectedColor
+                ? product.availableColors.find(
+                    color => color.colorCategory === selectedColor
+                  )
+                : product.availableColors[0];
               return (
                 <Link
                   href={`product/${createSlugFromName(product.name)}`}
@@ -188,7 +197,10 @@ const Collections = () => {
                 >
                   <div className="relative aspect-square w-full">
                     <Image
-                      src={product.availableColors[0].imageUrl[0]}
+                      src={
+                        productColor?.imageUrl[0] ||
+                        product.availableColors[0].imageUrl[0]
+                      }
                       alt={`${product.name}`}
                       quality={75}
                       fill

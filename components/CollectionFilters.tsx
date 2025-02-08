@@ -265,7 +265,7 @@ const CollectionFilters = ({ toggleFilters }: Props) => {
           </button>
           <div className="flex flex-grow-0 flex-col items-start gap-6 py-4 text-sm">
             {uniqueColors.map(color => (
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2" key={color}>
                 <input
                   name={color}
                   id={color}

@@ -18,7 +18,6 @@ const BackInStock = () => {
   const showEddieBagInStock = transformedProducts.find(
     product => product.id === "9"
   );
-
   if (!showEddieBagInStock) {
     return <div>Product not found</div>;
   }
