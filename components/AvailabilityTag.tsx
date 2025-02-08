@@ -2,7 +2,6 @@ import React from "react";
 
 const AvailabilityTag = ({ availability }: { availability: string }) => {
   let availabilityClass = "";
-
   if (availability === "sold out") {
     availabilityClass = "bg-black  "; // Black background for sold out
   } else if (availability === "sale") {
@@ -11,7 +10,7 @@ const AvailabilityTag = ({ availability }: { availability: string }) => {
 
   return (
     <span
-      className={`py-1 px-3 text-xs text-white capitalize  rounded-full ${availabilityClass}`}
+      className={`rounded-full px-3 py-1 text-xs capitalize text-white ${availabilityClass}`}
     >
       {availability}
     </span>

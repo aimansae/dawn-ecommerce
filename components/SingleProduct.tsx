@@ -1,12 +1,10 @@
 "use client";
-
 import React, { useState } from "react";
 import Image from "next/image";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import { usePathname, useSearchParams } from "next/navigation";
-
 import AddToCart from "./ViewCart";
 import { Color, SingleProductType, Size } from "@/app/types/types";
 import { useCart } from "@/app/context/CartContext";
@@ -14,11 +12,11 @@ import QuantitySelector from "./QuantitySelector";
 import { useCountry } from "@/app/context/CountryContext";
 import AvailabilityTag from "../components/AvailabilityTag";
 import { convertPriceToCurrency } from "@/app/utils/functions";
+
 const SingleProduct = ({ product }: SingleProductType) => {
   const { cart, addToCart } = useCart();
   const { selectedLocation, exchangeRate } = useCountry();
   const searchParams = useSearchParams();
-
   const [selectedColor, setSelectedColor] = useState(() => {
     return searchParams.get("color") || product.availableColors?.[0].color;
   });
@@ -27,7 +25,7 @@ const SingleProduct = ({ product }: SingleProductType) => {
   });
   const [selectedImage, setSelectedImage] = useState(
     product.availableColors?.find(
-      (colorItem) => colorItem.color === selectedColor
+      colorItem => colorItem.color === selectedColor
     )?.imageUrl || []
   );
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -35,9 +33,7 @@ const SingleProduct = ({ product }: SingleProductType) => {
   const [quantity, setQuantity] = useState(
     Number(searchParams.get("quantity")) || 1
   );
-
   const [viewCart, setViewCart] = useState(false);
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -46,7 +42,6 @@ const SingleProduct = ({ product }: SingleProductType) => {
   };
   const pathName = usePathname();
   const router = useRouter();
-
   const updateURLParams = (
     color?: string,
     size?: string,
@@ -67,7 +62,7 @@ const SingleProduct = ({ product }: SingleProductType) => {
     setQuantity(1);
     const imagesForSelectedColor =
       product.availableColors?.find(
-        (colorItem) => colorItem.color === color.color
+        colorItem => colorItem.color === color.color
       )?.imageUrl || [];
 
     if (imagesForSelectedColor) {
@@ -96,7 +91,6 @@ const SingleProduct = ({ product }: SingleProductType) => {
       console.log("No size selected");
     }
     const image = selectedImage[currentImageIndex]; // Get the selected image
-
     addToCart({
       product,
       quantity,
@@ -111,66 +105,62 @@ const SingleProduct = ({ product }: SingleProductType) => {
 
   const handlePreviousImage = () => {
     setCurrentImageIndex(
-      (prevIndex) =>
-        (prevIndex - 1 + selectedImage.length) % selectedImage.length
+      prevIndex => (prevIndex - 1 + selectedImage.length) % selectedImage.length
     );
   };
+
   const handleNextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % selectedImage.length);
+    setCurrentImageIndex(prevIndex => (prevIndex + 1) % selectedImage.length);
   };
+
   return (
-    <section className="z-10 relative py-7 px-4 md:px-[50px] grid gap-2 grid-cols-1 md:grid-cols-2 items-center sm:items-start mx-auto lg:max-w-6xl lg:grid-cols-[2fr_1fr] md:gap-4">
-      <div className="w-full relative aspect-square">
+    <section className="relative z-10 mx-auto grid grid-cols-1 items-center gap-2 px-4 py-7 sm:items-start md:grid-cols-2 md:gap-4 md:px-[50px] lg:max-w-6xl lg:grid-cols-[2fr_1fr]">
+      <div className="relative aspect-square w-full">
         <Image
           src={selectedImage[currentImageIndex]} // Display selected color image or default image
           alt={product.name}
           quality={75}
           fill
-          className="w-full h-full top-0 left-0 object-cover"
+          className="left-0 top-0 h-full w-full object-cover"
           sizes="(max-width:375px) 100vw, (max-width:768px) 50vw, (max-width:1024px) 33vw, 25vw"
         />
       </div>
-
       {/* Info section */}
       <div className="flex flex-col justify-center gap-4">
         {/* Pagination for Image */}
-        <div className="text-darkGray mt-4 flex items-center justify-center gap-4">
+        <div className="mt-4 flex items-center justify-center gap-4 text-darkGray">
           <button onClick={handlePreviousImage}>
             <span>
               <MdOutlineKeyboardArrowLeft />
             </span>
           </button>
-
-          <span className="text-[10px] imageSides">
+          <span className="imageSides text-[10px]">
             {currentImageIndex + 1}/ {selectedImage.length}
           </span>
-
           <button onClick={handleNextImage}>
             <span>
               <MdOutlineKeyboardArrowRight />
             </span>
           </button>
         </div>
-
-        <div className="flex flex-col gap-4 items-start justify-center">
+        <div className="flex flex-col items-start justify-center gap-4">
           <h1 className="text-[30px]">{product.name}</h1>
-          <div className="flex flex-col items-start  gap-3 sm:flex-row sm:items-center sm:gap-6  text-darkGray whitespace-nowrap">
+          <div className="flex flex-col items-start gap-3 whitespace-nowrap text-darkGray sm:flex-row sm:items-center sm:gap-6">
             <span className={`${product.prices.sale ? "line-through" : ""}`}>
               {selectedLocation.currencySymbol}{" "}
               {convertPriceToCurrency(
                 Number(product.prices.regular.toFixed(2)),
                 exchangeRate
-              )}{" "}
+              )}
               {selectedLocation.currency}
             </span>
-
             {product.prices.sale !== undefined && (
               <span>
                 {selectedLocation.currencySymbol}{" "}
                 {convertPriceToCurrency(
                   Number(product.prices.sale.toFixed(2)),
                   exchangeRate
-                )}{" "}
+                )}
                 {selectedLocation.currency}
               </span>
             )}
@@ -190,12 +180,12 @@ const SingleProduct = ({ product }: SingleProductType) => {
                   <li key={index}>
                     <button
                       onClick={() => handleColorClick(color)}
-                      className={` border capitalize py-1 rounded-2xl px-5 hover:border-black ${
+                      className={`rounded-2xl border px-5 py-1 capitalize hover:border-black ${
                         selectedColor === color.color
                           ? "bg-black text-white"
                           : ""
                       } ${
-                        color.tag?.trim() === "sold out" ? "line-through  " : ""
+                        color.tag?.trim() === "sold out" ? "line-through" : ""
                       }`}
                     >
                       {color.color}
@@ -215,7 +205,7 @@ const SingleProduct = ({ product }: SingleProductType) => {
                         <li key={index}>
                           <button
                             onClick={() => handleSizeClick(size)}
-                            className={`border capitalize py-1 rounded-2xl px-5 hover:border-black ${
+                            className={`rounded-2xl border px-5 py-1 capitalize hover:border-black ${
                               selectedSize === size ? "bg-black text-white" : ""
                             }`}
                           >
@@ -239,12 +229,12 @@ const SingleProduct = ({ product }: SingleProductType) => {
         {/* Add to Cart and Buy Now */}
         <div className="flex flex-col items-start justify-between gap-4">
           <button
-            className="border border-darkGray w-full sm:w-4/5 md:w-full p-3"
+            className="w-full border border-darkGray p-3 sm:w-4/5 md:w-full"
             onClick={handleAddToCart}
           >
             Add to cart
           </button>
-          <button className="border border-darkGray w-full sm:w-4/5 md:w-full p-3 bg-black text-white">
+          <button className="w-full border border-darkGray bg-black p-3 text-white sm:w-4/5 md:w-full">
             Buy Now
           </button>
         </div>
@@ -252,9 +242,7 @@ const SingleProduct = ({ product }: SingleProductType) => {
           <h3 className="text-darkGray">{product.description}</h3>
         </div>
       </div>
-
       {/* View Cart Div */}
-
       {viewCart && (
         <AddToCart
           quantity={quantity}

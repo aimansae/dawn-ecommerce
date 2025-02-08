@@ -7,33 +7,32 @@ import Link from "next/link";
 
 const MobileNav = () => {
   const [selectedLinkItem, setSelectedLinkItem] = useState<string | null>(null);
-
   const handleItemClick = (label: string) => {
-    console.log("BGSSSSSSS", selectedLinkItem?.toLowerCase());
     setSelectedLinkItem(label);
   };
+
   return (
-    <div className="fixed bg-white left-0 w-full md:w-2/4 z-50 grid grid-rows-2-[1fr_auto] h-full  lg:hidden">
-      <div className="flex flex-col text-lg list-none  w-full ">
+    <div className="grid-rows-2-[1fr_auto] fixed left-0 z-50 grid h-full w-full bg-white md:w-2/4 lg:hidden">
+      <div className="flex w-full list-none flex-col text-lg">
         {data.menuItems.map((item, i) => (
-          <div key={i} className=" w-full ">
+          <div key={i} className="w-full">
             {selectedLinkItem === item.label ? (
               <div className="">
                 <button
                   onClick={() => setSelectedLinkItem(null)}
-                  className="px-[30px] w-full py-4 bg-lightGray  flex items-center gap-1"
+                  className="flex w-full items-center gap-1 bg-lightGray px-[30px] py-4"
                 >
                   <IoIosArrowRoundBack
                     size={30}
-                    className="capitalize transition-transform transform hover:scale-110 duration-300 text-customBlack font-thin"
+                    className="transform font-thin capitalize text-customBlack transition-transform duration-300 hover:scale-110"
                   />
-                  <span className="capitalize "> {item.label}</span>
+                  <span className="capitalize"> {item.label}</span>
                 </button>
-                <ul className="flex flex-col w-full">
+                <ul className="flex w-full flex-col">
                   {item.options?.map((option, j) => (
                     <li
                       key={j}
-                      className="px-[30px]  hover:bg-lightGray w-full flex justify-between items-center py-4"
+                      className="flex w-full items-center justify-between px-[30px] py-4 hover:bg-lightGray"
                     >
                       <Link
                         onClick={() => handleItemClick(option.label)}
@@ -47,14 +46,14 @@ const MobileNav = () => {
                 </ul>
               </div>
             ) : selectedLinkItem !== "bags" && selectedLinkItem !== "shoes" ? (
-              <ul className="flex flex-col w-full  ">
-                <li className="px-[30px] hover:bg-lightGray  w-full flex justify-between items-center py-4">
+              <ul className="flex w-full flex-col">
+                <li className="flex w-full items-center justify-between px-[30px] py-4 hover:bg-lightGray">
                   <button
                     onClick={() => handleItemClick(item.label)}
                     className="flex w-full items-center justify-between"
                   >
                     <span className="capitalize">{item.label}</span>
-                    <FaArrowRightLong className="transition-transform transform hover:scale-110 duration-300 text-customBlack font-thin" />
+                    <FaArrowRightLong className="transform font-thin text-customBlack transition-transform duration-300 hover:scale-110" />
                   </button>
                 </li>
               </ul>
@@ -62,7 +61,6 @@ const MobileNav = () => {
           </div>
         ))}
       </div>
-
       <MobileFooter />
     </div>
   );

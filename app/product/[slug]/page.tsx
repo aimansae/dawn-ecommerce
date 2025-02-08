@@ -7,7 +7,7 @@ import { transformProduct } from "@/app/utils/transformProduct";
 const page = ({ params }: { params: { slug: string } }) => {
   const getProductBySlug = (slug: string) => {
     return data.products.find(
-      (product) => createSlugFromName(product.name) === slug
+      product => createSlugFromName(product.name) === slug
     );
   };
 
@@ -15,12 +15,7 @@ const page = ({ params }: { params: { slug: string } }) => {
 
   if (!product) return <p>Product not found</p>;
   const transformedProduct = transformProduct(product);
-  return (
-    <>
-      {/* single product {params.slug} */}
-      <SingleProduct product={transformedProduct}></SingleProduct>
-    </>
-  );
+  return <SingleProduct product={transformedProduct}></SingleProduct>;
 };
 
 export default page;

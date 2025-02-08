@@ -20,26 +20,23 @@ const Hero = () => {
             layout="fill"
           />
         </div>
-
-        {/* Content Div */}
-        <div className="absolute inset-0 flex items-center justify-center z-10">
-          <div className="p-4 bg-transparent flex flex-col text-white items-center justify-center gap-4">
-            <h1 className="font-normal text-[40px] text-center md:text-6xl">
+        {/* Content */}
+        <div className="absolute inset-0 z-10 flex items-center justify-center">
+          <div className="flex flex-col items-center justify-center gap-4 bg-transparent p-4 text-white">
+            <h1 className="text-center text-[40px] font-normal md:text-6xl">
               {hero.content.heading}
             </h1>
             <span className="text-white opacity-80">
               {hero.content.subheading}
             </span>
-            <button className="mt-4 px-6 py-3 bg-transparent text-white  border hover:border-2 border-white">
+            <button className="mt-4 border border-white bg-transparent px-6 py-3 text-white hover:border-2">
               <Link href="/collections/">{hero.content.button.text}</Link>
             </button>
           </div>
         </div>
       </div>
-
-      {/* Additional Content Below */}
-      <div className="text-center py-4 px-10 md:px-32 my-4 flex flex-col gap-6 justify-center items-center">
-        <h2 className="text-customBlack text-3xl md:text-[40px]">
+      <div className="my-4 flex flex-col items-center justify-center gap-6 px-10 py-4 text-center md:px-32">
+        <h2 className="text-3xl text-customBlack md:text-[40px]">
           {hero.content.description.title}
         </h2>
         <h3 className="text-darkGray">{hero.content.description.body}</h3>

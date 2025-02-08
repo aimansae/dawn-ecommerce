@@ -1,5 +1,4 @@
 "use client";
-
 import {
   createContext,
   ReactNode,
@@ -7,7 +6,6 @@ import {
   useEffect,
   useState,
 } from "react";
-
 import fetchCurrencyRates from "../utils/fetchCurrencyRates";
 
 type Location = {

@@ -7,10 +7,10 @@ type SearchInputProps = {
   onClose: () => void;
   onSearch: (query: string) => void;
 };
+
 const SearchInput = ({ onClose, onSearch }: SearchInputProps) => {
   const [search, setSearch] = useState("");
   const router = useRouter();
-
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
     setSearch(query);
@@ -18,14 +18,14 @@ const SearchInput = ({ onClose, onSearch }: SearchInputProps) => {
   };
 
   return (
-    <div className="flex justify-between items-center gap-2 md:gap-1">
-      <div className="w-[90%] md:w-full flex relative md:sticky md:z-50 ">
+    <div className="flex items-center justify-between gap-2 md:gap-1">
+      <div className="relative flex w-[90%] md:sticky md:z-50 md:w-full">
         <label className="sr-only" htmlFor="search">
           Search
         </label>
         <input
           type="text"
-          className="p-2 border border-black w-full"
+          className="w-full border border-black p-2"
           placeholder="Search"
           value={search}
           id={search}
@@ -35,8 +35,8 @@ const SearchInput = ({ onClose, onSearch }: SearchInputProps) => {
         <button
           className={`${
             search
-              ? "absolute right-2 top-3 border rounded-full p-1"
-              : "absolute top-0 p-2 right-0"
+              ? "absolute right-2 top-3 rounded-full border p-1"
+              : "absolute right-0 top-0 p-2"
           }`}
         >
           <span>
@@ -44,12 +44,12 @@ const SearchInput = ({ onClose, onSearch }: SearchInputProps) => {
               <TfiClose
                 onClick={() => setSearch("")}
                 size={10}
-                className="text-darkGray  transition-transform transform hover:scale-110 duration-300"
+                className="transform text-darkGray transition-transform duration-300 hover:scale-110"
               />
             ) : (
               <IoIosSearch
                 size={23}
-                className="text-darkGray transition-transform transform hover:scale-110 duration-300 md:hidden"
+                className="transform text-darkGray transition-transform duration-300 hover:scale-110 md:hidden"
               />
             )}
           </span>
@@ -59,7 +59,7 @@ const SearchInput = ({ onClose, onSearch }: SearchInputProps) => {
         <button onClick={onClose}>
           <TfiClose
             size={22}
-            className="text-darkGray md:hidden transition-transform transform hover:scale-110 duration-300 mt-1"
+            className="mt-1 transform text-darkGray transition-transform duration-300 hover:scale-110 md:hidden"
           />
         </button>
       </div>

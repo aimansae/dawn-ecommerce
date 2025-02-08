@@ -48,16 +48,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [cart]);
 
   const addToCart = (item: CartItemType) => {
-    setCart((prevCart) => {
+    setCart(prevCart => {
       const existingItem = prevCart.find(
-        (cartItem) =>
+        cartItem =>
           cartItem.product.id === item.product.id &&
           cartItem.selectedColor === item.selectedColor &&
           cartItem.selectedSize === item.selectedSize
       );
 
       if (existingItem) {
-        return prevCart.map((cartItem) =>
+        return prevCart.map(cartItem =>
           cartItem.product.id === item.product.id &&
           cartItem.selectedColor === item.selectedColor &&
           cartItem.selectedSize === item.selectedSize
@@ -68,7 +68,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       // Find the image corresponding to the selected color
 
       const selectedImage = item.product.availableColors?.find(
-        (color) => color.color === item.selectedColor
+        color => color.color === item.selectedColor
       )?.imageUrl;
 
       console.log("Selected color:", item.selectedColor);
@@ -83,8 +83,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
     selectedSize: string,
     change: number
   ) => {
-    setCart((prevCart) =>
-      prevCart.map((cartItem) =>
+    setCart(prevCart =>
+      prevCart.map(cartItem =>
         cartItem.product.id === productId &&
         cartItem.selectedColor === selectedColor &&
         cartItem.selectedSize === selectedSize
@@ -98,9 +98,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     selectedColor: string,
     selectedSize?: string
   ) => {
-    setCart((prevCart) =>
+    setCart(prevCart =>
       prevCart.filter(
-        (cartItem) =>
+        cartItem =>
           cartItem.product.id !== productId ||
           cartItem.selectedColor !== selectedColor ||
           cartItem.selectedSize !== selectedSize

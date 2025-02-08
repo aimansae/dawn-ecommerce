@@ -26,7 +26,6 @@ const Header = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [selectedLinkItem, setSelectedLinkItem] = useState<string | null>(null);
-
   const [query, setQuery] = useState("");
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -41,15 +40,15 @@ const Header = () => {
 
   const filterProductByQuery = products.products
     .filter(
-      (product) =>
+      product =>
         product.name.toLowerCase().includes(query.toLowerCase()) ||
-        product.category.some((category) =>
+        product.category.some(category =>
           category.toLowerCase().includes(query.toLowerCase())
         )
     )
     .sort(() => 0.5 - Math.random())
     .slice(0, 5);
-  const filteredSuggestions = data.header.suggestions.filter((suggestion) =>
+  const filteredSuggestions = data.header.suggestions.filter(suggestion =>
     suggestion.toLowerCase().includes(query.toLowerCase())
   );
 
@@ -62,11 +61,11 @@ const Header = () => {
   });
 
   const handleShowSearchBar = () => {
-    setShowSearchBar((prev) => !prev);
+    setShowSearchBar(prev => !prev);
   };
   const handleItemClick = (label: string) => {
     console.log("item clicked in header", selectedLinkItem?.toLowerCase());
-    setSelectedLinkItem((prev) => (prev === label ? null : label));
+    setSelectedLinkItem(prev => (prev === label ? null : label));
   };
   const { getTotalQuantity } = useCart();
   const quantity = getTotalQuantity() || 0;
@@ -84,12 +83,12 @@ const Header = () => {
     }
     setShowSearchBar(false);
   };
+
   return (
     <>
-      {" "}
       <ShippingBanner />
       <header
-        className={`z-50 py-[14px] lg:px-[50px]  lg:relative bg-white top-0 border-t border-b border-gray-200 md:max-w-6xl md:mx-auto ${
+        className={`top-0 z-50 border-b border-t border-gray-200 bg-white py-[14px] md:mx-auto md:max-w-6xl lg:relative lg:px-[50px] ${
           showSearchBar ? "px-[15px] py-2" : "px-[30px]"
         }`}
       >
@@ -103,7 +102,7 @@ const Header = () => {
             {query && (
               <div>
                 {filterProductByQuery.length === 0 || query.length === 0 ? (
-                  <div className="px-2 flex items-center justify-between">
+                  <div className="flex items-center justify-between px-2">
                     <span className="py-2">
                       Search for: &quot;{query}&quot;
                     </span>
@@ -117,19 +116,19 @@ const Header = () => {
                     </button>
                   </div> //suggestions
                 ) : (
-                  <div className="fixed left-0    bg-white z-50 h-2/3 md:h-auto w-full md:absolute md:mx-auto md:pt-4   overflow-y-scroll md:overflow-y-auto">
-                    <div className="grid grid-cols-1  md:grid-cols-3 gap-4">
+                  <div className="fixed left-0 z-50 h-2/3 w-full overflow-y-scroll bg-white md:absolute md:mx-auto md:h-auto md:overflow-y-auto md:pt-4">
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                       {filteredSuggestions.length > 0 && (
-                        <div className="flex flex-col ">
-                          <h1 className="py-2 text-darkGray uppercase  text-[10px] px-[15px]  border-b border-gray-200">
+                        <div className="flex flex-col">
+                          <h1 className="border-b border-gray-200 px-[15px] py-2 text-[10px] uppercase text-darkGray">
                             Suggestions
                           </h1>
                           {filteredSuggestions.map((suggestion, i) => (
                             <ul key={i} className=" ">
-                              <li className="text-xs px-[15px] hover:bg-gray-100 w-full ">
+                              <li className="w-full px-[15px] text-xs hover:bg-gray-100">
                                 <Link
                                   href={`/?query=${suggestion}`}
-                                  className="flex py-[10px]  gap-2 hover:underline"
+                                  className="flex gap-2 py-[10px] hover:underline"
                                   onClick={() => setShowSearchBar(false)}
                                 >
                                   {suggestion}
@@ -139,19 +138,18 @@ const Header = () => {
                           ))}
                         </div>
                       )}
-
                       <div className="md:col-span-2">
-                        <h1 className="py-2 text-darkGray uppercase  text-[10px] px-[15px]  border-b border-gray-200">
+                        <h1 className="border-b border-gray-200 px-[15px] py-2 text-[10px] uppercase text-darkGray">
                           Products
                         </h1>
-                        {filterProductByQuery.map((product) => (
-                          <ul key={product.id} className="py-4 bg-yellow">
-                            <li className="text-xs px-[15px] hover:bg-gray-100 w-full ">
+                        {filterProductByQuery.map(product => (
+                          <ul key={product.id} className="bg-yellow py-4">
+                            <li className="w-full px-[15px] text-xs hover:bg-gray-100">
                               <Link
                                 href={`/product/${createSlugFromName(
                                   product.name
                                 )}`}
-                                className="capitalize flex items-center gap-2 hover:underline"
+                                className="flex items-center gap-2 capitalize hover:underline"
                                 onClick={() => setShowSearchBar(false)}
                               >
                                 <Image
@@ -161,7 +159,7 @@ const Header = () => {
                                   height={40}
                                   className="object-fit"
                                 />
-                                <h4 className="mt-2 text-customBlack text-[12px]">
+                                <h4 className="mt-2 text-[12px] text-customBlack">
                                   {product.name}
                                 </h4>
                               </Link>
@@ -176,23 +174,23 @@ const Header = () => {
             )}
           </div>
         ) : (
-          <nav className="items-center grid grid-cols-[1fr_2fr_1fr] lg:grid-cols-[1fr_5fr_1fr]">
-            <div className="lg:hidden flex items-center justify-start">
-              <button onClick={() => setIsMobile((prev) => !prev)}>
+          <nav className="grid grid-cols-[1fr_2fr_1fr] items-center lg:grid-cols-[1fr_5fr_1fr]">
+            <div className="flex items-center justify-start lg:hidden">
+              <button onClick={() => setIsMobile(prev => !prev)}>
                 {isMobile ? (
                   <IoCloseOutline
                     size={30}
-                    className="transition-transform transform hover:scale-110 duration-300"
+                    className="transform transition-transform duration-300 hover:scale-110"
                   />
                 ) : (
                   <RxHamburgerMenu
                     size={26}
-                    className="text-customBlack transition-transform transform hover:scale-110 duration-300 lg:hidden"
+                    className="transform text-customBlack transition-transform duration-300 hover:scale-110 lg:hidden"
                   />
                 )}
               </button>
             </div>
-            <div className="flex items-center justify-center lg:justify-start lg:block">
+            <div className="flex items-center justify-center lg:block lg:justify-start">
               <h1 className="p-[7.5px]">
                 <Link href={link.home}>
                   <Image
@@ -206,14 +204,14 @@ const Header = () => {
               </h1>
             </div>
             <div className="hidden lg:flex">
-              <ul className=" flex text-sm list-none items-start justify-between gap-6 z-10">
+              <ul className="z-10 flex list-none items-start justify-between gap-6 text-sm">
                 {data.menuItems.map((item, i) => (
-                  <li key={i} className="text-darkGray py-4">
+                  <li key={i} className="py-4 text-darkGray">
                     <button
                       onClick={() => handleItemClick(item.label)}
-                      className={`  hover:underline flex gap-1 justify-center items-center ${
+                      className={`flex items-center justify-center gap-1 hover:underline ${
                         selectedLinkItem === item.label
-                          ? "underline relative"
+                          ? "relative underline"
                           : ""
                       }`}
                     >
@@ -229,8 +227,8 @@ const Header = () => {
                       </span>
                     </button>
                     {selectedLinkItem === item.label && (
-                      <div className="bg-gray-100 absolute top-[60px] mt-2 p-4 w-1/5">
-                        <ul className="capitalize text-darkGray text-sm flex flex-col gap-2">
+                      <div className="absolute top-[60px] mt-2 w-1/5 bg-gray-100 p-4">
+                        <ul className="flex flex-col gap-2 text-sm capitalize text-darkGray">
                           {item.options?.map((option, j) => (
                             <li key={j} className="hover:underline">
                               {option.label}
@@ -247,19 +245,19 @@ const Header = () => {
               <AiOutlineSearch
                 onClick={handleShowSearchBar}
                 size={26}
-                className="text-customBlack transition-transform transform hover:scale-110 duration-300"
+                className="transform text-customBlack transition-transform duration-300 hover:scale-110"
               />
               <FiUser
-                className="transition-transform transform hover:scale-110 duration-300 hidden md:block"
+                className="hidden transform transition-transform duration-300 hover:scale-110 md:block"
                 size={26}
               />
               <Link href={link.cart} className="relative">
                 <IoBagHandleOutline
                   size={26}
-                  className="transition-transform transform hover:scale-110 duration-300"
+                  className="transform transition-transform duration-300 hover:scale-110"
                 />
                 {quantity > 0 && (
-                  <span className="absolute right-0 bottom-0 text-white bg-black px-1 text-[9px] rounded-full">
+                  <span className="absolute bottom-0 right-0 rounded-full bg-black px-1 text-[9px] text-white">
                     {quantity}
                   </span>
                 )}
@@ -272,8 +270,8 @@ const Header = () => {
         <>
           <div
             onClick={() => setIsMobile(false)}
-            className="fixed top-[107px] left-0 right-0 bottom-0 bg-black bg-opacity-50 z-40 lg:hidden"
-          ></div>
+            className="fixed bottom-0 left-0 right-0 top-[107px] z-40 bg-black bg-opacity-50 lg:hidden"
+          />
           <MobileNav />
         </>
       )}

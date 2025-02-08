@@ -27,7 +27,7 @@ const SocialMedia = () => {
           <li key={index}>
             <Link href={item.link} target="_blank">
               <Icon
-                className="transition-transform transform hover:scale-110 duration-300"
+                className="transform transition-transform duration-300 hover:scale-110"
                 size={22}
               ></Icon>
             </Link>

@@ -8,17 +8,17 @@ type QuantitySelectorType = {
   label?: string;
   className?: string;
 };
+
 const QuantitySelector = ({
   quantity,
   onChangeQuantity,
   label,
   className,
 }: QuantitySelectorType) => {
-  // {*w-36*/}
   return (
-    <div className={`flex flex-col mb-2 ${className}`}>
-      <span className="text-darkGray text-sm py-1">{label}</span>
-      <div className="flex border border-darkGray items-center justify-between py-2 px-3">
+    <div className={`mb-2 flex flex-col ${className}`}>
+      <span className="py-1 text-sm text-darkGray">{label}</span>
+      <div className="flex items-center justify-between border border-darkGray px-3 py-2">
         <button disabled={quantity < 1} onClick={() => onChangeQuantity(-1)}>
           <FiMinus className={`${quantity === 1 ? "text-darkGray" : ""}`} />
         </button>

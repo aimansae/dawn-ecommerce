@@ -35,10 +35,9 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-
 TODO
 Home: sale/soldout tags
-      Country button:add dark background, on bigger screen, close if clicked outside
+Country button:add dark background, on bigger screen, close if clicked outside
 space for NAb for small screens
 
 make z index for selected country div hightr
@@ -61,7 +60,7 @@ border for footer
 add to cart, scroll on top
 close if clicked outside for county div
 small devices make non scrollable
-sized 
+sized
 bubble nr
 
 mobileopen
@@ -73,10 +72,7 @@ color
 
 shop now button border on hover
 
-
 Struggles: filtering and js working with data , putting multiple things together, organizing the data
 remove filter andc count
-
-
 
 Struggles, height calculation how to avoid fixed top heights
