@@ -22,9 +22,16 @@ const Input = () => {
 
   return (
     <>
-      <button type="button" onClick={show}>
-        Filters
-      </button>
+      <div className="flex">
+        <button
+          type="button"
+          onClick={show}
+          className="my-4 flex items-center gap-2 rounded border p-2 hover:border-black"
+        >
+          <span>Filters</span>
+          {showFilters && <button className="">X</button>}
+        </button>
+      </div>
       {showFilters && (
         <div className="flex-col gap-2">
           <div>
