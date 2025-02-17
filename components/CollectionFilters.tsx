@@ -9,25 +9,7 @@ type Props = {
   toggleFilters: () => void;
 };
 
-type ColorKeys = keyof typeof data.colorClasses;
-
 const CollectionFilters = ({ toggleFilters }: Props) => {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const pathName = usePathname();
-  // retrieve all colors
-  const allColors = data.products.flatMap(product =>
-    product.availableColors.map(color => color.colorCategory)
-  );
-  const colorCount = allColors.reduce(
-    (acc, color) => {
-      acc[color] = (acc[color] || 0) + 1;
-      return acc;
-    },
-    {} as Record<string, number>
-  );
-
-  const uniqueColors = [...new Set(allColors)];
   const [filters, setFilters] = useState<{
     availability: { inStock: boolean; outOfStock: boolean };
     colors: string[];
@@ -39,8 +21,22 @@ const CollectionFilters = ({ toggleFilters }: Props) => {
     availability: false,
     colors: false,
   });
-  const totalProductsCount = data.products.length;
-  // availability input change
+  // for navigation
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathName = usePathname();
+  // retrieve all colors from json
+  const allColors = data.products.flatMap(product =>
+    product.availableColors.map(color => color.colorCategory)
+  );
+  //count products for each color
+  const colorCount = allColors.reduce<Record<string, number>>((acc, color) => {
+    acc[color] = (acc[color] || 0) + 1;
+    return acc;
+  }, {});
+  // only show unique colors
+  const uniqueColors = [...new Set(allColors)];
+
   const handleAvailabilityChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
     setFilters(prev => {
@@ -55,7 +51,7 @@ const CollectionFilters = ({ toggleFilters }: Props) => {
     });
     console.log("Logging", name, checked);
   };
-  // color input change
+
   const handleColorChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
     setFilters(prev => {
@@ -103,6 +99,9 @@ const CollectionFilters = ({ toggleFilters }: Props) => {
       params.set("colors", filters.colors.join(","));
     } else {
       params.delete("colors");
+    }
+    if (activeFilters.colors) {
+      params.delete("page");
     }
     const newUrl = `${pathName}?${params.toString().toLowerCase()}`;
     if (searchParams.toString() !== params.toString()) {
@@ -273,7 +272,9 @@ const CollectionFilters = ({ toggleFilters }: Props) => {
                   checked={filters.colors.includes(color)}
                   onChange={handleColorChange}
                   className={`h-6 w-6 appearance-none rounded-full checked:border checked:border-black ${
-                    data.colorClasses[color as ColorKeys]
+                    data.colorClasses[
+                      color as keyof typeof data.colorClasses
+                    ] || "bg-gray-200"
                   }`}
                 />
                 <label

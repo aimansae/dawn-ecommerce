@@ -30,28 +30,25 @@ const Collections = () => {
   const pathName = usePathname();
   const router = useRouter();
   //for pagination
-  const productsPerPage = 8;
+  const [currentPage, setCurrentPage] = useState(
+    Number(searchParams.get("page") || "1")
+  );
+
+  const productsPerPage = 4;
+  //calculate total pages;
+
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-  const currentURLPage = parseInt(searchParams.get("page") || "1", 10);
-  const [currentPage, setCurrentPage] = useState(currentURLPage);
+  const paginatedProducts = filteredProducts.slice(
+    (currentPage - 1) * productsPerPage,
+    currentPage * productsPerPage
+  );
+  // disable scrollbar if filters are open
+  //
 
   useEffect(() => {
-    const pageFromURL = parseInt(searchParams.get("page") || "1", 10);
-    if (currentPage !== pageFromURL) {
-      setCurrentPage(pageFromURL);
-    }
-    console.log("url changed");
+    setCurrentPage(Number(searchParams.get("page") || 1));
   }, [searchParams]);
 
-  const handlePageChange = (page: number) => {
-    if (page > 0 && page <= totalPages) {
-      setCurrentPage(page);
-      const newParams = new URLSearchParams(searchParams.toString());
-      newParams.set("page", page.toString());
-      router.push(`${pathName}?${newParams.toString()}`);
-    }
-  };
-  // disable scrollbar if filters are open
   useEffect(() => {
     if (showFilters) {
       document.documentElement.style.overflow = "hidden";
@@ -67,23 +64,23 @@ const Collections = () => {
   }, [showFilters]);
   // get the params
   console.log("logging searchparams", searchParams.toString());
-  useEffect(() => {
-    const getFiltersFromURL = () => {
-      const inStock = searchParams.get("instock");
-      const outOfStock = searchParams.get("outofstock");
-      const colors = searchParams.get("colors")
-        ? searchParams.get("colors")!.split(",")
-        : [];
-      const page = searchParams.get("page");
-      return {
-        availability: {
-          inStock,
-          outOfStock,
-        },
-        colors,
-        page,
-      };
+  const getFiltersFromURL = () => {
+    const inStock = searchParams.get("instock");
+    const outOfStock = searchParams.get("outofstock");
+    const colors = searchParams.get("colors")
+      ? searchParams.get("colors")!.split(",")
+      : [];
+    const page = searchParams.get("page");
+    return {
+      availability: {
+        inStock,
+        outOfStock,
+      },
+      colors,
+      page,
     };
+  };
+  useEffect(() => {
     setLoading(true);
     const filters = getFiltersFromURL();
     let filtered = [...allProducts];
@@ -106,18 +103,30 @@ const Collections = () => {
       );
     }
     setFilteredProducts(filtered);
-    setCurrentPage(1);
     setLoading(false); // Reset pagination when filters change
   }, [searchParams]);
-  // calculate total pages total products/productsPerPage
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
-  // image display
+  const [showAppliedFilters, setShowAppliedFilters] = useState({
+    availability: { inStock: false, outOfStock: false },
+    colors: [] as string[],
+  });
 
+  useEffect(() => {
+    const filters = getFiltersFromURL();
+    setShowAppliedFilters(filters);
+    console.log("Loogging", showAppliedFilters);
+  }, [searchParams]);
+
+  // remove filter on Click
+  const removeFilter = (filterType: string, value) => {
+    const params = new URLSearchParams(searchParams);
+    if (filterType === "availability") {
+      params.delete(value);
+    }
+    if (filterType === "availability") {
+      params.delete(value);
+    }
+    router.push(`${pathName}?${params.toString()}`);
+  };
   return (
     <section className="mx-auto bg-white px-[25px] md:px-[50px] lg:max-w-6xl">
       {showFilters && (
@@ -164,10 +173,28 @@ const Collections = () => {
         </div>
         <div className="d">
           <span className="text-sm">
-            {allProducts.length} {content.products}
+            {paginatedProducts.length} {content.products}
           </span>
         </div>
       </aside>
+      {/*display selected filters*/}
+      <section>
+        <div>
+          {showAppliedFilters.availability.inStock && (
+            <button onClick={() => removeFilter("availability", "instock")}>
+              In stockx
+            </button>
+          )}
+        </div>
+        <div>
+          {showAppliedFilters.availability.inStock && (
+            <button onClick={() => removeFilter("availability", "outofstock")}>
+              out of stock
+            </button>
+          )}
+        </div>
+        <div>colors</div>
+      </section>
       {showFilters && (
         <CollectionFilters
           toggleFilters={() => setShowFilters(false)}
@@ -180,7 +207,7 @@ const Collections = () => {
         //Products
         <>
           <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">
-            {currentProducts.map(product => {
+            {paginatedProducts.map(product => {
               const selectedColor = searchParams.get("colors");
 
               // Find the correct image based on the selected color
@@ -224,10 +251,9 @@ const Collections = () => {
           </div>
           {/*Pagination*/}
           <Pagination
-            totalPages={totalPages}
             currentPage={currentPage}
-            handlePageChange={handlePageChange}
-          />
+            totalPages={totalPages}
+          ></Pagination>
         </>
       )}
     </section>
