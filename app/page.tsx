@@ -1,8 +1,8 @@
 import BackInStock from "@/components/BackInStock";
 import Hero from "@/components/Hero";
 import ProductList from "@/components/ProductList";
+ const Home = () => {
 
-const Home = () => {
   return (
     <main>
       <Hero />

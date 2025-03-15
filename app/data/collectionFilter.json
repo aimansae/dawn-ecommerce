@@ -4,22 +4,33 @@
   "titleMediumDevices": "Filter",
 
   "products": "products",
-  "sortBy": "Sort by",
+  "sortBy": [
+    {
+      "label": "Sort by",
+      "options": [
+        "Featured",
+        "Alphabetically A-X",
+        "Alphabetically Z-A",
+        "Price: Low to high",
+        "Price: High to Low",
+        "Date: Old to new",
+        "Date: New to old"
+      ]
+    }
+  ],
   "remove": "Remove all",
   "clear": "Clear  ",
   "apply": "Apply",
   "filterBy": [
     {
       "name": "availability",
-      "label": "Availability",
       "options": {
         "inStock": "In Stock",
         "outOfStock": "Out of Stock"
       }
     },
     {
-      "name": "colors",
-      "label": "Colors"
+      "name": "colors"
     }
   ]
 }

@@ -31,7 +31,10 @@ const Cart = () => {
         <>
           <div className="block items-center justify-between sm:flex">
             <h1 className="text-[30px] sm:text-[40px]">{data.cart.title}</h1>
-            <Link className="underline" href="/collections/all">
+            <Link
+              className="my-2 capitalize text-darkGray underline"
+              href="/collections/all"
+            >
               {data.cart.continueShopping}
             </Link>
           </div>
@@ -49,9 +52,9 @@ const Cart = () => {
               {cart.map(item => (
                 <tr
                   key={item.product.id}
-                  className="my-8 flex items-start justify-between bg-orange-300 md:items-center"
+                  className="my-8 flex items-center justify-between md:items-start"
                 >
-                  <td className="flex flex-grow-0 gap-4 bg-yellow-200">
+                  <td className="flex gap-4">
                     <div>
                       <Image
                         src={
@@ -66,33 +69,37 @@ const Cart = () => {
                       />
                     </div>
                     {/*Product Details */}
-                    <div className="flex flex-col gap-2">
+                    <div className="flex w-[180px] flex-col gap-2 text-[15px] md:w-[250px]">
                       <Link
                         href={`/product/${createSlugFromName(
                           item.product.name
                         )}`}
-                        className="truncate text-[15px] hover:underline"
+                        className="hover:underline"
                       >
                         {item.product.name}
                       </Link>
-                      <p>
-                        <span>{selectedLocation.currencySymbol}</span>{" "}
-                        {item.product.prices.sale
-                          ? convertPriceToCurrency(
-                              Number(item.product.prices.sale.toFixed(2)),
-                              exchangeRate
-                            )
-                          : convertPriceToCurrency(
-                              Number(item.product.prices.regular.toFixed(2)),
-                              exchangeRate
-                            )}
+                      <p className="text-darkGray">
+                        <span> {selectedLocation.currencySymbol}</span>
+                        <span>
+                          {" "}
+                          {item.product.prices.sale
+                            ? convertPriceToCurrency(
+                                Number(item.product.prices.sale.toFixed(2)),
+                                exchangeRate
+                              )
+                            : convertPriceToCurrency(
+                                Number(item.product.prices.regular.toFixed(2)),
+                                exchangeRate
+                              )}
+                        </span>
                       </p>
-                      <p className="text-[14px] text-darkGray">
-                        Color:
-                        <span className="capitalize">{item.selectedColor}</span>
+
+                      <p className="capitalize text-darkGray">
+                        Color: {item.selectedColor}
                       </p>
-                      <div className="flex items-center justify-between md:hidden">
-                        <div className="w-3/4">
+
+                      <div className="flex items-center gap-2 md:hidden">
+                        <div className="w-2/3 sm:w-3/4">
                           <QuantitySelector
                             quantity={item.quantity}
                             onChangeQuantity={change =>
@@ -150,17 +157,19 @@ const Cart = () => {
                     </button>
                   </td>
                   {/*total per product*/}
-                  <td>
-                    <span>{selectedLocation.currencySymbol}</span>{" "}
-                    {item.product.prices.sale
-                      ? convertPriceToCurrency(
-                          item.product.prices.sale * item.quantity,
-                          exchangeRate
-                        )
-                      : convertPriceToCurrency(
-                          item.product.prices.regular * item.quantity,
-                          exchangeRate
-                        )}
+                  <td className=" ">
+                    <span className="block">
+                      {selectedLocation.currencySymbol}
+                      {item.product.prices.sale
+                        ? convertPriceToCurrency(
+                            item.product.prices.sale * item.quantity,
+                            exchangeRate
+                          )
+                        : convertPriceToCurrency(
+                            item.product.prices.regular * item.quantity,
+                            exchangeRate
+                          )}
+                    </span>
                   </td>
                 </tr>
               ))}
@@ -193,10 +202,11 @@ const Cart = () => {
           <h1 className="mt-[40px] whitespace-nowrap text-[30px]">
             {data.cart.footer.empty}
           </h1>
-          <Link className=" " href={"/collections"}>
-            <button className="bg-black px-10 py-3 text-sm capitalize text-white">
-              {data.cart.continueShopping}
-            </button>
+          <Link
+            className="inline-block bg-black px-10 py-3 text-center text-sm capitalize text-white"
+            href={"/collections"}
+          >
+            {data.cart.continueShopping}
           </Link>
 
           <div className="flex flex-col items-center justify-center gap-2">

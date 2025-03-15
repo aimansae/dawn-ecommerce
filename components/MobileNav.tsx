@@ -4,13 +4,24 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import MobileFooter from "./MobileFooter";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 
-const MobileNav = () => {
+type MobileProps = {
+  onClose: () => void;
+};
+const MobileNav = ({ onClose }: MobileProps) => {
   const [selectedLinkItem, setSelectedLinkItem] = useState<string | null>(null);
   const handleItemClick = (label: string) => {
     setSelectedLinkItem(label);
   };
 
+  const router = useRouter();
+  const pathName = usePathname();
+
+  const handleCategoryClick = (category: string) => {
+    router.push(`/collections?category=${encodeURIComponent(category)}`); // ✅ Update URL with selected category
+    onClose();
+  };
   return (
     <div className="grid-rows-2-[1fr_auto] fixed left-0 z-50 grid h-full w-full bg-white md:w-2/4 lg:hidden">
       <div className="flex w-full list-none flex-col text-lg">
@@ -20,7 +31,7 @@ const MobileNav = () => {
               <div className="">
                 <button
                   onClick={() => setSelectedLinkItem(null)}
-                  className="flex w-full items-center gap-1 bg-lightGray px-[30px] py-4"
+                  className="flex w-full items-center gap-1 bg-lightGray px-[30px] py-3"
                 >
                   <IoIosArrowRoundBack
                     size={30}
@@ -28,19 +39,19 @@ const MobileNav = () => {
                   />
                   <span className="capitalize"> {item.label}</span>
                 </button>
-                <ul className="flex w-full flex-col">
+                {/* Scrollable Options List */}
+                <ul className="flex max-h-[200px] w-full flex-col overflow-y-auto md:h-full md:overflow-y-hidden">
                   {item.options?.map((option, j) => (
                     <li
                       key={j}
-                      className="flex w-full items-center justify-between px-[30px] py-4 hover:bg-lightGray"
+                      className="flex w-full items-center justify-between px-[30px] py-3 hover:bg-lightGray"
                     >
-                      <Link
-                        onClick={() => handleItemClick(option.label)}
+                      <button
+                        onClick={() => handleCategoryClick(option.label)}
                         className="flex w-full items-center justify-between"
-                        href={option.href}
                       >
                         <span className="capitalize">{option.label}</span>
-                      </Link>
+                      </button>
                     </li>
                   ))}
                 </ul>

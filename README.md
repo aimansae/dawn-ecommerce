@@ -73,6 +73,7 @@ color
 shop now button border on hover
 
 Struggles: filtering and js working with data , putting multiple things together, organizing the data
-remove filter andc count
+remove filter and count
 
 Struggles, height calculation how to avoid fixed top heights
+Button collections still very slow

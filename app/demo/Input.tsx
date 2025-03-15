@@ -1,86 +1,80 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { useFilters } from "./useFilter";
+
+import { useFilter } from "./useFilter";
 
 const Input = () => {
-  const sizes = ["xs", "s", "m", "l", "xl", "xxl"];
-  const colors = ["blue", "red", "yellow"];
-  const [showFilters, setShowFilters] = useState(false);
-
-  const show = () => {
-    setShowFilters(prev => !prev);
-    console.log("show filter clicked");
-  };
-
   const {
-    selectedColor = [],
-    selectedSize = [],
-    clearFilter,
-    handleColorChange,
-    handleSizeChange,
-  } = useFilters();
+    selectedSizes,
+    selectedColors,
+    handleSizeSelection,
+    handleColorSelection,
+  } = useFilter();
+  const sizes = ["xs", "s", "m"];
 
+  // get colors from products
+  const products = [
+    {
+      id: 1,
+      name: "Cropped T-shirt",
+      size: ["xs", "m"],
+      colors: ["white", "black", "red"],
+    },
+    {
+      id: 2,
+      name: "Normal T-shirt",
+      size: ["m"],
+      colors: ["black", "red"],
+    },
+    {
+      id: 3,
+      name: "Just T-shirt",
+      size: ["s", "xl"],
+      colors: ["red"],
+    },
+  ];
+
+  const colors = products
+    .map(product => product.colors)
+
+    .flat();
+  const colorsInLowerCase = colors.map(color => color.toLowerCase());
+
+  const uniqueColorsInLowerCase = [...new Set(colorsInLowerCase)];
+  console.log("unique COLORS", uniqueColorsInLowerCase);
   return (
-    <>
-      <div className="flex">
-        <button
-          type="button"
-          onClick={show}
-          className="my-4 flex items-center gap-2 rounded border p-2 hover:border-black"
-        >
-          <span>Filters</span>
-          {showFilters && <button className="">X</button>}
-        </button>
-      </div>
-      {showFilters && (
-        <div className="flex-col gap-2">
-          <div>
-            <h2>Sizes:</h2>
-            {sizes.map(size => (
-              <div className="flex items-center gap-2" key={size}>
-                <input
-                  type="checkbox"
-                  id={size}
-                  name={size}
-                  checked={selectedSize.includes(size)}
-                  onChange={handleSizeChange}
-                />
-                <label htmlFor={size}>{size}</label>
-              </div>
-            ))}
-            <button
-              className="my-4 border p-2"
-              onClick={() => clearFilter("size")}
-            >
-              {" "}
-              Clear all
-            </button>
-          </div>
-          <div>
-            <h2>Colors:</h2>
-            {colors.map(color => (
-              <div className="flex items-center gap-2" key={color}>
-                <input
-                  type="checkbox"
-                  onChange={handleColorChange}
-                  name={color}
-                  id={color}
-                  checked={selectedColor.includes(color)}
-                />
-                <label htmlFor={color}>{color}</label>
-              </div>
-            ))}
-          </div>
-          <button
-            className="my-4 border p-2"
-            onClick={() => clearFilter("colors")}
-          >
-            {" "}
-            Clear all
-          </button>
+    <div>
+      {sizes.map(size => (
+        <div className="my-2">
+          <input
+            className="mx-2"
+            type="checkbox"
+            id={size}
+            name={size}
+            onChange={() => handleSizeSelection(size)}
+            checked={selectedSizes.includes(size)}
+          />
+          <label className="uppercase" htmlFor={size}>
+            {size}
+          </label>
         </div>
-      )}
-    </>
+      ))}
+
+      <div>
+        {uniqueColorsInLowerCase.map(color => (
+          <div className="m-2">
+            <input
+              onChange={() => handleColorSelection(color)}
+              checked={selectedColors.includes(color)}
+              className="mx-2"
+              type="checkbox"
+              name={color}
+              id={color}
+            />
+            <label>{color}</label>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 

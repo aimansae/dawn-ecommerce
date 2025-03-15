@@ -17,7 +17,7 @@ const QuantitySelector = ({
 }: QuantitySelectorType) => {
   return (
     <div className={`mb-2 flex flex-col ${className}`}>
-      <span className="py-1 text-sm text-darkGray">{label}</span>
+      <span className="text-sm text-darkGray">{label}</span>
       <div className="flex items-center justify-between border border-darkGray px-3 py-2">
         <button disabled={quantity < 1} onClick={() => onChangeQuantity(-1)}>
           <FiMinus className={`${quantity === 1 ? "text-darkGray" : ""}`} />

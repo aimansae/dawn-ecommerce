@@ -1,331 +1,235 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
-import content from "../app/data/filter.json";
-import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
-import { TfiClose } from "react-icons/tfi";
-import data from "../app/data/productList.json";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+// import React, { useState } from "react";
+// import filterContent from "../app/data/collectionFilter.json";
+// import { TfiClose } from "react-icons/tfi";
+// import data from "../app/data/productList.json";
+// import { IoIosArrowRoundForward } from "react-icons/io";
+// import { IoIosArrowRoundBack } from "react-icons/io";
+// import { useCollectionFilters } from "@/app/hooks/useCollectionFilters";
 
-type Props = {
-  toggleFilters: () => void;
-};
+// type Props = {
+//   toggleFilters: () => void;
+// };
 
-const CollectionFilters = ({ toggleFilters }: Props) => {
-  const [filters, setFilters] = useState<{
-    availability: { inStock: boolean; outOfStock: boolean };
-    colors: string[];
-  }>({
-    availability: { inStock: false, outOfStock: false },
-    colors: [],
-  });
-  const [activeFilters, setActiveFilters] = useState({
-    availability: false,
-    colors: false,
-  });
-  // for navigation
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const pathName = usePathname();
-  // retrieve all colors from json
-  const allColors = data.products.flatMap(product =>
-    product.availableColors.map(color => color.colorCategory)
-  );
-  //count products for each color
-  const colorCount = allColors.reduce<Record<string, number>>((acc, color) => {
-    acc[color] = (acc[color] || 0) + 1;
-    return acc;
-  }, {});
-  // only show unique colors
-  const uniqueColors = [...new Set(allColors)];
+// type AvailabilityKeys = "inStock" | "outOfStock"; // Define exact keys
 
-  const handleAvailabilityChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = event.target;
-    setFilters(prev => {
-      const updatedFilter = {
-        ...prev,
-        availability: {
-          ...prev.availability,
-          [name]: checked,
-        },
-      };
-      return updatedFilter;
-    });
-    console.log("Logging", name, checked);
-  };
+// const CollectionFilters = ({ toggleFilters }: Props) => {
+//   const {
+//     filters,
+//     handleAvailabilityFilterChange,
+//     handleColorSelection,
+//     handleClearFilters,
+//   } = useCollectionFilters();
 
-  const handleColorChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = event.target;
-    setFilters(prev => {
-      const updatedFilter = {
-        ...prev,
-        colors: checked
-          ? [...prev.colors, name]
-          : prev.colors.filter(color => color !== name), // ✅ Remove color if unchecked
-      };
-      return updatedFilter;
-    });
-    console.log("COLOR", name, checked);
-  };
-  const handleGoBack = () => {
-    setActiveFilters({ availability: false, colors: false });
-  };
-  const handleClearFilters = () => {
-    setActiveFilters({ availability: false, colors: false });
-    router.replace(pathName);
-  };
-  const handleFilterShow = (filterName: string) => {
-    setActiveFilters(prevFilters => ({
-      ...prevFilters,
-      [filterName]: filterName,
-    }));
-    console.log(filterName, "clicked");
-  };
-  //add filters to URL
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams);
-    if (filters.availability.inStock) {
-      params.set("instock", "true");
-    } else {
-      params.delete("instock");
-    }
-    if (filters.availability.outOfStock) {
-      params.set("outofstock", "true");
-    } else {
-      params.delete("outofstock");
-    }
-    if (
-      filters.colors.length > 0 &&
-      filters.colors.some(color => color.trim() !== "")
-    ) {
-      params.set("colors", filters.colors.join(","));
-    } else {
-      params.delete("colors");
-    }
-    if (activeFilters.colors) {
-      params.delete("page");
-    }
-    const newUrl = `${pathName}?${params.toString().toLowerCase()}`;
-    if (searchParams.toString() !== params.toString()) {
-      router.replace(newUrl);
-    }
-  }, [filters]);
+//   // total of all products
+//   const totalProductCount = data.products.length;
+//   // total of inStock products
+//   const inStockCount = data.products.filter(
+//     product => product.status === "inStock"
+//   ).length;
+//   // total of inStock products
+//   const outOfStockCount = data.products.filter(
+//     product => product.status === "outOfStock"
+//   ).length;
 
-  // count for filters
-  const getFilteredProductCount = () => {
-    const inStockProducts = data.products.filter(
-      product => product.status.toLowerCase() === "in stock"
-    );
-    const inStockCount = inStockProducts.length;
-    const outOfStockProducts = data.products.filter(
-      product => product.status.toLowerCase() === "out of stock"
-    );
-    const outOfStockCount = outOfStockProducts.length;
+//   const colorCategoryCounts = data.products.reduce(
+//     (acc, product) => {
+//       product.availableColors.forEach(color => {
+//         const colorCategory = color.colorCategory;
+//         acc[colorCategory] = (acc[colorCategory] || 0) + 1;
+//       });
+//       return acc;
+//     },
+//     {} as Record<string, number>
+//   );
 
-    const inStockSelected = filters.availability?.inStock ?? false;
-    // display all info for in stock products
-    if (inStockSelected) {
-      inStockProducts.forEach(prod =>
-        console.log(
-          "LOG IN STOCK PRODUCT INFO",
-          prod.name,
-          prod.status,
-          inStockCount
-        )
-      );
-    }
+//   // display product count
 
-    const outOfStockSelected = filters.availability.outOfStock ?? false;
-    const colorSelected = filters.colors;
-    console.log(colorSelected, "logging selected color");
-    if (colorSelected.length > 0) {
-      data.products.filter(product =>
-        product.availableColors.some(color =>
-          colorSelected.includes(color.colorCategory)
-        )
-      );
-    }
-    let selectedColorCount = 0;
-    if (colorSelected.length > 0) {
-      selectedColorCount = data.products.filter(product =>
-        product.availableColors.some(color =>
-          colorSelected.includes(color.colorCategory)
-        )
-      ).length;
-    }
-    console.log(selectedColorCount, "selectedColorCount");
-    const totalProducts = data.products.length;
-    let totalProduct = totalProducts;
-    // Step 5: Adjust `totalProduct` based on selected filters
-    const allFilters =
-      colorSelected.length > 0 && inStockSelected && outOfStockSelected;
-    if (allFilters) {
-      const filteredProducts = data.products.filter(
-        product =>
-          // Stock filter: Matches either inStock or outOfStock based on selection
-          ((inStockSelected && product.status.toLowerCase() === "in stock") ||
-            (outOfStockSelected &&
-              product.status.toLowerCase() === "out of stock")) &&
-          // Color filter: Matches at least one of the selected colors
-          (colorSelected.length === 0 ||
-            product.availableColors.some(color =>
-              colorSelected.includes(color.colorCategory)
-            ))
-      );
-      console.log("Filtered Products:", filteredProducts);
-      console.log(totalProduct, inStockSelected, outOfStockSelected);
-    } else if (colorSelected.length > 0) {
-      totalProduct = selectedColorCount;
-    } else if (inStockSelected && outOfStockSelected) {
-      totalProduct = inStockCount + outOfStockCount;
-    } else if (inStockSelected) {
-      totalProduct = inStockCount;
-    } else if (outOfStockSelected) {
-      totalProduct = outOfStockCount;
-    }
+//   const filteredProducts = data.products.filter(product => {
+//     // Check if availability filter is applied
+//     const availabilityMatch =
+//       (filters.availability.inStock && product.status === "inStock") ||
+//       (filters.availability.outOfStock && product.status === "outOfStock") ||
+//       (!filters.availability.inStock && !filters.availability.outOfStock); // If no availability filter, include all
 
-    return {
-      totalProducts,
-      inStockCount,
-      outOfStockCount,
-      totalProduct,
-      selectedColorCount,
-    };
-  };
-  // Destructure the returned object to get all filterable attributes
-  const { inStockCount, outOfStockCount, totalProduct } =
-    getFilteredProductCount();
+//     // Check if color filter is applied
+//     const colorMatch =
+//       filters.colors.length === 0 || // If no colors are selected, include all
+//       product.availableColors.some(color =>
+//         filters.colors.includes(color.colorCategory)
+//       );
 
-  return (
-    <section className="absolute right-0 top-0 z-50 flex h-screen w-2/3 flex-col bg-white py-3 md:hidden">
-      <div className="mb-1 flex items-center justify-between px-[15px] text-sm">
-        <div className="flex-grow text-center">
-          <h2 className=" ">{content.titleSmallDevices}</h2>
-          <p className="text-darkGray">
-            {totalProduct} {content.products}
-          </p>
-        </div>
-        <button>
-          <TfiClose onClick={toggleFilters} />
-        </button>
-      </div>
-      {activeFilters.availability && (
-        <div className="flex-grow border-y border-gray-300 bg-red-300 px-[15px] py-3 text-darkGray">
-          <button className="flex items-center gap-2" onClick={handleGoBack}>
-            <FaArrowLeftLong />
-            <span className="my-4 text-sm text-customBlack">
-              {content.filterBy[0].label}
-            </span>
-          </button>
-          <div className="flex items-start gap-2 py-4 text-xs">
-            <input
-              name="inStock"
-              id="inStock"
-              type="checkbox"
-              checked={filters.availability.inStock}
-              onChange={handleAvailabilityChange}
-              className="h-4 w-4 appearance-none border border-gray-400 checked:before:block checked:before:text-center checked:before:leading-4 checked:before:text-black checked:before:content-['✔']"
-            />
-            <label htmlFor="inStock" className="hover:underline">
-              <span>
-                {
-                  content.filterBy.find(f => f.name === "availability")?.options
-                    ?.inStock
-                }
-              </span>
-              <span> ({inStockCount}) </span>
-            </label>
-          </div>
-          <div className="flex items-center gap-2 py-4 text-xs">
-            <input
-              name="outOfStock"
-              id="outOfStock"
-              type="checkbox"
-              checked={filters.availability.outOfStock}
-              onChange={handleAvailabilityChange}
-              className="h-4 w-4 appearance-none border border-gray-400 checked:before:block checked:before:text-center checked:before:leading-4 checked:before:text-black checked:before:content-['✔']"
-            />
-            <label htmlFor="outOfStock" className="hover:underline">
-              {
-                content.filterBy.find(f => f.name === "availability")?.options
-                  ?.outOfStock
-              }
-              <span> {outOfStockCount}</span>
-            </label>
-          </div>
-        </div>
-      )}
-      {/*Colors div*/}
-      {activeFilters.colors && (
-        <div className="white-space-nowrap flex-grow overflow-y-auto border-y border-gray-300 px-[15px] py-3 text-darkGray">
-          <button className="flex items-center gap-2" onClick={handleGoBack}>
-            <FaArrowLeftLong />
-            <span className="my-4 text-sm text-customBlack">
-              {content.filterBy[1].label}
-            </span>
-          </button>
-          <div className="flex flex-grow-0 flex-col items-start gap-6 py-4 text-sm">
-            {uniqueColors.map(color => (
-              <div className="flex items-center gap-2" key={color}>
-                <input
-                  name={color}
-                  id={color}
-                  type="checkbox"
-                  checked={filters.colors.includes(color)}
-                  onChange={handleColorChange}
-                  className={`h-6 w-6 appearance-none rounded-full checked:border checked:border-black ${
-                    data.colorClasses[
-                      color as keyof typeof data.colorClasses
-                    ] || "bg-gray-200"
-                  }`}
-                />
-                <label
-                  htmlFor={color}
-                  className={`capitalize hover:underline ${
-                    filters.colors.includes(color) ? "underline" : ""
-                  } `}
-                >
-                  {color} ({colorCount[color]})
-                </label>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-      {/* when no filter is selected */}
-      {!activeFilters.availability && !activeFilters.colors && (
-        <ul className="my-2 flex flex-grow flex-col gap-2 border-gray-500 px-[15px] py-3 text-sm text-darkGray">
-          {content.filterBy.map(filter => (
-            <li
-              key={filter.name}
-              className="flex items-center justify-between gap-4 py-3"
-            >
-              <button
-                className="flex w-full items-center justify-between"
-                onClick={() => handleFilterShow(filter.name)}
-              >
-                <span>{filter.label} </span>
-                <FaArrowRightLong />
-              </button>
-            </li>
-          ))}
-          <div className="my-2">
-            <span> {content.sortBy}:</span>
-          </div>
-        </ul>
-      )}
-      {/*clear and apply  buttons*/}
-      <div className="sticky flex items-center justify-between gap-2 bg-white px-[15px] py-2 text-sm">
-        <button className="flex hover:underline" onClick={handleClearFilters}>
-          {activeFilters ? content.clear : content.remove}
-        </button>
-        <button
-          className="bg-black p-2 px-4 text-white"
-          onClick={toggleFilters}
-        >
-          {content.apply}
-        </button>
-      </div>
-    </section>
-  );
-};
+//     return availabilityMatch && colorMatch;
+//   });
+//   const [activeFilters, setActiveFilters] = useState({
+//     availability: false,
+//     colors: false,
+//   });
 
-export default CollectionFilters;
+//   const availabilityFilter = filterContent.filterBy.find(
+//     filter => filter.name === "availability"
+//   );
+//   const showFilterOptions = (filterType: string) => {
+//     setActiveFilters(prev => ({
+//       ...prev,
+//       [filterType]: true,
+//     }));
+//     console.log("user clicked on", filterType);
+//   };
+//   const handleGoBack = () => {
+//     setActiveFilters({ availability: false, colors: false });
+//   };
+//   // get all available colors
+//   const allColors = data.products.flatMap(product =>
+//     product.availableColors.map(c => c.colorCategory)
+//   );
+//   console.log("COLOR fount", allColors);
+
+//   const uniqueColorCategory = [...new Set(allColors)];
+//   console.log("uniqueColorCategory", uniqueColorCategory);
+
+//   // get color categoty count
+
+//   console.log("Return total", colorCategoryCounts);
+//   return (
+//     <section className="absolute right-0 top-0 z-50 flex h-screen w-2/3 flex-col bg-white text-customBlack md:hidden">
+//       <div className="flex items-center justify-between px-[25px] py-[10px] text-sm">
+//         <div className="flex-grow text-center">
+//           <h2 className="text-[15px]">{filterContent.titleSmallDevices}</h2>
+//           <p className="text-darkGray">
+//             {} {filterContent.products}
+//           </p>
+//         </div>
+//         <button>
+//           <TfiClose
+//             className="text-darkGray"
+//             onClick={toggleFilters}
+//             size={22}
+//           />
+//         </button>
+//       </div>
+//       {!activeFilters.availability && !activeFilters.colors && (
+//         <ul className="flex flex-grow flex-col gap-2 border-y border-gray-300 px-[25px] py-3 text-[15px] text-darkGray">
+//           {filterContent.filterBy.map(filter => (
+//             <li
+//               key={filter.name}
+//               className="flex items-center justify-between gap-4 py-3"
+//             >
+//               <button
+//                 onClick={() => showFilterOptions(filter.name)}
+//                 className="flex w-full items-center justify-between"
+//               >
+//                 <span className="capitalize">{filter.name} </span>
+//                 <IoIosArrowRoundForward size={25} />
+//               </button>
+//             </li>
+//           ))}
+//         </ul>
+//       )}
+
+//       {activeFilters.availability && (
+//         <div className="flex-grow border-y border-gray-300 px-[25px] py-3 text-[15px] text-darkGray">
+//           <button
+//             className="flex w-full items-center justify-start py-3"
+//             onClick={handleGoBack}
+//           >
+//             <span>
+//               <IoIosArrowRoundBack size={25} />
+//             </span>
+//             <span className="capitalize">
+//               {
+//                 filterContent.filterBy.find(
+//                   filter => filter.name === "availability"
+//                 )?.name
+//               }
+//             </span>
+//           </button>
+//           <div className="flex-col items-start gap-2">
+//             {availabilityFilter?.options &&
+//               Object.entries(availabilityFilter.options).map(([key, name]) => (
+//                 <div
+//                   key={key}
+//                   className="flex items-center gap-2 py-3 text-darkGray"
+//                 >
+//                   <input
+//                     className="h-4 w-4 appearance-none border border-gray-400 checked:before:block checked:before:text-center checked:before:leading-4 checked:before:text-black checked:before:content-['✔']"
+//                     type="checkbox"
+//                     name={key}
+//                     id={name}
+//                     onChange={handleAvailabilityFilterChange}
+//                     checked={
+//                       filters.availability[key as AvailabilityKeys] || false
+//                     }
+//                   />
+//                   <label className="hover:underline" htmlFor={key}>
+//                     {name} (
+//                     {name === "In Stock" ? inStockCount : outOfStockCount})
+//                   </label>
+//                 </div>
+//               ))}
+//           </div>
+//         </div>
+//       )}
+
+//       {activeFilters.colors && (
+//         <div className="flex-grow overflow-y-auto border-y border-gray-300 px-[25px] py-3 text-[15px] text-darkGray">
+//           <button
+//             className="flex w-full items-center justify-start py-3"
+//             onClick={handleGoBack}
+//           >
+//             <span>
+//               <IoIosArrowRoundBack size={25} />
+//             </span>
+//             <span className="capitalize">
+//               {
+//                 filterContent.filterBy.find(filter => filter.name === "colors")
+//                   ?.name
+//               }
+//             </span>
+//           </button>
+//           <div className="flex-col items-start gap-2">
+//             {uniqueColorCategory.map(color => (
+//               <div
+//                 className="flex items-center gap-2 py-3 text-[14px] text-darkGray"
+//                 key={color}
+//               >
+//                 <input
+//                   type="checkbox"
+//                   name={color}
+//                   id={color}
+//                   onChange={() => handleColorSelection(color)}
+//                   checked={filters.colors.includes(color)}
+//                   className={`h-6 w-6 appearance-none rounded-full checked:border checked:border-black ${
+//                     data.colorClasses[
+//                       color as keyof typeof data.colorClasses
+//                     ] || "bg-gray-200"
+//                   }`}
+//                 />
+//                 <label className="capitalize hover:underline" htmlFor={color}>
+//                   {color} ({colorCategoryCounts[color]})
+//                 </label>
+//               </div>
+//             ))}
+//           </div>{" "}
+//         </div>
+//       )}
+//       {/*clear and apply  buttons*/}
+//       <div className="sticky flex items-center justify-between gap-2 bg-white px-[15px] py-2 text-sm">
+//         <button
+//           className="flex px-4 hover:underline hover:decoration-black"
+//           onClick={handleClearFilters}
+//         >
+//           {activeFilters ? filterContent.clear : filterContent.remove}
+//         </button>
+//         <button
+//           className="bg-black p-2 px-6 text-white"
+//           onClick={toggleFilters}
+//         >
+//           {filterContent.apply}
+//         </button>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default CollectionFilters;
+ 

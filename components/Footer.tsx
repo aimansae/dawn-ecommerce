@@ -112,7 +112,7 @@ const Footer = () => {
       </section>
       <hr className="mb-4 w-full border-t border-gray-300" />
       {/*Country section*/}
-      <section className="lg: relative flex flex-col items-center justify-center gap-6 bg-yellow-300 md:flex-row md:flex-wrap md:items-end md:justify-between md:md:py-8">
+      <section className="lg: relative flex flex-col items-center justify-center gap-6 md:flex-row md:flex-wrap md:items-end md:justify-between md:md:py-8">
         <div>
           <h3 className="my-4 text-xs text-darkGray">
             {data.footer.country.title}

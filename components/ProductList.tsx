@@ -17,7 +17,9 @@ const ProductList = () => {
   const transformedProducts = data.products.map(transformProduct);
   const searchParams = useSearchParams();
   const query = searchParams.get("query") || "";
-  console.log("query for productList", query);
+  const category = searchParams.get("category") || "";
+  console.log("Filters - Query:", query, "Category:", category);
+
   const productsForMainPage: ProductType[] = transformedProducts
     .sort(() => 0.5)
     .slice(0, 8);

@@ -9,7 +9,7 @@
         "regular": "280.00",
         "sale": "227.00"
       },
-      "status": "out of stock",
+      "status": "outOfStock",
       "availability": "sold out",
       "availableColors": [
         {
@@ -64,7 +64,7 @@
         "regular": "330.00 ",
         "sale": ""
       },
-      "status": "in stock",
+      "status": "inStock",
       "availability": "",
       "availableColors": [
         {
@@ -101,7 +101,7 @@
         "regular": "305.00 ",
         "sale": "280.00"
       },
-      "status": "out of stock",
+      "status": "outOfStock",
       "availability": "sale",
       "availableColors": [
         {
@@ -110,7 +110,6 @@
           "tag": "available",
           "imageUrl": [
             "/assets/images/louiseSlideSandal/louise-slide-sandal-buttermilk.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -131,7 +130,6 @@
           "tag": "available",
           "imageUrl": [
             "/assets/images/louiseSlideSandal/louise-slide-sandal-white.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -142,7 +140,6 @@
     },
     {
       "id": "4",
-
       "name": "Mini Naomi Bag",
       "category": ["bags"],
       "prices": {
@@ -150,7 +147,7 @@
         "regular": "223.00 ",
         "sale": "212.00 "
       },
-      "status": "out of stock",
+      "status": "outOfStock",
       "availability": "sale",
       "availableColors": [
         {
@@ -184,7 +181,7 @@
         "currency": "USD",
         "regular": "333.00 "
       },
-      "status": "in stock",
+      "status": "inStock",
       "availability": "",
       "availableColors": [
         {
@@ -239,7 +236,7 @@
         "currency": "USD",
         "regular": "276.00 "
       },
-      "status": "in stock",
+      "status": "inStock",
       "availability": "",
       "availableColors": [
         {
@@ -331,7 +328,7 @@
         "currency": "USD",
         "regular": "351.00 "
       },
-      "status": "in stock",
+      "status": "inStock",
       "availability": "sale",
       "availableColors": [
         {
@@ -398,7 +395,7 @@
         "currency": "USD",
         "regular": "273.00 "
       },
-      "status": "out of stock",
+      "status": "outOfStock",
       "availability": "sold out",
       "availableColors": [
         {
@@ -473,7 +470,7 @@
         "regular": "226.00",
         "sale": ""
       },
-      "status": "in stock",
+      "status": "inStock",
       "availableColors": [
         {
           "color": "mocha",
@@ -526,7 +523,7 @@
         "regular": "266.00",
         "sale": "117.00"
       },
-      "status": "in stock",
+      "status": "inStock",
       "availability": "sale",
       "availableColors": [
         {
@@ -578,7 +575,7 @@
         "regular": "368.00",
         "sale": ""
       },
-      "status": "in stock",
+      "status": "inStock",
       "availability": "available",
       "availableColors": [
         {
@@ -620,7 +617,7 @@
         "regular": "435.00",
         "sale": ""
       },
-      "status": "out of stock",
+      "status": "outOfStock",
       "availability": "sold out",
       "availableColors": [
         {
@@ -662,7 +659,7 @@
         "regular": "297.00",
         "sale": ""
       },
-      "status": "in stock",
+      "status": "inStock",
       "availability": "available",
       "availableColors": [
         {
@@ -705,7 +702,7 @@
         "regular": "326.00",
         "sale": ""
       },
-      "status": "in stock",
+      "status": "inStock",
       "availability": "available",
 
       "availableColors": [
@@ -731,7 +728,7 @@
         "regular": "259.00",
         "sale": ""
       },
-      "status": "out of stock",
+      "status": "outOfStock",
       "availability": "available",
 
       "availableColors": [
@@ -802,7 +799,7 @@
         "regular": "266.00",
         "sale": "174.00 "
       },
-      "status": "in stock",
+      "status": "inStock",
       "availability": "available",
       "availableColors": [
         {

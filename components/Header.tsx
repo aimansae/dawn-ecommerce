@@ -227,7 +227,7 @@ const Header = () => {
                       </span>
                     </button>
                     {selectedLinkItem === item.label && (
-                      <div className="absolute top-[60px] mt-2 w-1/5 bg-gray-100 p-4">
+                      <div className="absolute top-[60px] z-50 mt-2 w-1/5 border border-darkGray border-gray-200 bg-white p-4">
                         <ul className="flex flex-col gap-2 text-sm capitalize text-darkGray">
                           {item.options?.map((option, j) => (
                             <li key={j} className="hover:underline">
@@ -272,7 +272,7 @@ const Header = () => {
             onClick={() => setIsMobile(false)}
             className="fixed bottom-0 left-0 right-0 top-[107px] z-40 bg-black bg-opacity-50 lg:hidden"
           />
-          <MobileNav />
+          <MobileNav onClose={() => setIsMobile(false)} />
         </>
       )}
     </>

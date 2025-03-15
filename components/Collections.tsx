@@ -10,7 +10,7 @@ import {
   convertPriceToCurrency,
 } from "@/app/utils/functions";
 import { PiSlidersHorizontalThin } from "react-icons/pi";
-import content from "../app/data/filter.json";
+import content from "../app/data/collectionFilter.json";
 import { IoIosArrowDown } from "react-icons/io";
 import CollectionFilters from "./CollectionFilters";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
@@ -29,6 +29,8 @@ const Collections = () => {
   const searchParams = useSearchParams();
   const pathName = usePathname();
   const router = useRouter();
+
+  const category = searchParams.get("category") || "";
   //for pagination
   const [currentPage, setCurrentPage] = useState(
     Number(searchParams.get("page") || "1")
@@ -63,27 +65,30 @@ const Collections = () => {
     };
   }, [showFilters]);
   // get the params
-  console.log("logging searchparams", searchParams.toString());
   const getFiltersFromURL = () => {
-    const inStock = searchParams.get("instock");
-    const outOfStock = searchParams.get("outofstock");
-    const colors = searchParams.get("colors")
-      ? searchParams.get("colors")!.split(",")
-      : [];
-    const page = searchParams.get("page");
     return {
+      category: searchParams.get("category") || "",
       availability: {
-        inStock,
-        outOfStock,
+        inStock: searchParams.get("instock") === "true",
+        outOfStock: searchParams.get("outofstock") === "true",
       },
-      colors,
-      page,
+      colors: searchParams.get("colors")
+        ? searchParams.get("colors")!.split(",")
+        : [],
+      page: Number(searchParams.get("page") || "1"),
     };
   };
   useEffect(() => {
     setLoading(true);
     const filters = getFiltersFromURL();
     let filtered = [...allProducts];
+    if (filters.category) {
+      filtered = filtered.filter(product =>
+        product.category.some(
+          c => c.toLowerCase() === filters.category.toLowerCase()
+        )
+      );
+    }
     if (filters.availability.inStock || filters.availability.outOfStock) {
       filtered = filtered.filter(product =>
         filters.availability.inStock &&
@@ -104,7 +109,7 @@ const Collections = () => {
     }
     setFilteredProducts(filtered);
     setLoading(false); // Reset pagination when filters change
-  }, [searchParams]);
+  }, [searchParams, category]);
   const [showAppliedFilters, setShowAppliedFilters] = useState({
     availability: { inStock: false, outOfStock: false },
     colors: [] as string[],
@@ -113,7 +118,7 @@ const Collections = () => {
   useEffect(() => {
     const filters = getFiltersFromURL();
     setShowAppliedFilters(filters);
-    console.log("Loogging", showAppliedFilters);
+    console.log("Logging", showAppliedFilters);
   }, [searchParams]);
 
   // remove filter on Click
@@ -135,7 +140,9 @@ const Collections = () => {
           onClick={() => setShowFilters(false)}
         ></div>
       )}
-      <h1 className="my-[25px] text-[30px] sm:text-[40px]">{content.title}</h1>
+      <h1 className="my-[25px] text-[30px] capitalize sm:text-[40px]">
+        {category ? category.replace(/\+/g, " ") : content.title}
+      </h1>
       {/*Show all the applied Filters*/}
       <aside className="flex items-center justify-between py-3 text-darkGray">
         <button className="flex items-center gap-1 hover:underline md:hidden">

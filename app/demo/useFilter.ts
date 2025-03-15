@@ -1,73 +1,56 @@
-"use client";
-import { useState, useEffect } from "react";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
+" use client";
 
-export const useFilters = () => {
+import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
+export const useFilter = () => {
+  const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
+  const [selectedColors, setSelectedColors] = useState<string[]>([]);
   const searchParams = useSearchParams();
   const router = useRouter();
-  const pathName = usePathname();
-
-  const [selectedSize, setSelectedSize] = useState<string[]>(
-    searchParams.get("size") ? searchParams.get("size")!.split(",") : []
-  );
-  const [selectedColor, setSelectedColor] = useState<string[]>(
-    searchParams.get("color") ? searchParams.get("color")!.split(",") : []
-  );
+  const pathname = usePathname();
 
   useEffect(() => {
-    const params = new URLSearchParams(searchParams);
-    if (selectedSize.length > 0) {
-      params.set("size", selectedSize.join(","));
-    } else params.delete("size");
+    const sizeParamsFromURL = searchParams?.get("size");
+    const colorParamsFromURL = searchParams?.get("color");
+    setSelectedSizes(sizeParamsFromURL ? sizeParamsFromURL.split(",") : []);
+    setSelectedColors(colorParamsFromURL ? colorParamsFromURL.split(",") : []);
+  }, [searchParams]);
 
-    if (selectedColor.length > 0) {
-      params.set("color", selectedColor.join(","));
+  const updateParams = (sizes: string[], colors: string[]) => {
+    const params = new URLSearchParams(searchParams);
+    if (sizes.length) {
+      params.set("size", sizes.join(","));
+    } else {
+      params.delete("size");
+    }
+    if (colors.length) {
+      params.set("color", colors.join(","));
     } else {
       params.delete("color");
     }
-    router.push(`${pathName}?${decodeURIComponent(params.toString())}`);
-  }, [selectedSize, selectedColor]);
-
-  const handleSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = e.target;
-    setSelectedSize(prev => {
-      const updatedSizes = checked
-        ? [...prev, name]
-        : prev.filter(size => size !== name);
-
-      return updatedSizes;
-    });
+    router.push(`${pathname}?${decodeURIComponent(params.toString())}`);
   };
+  useEffect(() => {
+    updateParams(selectedSizes, selectedColors);
+  }, [selectedSizes, selectedColors]);
 
-  const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = e.target;
-    setSelectedColor(prev => {
-      const updatedColor = checked
-        ? [...prev, name]
-        : prev.filter(color => color !== name);
-      return updatedColor;
-    });
+  const handleColorSelection = (color: string) => {
+    setSelectedColors(prev =>
+      prev.includes(color) ? prev.filter(c => c !== color) : [...prev, color]
+    );
   };
-
-  const clearFilter = (type: "color" | "size") => {
-    const params = new URLSearchParams(searchParams);
-    if (type === "size") {
-      setSelectedSize([]);
-      params.delete("size");
-    }
-    if (type === "color") {
-      setSelectedColor([]);
-      params.delete("color");
-    }
-
-    router.push(`${pathName}?${decodeURIComponent(params.toString())}`);
+  const handleSizeSelection = (size: string) => {
+    setSelectedSizes(prev =>
+      prev.includes(size) ? prev.filter(s => s !== size) : [...prev, size]
+    );
+    console.log("Selected", size);
   };
-
   return {
-    selectedSize: selectedSize ?? [],
-    selectedColor: selectedColor ?? [],
-    handleColorChange,
-    handleSizeChange,
-    clearFilter,
+    selectedSizes,
+    selectedColors,
+    handleSizeSelection,
+    handleColorSelection,
   };
 };
