@@ -215,8 +215,6 @@ const Collections = () => {
         <>
           <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">
             {paginatedProducts.map(product => {
-              const selectedColor = searchParams.get("colors");
-
               // Find the correct image based on the selected color
               const productColor = selectedColor
                 ? product.availableColors.find(

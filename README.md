@@ -77,3 +77,7 @@ remove filter and count
 
 Struggles, height calculation how to avoid fixed top heights
 Button collections still very slow
+
+SearchParam dependency why not needed for soryby and filters
+hover for button
+products count

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import content from "../app/data/collectionFilter.json";
 import { PiSlidersHorizontalThin } from "react-icons/pi";
 import {
@@ -21,11 +21,13 @@ type Props = {
   toggleFilters: () => void;
 };
 
-const CollectionPage = ({ toggleFilters }: Props) => {
+const CollectionPage = () => {
   const {
     filters,
     handleAvailabilityFilterChange,
     handleColorSelection,
+    handleSortByChange,
+    sortBy,
     handleClearFilters,
   } = useCollectionFilters();
 
@@ -34,7 +36,11 @@ const CollectionPage = ({ toggleFilters }: Props) => {
     colors: false,
   });
 
-  const [shoMobileFilters, setShowMobileFilters] = useState(false);
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
+
+  const mobileFilterRef = useRef<HTMLElement | null>(null);
+  const availabilityRefDesktop = useRef<HTMLDivElement | null>(null);
+  const colorsRefDesktop = useRef<HTMLDivElement | null>(null);
   //for desktop
   const toggleDesktopFilter = (filterType: keyof typeof activeFilters) => {
     setActiveFilters(prev => ({
@@ -43,6 +49,62 @@ const CollectionPage = ({ toggleFilters }: Props) => {
       [filterType]: !prev[filterType],
     }));
   };
+
+  // if mobile filter are open make background not scrollable
+  useEffect(() => {
+    if (showMobileFilters) {
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.documentElement.style.overflow = "auto";
+      document.body.style.overflow = "auto";
+    };
+  }, [showMobileFilters]);
+
+  // close filters when clicked outside
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        showMobileFilters &&
+        mobileFilterRef.current &&
+        !mobileFilterRef.current.contains(event.target as Node)
+      ) {
+        setShowMobileFilters(false); // Close the filter when clicking outside
+      }
+
+      if (
+        activeFilters.availability &&
+        availabilityRefDesktop.current &&
+        !availabilityRefDesktop.current.contains(event.target as Node)
+      ) {
+        setActiveFilters(prev => ({ ...prev, availability: false }));
+      }
+      if (
+        activeFilters.colors &&
+        colorsRefDesktop.current &&
+        !colorsRefDesktop.current.contains(event.target as Node)
+      ) {
+        setActiveFilters(prev => ({ ...prev, colors: false }));
+      }
+    };
+
+    if (
+      showMobileFilters ||
+      activeFilters.availability ||
+      activeFilters.colors
+    ) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showMobileFilters, activeFilters]);
   //for mobile
   const toggleMobileFilters = (filterType: keyof typeof activeFilters) => {
     setActiveFilters(prev => ({
@@ -88,11 +150,11 @@ const CollectionPage = ({ toggleFilters }: Props) => {
 
   const selectedColorCount = filters.colors.length;
   return (
-    <div className="mx-auto bg-white px-[25px] md:px-[50px] lg:max-w-6xl">
+    <div className=" ">
       <h1 className="my-[25px] text-[30px] capitalize sm:text-[40px]">
         {content.title}
       </h1>
-      <aside className="flex w-full items-center justify-between gap-2  py-3 text-darkGray">
+      <aside className="flex w-full items-center justify-between gap-2 py-3 text-darkGray">
         {/*mobile*/}
         <div className="flex items-center md:hidden">
           <button
@@ -124,17 +186,21 @@ const CollectionPage = ({ toggleFilters }: Props) => {
                     <IoIosArrowDown />
                   </span>
                 </button>
+                {/* Availability Filter */}
                 {activeFilters[filter.name as keyof typeof activeFilters] && (
-                  <div className="absolute left-0 top-full z-50 border bg-white p-3 text-[14px] shadow-md">
+                  <div
+                    ref={availabilityRefDesktop}
+                    className="absolute left-0 top-full z-50 border bg-white p-3 text-[14px] shadow-md"
+                  >
                     {filter.name === "availability" ? (
-                      <>
+                      <div>
                         <div className="my-2 border-y border-darkGray">
                           <header className="flex items-center justify-between">
                             <h3 className="py-2">
                               {selectedAvailabilityCount} selected
                             </h3>
                             <button
-                              className="text-customBlack hover:underline"
+                              className="capitalize text-customBlack hover:underline"
                               onClick={handleClearFilters}
                             >
                               reset
@@ -150,9 +216,9 @@ const CollectionPage = ({ toggleFilters }: Props) => {
                           inStockCount={inStockCount}
                           outOfStockCount={outOfStockCount}
                         />
-                      </>
+                      </div>
                     ) : (
-                      <>
+                      <div ref={colorsRefDesktop}>
                         <div className="my-2 border-y border-darkGray">
                           <header className="flex items-center justify-between">
                             <h3 className="py-2">
@@ -173,7 +239,7 @@ const CollectionPage = ({ toggleFilters }: Props) => {
                           colorCategoryCounts={colorCategoryCounts}
                           className="h-[300px] w-max overflow-y-auto pr-2"
                         />
-                      </>
+                      </div>
                     )}
                   </div>
                 )}
@@ -182,22 +248,23 @@ const CollectionPage = ({ toggleFilters }: Props) => {
           </div>
 
           {/* Right: Sort By Dropdown */}
-          <div className="flex items-center gap-4">
-            <h2 className="text-[15px]">Sort By:</h2>
-            <select className="rounded border px-3 py-1 hover:underline">
-              {content.sortBy[0]?.options.map((option, index) => (
-                <option key={index} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </div>
+          <SortByFilter
+            handleSortByChange={handleSortByChange}
+            sortBy={sortBy || ""}
+          />
         </div>
       </aside>
 
       {/*for mobile*/}
-      {shoMobileFilters && (
-        <section className="absolute right-0 top-0 z-50 flex h-screen w-2/3 flex-col bg-white text-customBlack md:hidden">
+
+      {showMobileFilters && (
+        <div className="fixed inset-0 z-40 bg-black bg-opacity-40 md:hidden"></div>
+      )}
+      {showMobileFilters && (
+        <section
+          ref={mobileFilterRef}
+          className="absolute right-0 top-0 z-50 flex h-screen w-2/3 flex-col bg-white text-customBlack md:hidden"
+        >
           <div className="flex items-center justify-between px-[25px] py-[10px] text-sm">
             <div className="flex-grow text-center">
               <h2 className="text-[15px]">{content.titleSmallDevices}</h2>
@@ -231,9 +298,15 @@ const CollectionPage = ({ toggleFilters }: Props) => {
                   </button>
                 </li>
               ))}
+              <li>
+                <SortByFilter
+                  handleSortByChange={handleSortByChange}
+                  sortBy={sortBy || ""}
+                />
+              </li>
             </ul>
           )}
-          {/*show availability filters*/}
+          {/* availability filters*/}
           {activeFilters.availability && (
             <div className="flex-grow border-y border-gray-300 px-[25px] py-3 text-[15px] text-darkGray">
               <button
@@ -259,7 +332,7 @@ const CollectionPage = ({ toggleFilters }: Props) => {
               />
             </div>
           )}
-          {/*show color filter*/}
+          {/* color filters */}
           {activeFilters.colors && (
             <div className="flex-grow overflow-y-auto border-y border-gray-300 px-[25px] py-3 text-[15px] text-darkGray">
               <button
@@ -276,7 +349,6 @@ const CollectionPage = ({ toggleFilters }: Props) => {
                   }
                 </span>
               </button>
-
               <ColorFilter
                 uniqueColorCategory={uniqueColorCategory}
                 handleColorSelection={handleColorSelection}
@@ -285,6 +357,7 @@ const CollectionPage = ({ toggleFilters }: Props) => {
               />
             </div>
           )}
+
           {/*clear and apply  buttons*/}
           <div className="sticky flex items-center justify-between gap-2 bg-white px-[15px] py-2 text-sm">
             <button
@@ -295,7 +368,9 @@ const CollectionPage = ({ toggleFilters }: Props) => {
             </button>
             <button
               className="bg-black p-2 px-6 text-white"
-              onClick={toggleFilters}
+              onClick={() => {
+                setShowMobileFilters(false);
+              }}
             >
               {content.apply}
             </button>
@@ -387,5 +462,32 @@ export const ColorFilter = ({
         </div>
       ))}
     </div>
+  );
+};
+
+export const SortByFilter = ({
+  sortBy,
+  handleSortByChange,
+}: {
+  sortBy?: string;
+  handleSortByChange: React.ChangeEventHandler<HTMLSelectElement>;
+}) => {
+  return (
+    <>
+      <div className="flex items-center justify-between gap-2">
+        <h2 className="text-[15px]">Sort By:</h2>
+        <select
+          value={sortBy || ""}
+          onChange={handleSortByChange}
+          className="py-1 text-xs hover:underline md:rounded md:border md:px-3 md:text-base"
+        >
+          {content.sortBy[0]?.options.map((option, index) => (
+            <option key={index} value={option} className="text-xs">
+              {option}
+            </option>
+          ))}
+        </select>
+      </div>
+    </>
   );
 };

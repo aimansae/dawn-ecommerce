@@ -73,7 +73,6 @@
           "tag": "available",
           "imageUrl": [
             "/assets/images/studioBag/studio-bag-oyster.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -95,7 +94,6 @@
       "id": "3",
       "name": "Louise Slide Sandal",
       "category": ["Sandals", "shoes"],
-
       "prices": {
         "currency": "USD",
         "regular": "305.00 ",
@@ -190,7 +188,6 @@
           "tag": "available",
           "imageUrl": [
             "/assets/images/helixBag/helix-bag-multicolor.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -245,7 +242,6 @@
           "tag": "available",
           "imageUrl": [
             "/assets/images/boIviBag/boIvi-bag-emerald.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -256,7 +252,6 @@
           "tag": "available",
           "imageUrl": [
             "/assets/images/boIviBag/boIvi-bag-black.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -267,7 +262,6 @@
           "tag": "available",
           "imageUrl": [
             "/assets/images/boIviBag/boIvi-bag-cognac.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -278,7 +272,6 @@
           "tag": "available",
           "imageUrl": [
             "/assets/images/boIviBag/boIvi-bag-denim.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -289,7 +282,6 @@
           "tag": "available",
           "imageUrl": [
             "/assets/images/boIviBag/boIvi-bag-brown.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -300,7 +292,6 @@
           "tag": "available",
           "imageUrl": [
             "/assets/images/boIviBag/boIvi-bag-latte.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -311,7 +302,6 @@
           "tag": "available",
           "imageUrl": [
             "/assets/images/boIviBag/boIvi-bag-violet.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -323,7 +313,6 @@
       "id": "7",
       "name": "Pleated Heel Mule",
       "category": ["Sandals", "shoes"],
-
       "prices": {
         "currency": "USD",
         "regular": "351.00 "
@@ -336,7 +325,6 @@
           "colorCategory": "beige",
           "imageUrl": [
             "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-beige.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -346,7 +334,6 @@
           "colorCategory": "white",
           "imageUrl": [
             "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-white.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -356,7 +343,6 @@
           "colorCategory": "green",
           "imageUrl": [
             "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-olive.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -366,7 +352,6 @@
           "colorCategory": "red",
           "imageUrl": [
             "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-bordeaux.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -376,14 +361,12 @@
           "colorCategory": "blue",
           "imageUrl": [
             "/assets/images/pleatedHeelMule/pleatedHeelMule-sandal-denim.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
         }
       ],
       "availableSizes": ["35", "36", "37", "38", "39", "40", "41"],
-
       "description": "The Pleated Heel Mules take a cue from our iconic Pleated Lantern Bag, but this time, reimagining pleats using solid oak. Features a square toe and a padded insole for extra comfort. Materials"
     },
     {
@@ -403,7 +386,6 @@
           "colorCategory": "pink",
           "imageUrl": [
             "/assets/images/brickBag/brick-bag-cashmereRose.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -413,7 +395,6 @@
           "colorCategory": "brown",
           "imageUrl": [
             "/assets/images/brickBag/brick-bag-chocolate.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -423,7 +404,6 @@
           "colorCategory": "blue",
           "imageUrl": [
             "/assets/images/brickBag/brick-bag-denim.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -433,7 +413,6 @@
           "colorCategory": "pink",
           "imageUrl": [
             "/assets/images/brickBag/brick-bag-dryRose.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -443,7 +422,6 @@
           "colorCategory": "beige",
           "imageUrl": [
             "/assets/images/brickBag/brick-bag-cashmereRose.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -453,7 +431,6 @@
           "colorCategory": "green",
           "imageUrl": [
             "/assets/images/brickBag/brick-bag-jade.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -477,7 +454,6 @@
           "colorCategory": "brown",
           "imageUrl": [
             "/assets/images/eddiBag/eddi-bag-mocha.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -487,7 +463,6 @@
           "colorCategory": "gray",
           "imageUrl": [
             "/assets/images/eddiBag/eddi-bag-mocha.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -506,7 +481,6 @@
           "colorCategory": "red",
           "imageUrl": [
             "/assets/images/eddiBag/eddi-bag-mocha.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -549,7 +523,6 @@
           "colorCategory": "green",
           "imageUrl": [
             "/assets/images/eddiBag/eddi-bag-mocha.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -667,7 +640,6 @@
           "colorCategory": "beige",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -677,7 +649,6 @@
           "colorCategory": "white",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-mediterranean-blue.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -704,14 +675,12 @@
       },
       "status": "inStock",
       "availability": "available",
-
       "availableColors": [
         {
           "color": "blue",
           "colorCategory": "blue",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -730,14 +699,12 @@
       },
       "status": "outOfStock",
       "availability": "available",
-
       "availableColors": [
         {
           "color": "butter",
           "colorCategory": "white",
           "imageUrl": [
             "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
