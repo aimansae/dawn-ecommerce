@@ -93,7 +93,7 @@
     {
       "id": "3",
       "name": "Louise Slide Sandal",
-      "category": ["Sandals", "shoes"],
+      "category": ["sandals", "shoes"],
       "prices": {
         "currency": "USD",
         "regular": "305.00 ",
@@ -139,7 +139,7 @@
     {
       "id": "4",
       "name": "Mini Naomi Bag",
-      "category": ["bags"],
+      "category": ["bags", "crossbody_bags", "mini_bags"],
       "prices": {
         "currency": "USD",
         "regular": "223.00 ",
@@ -174,7 +174,7 @@
     {
       "id": "5",
       "name": "Helix",
-      "category": ["Bags", "crossbody bags"],
+      "category": ["Bags", "crossbody_bags"],
       "prices": {
         "currency": "USD",
         "regular": "333.00 "
@@ -441,7 +441,7 @@
     {
       "id": "9",
       "name": "Mini Eddy",
-      "category": ["Bags"],
+      "category": ["Bags", "mini_bags"],
       "prices": {
         "currency": "USD",
         "regular": "226.00",
@@ -691,7 +691,7 @@
     {
       "id": "15",
       "name": "mini sera tote",
-      "category": ["Bags", "tote bags"],
+      "category": ["Bags", "tote_bags", "mini_bags"],
       "prices": {
         "currency": "USD",
         "regular": "259.00",
@@ -760,7 +760,7 @@
     {
       "id": "16",
       "name": "mini woven bag",
-      "category": ["Bags"],
+      "category": ["Bags", "mini_bags"],
       "prices": {
         "currency": "USD",
         "regular": "266.00",

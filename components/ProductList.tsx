@@ -72,11 +72,11 @@ const ProductList = () => {
                     <AvailabilityTag availability={product.availability} />
                   </div>
                 </div>
-                <div className="my-2 flex flex-row gap-2">
-                  <span className="truncate text-xs text-customBlack group-hover:underline sm:text-[13px]">
+                <div className="my-2 gap-2">
+                  <span className="truncate whitespace-normal text-xs text-customBlack group-hover:underline sm:text-[13px]">
                     {product.name}
                   </span>
-                  <div className="flex gap-1 md:gap-2">
+                  <div className="flex flex-col gap-1 md:gap-2">
                     <span
                       className={`${
                         product.prices.sale ? "text-darkGray line-through" : ""

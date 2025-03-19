@@ -18,10 +18,10 @@ type AvailabilityKeys = "inStock" | "outOfStock"; // Define exact keys
 
 //close filters if clicked on X from parent
 type Props = {
-  toggleFilters: () => void;
+  totalProducts: number;
 };
-
-const CollectionsFilters = () => {
+// toggleFilters: () => void;
+const CollectionsFilters = ({ totalProducts }: Props) => {
   const {
     filters,
     handleAvailabilityFilterChange,
@@ -119,6 +119,8 @@ const CollectionsFilters = () => {
       [filterType]: false,
     }));
   };
+
+  // const totalProducts = data.products.length;
   const inStockCount = data.products.filter(
     product => product.status === "inStock"
   ).length;
@@ -150,13 +152,10 @@ const CollectionsFilters = () => {
 
   const selectedColorCount = filters.colors.length;
   return (
-    <div className=" ">
-      <h1 className="my-[25px] text-[30px] capitalize sm:text-[40px]">
-        {content.title}
-      </h1>
-      <aside className="flex w-full items-center justify-between gap-2 py-3 text-darkGray">
+    <div className="">
+      <aside className="flex w-full items-center justify-between gap-2 py-3 text-[15px] text-darkGray">
         {/*mobile*/}
-        <div className="flex items-center md:hidden">
+        <div className="flex items-center justify-between md:hidden">
           <button
             className="flex items-center gap-1 hover:underline"
             onClick={() => setShowMobileFilters(prev => !prev)}
@@ -166,92 +165,94 @@ const CollectionsFilters = () => {
           </button>
         </div>
         {/*desktop left content*/}
-        <div className="hidden w-full justify-between capitalize md:flex">
-          <div className="flex justify-between gap-10">
-            <h2 className="text-[15px]">{content.titleMediumDevices}:</h2>
-            {content.filterBy.map((filter, index) => (
-              <div className="relative" key={index}>
-                <button
-                  className="flex items-center gap-2"
-                  onClick={() =>
-                    toggleDesktopFilter(
-                      filter.name as keyof typeof activeFilters
-                    )
-                  }
+        <div className="hidden w-full items-center justify-between capitalize md:flex">
+          <h2 className="text-[15px]">{content.titleMediumDevices}:</h2>
+          {content.filterBy.map((filter, index) => (
+            <div className="relative" key={index}>
+              <button
+                className="flex items-center gap-2"
+                onClick={() =>
+                  toggleDesktopFilter(filter.name as keyof typeof activeFilters)
+                }
+              >
+                <span className="capitalize hover:underline">
+                  {filter.name}
+                </span>
+                <span>
+                  <IoIosArrowDown />
+                </span>
+              </button>
+              {/* Availability Filter */}
+              {activeFilters[filter.name as keyof typeof activeFilters] && (
+                <div
+                  ref={availabilityRefDesktop}
+                  className="absolute left-0 top-full z-50 border bg-white p-3 text-[14px] shadow-md"
                 >
-                  <span className="capitalize hover:underline">
-                    {filter.name}
-                  </span>
-                  <span>
-                    <IoIosArrowDown />
-                  </span>
-                </button>
-                {/* Availability Filter */}
-                {activeFilters[filter.name as keyof typeof activeFilters] && (
-                  <div
-                    ref={availabilityRefDesktop}
-                    className="absolute left-0 top-full z-50 border bg-white p-3 text-[14px] shadow-md"
-                  >
-                    {filter.name === "availability" ? (
-                      <div>
-                        <div className="my-2 border-y border-darkGray">
-                          <header className="flex items-center justify-between">
-                            <h3 className="py-2">
-                              {selectedAvailabilityCount} selected
-                            </h3>
-                            <button
-                              className="capitalize text-customBlack hover:underline"
-                              onClick={handleClearFilters}
-                            >
-                              reset
-                            </button>
-                          </header>
-                        </div>
-                        <AvailabilityFilter
-                          className="w-max"
-                          filters={filters}
-                          handleAvailabilityFilterChange={
-                            handleAvailabilityFilterChange
-                          }
-                          inStockCount={inStockCount}
-                          outOfStockCount={outOfStockCount}
-                        />
+                  {filter.name === "availability" ? (
+                    <div>
+                      <div className="my-2 border-y border-darkGray">
+                        <header className="flex items-center justify-between">
+                          <h3 className="py-2">
+                            {selectedAvailabilityCount} selected
+                          </h3>
+                          <button
+                            className="capitalize text-customBlack hover:underline"
+                            onClick={handleClearFilters}
+                          >
+                            reset
+                          </button>
+                        </header>
                       </div>
-                    ) : (
-                      <div ref={colorsRefDesktop}>
-                        <div className="my-2 border-y border-darkGray">
-                          <header className="flex items-center justify-between">
-                            <h3 className="py-2">
-                              {selectedColorCount} selected
-                            </h3>
-                            <button
-                              className="text-customBlack hover:underline"
-                              onClick={handleClearFilters}
-                            >
-                              Reset
-                            </button>
-                          </header>
-                        </div>
-                        <ColorFilter
-                          uniqueColorCategory={uniqueColorCategory}
-                          handleColorSelection={handleColorSelection}
-                          filters={filters}
-                          colorCategoryCounts={colorCategoryCounts}
-                          className="h-[300px] w-max overflow-y-auto pr-2"
-                        />
+                      <AvailabilityFilter
+                        className="w-max"
+                        filters={filters}
+                        handleAvailabilityFilterChange={
+                          handleAvailabilityFilterChange
+                        }
+                        inStockCount={inStockCount}
+                        outOfStockCount={outOfStockCount}
+                      />
+                    </div>
+                  ) : (
+                    <div ref={colorsRefDesktop}>
+                      <div className="my-2 border-y border-darkGray">
+                        <header className="flex items-center justify-between">
+                          <h3 className="py-2">
+                            {selectedColorCount} selected
+                          </h3>
+                          <button
+                            className="text-customBlack hover:underline"
+                            onClick={handleClearFilters}
+                          >
+                            Reset
+                          </button>
+                        </header>
                       </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            ))}
+                      <ColorFilter
+                        uniqueColorCategory={uniqueColorCategory}
+                        handleColorSelection={handleColorSelection}
+                        filters={filters}
+                        colorCategoryCounts={colorCategoryCounts}
+                        className="h-[300px] w-max overflow-y-auto pr-2"
+                      />
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          ))}{" "}
+          {/* Middle: Sort By Dropdown */}
+          <div className="mr-2">
+            <SortByFilter
+              handleSortByChange={handleSortByChange}
+              sortBy={sortBy || ""}
+            />
           </div>
+        </div>
 
-          {/* Right: Sort By Dropdown */}
-          <SortByFilter
-            handleSortByChange={handleSortByChange}
-            sortBy={sortBy || ""}
-          />
+        <div className="flex gap-1 text-[15px]">
+          <span>{totalProducts}</span>
+          <span>{totalProducts > 1 ? " Products" : " Product"}</span>
         </div>
       </aside>
 
@@ -456,7 +457,10 @@ export const ColorFilter = ({
               "bg-gray-200"
             }`}
           />
-          <label className="capitalize hover:underline" htmlFor={color}>
+          <label
+            className={`capitalize hover:underline ${filters.colors.includes(color) ? "font-bold" : ""}`}
+            htmlFor={color}
+          >
             {color} ({colorCategoryCounts[color]})
           </label>
         </div>

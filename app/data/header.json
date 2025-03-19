@@ -13,19 +13,19 @@
       "label": "bags",
       "href": "/bags",
       "options": [
-        { "label": "shop all", "href": "/bags" },
-        { "label": "tote bags", "href": "/tote bags" },
-        { "label": "crossbody bags", "href": "/crossbody-bags" },
-        { "label": "top handle bags", "href": "/top-handle-bags" },
-        { "label": "mini bags", "href": "/mini-bags" }
+        { "label": "shop all", "href": "bags" },
+        { "label": "tote bags", "href": "tote_bags" },
+        { "label": "crossbody bags", "href": "crossbody_bags" },
+        { "label": "top handle bags", "href": "top_handle_bags" },
+        { "label": "mini bags", "href": "mini_bags" }
       ]
     },
     {
       "label": "shoes",
       "href": "/shoes",
       "options": [
-        { "label": "shop all", "href": "/shoes" },
-        { "label": "sandals", "href": "/sandals" }
+        { "label": "shop all", "href": "shoes" },
+        { "label": "sandals", "href": "sandals" }
       ]
     },
     {

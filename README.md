@@ -81,3 +81,5 @@ Button collections still very slow
 SearchParam dependency why not needed for soryby and filters
 hover for button
 products count
+
+nav bad for mobile open, make body not scrollable toggleFilter in CollectionFilter

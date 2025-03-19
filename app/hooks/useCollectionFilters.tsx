@@ -42,7 +42,12 @@ export const useCollectionFilters = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  // first get the filter from URL when component mounts
+  const handleCategoryClick = (category: string) => {
+    const params = new URLSearchParams(searchparams);
+    router.push(`/collections/${category.toLowerCase()}?${params.toString()}`);
+  };
+
+  // get initial filters from URL when component mounts
   useEffect(() => {
     const inStock = searchparams.get("inStock") === "true";
     const outOfStock = searchparams.get("outOfStock") === "true";
@@ -77,6 +82,7 @@ export const useCollectionFilters = () => {
     } else {
       params.delete("sort_by");
     }
+
     const queryString = decodeURIComponent(params.toString().toLowerCase());
     console.log("Updated URL Params:", queryString);
     router.push(`${pathname}?${queryString}`);
@@ -119,6 +125,7 @@ export const useCollectionFilters = () => {
   };
 
   return {
+    handleCategoryClick,
     filters,
     handleAvailabilityFilterChange,
     handleColorSelection,

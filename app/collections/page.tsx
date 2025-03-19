@@ -2,7 +2,7 @@
 import React, { Suspense } from "react";
 import Loading from "./loading";
 import data from "../data/productList.json";
-
+import content from "../data/collectionFilter.json";
 import { transformProduct } from "../utils/transformProduct";
 
 import CollectionsProducts from "@/components/CollectionsProducts";
@@ -50,6 +50,10 @@ const CollectionsPage = ({
           : true && (colors.length > 0 ? matchesColor : true);
       })
     : allProducts;
+
+  const productCount = isFiltering
+    ? filteredProducts.length
+    : allProducts.length;
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     if (sortByParams?.includes("Alphabetically A-Z")) {
       return a.name.localeCompare(b.name);
@@ -73,11 +77,13 @@ const CollectionsPage = ({
     return 0;
   });
 
-  console.log("inFilter", isFiltering);
   return (
     <section className="mx-auto bg-white px-[25px] md:px-[50px] lg:max-w-6xl">
+      <h1 className="my-[25px] text-[30px] capitalize sm:text-[40px]">
+        {content.title}
+      </h1>
       <Suspense fallback={<Loading />}>
-        <CollectionsFilters />
+        <CollectionsFilters totalProducts={productCount} />
       </Suspense>
       <AppliedCollectionFilters />
       <CollectionsProducts

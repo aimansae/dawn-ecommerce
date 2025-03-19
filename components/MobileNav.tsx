@@ -1,10 +1,11 @@
+"use client";
+
 import React, { useState } from "react";
 import data from "../app/data/header.json";
 import { FaArrowRightLong } from "react-icons/fa6";
 import MobileFooter from "./MobileFooter";
 import { IoIosArrowRoundBack } from "react-icons/io";
-import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
+import { useCollectionFilters } from "@/app/hooks/useCollectionFilters";
 
 type MobileProps = {
   onClose: () => void;
@@ -15,13 +16,8 @@ const MobileNav = ({ onClose }: MobileProps) => {
     setSelectedLinkItem(label);
   };
 
-  const router = useRouter();
-  const pathName = usePathname();
+  const { handleCategoryClick } = useCollectionFilters();
 
-  const handleCategoryClick = (category: string) => {
-    router.push(`/collections?category=${encodeURIComponent(category)}`); // ✅ Update URL with selected category
-    onClose();
-  };
   return (
     <div className="grid-rows-2-[1fr_auto] fixed left-0 z-50 grid h-full w-full bg-white md:w-2/4 lg:hidden">
       <div className="flex w-full list-none flex-col text-lg">
@@ -47,7 +43,11 @@ const MobileNav = ({ onClose }: MobileProps) => {
                       className="flex w-full items-center justify-between px-[30px] py-3 hover:bg-lightGray"
                     >
                       <button
-                        onClick={() => handleCategoryClick(option.label)}
+                        onClick={() => {
+                          handleCategoryClick(option.href);
+                          onClose();
+                          console.log("*********** category", option.href);
+                        }}
                         className="flex w-full items-center justify-between"
                       >
                         <span className="capitalize">{option.label}</span>
