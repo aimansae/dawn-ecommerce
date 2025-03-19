@@ -12,6 +12,7 @@ export const useCollectionFilters = () => {
     colors: [],
   });
   const [sortBy, setSortBy] = useState<string | null>("");
+
   const handleAvailabilityFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
     console.log("checked");
     const { name, checked } = e.target;
@@ -53,7 +54,7 @@ export const useCollectionFilters = () => {
       colors,
     });
     if (sortByParams) setSortBy(sortByParams);
-  }, []);
+  }, [searchparams]);
 
   // update url
   useEffect(() => {

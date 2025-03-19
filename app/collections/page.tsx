@@ -2,14 +2,14 @@
 import React, { Suspense } from "react";
 import Loading from "./loading";
 import data from "../data/productList.json";
-import CollectionPage from "@/components/CollectionPage";
 
 import { transformProduct } from "../utils/transformProduct";
 
 import CollectionsProducts from "@/components/CollectionsProducts";
 import { ProductType } from "../types/types";
 import AppliedCollectionFilters from "@/components/AppliedCollectionFilters";
-const page = ({
+import CollectionsFilters from "@/components/CollectionsFilters";
+const CollectionsPage = ({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -26,7 +26,7 @@ const page = ({
       ? searchParams.colors.split(",").map(c => c.toLowerCase().trim())
       : [];
 
-  const sortByParams = searchParams.sortBy || undefined;
+  const sortByParams = searchParams.sort_by || undefined;
   console.log("Colors Filter:", colors);
 
   const isFiltering = inStockParams || outOfStockParams || colors.length > 0;
@@ -77,7 +77,7 @@ const page = ({
   return (
     <section className="mx-auto bg-white px-[25px] md:px-[50px] lg:max-w-6xl">
       <Suspense fallback={<Loading />}>
-        <CollectionPage />
+        <CollectionsFilters />
       </Suspense>
       <AppliedCollectionFilters />
       <CollectionsProducts
@@ -88,4 +88,4 @@ const page = ({
   );
 };
 
-export default page;
+export default CollectionsPage;

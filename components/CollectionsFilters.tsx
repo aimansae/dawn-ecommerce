@@ -21,7 +21,7 @@ type Props = {
   toggleFilters: () => void;
 };
 
-const CollectionPage = () => {
+const CollectionsFilters = () => {
   const {
     filters,
     handleAvailabilityFilterChange,
@@ -67,44 +67,44 @@ const CollectionPage = () => {
 
   // close filters when clicked outside
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        showMobileFilters &&
-        mobileFilterRef.current &&
-        !mobileFilterRef.current.contains(event.target as Node)
-      ) {
-        setShowMobileFilters(false); // Close the filter when clicking outside
-      }
+  // useEffect(() => {
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     if (
+  //       showMobileFilters &&
+  //       mobileFilterRef.current &&
+  //       !mobileFilterRef.current.contains(event.target as Node)
+  //     ) {
+  //       setShowMobileFilters(false); // Close the filter when clicking outside
+  //     }
 
-      if (
-        activeFilters.availability &&
-        availabilityRefDesktop.current &&
-        !availabilityRefDesktop.current.contains(event.target as Node)
-      ) {
-        setActiveFilters(prev => ({ ...prev, availability: false }));
-      }
-      if (
-        activeFilters.colors &&
-        colorsRefDesktop.current &&
-        !colorsRefDesktop.current.contains(event.target as Node)
-      ) {
-        setActiveFilters(prev => ({ ...prev, colors: false }));
-      }
-    };
+  //     if (
+  //       activeFilters.availability &&
+  //       availabilityRefDesktop.current &&
+  //       !availabilityRefDesktop.current.contains(event.target as Node)
+  //     ) {
+  //       setActiveFilters(prev => ({ ...prev, availability: false }));
+  //     }
+  //     if (
+  //       activeFilters.colors &&
+  //       colorsRefDesktop.current &&
+  //       !colorsRefDesktop.current.contains(event.target as Node)
+  //     ) {
+  //       setActiveFilters(prev => ({ ...prev, colors: false }));
+  //     }
+  //   };
 
-    if (
-      showMobileFilters ||
-      activeFilters.availability ||
-      activeFilters.colors
-    ) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
+  //   if (
+  //     showMobileFilters ||
+  //     activeFilters.availability ||
+  //     activeFilters.colors
+  //   ) {
+  //     document.addEventListener("mousedown", handleClickOutside);
+  //   }
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [showMobileFilters, activeFilters]);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, [showMobileFilters, activeFilters]);
   //for mobile
   const toggleMobileFilters = (filterType: keyof typeof activeFilters) => {
     setActiveFilters(prev => ({
@@ -256,13 +256,13 @@ const CollectionPage = () => {
       </aside>
 
       {/*for mobile*/}
-
-      {showMobileFilters && (
-        <div className="fixed inset-0 z-40 bg-black bg-opacity-40 md:hidden"></div>
-      )}
+      {/* {showMobileFilters &&
+        (activeFilters.availability || activeFilters.colors) && (
+          <div className="fixed inset-0 z-40 bg-black bg-opacity-40"></div>
+        )} */}
       {showMobileFilters && (
         <section
-          ref={mobileFilterRef}
+          // ref={mobileFilterRef}
           className="absolute right-0 top-0 z-50 flex h-screen w-2/3 flex-col bg-white text-customBlack md:hidden"
         >
           <div className="flex items-center justify-between px-[25px] py-[10px] text-sm">
@@ -381,7 +381,7 @@ const CollectionPage = () => {
   );
 };
 
-export default CollectionPage;
+export default CollectionsFilters;
 
 //Availability filter
 export const AvailabilityFilter = ({

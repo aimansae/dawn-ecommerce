@@ -6,6 +6,8 @@ import { IoCloseOutline } from "react-icons/io5";
 const AppliedCollectionFilters = () => {
   const { filters, removeAppliedFilter } = useCollectionFilters();
   console.log("logging FILTER from hook", filters);
+  console.log("logging FILTER from hook", filters);
+  console.log("Availability Filters*****: ", filters.availability);
   return (
     <div className="flex flex-wrap gap-4 pb-4">
       <ul className="flex flex-wrap gap-2 text-darkGray">
@@ -14,7 +16,10 @@ const AppliedCollectionFilters = () => {
             <span className="">Availability: In Stock</span>
             <button
               className="transform text-customBlack transition-transform duration-200 hover:scale-110"
-              onClick={() => removeAppliedFilter("inStock")}
+              onClick={e => {
+                e.stopPropagation();
+                removeAppliedFilter("inStock");
+              }}
             >
               <IoCloseOutline />
             </button>
@@ -24,7 +29,7 @@ const AppliedCollectionFilters = () => {
           <li className="space-between flex items-center gap-2 rounded-md border px-1 text-xs shadow-md">
             <span className="">Availability: Out of Stock</span>
             <button
-              className="transform text-customBlack transition-transform duration-200 hover:scale-110"
+              className="border:customBlack transform text-customBlack transition-transform duration-200 hover:scale-110 hover:border"
               onClick={() => removeAppliedFilter("outOfStock")}
             >
               <IoCloseOutline />
@@ -40,7 +45,7 @@ const AppliedCollectionFilters = () => {
             >
               <span className="capitalize">Color: {color}</span>
               <button
-                className="transform text-customBlack transition-transform duration-200 hover:scale-110"
+                className="border:customBlack transform text-customBlack transition-transform duration-200 hover:scale-110 hover:border"
                 onClick={() => removeAppliedFilter("colors", color)}
               >
                 <IoCloseOutline />
