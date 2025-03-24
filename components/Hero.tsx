@@ -13,11 +13,10 @@ const Hero = () => {
           <Image
             src={bgImage}
             alt="hero background"
-            objectFit="cover"
-            className="z-[-1]"
+            className="z-[-1] object-cover"
             quality={100}
             placeholder="blur"
-            layout="fill"
+            fill
           />
         </div>
         {/* Content */}

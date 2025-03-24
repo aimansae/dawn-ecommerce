@@ -28,7 +28,7 @@ const BackInStock = () => {
         <h2 className=" ">{stockData.title}</h2>
       </div>
       {/*main image*/}
-      <Link href="/bags" className="col-span-3 md:col-span-2">
+      <Link href="collections/bags" className="col-span-3 md:col-span-2">
         <div className="relative aspect-square w-full">
           <Image
             src={stockData.backInStock.mainImage}
@@ -78,7 +78,10 @@ const BackInStock = () => {
           </div>
         </Link>
         {/*second image*/}
-        <Link href="/shoes" className="h-full w-full md:flex md:flex-col">
+        <Link
+          href="collections/shoes"
+          className="h-full w-full md:flex md:flex-col"
+        >
           <div className="relative h-28 w-full md:h-full">
             <Image
               src={stockData.shoeCollection.image}

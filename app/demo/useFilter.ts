@@ -45,7 +45,7 @@ export const useFilter = () => {
     setSelectedSizes(prev =>
       prev.includes(size) ? prev.filter(s => s !== size) : [...prev, size]
     );
-    console.log("Selected", size);
+
   };
   return {
     selectedSizes,

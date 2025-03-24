@@ -12,6 +12,7 @@ import QuantitySelector from "./QuantitySelector";
 import { useCountry } from "@/app/context/CountryContext";
 import AvailabilityTag from "../components/AvailabilityTag";
 import { convertPriceToCurrency } from "@/app/utils/functions";
+import Link from "next/link";
 
 const SingleProduct = ({ product }: SingleProductType) => {
   const { cart, addToCart } = useCart();
@@ -100,7 +101,6 @@ const SingleProduct = ({ product }: SingleProductType) => {
     });
     setViewCart(true);
     scrollToTop();
-    console.log("cart clicked", cart);
   };
 
   const handlePreviousImage = () => {
@@ -113,6 +113,12 @@ const SingleProduct = ({ product }: SingleProductType) => {
     setCurrentImageIndex(prevIndex => (prevIndex + 1) % selectedImage.length);
   };
 
+  const selectedColorObject = product.availableColors.find(
+    color => color.color === selectedColor
+  );
+  const isDisabled =
+    product.availability === "sold out" ||
+    selectedColorObject?.tag === "sold out";
   return (
     <section className="relative z-10 mx-auto grid grid-cols-1 items-center gap-2 px-4 py-7 sm:items-start md:grid-cols-2 md:gap-4 md:px-[50px] lg:max-w-6xl lg:grid-cols-[2fr_1fr]">
       <div className="relative aspect-square w-full">
@@ -134,7 +140,7 @@ const SingleProduct = ({ product }: SingleProductType) => {
               <MdOutlineKeyboardArrowLeft />
             </span>
           </button>
-          <span className="imageSides text-[10px]">
+          <span className="text-[10px]">
             {currentImageIndex + 1}/ {selectedImage.length}
           </span>
           <button onClick={handleNextImage}>
@@ -144,7 +150,7 @@ const SingleProduct = ({ product }: SingleProductType) => {
           </button>
         </div>
         <div className="flex flex-col items-start justify-center gap-4">
-          <h1 className="text-[30px]">{product.name}</h1>
+          <h1 className="text-[30px] capitalize">{product.name}</h1>
           <div className="flex flex-col items-start gap-3 whitespace-nowrap text-darkGray sm:flex-row sm:items-center sm:gap-6">
             <span className={`${product.prices.sale ? "line-through" : ""}`}>
               {selectedLocation.currencySymbol}{" "}
@@ -175,7 +181,6 @@ const SingleProduct = ({ product }: SingleProductType) => {
           <div>
             <ul className="flex flex-wrap gap-2">
               {product.availableColors.map((color, index: number) => {
-                console.log("tag (", color);
                 return (
                   <li key={index}>
                     <button
@@ -184,9 +189,7 @@ const SingleProduct = ({ product }: SingleProductType) => {
                         selectedColor === color.color
                           ? "bg-black text-white"
                           : ""
-                      } ${
-                        color.tag?.trim() === "sold out" ? "line-through" : ""
-                      }`}
+                      } ${color.tag === "sold out" ? "text-darkGray line-through hover:border hover:border-darkGray" : ""}`}
                     >
                       {color.color}
                     </button>
@@ -222,21 +225,39 @@ const SingleProduct = ({ product }: SingleProductType) => {
         </div>
         {/* Quantity Selection */}
         <QuantitySelector
+          className="w-1/2"
           onChangeQuantity={handleQuantity}
           quantity={quantity}
           label="Quantity"
         ></QuantitySelector>
         {/* Add to Cart and Buy Now */}
-        <div className="flex flex-col items-start justify-between gap-4">
+        <div className="flex w-full flex-col items-start justify-between gap-4">
           <button
-            className="w-full border border-darkGray p-3 sm:w-4/5 md:w-full"
+            disabled={
+              product.availability === "sold out" ||
+              selectedColorObject?.tag === "sold out"
+            }
+            className={`w-full border border-darkGray p-3 sm:w-4/5 md:w-full ${product.availability === "sold out" || selectedColorObject?.tag === "sold out" ? "cursor-not-allowed border-darkGray text-darkGray" : "text-customBlack"}`}
             onClick={handleAddToCart}
           >
-            Add to cart
+            {product.availability === "sold out" ||
+            selectedColorObject?.tag === "sold out"
+              ? "Sold out"
+              : "Add to cart"}
           </button>
-          <button className="w-full border border-darkGray bg-black p-3 text-white sm:w-4/5 md:w-full">
+          <Link
+            href={isDisabled ? "#" : "/cart"}
+            onClick={e => {
+              if (isDisabled) e.preventDefault(); // prevent navigation
+            }}
+            className={`w-full border border-darkGray p-3 text-center sm:w-4/5 md:w-full ${
+              isDisabled
+                ? "pointer-events-none cursor-not-allowed bg-gray-300 text-darkGray"
+                : "bg-black text-white transition hover:opacity-90"
+            }`}
+          >
             Buy Now
-          </button>
+          </Link>
         </div>
         <div>
           <h3 className="text-darkGray">{product.description}</h3>

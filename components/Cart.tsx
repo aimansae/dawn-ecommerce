@@ -74,30 +74,25 @@ const Cart = () => {
                         href={`/product/${createSlugFromName(
                           item.product.name
                         )}`}
-                        className="hover:underline"
+                        className="capitalize hover:underline"
                       >
                         {item.product.name}
                       </Link>
                       <p className="text-darkGray">
                         <span> {selectedLocation.currencySymbol}</span>
                         <span>
-                          {" "}
-                          {item.product.prices.sale
-                            ? convertPriceToCurrency(
-                                Number(item.product.prices.sale.toFixed(2)),
-                                exchangeRate
-                              )
-                            : convertPriceToCurrency(
-                                Number(item.product.prices.regular.toFixed(2)),
-                                exchangeRate
-                              )}
+                          {convertPriceToCurrency(
+                            Number(
+                              item.product.prices.sale ??
+                                item.product.prices.regular
+                            ),
+                            exchangeRate
+                          )}
                         </span>
                       </p>
-
                       <p className="capitalize text-darkGray">
                         Color: {item.selectedColor}
                       </p>
-
                       <div className="flex items-center gap-2 md:hidden">
                         <div className="w-2/3 sm:w-3/4">
                           <QuantitySelector
@@ -160,15 +155,13 @@ const Cart = () => {
                   <td className=" ">
                     <span className="block">
                       {selectedLocation.currencySymbol}
-                      {item.product.prices.sale
-                        ? convertPriceToCurrency(
-                            item.product.prices.sale * item.quantity,
-                            exchangeRate
-                          )
-                        : convertPriceToCurrency(
-                            item.product.prices.regular * item.quantity,
-                            exchangeRate
-                          )}
+                      {convertPriceToCurrency(
+                        Number(
+                          item.product.prices.sale ??
+                            item.product.prices.regular
+                        ) * item.quantity,
+                        exchangeRate
+                      )}
                     </span>
                   </td>
                 </tr>
@@ -181,7 +174,7 @@ const Cart = () => {
       {quantity > 0 ? (
         <div className="my-[30px] flex flex-col items-center justify-center gap-4 text-center md:items-end">
           <p>
-            {data.cart.footer.estimatedTotal}{" "}
+            {data.cart.footer.estimatedTotal}
             <span className="text-lg capitalize text-darkGray">
               <span>{selectedLocation.currencySymbol}</span>{" "}
               {convertPriceToCurrency(totalPrice, exchangeRate)}{" "}
@@ -208,11 +201,10 @@ const Cart = () => {
           >
             {data.cart.continueShopping}
           </Link>
-
           <div className="flex flex-col items-center justify-center gap-2">
             <h2 className="mt-[55px] text-xl">{data.cart.footer.account}</h2>
             <p>
-              <span className="underline">{data.cart.footer.login}</span>{" "}
+              <span className="underline">{data.cart.footer.login}</span>
               {data.cart.footer.checkoutFaster}
             </p>
           </div>

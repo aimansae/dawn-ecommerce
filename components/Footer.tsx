@@ -1,31 +1,28 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import data from "../app/data/footer.json";
 import Link from "next/link";
 import SocialMedia from "./SocialMedia";
 import { FaArrowRightLong } from "react-icons/fa6";
 import SelectCountries from "./SelectCountries";
 import { IoIosArrowDown } from "react-icons/io";
-import {
-  PaymentIcon,
-  PaymentCategory,
-  PaymentType,
-} from "react-svg-credit-card-payment-icons";
+import Image from "next/image";
 import { useCountry } from "@/app/context/CountryContext";
+import Visa from "../public/assets/images/paymentMethods/visa.svg";
+import Mastercard from "../public/assets/images/paymentMethods/mastercard.svg";
+import Amex from "../public/assets/images/paymentMethods/american-express.svg";
+import Paypal from "../public/assets/images/paymentMethods/paypal.svg";
+import Diners from "../public/assets/images/paymentMethods/diners.svg";
+import Discover from "../public/assets/images/paymentMethods/discover.svg";
 
-const paymentIcons: {
-  type: PaymentType;
-  format?: PaymentCategory;
-  width: number;
-}[] = [
-  { type: "Visa", format: "logoBorder", width: 35 },
-  { type: "Mastercard", format: "logoBorder", width: 30 },
-  { type: "Amex", format: "flatRounded", width: 30 },
-  { type: "Paypal", format: "logoBorder", width: 30 },
-  { type: "Diners", format: "logoBorder", width: 30 },
-  { type: "Discover", format: "logoBorder", width: 30 },
+const paymentIcons = [
+  { label: "Visa", src: Visa },
+  { label: "Mastercard", src: Mastercard },
+  { label: "Amex", src: Amex },
+  { label: "Paypal", src: Paypal },
+  { label: "Diners", src: Diners },
+  { label: "Discover", src: Discover },
 ];
-
 export type Location = {
   country: string;
   currency: string;
@@ -36,7 +33,6 @@ const Footer = () => {
   const [showLocations, setShowLocations] = useState(false);
   const { selectedLocation, setSelectedLocation } = useCountry();
   const handleCountryChange = (newLocation: Location) => {
-    console.log(newLocation, "CHange of location");
     setSelectedLocation(newLocation);
     setShowLocations(false);
   };
@@ -61,7 +57,7 @@ const Footer = () => {
           <ul className="text-sm text-darkGray">
             {data.footer.quickLinks.links.map((item, index) => (
               <li key={index} className="md:hover-underline my-4 py-1">
-                <Link href={item.url}>{item.name}</Link>
+                <Link href={item.href}>{item.name}</Link>
               </li>
             ))}
           </ul>
@@ -89,13 +85,17 @@ const Footer = () => {
           <h3 className="my-4 text-center md:text-start">
             {data.footer.subscribe.title}
           </h3>
-          <div className="flex hover:border hover:border-darkGray">
+          <form className="flex w-full max-w-md overflow-hidden rounded-md border border-gray-400 transition-colors focus-within:border-darkGray">
             <input
               id="subscribe"
               type="email"
+              required
               placeholder="Email"
               className="w-full border-y border-l border-gray-400 px-3 py-2 outline-none"
             />
+            <label className="sr-only" htmlFor="subscribe">
+              Subscribe with your email
+            </label>
             <button
               type="submit"
               className="border-y border-r border-gray-400 pr-3"
@@ -104,7 +104,7 @@ const Footer = () => {
                 <FaArrowRightLong className="transform font-thin text-customBlack transition-transform duration-300 hover:scale-110" />
               </span>
             </button>
-          </div>
+          </form>
         </div>
         <div className="mt-4">
           <SocialMedia />
@@ -146,22 +146,22 @@ const Footer = () => {
         </div>
         {/*Payment icons*/}
         <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
-          {paymentIcons.map((icon, index) => (
-            <li key={index} className="list-none">
-              <PaymentIcon
-                type={icon.type}
-                format={icon.format}
-                width={icon.width}
+          {paymentIcons.map(icon => (
+            <div key={icon.label} className="rounded-md border">
+              <Image
+                src={icon.src}
+                alt={icon.label}
+                width={25}
+                height={20}
+                className="object-fill"
+                quality={100}
               />
-            </li>
+            </div>
           ))}
         </div>
         <div className="lg:w-full">
           <p className="text-center lg:text-left">
-            <small className="text-xs text-darkGray">
-              © 2024, personal educational exercise project inspired by
-              theme-dawn-demo
-            </small>
+            <small className="text-xs text-darkGray">{}</small>
           </p>
         </div>
       </section>

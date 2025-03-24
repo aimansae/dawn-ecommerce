@@ -33,7 +33,6 @@ const MobileFooter = () => {
   const [showLocations, setShowLocations] = useState(false);
   const { selectedLocation, setSelectedLocation } = useCountry();
   const handleCountryChange = (newLocation: Location) => {
-    console.log(newLocation, "CHange of location");
     setSelectedLocation(newLocation);
     setShowLocations(false);
   };
@@ -62,7 +61,7 @@ const MobileFooter = () => {
         {showLocations && (
           <>
             <div
-              className="fixed bottom-0 left-0 right-0 top-0 z-40 bg-black bg-opacity-50 md:left-1/2 md:top-[104px] lg:hidden"
+              className="fixed bottom-0 left-0 right-0 top-0 z-40 bg-black bg-opacity-50 lg:hidden"
               onClick={() => {
                 setShowLocations(false);
               }}
@@ -81,7 +80,7 @@ const MobileFooter = () => {
       <ul className="flex items-center justify-between gap-6">
         {data.footer.socialLinks.map((item: SocialLink, index: number) => {
           const Icon = iconMap[item.icon];
-          console.log(Icon);
+
           return (
             <li key={index}>
               <Link href={item.link} target="_blank">

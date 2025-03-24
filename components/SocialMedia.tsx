@@ -22,7 +22,6 @@ const SocialMedia = () => {
     <ul className="flex items-center justify-between gap-6">
       {data.footer.socialLinks.map((item: SocialLink, index: number) => {
         const Icon = iconMap[item.icon];
-        console.log(Icon);
         return (
           <li key={index}>
             <Link href={item.link} target="_blank">

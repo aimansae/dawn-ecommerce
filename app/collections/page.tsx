@@ -14,9 +14,7 @@ const CollectionsPage = ({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) => {
-  const totalProducts = data.products.length;
   const allProducts: ProductType[] = data.products.map(transformProduct);
-  console.log(allProducts, totalProducts);
   // const { selectedLocation } = useCountry();
   const inStockParams = searchParams.inStock === "true";
   const outOfStockParams = searchParams.outOfStock === "true";
@@ -27,7 +25,6 @@ const CollectionsPage = ({
       : [];
 
   const sortByParams = searchParams.sort_by || undefined;
-  console.log("Colors Filter:", colors);
 
   const isFiltering = inStockParams || outOfStockParams || colors.length > 0;
 
@@ -44,7 +41,6 @@ const CollectionsPage = ({
           product.availableColors.some(color =>
             colors.includes(color.colorCategory.toLowerCase().trim())
           );
-        console.log({ matchesStock, matchesColor, product });
         return inStockParams || outOfStockParams
           ? matchesStock
           : true && (colors.length > 0 ? matchesColor : true);

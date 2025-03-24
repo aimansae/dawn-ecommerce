@@ -1,11 +1,17 @@
 {
   "footer": {
+    "refinery": {
+      "description": "The leather is sourced from environmentally friendly tanneries in Italy, France, and Turkey, where Rure is based and everything is assembled by hand."
+    },
+    "theCut": {
+      "description": "All too often, we're forced to pick: style, or sustainability. Recently, more designers have been making environmental impact a top priority"
+    },
     "quickLinks": {
       "title": "Quick Links",
       "links": [
-        { "name": "Bags", "url": "/bags" },
-        { "name": "Shoes", "url": "/shoes" },
-        { "name": "Lookbook", "url": "/lookbook" }
+        { "name": "Bags", "href": "/collections/bags" },
+        { "name": "Shoes", "href": "/collections/shoes" },
+        { "name": "Lookbook", "href": "/lookbook" }
       ]
     },
     "info": {
@@ -52,9 +58,8 @@
       "title": "Country/Region",
       "value": "Australia | AUD $"
     },
-    "paymentMethods": {
-      "title": "Payment Methods",
-      "methods": ["Visa", "MasterCard", "PayPal"]
+    "copyright": {
+      "description": "© 2024, personal educational exercise project inspired by theme-dawn-demo"
     }
   }
 }

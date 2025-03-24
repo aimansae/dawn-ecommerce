@@ -57,8 +57,7 @@ const page = ({
   return (
     <div className="px-11">
       <h2>Get info from URL:</h2>
-      <p>{JSON.stringify(searchParams)}</p>{" "}
-      {/* ✅ Debugging: Show actual values */}
+      <p>{JSON.stringify(searchParams)}</p>
       <p>Selected Sizes: {selectedSizes.join(", ")}</p> {/* ✅ Debugging */}
       <h2>Filtered Products:</h2>
       {filteredProducts.length > 0 ? (
@@ -71,7 +70,7 @@ const page = ({
           </div>
         ))
       ) : (
-        <p>No products match your filter.</p> // ✅ Show message if no products match
+        <p>No products match your filter.</p>
       )}
       <Input />
     </div>

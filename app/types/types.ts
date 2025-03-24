@@ -1,7 +1,7 @@
 export type Color = {
   color: string;
   colorCategory: string;
-  tag?: string;
+  tag: string;
   imageUrl: string[];
 };
 export type Size = string;
@@ -9,13 +9,13 @@ export type Size = string;
 export type ProductType = {
   id: string;
   name: string;
-  image: string;
   prices: {
-    regular: number;
-    sale?: number;
+    currency: string;
+    regular: string;
+    sale?: string;
   };
   status?: string;
-  availability: string;
+  availability?: string;
   availableColors: Color[];
   availableSizes?: Size[];
   category: string[];

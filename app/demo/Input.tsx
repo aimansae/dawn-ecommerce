@@ -40,7 +40,6 @@ const Input = () => {
   const colorsInLowerCase = colors.map(color => color.toLowerCase());
 
   const uniqueColorsInLowerCase = [...new Set(colorsInLowerCase)];
-  console.log("unique COLORS", uniqueColorsInLowerCase);
   return (
     <div>
       {sizes.map(size => (

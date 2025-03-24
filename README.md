@@ -36,50 +36,31 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 TODO
-Home: sale/soldout tags
-Country button:add dark background, on bigger screen, close if clicked outside
-space for NAb for small screens
+MobileNav: mobile nav add animation from left to right
+SingleProduct: refactor URL PARAMS functionality in a new hook 
+COllectionsFilters : desktop, close if cicked outside  
+ 
+HomePage:add more products
+ 
+Footer: create a very simple internal place where i can reftrieve all subscribers next js 14+ and show success messagr
+Homepage: add video and refinery section
+View Cart image resizing
+SingleProduct: image gallery for mdplus 
 
-make z index for selected country div hightr
 
-cstoll for image
-colors customiization
-
-nav for mobile
-input subscribe style and function
-mission text
-view Cart image resizing
-multimple color selection
 local storage after adding things to cart
-
-jdonfor view cart and single product
-
-error if no selected color
-
-border for footer
-add to cart, scroll on top
-close if clicked outside for county div
-small devices make non scrollable
-sized
-bubble nr
-
-mobileopen
-soldout
-pagination for single products
-links
-filtered products count
-color
-
-shop now button border on hover
-
+SingleProduct:json file
+MobileNav: is country is open make background blac, add x button
+ 
 Struggles: filtering and js working with data , putting multiple things together, organizing the data
 remove filter and count
 
 Struggles, height calculation how to avoid fixed top heights
 Button collections still very slow
-
 SearchParam dependency why not needed for soryby and filters
 hover for button
 products count
-
 nav bad for mobile open, make body not scrollable toggleFilter in CollectionFilter
+
+About , contact pages in footer
+Pagination

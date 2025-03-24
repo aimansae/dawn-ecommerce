@@ -4,17 +4,17 @@ import CollectionsProducts from "@/components/CollectionsProducts";
 import React from "react";
 import data from "../../data/productList.json";
 import { transformProduct } from "@/app/utils/transformProduct";
+import { ProductType } from "@/app/types/types";
 
 const page = ({ params }: { params: { category: string } }) => {
-  const allProducts = data.products.map(transformProduct);
+  const allProducts: ProductType[] = data.products.map(transformProduct);
   const formattedCategory = decodeURIComponent(params.category)
-    .replaceAll("_", " ")
+    .replaceAll("-", " ")
     .toLowerCase();
   const products = allProducts.filter(p =>
-    p.category.some(c => c.toLowerCase() === params.category)
+    p.category.some(c => c.toLowerCase() === formattedCategory)
   );
   const totalProducts = products.length;
-  console.log(formattedCategory, "TOTAL", totalProducts);
   return (
     <section className="mx-auto bg-white px-[25px] md:px-[50px] lg:max-w-6xl">
       <h1 className="my-[25px] text-[30px] capitalize sm:text-[40px]">

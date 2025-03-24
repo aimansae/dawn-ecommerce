@@ -14,7 +14,6 @@ export const useCollectionFilters = () => {
   const [sortBy, setSortBy] = useState<string | null>("");
 
   const handleAvailabilityFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log("checked");
     const { name, checked } = e.target;
     setFilters(prev => ({
       ...prev,
@@ -23,17 +22,12 @@ export const useCollectionFilters = () => {
         [name]: checked,
       },
     }));
-    console.log(
-      `User clicked on: ${name} - ${checked ? "Enabled" : "Disabled"}`
-    );
   };
   const handleColorSelection = (color: string) => {
     setFilters(prev => {
       const updatedColors = prev.colors.includes(color)
         ? prev.colors.filter(c => c !== color)
         : [...prev.colors, color];
-
-      console.log("Updated Colors:", updatedColors); // Debugging line
 
       return { ...prev, colors: updatedColors };
     });
@@ -44,7 +38,9 @@ export const useCollectionFilters = () => {
 
   const handleCategoryClick = (category: string) => {
     const params = new URLSearchParams(searchparams);
-    router.push(`/collections/${category.toLowerCase()}?${params.toString()}`);
+    router.push(
+      `/collections/${category.toLowerCase()}?${decodeURIComponent(params.toString())}`
+    );
   };
 
   // get initial filters from URL when component mounts
@@ -84,7 +80,6 @@ export const useCollectionFilters = () => {
     }
 
     const queryString = decodeURIComponent(params.toString().toLowerCase());
-    console.log("Updated URL Params:", queryString);
     router.push(`${pathname}?${queryString}`);
   }, [filters, sortBy]);
   // sort by
@@ -92,7 +87,7 @@ export const useCollectionFilters = () => {
   const handleSortByChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const selectedOption = e.target.value;
     setSortBy(selectedOption);
-    console.log("handleSortBy", selectedOption);
+
     const params = new URLSearchParams(searchparams.toString());
     params.set("sort_by", selectedOption);
 

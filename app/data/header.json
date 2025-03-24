@@ -14,10 +14,10 @@
       "href": "/bags",
       "options": [
         { "label": "shop all", "href": "bags" },
-        { "label": "tote bags", "href": "tote_bags" },
-        { "label": "crossbody bags", "href": "crossbody_bags" },
-        { "label": "top handle bags", "href": "top_handle_bags" },
-        { "label": "mini bags", "href": "mini_bags" }
+        { "label": "tote bags", "href": "tote-bags" },
+        { "label": "crossbody bags", "href": "crossbody-bags" },
+        { "label": "top handle bags", "href": "top-handle-bags" },
+        { "label": "mini bags", "href": "mini bags" }
       ]
     },
     {

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoBagHandleOutline } from "react-icons/io5";
@@ -11,7 +11,6 @@ import Image from "next/image";
 import Logo from "../public/assets/images/logo.png";
 import data from "../app/data/header.json";
 import { FiUser } from "react-icons/fi";
-import SearchInput from "./SearchInput";
 import MobileNav from "./MobileNav";
 import { useCart } from "@/app/context/CartContext";
 import products from "@/app/data/productList.json";
@@ -21,17 +20,37 @@ import { link } from "../app/utils/functions";
 import HeaderSearch from "./HeaderSearch";
 import { useRouter, useSearchParams } from "next/navigation";
 import ShippingBanner from "./ShippingBanner";
-
+import { useCollectionFilters } from "@/app/hooks/useCollectionFilters";
 const Header = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [selectedLinkItem, setSelectedLinkItem] = useState<string | null>(null);
+
   const [query, setQuery] = useState("");
   const searchParams = useSearchParams();
   const router = useRouter();
-  console.log("query is", query);
-  const searchQuery = searchParams.get("query");
 
+  const searchQuery = searchParams.get("query");
+  const desktopCategoryRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        desktopCategoryRef.current &&
+        !desktopCategoryRef.current.contains(e.target as Node)
+      ) {
+        setSelectedLinkItem(null);
+      }
+    };
+
+    if (selectedLinkItem) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [selectedLinkItem]);
   useEffect(() => {
     if (searchQuery) {
       setQuery(searchQuery);
@@ -64,20 +83,13 @@ const Header = () => {
     setShowSearchBar(prev => !prev);
   };
   const handleItemClick = (label: string) => {
-    console.log("item clicked in header", selectedLinkItem?.toLowerCase());
     setSelectedLinkItem(prev => (prev === label ? null : label));
   };
   const { getTotalQuantity } = useCart();
   const quantity = getTotalQuantity() || 0;
-  console.log(
-    "logging query",
-    query.length,
-    "productLength",
-    filterProductByQuery.length
-  );
 
+  const { handleCategoryClick } = useCollectionFilters();
   const handleGeneralSearch = (query: string) => {
-    console.log(query, "general");
     if (query.trim().toLowerCase()) {
       router.push(`/?query=${encodeURIComponent(query.toString())}`);
     }
@@ -143,7 +155,7 @@ const Header = () => {
                           Products
                         </h1>
                         {filterProductByQuery.map(product => (
-                          <ul key={product.id} className="bg-yellow py-4">
+                          <ul key={product.id} className="py-4">
                             <li className="w-full px-[15px] text-xs hover:bg-gray-100">
                               <Link
                                 href={`/product/${createSlugFromName(
@@ -203,10 +215,11 @@ const Header = () => {
                 </Link>
               </h1>
             </div>
+            {/*desktop mav*/}
             <div className="hidden lg:flex">
               <ul className="z-10 flex list-none items-start justify-between gap-6 text-sm">
                 {data.menuItems.map((item, i) => (
-                  <li key={i} className="py-4 text-darkGray">
+                  <li key={i} className="flex items-center py-4 text-darkGray">
                     <button
                       onClick={() => handleItemClick(item.label)}
                       className={`flex items-center justify-center gap-1 hover:underline ${
@@ -215,9 +228,10 @@ const Header = () => {
                           : ""
                       }`}
                     >
-                      <span>{item.label}</span>
+                      <span className="capitalize">{item.label}</span>
                       <span>
                         <IoIosArrowDown
+                          size={15}
                           className={`transition-transform duration-300 ${
                             selectedLinkItem === item.label
                               ? "rotate-180"
@@ -226,12 +240,22 @@ const Header = () => {
                         />
                       </span>
                     </button>
+
                     {selectedLinkItem === item.label && (
-                      <div className="absolute top-[60px] z-50 mt-2 w-1/5 border border-darkGray border-gray-200 bg-white p-4">
+                      <div
+                        ref={desktopCategoryRef}
+                        className="absolute top-[60px] z-50 mt-2 w-1/5 border border-darkGray border-gray-200 bg-white p-4"
+                      >
                         <ul className="flex flex-col gap-2 text-sm capitalize text-darkGray">
                           {item.options?.map((option, j) => (
-                            <li key={j} className="hover:underline">
-                              {option.label}
+                            <li key={j} className="p-1 hover:cursor-pointer">
+                              <Link
+                                className="hover:underline"
+                                onClick={() => handleCategoryClick(option.href)}
+                                href={`/collections/${option.href.replace(" ", "_")}`}
+                              >
+                                {option.label}
+                              </Link>
                             </li>
                           ))}
                         </ul>

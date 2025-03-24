@@ -105,13 +105,13 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
   //     document.removeEventListener("mousedown", handleClickOutside);
   //   };
   // }, [showMobileFilters, activeFilters]);
+
   //for mobile
   const toggleMobileFilters = (filterType: keyof typeof activeFilters) => {
     setActiveFilters(prev => ({
       ...prev,
       [filterType]: !prev[filterType],
     }));
-    console.log("user clicked on", filterType);
   };
   const handleGoBack = (filterType: keyof typeof activeFilters) => {
     setActiveFilters(prev => ({
@@ -142,10 +142,8 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
   const allColors = data.products.flatMap(product =>
     product.availableColors.map(c => c.colorCategory)
   );
-  console.log("COLOR fount", allColors);
 
   const uniqueColorCategory = [...new Set(allColors)];
-  console.log("uniqueColorCategory", uniqueColorCategory);
   const selectedAvailabilityCount = Object.values(filters.availability).filter(
     Boolean
   ).length;
@@ -240,7 +238,7 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
                 </div>
               )}
             </div>
-          ))}{" "}
+          ))}
           {/* Middle: Sort By Dropdown */}
           <div className="mr-2">
             <SortByFilter
@@ -249,13 +247,11 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
             />
           </div>
         </div>
-
         <div className="flex gap-1 text-[15px]">
           <span>{totalProducts}</span>
           <span>{totalProducts > 1 ? " Products" : " Product"}</span>
         </div>
       </aside>
-
       {/*for mobile*/}
       {/* {showMobileFilters &&
         (activeFilters.availability || activeFilters.colors) && (
@@ -277,7 +273,6 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
               <TfiClose className="text-darkGray" size={22} />
             </button>
           </div>
-
           {/*show all filters*/}
           {!activeFilters.availability && !activeFilters.colors && (
             <ul className="flex flex-grow flex-col gap-2 border-y border-gray-300 px-[25px] py-3 text-[15px] text-darkGray">
@@ -358,7 +353,6 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
               />
             </div>
           )}
-
           {/*clear and apply  buttons*/}
           <div className="sticky flex items-center justify-between gap-2 bg-white px-[15px] py-2 text-sm">
             <button

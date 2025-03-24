@@ -31,9 +31,7 @@ const CollectionsProducts = ({
                   color.colorCategory.toLowerCase() ===
                   selectedColor?.toLowerCase()
               ) || product.availableColors[0];
-            console.log("Selected Color:", selectedColor);
-            console.log("Product Color:", productColor);
-            console.log("Image URL:", productColor?.imageUrl);
+
             return (
               <Link
                 href={`/product/${createSlugFromName(product.name)}`}

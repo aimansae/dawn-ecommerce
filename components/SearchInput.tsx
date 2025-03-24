@@ -10,7 +10,6 @@ type SearchInputProps = {
 
 const SearchInput = ({ onClose, onSearch }: SearchInputProps) => {
   const [search, setSearch] = useState("");
-  const router = useRouter();
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
     setSearch(query);
@@ -56,10 +55,10 @@ const SearchInput = ({ onClose, onSearch }: SearchInputProps) => {
         </button>
       </div>
       <div>
-        <button onClick={onClose}>
+        <button onClick={onClose} className="flex">
           <TfiClose
             size={22}
-            className="mt-1 transform text-darkGray transition-transform duration-300 hover:scale-110 md:hidden"
+            className="mt-1 transform text-darkGray transition-transform duration-300 hover:scale-110"
           />
         </button>
       </div>

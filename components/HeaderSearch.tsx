@@ -17,7 +17,7 @@ const HeaderSearch = ({ onClose, term, setTerm }: HeaderSearchProps) => {
   const pathname = usePathname();
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const term = e.target.value;
-    console.log(term, "****");
+
     setSearch(term.toLocaleLowerCase());
     setTerm(term.toLocaleLowerCase());
   };
@@ -26,7 +26,7 @@ const HeaderSearch = ({ onClose, term, setTerm }: HeaderSearchProps) => {
     if (search.trim()) {
       router.push(`/?query=${encodeURIComponent(search.toString())}`);
     }
-    console.log;
+  
     onClose();
   };
 
@@ -34,7 +34,7 @@ const HeaderSearch = ({ onClose, term, setTerm }: HeaderSearchProps) => {
     setSearch("");
     setTerm("");
     router.push(pathname);
-    console.log("pathname");
+  
     onClose();
   };
 

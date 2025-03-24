@@ -71,8 +71,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         color => color.color === item.selectedColor
       )?.imageUrl;
 
-      console.log("Selected color:", item.selectedColor);
-      console.log("Selected image:", selectedImage);
+
 
       return [...prevCart, { ...item, selectedImage }];
     });

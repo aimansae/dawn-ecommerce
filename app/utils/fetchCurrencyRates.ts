@@ -10,7 +10,6 @@ export default async function fetchExchangeRate<Promise>(
       throw new Error("Failed to fetch exchange rates");
     }
     const data = await res.json();
-    console.log("ALL RATES", data.conversion_rates);
 
     return data.conversion_rates[targetCurrency];
   } catch (err) {

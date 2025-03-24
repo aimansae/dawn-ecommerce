@@ -46,7 +46,6 @@ const MobileNav = ({ onClose }: MobileProps) => {
                         onClick={() => {
                           handleCategoryClick(option.href);
                           onClose();
-                          console.log("*********** category", option.href);
                         }}
                         className="flex w-full items-center justify-between"
                       >

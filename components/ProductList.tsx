@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import data from "../app/data/productList.json";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,7 +18,6 @@ const ProductList = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("query") || "";
   const category = searchParams.get("category") || "";
-  console.log("Filters - Query:", query, "Category:", category);
 
   const productsForMainPage: ProductType[] = transformedProducts
     .sort(() => 0.5)
@@ -26,7 +25,7 @@ const ProductList = () => {
   const { selectedLocation, exchangeRate } = useCountry();
   const filteredProducts = query.trim().toLocaleLowerCase()
     ? transformedProducts.filter(product => {
-        const lowerCaseQuery = query.toLocaleLowerCase();
+         onst lowerCaseQuery = query.toLocaleLowerCase();
         // Check if the name matches the query
         const nameMatches = product.name
           .toLocaleLowerCase()
@@ -69,7 +68,9 @@ const ProductList = () => {
                     sizes="(max-width:375px)100vw,(max-width:560px)80vw, (max-width:768px) 60vw, 33vw"
                   />
                   <div className="absolute bottom-2 left-4">
-                    <AvailabilityTag availability={product.availability} />
+                    <AvailabilityTag
+                      availability={product.availability || "available"}
+                    />
                   </div>
                 </div>
                 <div className="my-2 gap-2">
