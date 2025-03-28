@@ -8,6 +8,7 @@ module.exports = {
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
+    "plugin:react/recommended",
   ],
   overrides: [
     {
@@ -30,5 +31,11 @@ module.exports = {
     "prettier/prettier": ["error", { tabWidth: 2 }], // Ensure 2-space indentation
     indent: ["error", 2], // Enforces 2-space indentation
     "no-mixed-spaces-and-tabs": "error", // Prevents mixing tabs and spaces
+    "react/react-in-jsx-scope": "off",
+  },
+  settings: {
+    react: {
+      version: "detect", // This line removes the warning
+    },
   },
 };

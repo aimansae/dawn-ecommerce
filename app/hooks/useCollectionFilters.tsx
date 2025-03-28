@@ -15,22 +15,21 @@ export const useCollectionFilters = () => {
 
   const handleAvailabilityFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
-    setFilters(prev => ({
-      ...prev,
-      availability: {
-        ...prev.availability,
-        [name]: checked,
-      },
-    }));
+    const updatedFilters = {
+      ...filters,
+      availability: { ...filters.availability, [name]: checked },
+    };
+    setFilters(updatedFilters);
+    updateURL(updatedFilters, sortBy);
+    console.log("Checkbox clicked:", name, "checked:", checked); // 👈
   };
   const handleColorSelection = (color: string) => {
-    setFilters(prev => {
-      const updatedColors = prev.colors.includes(color)
-        ? prev.colors.filter(c => c !== color)
-        : [...prev.colors, color];
-
-      return { ...prev, colors: updatedColors };
-    });
+    const updatedColors = filters.colors.includes(color)
+      ? filters.colors.filter(c => c !== color)
+      : [...filters.colors, color];
+    const updatedFilters = { ...filters, colors: updatedColors };
+    setFilters(updatedFilters);
+    updateURL(updatedFilters, sortBy);
   };
   const searchparams = useSearchParams();
   const router = useRouter();
@@ -55,33 +54,30 @@ export const useCollectionFilters = () => {
       colors,
     });
     if (sortByParams) setSortBy(sortByParams);
-  }, [searchparams]);
+  }, [searchparams.toString()]);
 
   // update url
-  useEffect(() => {
+  const updateURL = (newFilters: FiltersType, newSortBy: string | null) => {
     const params = new URLSearchParams();
 
-    // ✅ Always update colors
-    if (filters.colors.length > 0) {
-      params.set("colors", filters.colors.join(","));
-    } else {
-      params.delete("colors");
+    // Always update colors
+    if (newFilters.colors.length > 0) {
+      params.set("colors", newFilters.colors.join(","));
     }
 
-    if (filters.availability.inStock) params.set("inStock", "true");
-    else params.delete("inStock");
-
-    if (filters.availability.outOfStock) params.set("outOfStock", "true");
-    else params.delete("outOfStock");
-    if (sortBy) {
-      params.set("sort_by", sortBy);
-    } else {
-      params.delete("sort_by");
+    if (newFilters.availability.inStock) {
+      params.set("inStock", "true");
+      console.log("FILTERSCHECK", newFilters.availability.inStock);
     }
 
-    const queryString = decodeURIComponent(params.toString().toLowerCase());
-    router.push(`${pathname}?${queryString}`);
-  }, [filters, sortBy]);
+    if (newFilters.availability.outOfStock) {
+      params.set("outOfStock", "true");
+    }
+    if (newSortBy) {
+      params.set("sort_by", newSortBy);
+    }
+    router.push(`${pathname}?${decodeURIComponent(params.toString())}`);
+  };
   // sort by
 
   const handleSortByChange = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -103,22 +99,26 @@ export const useCollectionFilters = () => {
 
     router.push(`${pathname}`);
   };
+
+  //check
   const removeAppliedFilter = (
     type: "inStock" | "outOfStock" | "colors",
     value?: string
   ) => {
-    setFilters(prev => {
-      if (type === "colors") {
-        return { ...prev, colors: prev.colors.filter(c => c !== value) };
-      } else {
-        return {
-          ...prev,
-          availability: { ...prev.availability, [type]: false },
-        };
-      }
-    });
-  };
+    const updatedFilters = { ...filters };
 
+    if (type === "colors" && value) {
+      updatedFilters.colors = updatedFilters.colors.filter(c => c !== value);
+    } else if (type === "inStock" || type === "outOfStock") {
+      updatedFilters.availability = {
+        ...updatedFilters.availability,
+        [type]: false,
+      };
+    }
+
+    setFilters(updatedFilters);
+    updateURL(updatedFilters, sortBy);
+  };
   return {
     handleCategoryClick,
     filters,

@@ -9,6 +9,7 @@ import CollectionsProducts from "@/components/CollectionsProducts";
 import { ProductType } from "../types/types";
 import AppliedCollectionFilters from "@/components/AppliedCollectionFilters";
 import CollectionsFilters from "@/components/CollectionsFilters";
+import Pagination from "@/components/Pagination";
 const CollectionsPage = ({
   searchParams,
 }: {
@@ -16,6 +17,8 @@ const CollectionsPage = ({
 }) => {
   const allProducts: ProductType[] = data.products.map(transformProduct);
   // const { selectedLocation } = useCountry();
+  const page = Number(searchParams.page) || 1;
+  console.log(page?.toString(), "page from page.tsx");
   const inStockParams = searchParams.inStock === "true";
   const outOfStockParams = searchParams.outOfStock === "true";
   const colors = Array.isArray(searchParams.colors)
@@ -34,16 +37,16 @@ const CollectionsPage = ({
         const isOutOfStock = product.status === "outOfStock";
 
         const matchesStock =
-          (inStockParams && isInStock) || (outOfStockParams && isOutOfStock);
+          (!inStockParams && !outOfStockParams) ||
+          (inStockParams && isInStock) ||
+          (outOfStockParams && isOutOfStock);
 
         const matchesColor =
           colors.length === 0 ||
           product.availableColors.some(color =>
             colors.includes(color.colorCategory.toLowerCase().trim())
           );
-        return inStockParams || outOfStockParams
-          ? matchesStock
-          : true && (colors.length > 0 ? matchesColor : true);
+        return matchesStock && matchesColor;
       })
     : allProducts;
 
@@ -59,19 +62,24 @@ const CollectionsPage = ({
     }
 
     if (sortByParams?.includes("Price: Low to high")) {
-      return a.prices.regular - b.prices.regular;
+      return Number(a.prices.regular) - Number(b.prices.regular);
     }
     if (sortByParams?.includes("Price: High to Low")) {
-      return b.prices.regular - a.prices.regular;
+      return Number(b.prices.regular) - Number(a.prices.regular);
     }
-    // if (sortByParams?.includes("Date: Old to new")) {
-    //   return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
-    // }
-    // if (sortByParams?.includes("Date: New to old")) {
-    //   return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-    // }
+    if (sortByParams?.includes("Date: Old to new")) {
+      return new Date(a.createdAt).getDate() - new Date(b.createdAt).getDate();
+    }
+    if (sortByParams?.includes("Date: New to old")) {
+      return new Date(b.createdAt).getDate() - new Date(a.createdAt).getDate();
+    }
     return 0;
   });
+  // pagination
+  const productsPerPage = 8;
+  const startIndex = (page - 1) * productsPerPage;
+  const endIndex = startIndex + productsPerPage;
+  const paginatedProducts = sortedProducts.slice(startIndex, endIndex);
 
   return (
     <section className="mx-auto bg-white px-[25px] md:px-[50px] lg:max-w-6xl">
@@ -83,8 +91,12 @@ const CollectionsPage = ({
       </Suspense>
       <AppliedCollectionFilters />
       <CollectionsProducts
-        products={sortedProducts}
+        products={paginatedProducts}
         selectedColor={colors[0] || ""}
+      />
+      <Pagination
+        products={filteredProducts}
+        productsPerPage={productsPerPage}
       />
     </section>
   );

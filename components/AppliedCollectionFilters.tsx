@@ -5,7 +5,7 @@ import { IoCloseOutline } from "react-icons/io5";
 
 const AppliedCollectionFilters = () => {
   const { filters, removeAppliedFilter } = useCollectionFilters();
-
+  console.log("Applied filters", filters);
   return (
     <div className="flex flex-wrap gap-4 pb-4">
       <ul className="flex flex-wrap gap-2 text-darkGray">

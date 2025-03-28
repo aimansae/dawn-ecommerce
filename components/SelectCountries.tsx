@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Location } from "./MobileFooter";
 import { BsCheck2 } from "react-icons/bs";
 
@@ -26,9 +26,10 @@ const SelectCountries = ({ onClose }: SelectCountriesProps) => {
     });
   };
   const sortedLocations = sortLocations(data.footer.locations);
+  const lowerCaseQuery = query.toLowerCase();
   const filteredData = query
     ? sortedLocations.filter(location =>
-        location.country.toLocaleLowerCase().includes(query.toLocaleLowerCase())
+        location.country.toLowerCase().includes(lowerCaseQuery)
       )
     : sortedLocations;
 

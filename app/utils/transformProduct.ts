@@ -10,14 +10,13 @@ export const transformProduct = (product: ProductType): ProductType => {
       sale: product.prices.sale, // Convert sale price to number if it exists
     },
     status: product.status,
+    createdAt: product.createdAt,
     availability: product.availability ?? "available",
     availableColors: product.availableColors?.map((color: Color) => ({
       color: color.color,
       tag: color.tag,
       colorCategory: color.colorCategory,
       imageUrl: color.imageUrl,
-
-      // imageSides: color.imageSides || [], // Use an empty array if no sides are provided
     })),
     availableSizes: product.availableSizes,
     category: product.category,

@@ -71,8 +71,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
         color => color.color === item.selectedColor
       )?.imageUrl;
 
-
-
       return [...prevCart, { ...item, selectedImage }];
     });
   };

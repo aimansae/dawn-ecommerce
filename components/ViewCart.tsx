@@ -12,7 +12,7 @@ type AddToCartProps = {
   selectedColor: string;
 };
 
-const AddToCart = ({ product, quantity, selectedColor }: AddToCartProps) => {
+const AddToCart = ({ product, selectedColor }: AddToCartProps) => {
   const [isCartOpen, setIsCartOpen] = useState(true);
   const { getTotalQuantity } = useCart();
 

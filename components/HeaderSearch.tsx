@@ -1,7 +1,7 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import React, { ChangeEvent, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { TfiClose } from "react-icons/tfi";
 
@@ -26,7 +26,7 @@ const HeaderSearch = ({ onClose, term, setTerm }: HeaderSearchProps) => {
     if (search.trim()) {
       router.push(`/?query=${encodeURIComponent(search.toString())}`);
     }
-  
+
     onClose();
   };
 
@@ -34,7 +34,7 @@ const HeaderSearch = ({ onClose, term, setTerm }: HeaderSearchProps) => {
     setSearch("");
     setTerm("");
     router.push(pathname);
-  
+
     onClose();
   };
 
@@ -59,7 +59,8 @@ const HeaderSearch = ({ onClose, term, setTerm }: HeaderSearchProps) => {
               {search && (
                 <TfiClose
                   onClick={() => {
-                    setSearch(""), setTerm("");
+                    setSearch("");
+                    setTerm("");
                   }}
                   size={20}
                   className="border-gray transform rounded-full border p-1 text-darkGray transition-transform duration-300 hover:scale-110"

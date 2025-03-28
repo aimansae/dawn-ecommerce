@@ -44,7 +44,7 @@ const CollectionsProducts = ({
                     alt={`${product.name}`}
                     quality={75}
                     fill
-                    className="left-0 top-0 h-full w-full object-cover"
+                    className="object-fit left-0 top-0 h-full w-full"
                     sizes="(max-width:375px)100vw,(max-width:560px)80vw, (max-width:768px) 60vw, 33vw"
                   />
                 </div>

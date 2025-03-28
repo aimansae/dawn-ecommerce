@@ -15,7 +15,8 @@ export type ProductType = {
     sale?: string;
   };
   status?: string;
-  availability?: string;
+  availability: string;
+  createdAt: string;
   availableColors: Color[];
   availableSizes?: Size[];
   category: string[];

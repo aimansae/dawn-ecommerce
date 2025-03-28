@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 "use client";
 import React from "react";
 import data from "../app/data/productList.json";
@@ -17,7 +18,7 @@ const ProductList = () => {
   const transformedProducts = data.products.map(transformProduct);
   const searchParams = useSearchParams();
   const query = searchParams.get("query") || "";
-  const category = searchParams.get("category") || "";
+  // const category = searchParams.get("category") || "";
 
   const productsForMainPage: ProductType[] = transformedProducts
     .sort(() => 0.5)
@@ -25,7 +26,7 @@ const ProductList = () => {
   const { selectedLocation, exchangeRate } = useCountry();
   const filteredProducts = query.trim().toLocaleLowerCase()
     ? transformedProducts.filter(product => {
-         onst lowerCaseQuery = query.toLocaleLowerCase();
+        const lowerCaseQuery = query.toLocaleLowerCase();
         // Check if the name matches the query
         const nameMatches = product.name
           .toLocaleLowerCase()
@@ -35,6 +36,7 @@ const ProductList = () => {
           category.toLocaleLowerCase().includes(lowerCaseQuery)
         );
         // Check if any available color matches the query
+
         const colorMatches = product.availableColors.some(color =>
           color.color.toLocaleLowerCase().includes(lowerCaseQuery)
         );
@@ -85,7 +87,7 @@ const ProductList = () => {
                     >
                       {selectedLocation.currencySymbol}{" "}
                       {convertPriceToCurrency(
-                        Number(product.prices.regular.toFixed(2)),
+                        Number(parseFloat(product.prices.regular).toFixed(2)),
                         exchangeRate
                       )}
                       {selectedLocation.currency}
@@ -95,7 +97,7 @@ const ProductList = () => {
                       <span>
                         {selectedLocation.currencySymbol}{" "}
                         {convertPriceToCurrency(
-                          Number(product.prices.sale.toFixed(2)),
+                          Number(parseFloat(product.prices.sale).toFixed(2)),
                           exchangeRate
                         )}
                         {selectedLocation.currency}
@@ -140,7 +142,7 @@ const ProductList = () => {
                   >
                     {selectedLocation.currencySymbol}{" "}
                     {convertPriceToCurrency(
-                      Number(product.prices.regular.toFixed(2)),
+                      Number(parseFloat(product.prices.regular).toFixed(2)),
                       exchangeRate
                     )}
                     {selectedLocation.currency}
@@ -150,7 +152,7 @@ const ProductList = () => {
                       <span>
                         {selectedLocation.currencySymbol}{" "}
                         {convertPriceToCurrency(
-                          Number(product.prices.sale.toFixed(2)),
+                          Number(parseFloat(product.prices.sale).toFixed(2)),
                           exchangeRate
                         )}
                         {selectedLocation.currency}

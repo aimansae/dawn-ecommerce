@@ -4,7 +4,7 @@ import data from "@/app/data/productList.json";
 import { createSlugFromName } from "@/app/utils/functions";
 import { transformProduct } from "@/app/utils/transformProduct";
 
-const page = ({ params }: { params: { slug: string } }) => {
+const ProductPage = ({ params }: { params: { slug: string } }) => {
   const getProductBySlug = (slug: string) => {
     return data.products.find(
       product => createSlugFromName(product.name) === slug
@@ -18,4 +18,4 @@ const page = ({ params }: { params: { slug: string } }) => {
   return <SingleProduct product={transformedProduct}></SingleProduct>;
 };
 
-export default page;
+export default ProductPage;

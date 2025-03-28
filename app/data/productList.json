@@ -11,6 +11,7 @@
       },
       "status": "outOfStock",
       "availability": "sale",
+      "createdAt": "2024-03-21",
       "availableColors": [
         {
           "color": "cappuccino",
@@ -66,6 +67,7 @@
       },
       "status": "inStock",
       "availability": "available",
+      "createdAt": "2024-03-22",
       "availableColors": [
         {
           "color": "oyster",
@@ -101,6 +103,7 @@
       },
       "status": "outOfStock",
       "availability": "sale",
+      "createdAt": "2024-03-28",
       "availableColors": [
         {
           "color": "buttermilk",
@@ -147,6 +150,7 @@
       },
       "status": "outOfStock",
       "availability": "sale",
+      "createdAt": "2024-03-20",
       "availableColors": [
         {
           "color": "harvest",
@@ -181,6 +185,7 @@
       },
       "status": "inStock",
       "availability": "available",
+      "createdAt": "2024-03-20",
       "availableColors": [
         {
           "color": "multicolor",
@@ -235,6 +240,7 @@
       },
       "status": "inStock",
       "availability": "available",
+      "createdAt": "2024-03-20",
       "availableColors": [
         {
           "color": "emerald",
@@ -319,6 +325,7 @@
       },
       "status": "inStock",
       "availability": "sale",
+      "createdAt": "2024-03-20",
       "availableColors": [
         {
           "color": "beige",
@@ -384,6 +391,7 @@
       },
       "status": "outOfStock",
       "availability": "sale",
+      "createdAt": "2024-03-20",
       "availableColors": [
         {
           "color": "cashmere rose",
@@ -458,6 +466,8 @@
         "sale": ""
       },
       "status": "inStock",
+      "availability": "sale",
+      "createdAt": "2024-03-20",
       "availableColors": [
         {
           "color": "mocha",
@@ -513,6 +523,7 @@
       },
       "status": "inStock",
       "availability": "sale",
+      "createdAt": "2024-03-27",
       "availableColors": [
         {
           "color": "cyclamen",
@@ -568,6 +579,7 @@
       },
       "status": "inStock",
       "availability": "available",
+      "createdAt": "2024-03-20",
       "availableColors": [
         {
           "color": "black and gray",
@@ -613,6 +625,7 @@
       },
       "status": "outOfStock",
       "availability": "sold out",
+      "createdAt": "2024-03-20",
       "availableColors": [
         {
           "color": "latte",
@@ -658,6 +671,7 @@
       },
       "status": "inStock",
       "availability": "available",
+      "createdAt": "2024-03-20",
       "availableColors": [
         {
           "color": "latte",
@@ -702,6 +716,7 @@
       },
       "status": "inStock",
       "availability": "available",
+      "createdAt": "2024-03-20",
       "availableColors": [
         {
           "color": "blue",
@@ -727,6 +742,7 @@
       },
       "status": "outOfStock",
       "availability": "available",
+      "createdAt": "2024-03-20",
       "availableColors": [
         {
           "color": "butter",
@@ -802,6 +818,7 @@
       },
       "status": "inStock",
       "availability": "available",
+      "createdAt": "2024-03-20",
       "availableColors": [
         {
           "color": "latte",

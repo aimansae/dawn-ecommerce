@@ -70,7 +70,7 @@ const BackInStock = () => {
             <span>
               {selectedLocation.currencySymbol}
               {convertPriceToCurrency(
-                showEddieBagInStock.prices.regular,
+                Number(showEddieBagInStock.prices.regular),
                 exchangeRate
               )}
               {selectedLocation.currency}

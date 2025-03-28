@@ -15,7 +15,7 @@ import { convertPriceToCurrency } from "@/app/utils/functions";
 import Link from "next/link";
 
 const SingleProduct = ({ product }: SingleProductType) => {
-  const { cart, addToCart } = useCart();
+  const { addToCart } = useCart();
   const { selectedLocation, exchangeRate } = useCountry();
   const searchParams = useSearchParams();
   const [selectedColor, setSelectedColor] = useState(() => {
@@ -155,7 +155,7 @@ const SingleProduct = ({ product }: SingleProductType) => {
             <span className={`${product.prices.sale ? "line-through" : ""}`}>
               {selectedLocation.currencySymbol}{" "}
               {convertPriceToCurrency(
-                Number(product.prices.regular.toFixed(2)),
+                Number(parseFloat(product.prices.regular).toFixed(2)),
                 exchangeRate
               )}
               {selectedLocation.currency}
@@ -164,7 +164,7 @@ const SingleProduct = ({ product }: SingleProductType) => {
               <span>
                 {selectedLocation.currencySymbol}{" "}
                 {convertPriceToCurrency(
-                  Number(product.prices.sale.toFixed(2)),
+                  Number(parseFloat(product.prices.sale).toFixed(2)),
                   exchangeRate
                 )}
                 {selectedLocation.currency}

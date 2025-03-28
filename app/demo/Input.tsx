@@ -43,7 +43,7 @@ const Input = () => {
   return (
     <div>
       {sizes.map(size => (
-        <div className="my-2">
+        <div className="my-2" key={size}>
           <input
             className="mx-2"
             type="checkbox"
@@ -60,7 +60,7 @@ const Input = () => {
 
       <div>
         {uniqueColorsInLowerCase.map(color => (
-          <div className="m-2">
+          <div className="m-2" key={color}>
             <input
               onChange={() => handleColorSelection(color)}
               checked={selectedColors.includes(color)}

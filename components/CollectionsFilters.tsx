@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useRef, useState } from "react";
 import content from "../app/data/collectionFilter.json";
 import { PiSlidersHorizontalThin } from "react-icons/pi";
@@ -14,7 +13,7 @@ import {
 } from "@/app/hooks/useCollectionFilters";
 import data from "../app/data/productList.json";
 import { TfiClose } from "react-icons/tfi";
-type AvailabilityKeys = "inStock" | "outOfStock"; // Define exact keys
+type AvailabilityKeys = keyof FiltersType["availability"];
 
 //close filters if clicked on X from parent
 type Props = {
@@ -379,6 +378,7 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
 export default CollectionsFilters;
 
 //Availability filter
+
 export const AvailabilityFilter = ({
   filters,
   handleAvailabilityFilterChange,
@@ -406,7 +406,7 @@ export const AvailabilityFilter = ({
               className="h-4 w-4 appearance-none border border-gray-400 checked:before:block checked:before:text-center checked:before:leading-4 checked:before:text-black checked:before:content-['✔']"
               type="checkbox"
               name={key}
-              id={name}
+              id={key}
               onChange={handleAvailabilityFilterChange}
               checked={filters.availability[key as AvailabilityKeys] || false}
             />
