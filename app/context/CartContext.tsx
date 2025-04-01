@@ -32,6 +32,7 @@ type CartContextType = {
     selectedColor: string,
     selectedSize?: string
   ) => void;
+  clearCart: () => void;
 };
 const CartContext = createContext<CartContextType | undefined>(undefined);
 export function CartProvider({ children }: { children: ReactNode }) {
@@ -119,12 +120,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
     return cart.reduce(
       (acc, item) =>
         acc +
-        (item.product.prices.sale || item.product.prices.regular) *
+        Number(item.product.prices.sale || item.product.prices.regular) *
           item.quantity,
       0
     );
   };
-
+  const clearCart = () => {
+    setCart([]);
+    localStorage.removeItem("cart");
+  };
   return (
     <CartContext.Provider
       value={{
@@ -134,6 +138,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         updateQuantity,
         getTotalQuantity,
         getTotalPrice,
+        clearCart,
       }}
     >
       {children}

@@ -59,9 +59,12 @@ const AddToCart = ({ product, selectedColor }: AddToCartProps) => {
         >
           View cart ({getTotalQuantity()})
         </Link>
-        <button className="w-full border border-darkGray bg-black p-3 text-white sm:w-4/5 md:w-full">
+        <Link
+          href="/checkout"
+          className="flex w-full items-center justify-center border border-darkGray bg-black p-3 text-white sm:w-4/5 md:w-full"
+        >
           Check out
-        </button>
+        </Link>
         <button className="w-full text-center" onClick={handleCartClose}>
           <span className="underline">Continue Shopping</span>
         </button>

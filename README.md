@@ -63,4 +63,10 @@ products count
 nav bad for mobile open, make body not scrollable toggleFilter in CollectionFilter
 
 About , contact pages in footer
-Pagination
+selketon
+product cout
+filter remove all button bigger devices
+
+7. Checkout Page (/checkout)
+
+Remove available tag from ui

@@ -48,7 +48,25 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
       [filterType]: !prev[filterType],
     }));
   };
+  //close mobilefilters if open
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        mobileFilterRef.current &&
+        !mobileFilterRef.current.contains(event.target as Node)
+      ) {
+        setShowMobileFilters(false);
+      }
+    };
 
+    if (showMobileFilters) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showMobileFilters]);
   // if mobile filter are open make background not scrollable
   useEffect(() => {
     if (showMobileFilters) {
@@ -63,47 +81,6 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
       document.body.style.overflow = "auto";
     };
   }, [showMobileFilters]);
-
-  // close filters when clicked outside
-
-  // useEffect(() => {
-  //   const handleClickOutside = (event: MouseEvent) => {
-  //     if (
-  //       showMobileFilters &&
-  //       mobileFilterRef.current &&
-  //       !mobileFilterRef.current.contains(event.target as Node)
-  //     ) {
-  //       setShowMobileFilters(false); // Close the filter when clicking outside
-  //     }
-
-  //     if (
-  //       activeFilters.availability &&
-  //       availabilityRefDesktop.current &&
-  //       !availabilityRefDesktop.current.contains(event.target as Node)
-  //     ) {
-  //       setActiveFilters(prev => ({ ...prev, availability: false }));
-  //     }
-  //     if (
-  //       activeFilters.colors &&
-  //       colorsRefDesktop.current &&
-  //       !colorsRefDesktop.current.contains(event.target as Node)
-  //     ) {
-  //       setActiveFilters(prev => ({ ...prev, colors: false }));
-  //     }
-  //   };
-
-  //   if (
-  //     showMobileFilters ||
-  //     activeFilters.availability ||
-  //     activeFilters.colors
-  //   ) {
-  //     document.addEventListener("mousedown", handleClickOutside);
-  //   }
-
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, [showMobileFilters, activeFilters]);
 
   //for mobile
   const toggleMobileFilters = (filterType: keyof typeof activeFilters) => {
@@ -158,7 +135,9 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
             onClick={() => setShowMobileFilters(prev => !prev)}
           >
             <PiSlidersHorizontalThin />
-            <h2 className="text-[15px]">{content.titleSmallDevices}</h2>
+            <h2 className="text-sm sm:text-[15px]">
+              {content.titleSmallDevices}
+            </h2>
           </button>
         </div>
         {/*desktop left content*/}
@@ -246,7 +225,7 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
             />
           </div>
         </div>
-        <div className="flex gap-1 text-[15px]">
+        <div className="flex gap-1 text-sm sm:text-[15px]">
           <span>{totalProducts}</span>
           <span>{totalProducts > 1 ? " Products" : " Product"}</span>
         </div>
@@ -258,7 +237,7 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
         )} */}
       {showMobileFilters && (
         <section
-          // ref={mobileFilterRef}
+          ref={mobileFilterRef}
           className="absolute right-0 top-0 z-50 flex h-screen w-2/3 flex-col bg-white text-customBlack md:hidden"
         >
           <div className="flex items-center justify-between px-[25px] py-[10px] text-sm">
@@ -274,7 +253,7 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
           </div>
           {/*show all filters*/}
           {!activeFilters.availability && !activeFilters.colors && (
-            <ul className="flex flex-grow flex-col gap-2 border-y border-gray-300 px-[25px] py-3 text-[15px] text-darkGray">
+            <ul className="flex flex-grow flex-col gap-2 border-y border-gray-300 px-[25px] py-3 text-[15px] text-darkGray sm:text-sm">
               {content.filterBy.map(filter => (
                 <li
                   key={filter.name}
@@ -293,7 +272,7 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
                   </button>
                 </li>
               ))}
-              <li>
+              <li className="">
                 <SortByFilter
                   handleSortByChange={handleSortByChange}
                   sortBy={sortBy || ""}
@@ -473,11 +452,17 @@ export const SortByFilter = ({
   return (
     <>
       <div className="flex items-center justify-between gap-2">
-        <h2 className="text-[15px]">Sort By:</h2>
+        <label
+          htmlFor="sort"
+          className="shrink-0 whitespace-nowrap text-sm md:text-[15px]"
+        >
+          Sort by:
+        </label>
         <select
+          id="sort"
           value={sortBy || ""}
           onChange={handleSortByChange}
-          className="py-1 text-xs hover:underline md:rounded md:border md:px-3 md:text-base"
+          className="bg-blue-400w-max mr-1 py-1 text-xs hover:underline md:rounded md:border md:px-3 md:text-base"
         >
           {content.sortBy[0]?.options.map((option, index) => (
             <option key={index} value={option} className="text-xs">

@@ -14,6 +14,7 @@ import Amex from "../public/assets/images/paymentMethods/american-express.svg";
 import Paypal from "../public/assets/images/paymentMethods/paypal.svg";
 import Diners from "../public/assets/images/paymentMethods/diners.svg";
 import Discover from "../public/assets/images/paymentMethods/discover.svg";
+import SubscribersForm from "./SubscribersForm";
 
 const paymentIcons = [
   { label: "Visa", src: Visa },
@@ -79,32 +80,14 @@ const Footer = () => {
           </h4>
         </section>
       </div>
-      {/*Subscribe section*/}
+      {/*Subscribe and Social media*/}
       <section className="my-8 flex flex-col items-center justify-center pb-4 md:flex-row md:items-end md:justify-between">
         <div className="md:w-[50%] lg:w-1/3">
           <h3 className="my-4 text-center md:text-start">
             {data.footer.subscribe.title}
           </h3>
-          <form className="flex w-full max-w-md overflow-hidden rounded-md border border-gray-400 transition-colors focus-within:border-darkGray">
-            <input
-              id="subscribe"
-              type="email"
-              required
-              placeholder="Email"
-              className="w-full border-y border-l border-gray-400 px-3 py-2 outline-none"
-            />
-            <label className="sr-only" htmlFor="subscribe">
-              Subscribe with your email
-            </label>
-            <button
-              type="submit"
-              className="border-y border-r border-gray-400 pr-3"
-            >
-              <span>
-                <FaArrowRightLong className="transform font-thin text-customBlack transition-transform duration-300 hover:scale-110" />
-              </span>
-            </button>
-          </form>
+          {/*Subscribers form*/}
+          <SubscribersForm />
         </div>
         <div className="mt-4">
           <SocialMedia />
