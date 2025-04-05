@@ -33,7 +33,7 @@ const Cart = () => {
             <h1 className="text-[30px] sm:text-[40px]">{data.cart.title}</h1>
             <Link
               className="my-2 capitalize text-darkGray underline"
-              href="/collections/all"
+              href="/collections"
             >
               {data.cart.continueShopping}
             </Link>
@@ -49,123 +49,132 @@ const Cart = () => {
               </tr>
             </thead>
             <tbody className="border-b border-darkGray">
-              {cart.map(item => (
-                <tr
-                  key={item.product.id}
-                  className="my-8 flex items-center justify-between md:items-start"
-                >
-                  <td className="flex gap-4">
-                    <div>
-                      <Image
-                        src={
-                          Array.isArray(item.selectedImage)
-                            ? item.selectedImage[0]
-                            : ""
-                        }
-                        alt={item.product.name}
-                        width={100}
-                        height={50}
-                        className="object-cover"
-                      />
-                    </div>
-                    {/*Product Details */}
-                    <div className="flex w-[180px] flex-col gap-2 text-[15px] md:w-[250px]">
-                      <Link
-                        href={`/product/${createSlugFromName(
-                          item.product.name
-                        )}`}
-                        className="capitalize hover:underline"
-                      >
-                        {item.product.name}
-                      </Link>
-                      <p className="text-darkGray">
-                        <span> {selectedLocation.currencySymbol}</span>
-                        <span>
-                          {convertPriceToCurrency(
-                            Number(
-                              item.product.prices.sale ??
-                                item.product.prices.regular
-                            ),
-                            exchangeRate
+              {cart.map(item => {
+                const price =
+                  item.product.prices.sale &&
+                  item.product.prices.sale.trim() !== ""
+                    ? item.product.prices.sale
+                    : item.product.prices.regular;
+                const total = Number(price) * item.quantity;
+                return (
+                  <tr
+                    key={item.product.id}
+                    className="my-8 flex items-center justify-between md:items-start"
+                  >
+                    <td className="flex gap-4">
+                      <div>
+                        <Image
+                          src={
+                            Array.isArray(item.selectedImage)
+                              ? item.selectedImage[0]
+                              : ""
+                          }
+                          alt={item.product.name}
+                          width={100}
+                          height={50}
+                          className="object-cover"
+                        />
+                      </div>
+                      {/*Product Details */}
+                      <div className="flex w-[180px] flex-col gap-2 text-[15px] md:w-[250px]">
+                        <Link
+                          href={`/product/${createSlugFromName(
+                            item.product.name
+                          )}`}
+                          className="capitalize hover:underline"
+                        >
+                          {item.product.name}
+                        </Link>
+                        <p className="text-darkGray">
+                          <span> {selectedLocation.currencySymbol}</span>
+                          <span>
+                            {convertPriceToCurrency(
+                              Number(
+                                item.product.prices.sale ||
+                                  item.product.prices.regular
+                              ),
+                              exchangeRate
+                            )}
+                          </span>
+                        </p>
+                        <div>
+                          <p className="capitalize text-darkGray">
+                            Color: {item.selectedColor}
+                          </p>
+                          {item.selectedSize && (
+                            <p className="text-darkGray">
+                              Size: {item.selectedSize}
+                            </p>
                           )}
-                        </span>
-                      </p>
-                      <p className="capitalize text-darkGray">
-                        Color: {item.selectedColor}
-                      </p>
-                      <div className="flex items-center gap-2 md:hidden">
-                        <div className="w-2/3 sm:w-3/4">
-                          <QuantitySelector
-                            quantity={item.quantity}
-                            onChangeQuantity={change =>
-                              updateQuantity(
+                        </div>
+                        <div className="flex items-center gap-2 md:hidden">
+                          <div className="w-2/3 sm:w-3/4">
+                            <QuantitySelector
+                              quantity={item.quantity}
+                              onChangeQuantity={change =>
+                                updateQuantity(
+                                  item.product.id,
+                                  item.selectedColor,
+                                  item.selectedSize ?? "",
+                                  change
+                                )
+                              }
+                            />
+                          </div>
+                          {/* Delete Button */}
+                          <button
+                            onClick={() =>
+                              removeFromCart(
                                 item.product.id,
                                 item.selectedColor,
-                                item.selectedSize ?? "",
-                                change
+                                item.selectedSize
                               )
                             }
-                          />
+                          >
+                            <RiDeleteBin6Line />
+                          </button>
                         </div>
-                        {/* Delete Button */}
-                        <button
-                          onClick={() =>
-                            removeFromCart(
+                      </div>
+                    </td>
+                    {/*Quantity info medium devices*/}
+                    <td className="hidden items-center gap-4 md:flex">
+                      <div>
+                        <QuantitySelector
+                          className="w-32"
+                          quantity={item.quantity}
+                          onChangeQuantity={change =>
+                            updateQuantity(
                               item.product.id,
                               item.selectedColor,
-                              item.selectedSize
+                              item.selectedSize,
+                              change
                             )
                           }
-                        >
-                          <RiDeleteBin6Line />
-                        </button>
+                        />
                       </div>
-                    </div>
-                  </td>
-                  {/*Quantity info medium devices*/}
-                  <td className="hidden items-center gap-4 md:flex">
-                    <div>
-                      <QuantitySelector
-                        className="w-32"
-                        quantity={item.quantity}
-                        onChangeQuantity={change =>
-                          updateQuantity(
+                      {/* Delete Button */}
+                      <button
+                        onClick={() =>
+                          removeFromCart(
                             item.product.id,
                             item.selectedColor,
-                            item.selectedSize,
-                            change
+                            item.selectedSize
                           )
                         }
-                      />
-                    </div>
-                    {/* Delete Button */}
-                    <button
-                      onClick={() =>
-                        removeFromCart(
-                          item.product.id,
-                          item.selectedColor,
-                          item.selectedSize
-                        )
-                      }
-                    >
-                      <RiDeleteBin6Line />
-                    </button>
-                  </td>
-                  {/*total per product*/}
-                  <td className=" ">
-                    <span className="block">
-                      {selectedLocation.currencySymbol}
-                      {convertPriceToCurrency(
-                        Number(
-                          item.product.prices.sale ??
-                            item.product.prices.regular
-                        ) * item.quantity,
-                        exchangeRate
-                      )}
-                    </span>
-                  </td>
-                </tr>
-              ))}
+                      >
+                        <RiDeleteBin6Line />
+                      </button>
+                    </td>
+                    {/*total per product*/}
+                    <td className=" ">
+                      <span className="block">
+                        {selectedLocation.currencySymbol}
+                        {convertPriceToCurrency(total, exchangeRate)}
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </>

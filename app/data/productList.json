@@ -62,8 +62,7 @@
       "category": ["Bags"],
       "prices": {
         "currency": "USD",
-        "regular": "330.00 ",
-        "sale": ""
+        "regular": "330.00 "
       },
       "status": "inStock",
       "availability": "available",
@@ -324,7 +323,7 @@
         "regular": "351.00 "
       },
       "status": "inStock",
-      "availability": "sale",
+      "availability": "available",
       "createdAt": "2024-03-20",
       "availableColors": [
         {
@@ -390,7 +389,7 @@
         "regular": "273.00 "
       },
       "status": "outOfStock",
-      "availability": "sale",
+      "availability": "available",
       "createdAt": "2024-03-20",
       "availableColors": [
         {
@@ -462,11 +461,10 @@
       "category": ["Bags", "mini bags"],
       "prices": {
         "currency": "USD",
-        "regular": "226.00",
-        "sale": ""
+        "regular": "226.00"
       },
       "status": "inStock",
-      "availability": "sale",
+      "availability": "available",
       "createdAt": "2024-03-20",
       "availableColors": [
         {
@@ -574,8 +572,7 @@
       "category": ["Bags"],
       "prices": {
         "currency": "USD",
-        "regular": "368.00",
-        "sale": ""
+        "regular": "368.00"
       },
       "status": "inStock",
       "availability": "available",
@@ -620,8 +617,7 @@
       "category": ["Bags"],
       "prices": {
         "currency": "USD",
-        "regular": "435.00",
-        "sale": ""
+        "regular": "435.00"
       },
       "status": "outOfStock",
       "availability": "sold out",
@@ -666,8 +662,7 @@
       "category": ["Bags"],
       "prices": {
         "currency": "USD",
-        "regular": "297.00",
-        "sale": ""
+        "regular": "297.00"
       },
       "status": "inStock",
       "availability": "available",
@@ -711,8 +706,7 @@
       "category": ["Bags"],
       "prices": {
         "currency": "USD",
-        "regular": "326.00",
-        "sale": ""
+        "regular": "326.00"
       },
       "status": "inStock",
       "availability": "available",
@@ -737,8 +731,7 @@
       "category": ["Bags", "tote bags", "mini bags"],
       "prices": {
         "currency": "USD",
-        "regular": "259.00",
-        "sale": ""
+        "regular": "259.00"
       },
       "status": "outOfStock",
       "availability": "available",
@@ -817,7 +810,7 @@
         "sale": "174.00 "
       },
       "status": "inStock",
-      "availability": "available",
+      "availability": "sale",
       "createdAt": "2024-03-20",
       "availableColors": [
         {

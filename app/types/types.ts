@@ -25,3 +25,14 @@ export type ProductType = {
 export type SingleProductType = {
   product: ProductType;
 };
+
+export type CheckoutFormData = {
+  email: string;
+  firstName: string;
+  lastName: string;
+  address: string;
+  apartment: string;
+  postalCode: string;
+  city: string;
+  receiveEmails: boolean;
+};

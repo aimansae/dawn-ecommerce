@@ -85,24 +85,24 @@ const ProductList = () => {
                         product.prices.sale ? "text-darkGray line-through" : ""
                       }`}
                     >
-                      {selectedLocation.currencySymbol}{" "}
+                      {selectedLocation.currencySymbol}
                       {convertPriceToCurrency(
                         Number(parseFloat(product.prices.regular).toFixed(2)),
                         exchangeRate
                       )}
                       {selectedLocation.currency}
                     </span>
-
-                    {product.prices.sale !== undefined && (
+                    {product.prices.sale && (
                       <span>
                         {selectedLocation.currencySymbol}{" "}
                         {convertPriceToCurrency(
-                          Number(parseFloat(product.prices.sale).toFixed(2)),
+                          Number(product.prices.sale),
                           exchangeRate
                         )}
                         {selectedLocation.currency}
                       </span>
                     )}
+                    :
                   </div>
                 </div>
               </Link>

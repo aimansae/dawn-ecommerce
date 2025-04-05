@@ -1,6 +1,7 @@
 import React from "react";
 
 const AvailabilityTag = ({ availability }: { availability: string }) => {
+  if (availability === "available") return null;
   let availabilityClass = "";
   if (availability === "sold out") {
     availabilityClass = "bg-black  "; // Black background for sold out

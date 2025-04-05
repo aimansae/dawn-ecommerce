@@ -35,6 +35,7 @@ type CartContextType = {
   clearCart: () => void;
 };
 const CartContext = createContext<CartContextType | undefined>(undefined);
+
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartItemType[]>(() => {
     if (typeof window !== "undefined") {
@@ -43,11 +44,20 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
     return [];
   });
-
+  const [isCartReady, setIsCartReady] = useState(false);
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+    const storedCart = localStorage.getItem("cart");
+    if (storedCart) {
+      setIsCartReady(true);
+    }
+  }, []);
+  useEffect(() => {
+    if (isCartReady) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }, [cart, isCartReady]);
 
+  if (!isCartReady) return null;
   const addToCart = (item: CartItemType) => {
     setCart(prevCart => {
       const existingItem = prevCart.find(
@@ -71,7 +81,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       const selectedImage = item.product.availableColors?.find(
         color => color.color === item.selectedColor
       )?.imageUrl;
-
+      console.log("selected Image in context", selectedImage);
       return [...prevCart, { ...item, selectedImage }];
     });
   };
@@ -117,13 +127,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
     if (!cart || cart.length === 0) {
       return 0;
     }
-    return cart.reduce(
-      (acc, item) =>
-        acc +
-        Number(item.product.prices.sale || item.product.prices.regular) *
-          item.quantity,
-      0
-    );
+    return cart.reduce((acc, item) => {
+      const price = Number(
+        item.product.prices.sale || item.product.prices.regular
+      );
+      return acc + price * item.quantity;
+    }, 0);
   };
   const clearCart = () => {
     setCart([]);

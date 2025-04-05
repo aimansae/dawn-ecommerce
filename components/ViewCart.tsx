@@ -10,9 +10,14 @@ type AddToCartProps = {
   product: ProductType;
   quantity: number;
   selectedColor: string;
+  selectedSize?: string;
 };
 
-const AddToCart = ({ product, selectedColor }: AddToCartProps) => {
+const AddToCart = ({
+  product,
+  selectedColor,
+  selectedSize,
+}: AddToCartProps) => {
   const [isCartOpen, setIsCartOpen] = useState(true);
   const { getTotalQuantity } = useCart();
 
@@ -47,6 +52,11 @@ const AddToCart = ({ product, selectedColor }: AddToCartProps) => {
         <Image src={imageToDisplay} alt={product.name} width={70} height={65} />
         <div className="">
           <h3 className="text-[15px]">{product.name}</h3>
+          {selectedSize && (
+            <p className="text-[14px] text-darkGray">
+              Size: <span className="capitalize">{selectedSize}</span>
+            </p>
+          )}
           <h4 className="text-[14px] text-darkGray">
             Color: <span className="capitalize">{selectedColor}</span>
           </h4>

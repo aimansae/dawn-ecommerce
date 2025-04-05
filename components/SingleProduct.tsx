@@ -12,7 +12,6 @@ import QuantitySelector from "./QuantitySelector";
 import { useCountry } from "@/app/context/CountryContext";
 import AvailabilityTag from "../components/AvailabilityTag";
 import { convertPriceToCurrency } from "@/app/utils/functions";
-import Link from "next/link";
 
 const SingleProduct = ({ product }: SingleProductType) => {
   const { addToCart } = useCart();
@@ -245,10 +244,13 @@ const SingleProduct = ({ product }: SingleProductType) => {
               ? "Sold out"
               : "Add to cart"}
           </button>
-          <Link
-            href={isDisabled ? "#" : "/cart"}
-            onClick={e => {
-              if (isDisabled) e.preventDefault(); // prevent navigation
+          <button
+            disabled={isDisabled}
+            onClick={() => {
+              if (!isDisabled) {
+                handleAddToCart();
+                router.push("/cart");
+              }
             }}
             className={`w-full border border-darkGray p-3 text-center sm:w-4/5 md:w-full ${
               isDisabled
@@ -257,7 +259,7 @@ const SingleProduct = ({ product }: SingleProductType) => {
             }`}
           >
             Buy Now
-          </Link>
+          </button>
         </div>
         <div>
           <h3 className="text-darkGray">{product.description}</h3>
@@ -269,6 +271,7 @@ const SingleProduct = ({ product }: SingleProductType) => {
           quantity={quantity}
           product={product}
           selectedColor={selectedColor}
+          selectedSize={selectedSize}
         />
       )}
     </section>

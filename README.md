@@ -70,3 +70,6 @@ filter remove all button bigger devices
 7. Checkout Page (/checkout)
 
 Remove available tag from ui
+
+loading skeleton for order summary too
+cart layout not responsive, scroll not present
