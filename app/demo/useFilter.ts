@@ -14,6 +14,7 @@ export const useFilter = () => {
   useEffect(() => {
     const sizeParamsFromURL = searchParams?.get("size");
     const colorParamsFromURL = searchParams?.get("color");
+
     setSelectedSizes(sizeParamsFromURL ? sizeParamsFromURL.split(",") : []);
     setSelectedColors(colorParamsFromURL ? colorParamsFromURL.split(",") : []);
   }, [searchParams]);
@@ -30,6 +31,7 @@ export const useFilter = () => {
     } else {
       params.delete("color");
     }
+
     router.push(`${pathname}?${decodeURIComponent(params.toString())}`);
   };
   useEffect(() => {
@@ -49,6 +51,7 @@ export const useFilter = () => {
   return {
     selectedSizes,
     selectedColors,
+
     handleSizeSelection,
     handleColorSelection,
   };

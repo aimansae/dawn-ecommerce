@@ -4,7 +4,6 @@ import Loading from "./loading";
 import data from "../data/productList.json";
 import content from "../data/collectionFilter.json";
 import { transformProduct } from "../utils/transformProduct";
-
 import CollectionsProducts from "@/components/CollectionsProducts";
 import { ProductType } from "../types/types";
 import AppliedCollectionFilters from "@/components/AppliedCollectionFilters";
@@ -19,6 +18,8 @@ const CollectionsPage = ({
   // const { selectedLocation } = useCountry();
   const page = Number(searchParams.page) || 1;
   console.log(page?.toString(), "page from page.tsx");
+  const searchQuery = searchParams.query;
+  console.log(searchQuery, "Query term");
   const inStockParams = searchParams.inStock === "true";
   const outOfStockParams = searchParams.outOfStock === "true";
   const colors = Array.isArray(searchParams.colors)
@@ -29,7 +30,8 @@ const CollectionsPage = ({
 
   const sortByParams = searchParams.sort_by || undefined;
 
-  const isFiltering = inStockParams || outOfStockParams || colors.length > 0;
+  const isFiltering =
+    searchQuery || inStockParams || outOfStockParams || colors.length > 0;
 
   const filteredProducts = isFiltering
     ? allProducts.filter(product => {
@@ -46,7 +48,25 @@ const CollectionsPage = ({
           product.availableColors.some(color =>
             colors.includes(color.colorCategory.toLowerCase().trim())
           );
-        return matchesStock && matchesColor;
+
+        const matchesQuery =
+          !searchQuery ||
+          product.name
+            .toLowerCase()
+            .includes((searchQuery as string).toLowerCase()) ||
+          product.category.some(cat =>
+            cat.toLowerCase().includes((searchQuery as string).toLowerCase())
+          ) ||
+          product.availableColors.some(
+            color =>
+              color.color
+                .toLowerCase()
+                .includes((searchQuery as string).toLowerCase()) ||
+              color.colorCategory
+                .toLowerCase()
+                .includes((searchQuery as string).toLowerCase())
+          );
+        return matchesQuery && matchesStock && matchesColor;
       })
     : allProducts;
 
@@ -82,18 +102,22 @@ const CollectionsPage = ({
   const paginatedProducts = sortedProducts.slice(startIndex, endIndex);
 
   return (
-    <section className="mx-auto bg-white px-[25px] md:px-[50px] lg:max-w-6xl">
-      <h1 className="my-[25px] text-[30px] capitalize sm:text-[40px]">
-        {content.title}
-      </h1>
-      <Suspense fallback={<Loading />}>
-        <CollectionsFilters totalProducts={productCount} />
-      </Suspense>
-      <AppliedCollectionFilters />
-      <CollectionsProducts
-        products={paginatedProducts}
-        selectedColor={colors[0] || ""}
-      />
+    <section className="mx-auto flex w-full max-w-7xl flex-col justify-between bg-white p-4">
+      <div>
+        <h1
+          className={`${searchQuery ? "text-wrap" : ""} my-[25px] text-[30px] capitalize sm:text-[40px]`}
+        >
+          {searchQuery ? `Search for "${searchQuery}"` : `${content.title}`}
+        </h1>
+        <Suspense fallback={<Loading />}>
+          <CollectionsFilters totalProducts={productCount} />
+        </Suspense>
+        <AppliedCollectionFilters />
+        <CollectionsProducts
+          products={paginatedProducts}
+          selectedColor={colors[0] || ""}
+        />
+      </div>
       <Pagination
         products={filteredProducts}
         productsPerPage={productsPerPage}

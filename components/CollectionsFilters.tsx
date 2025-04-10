@@ -141,7 +141,7 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
           </button>
         </div>
         {/*desktop left content*/}
-        <div className="hidden w-full items-center justify-between capitalize md:flex">
+        <div className="hidden w-full items-center gap-12 capitalize md:flex">
           <h2 className="text-[15px]">{content.titleMediumDevices}:</h2>
           {content.filterBy.map((filter, index) => (
             <div className="relative" key={index}>

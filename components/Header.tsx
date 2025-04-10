@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 "use client";
 
 import Link from "next/link";
@@ -26,13 +27,14 @@ const Header = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [selectedLinkItem, setSelectedLinkItem] = useState<string | null>(null);
-  const [query, setQuery] = useState("");
+
   const searchParams = useSearchParams();
   const router = useRouter();
-  const searchQuery = searchParams.get("query");
   const desktopCategoryRef = useRef<HTMLDivElement | null>(null);
   const { getTotalQuantity } = useCart();
   const quantity = getTotalQuantity() || 0;
+  const [searchQuery, setSearchQuery] = useState("");
+  console.log("queryFrom", searchQuery);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -52,34 +54,35 @@ const Header = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [selectedLinkItem]);
+
   useEffect(() => {
     if (searchQuery) {
-      setQuery(searchQuery);
+      setSearchQuery(searchQuery);
     }
   }, [searchParams]);
 
   const filterProductByQuery = products.products
     .filter(
       product =>
-        product.name.toLowerCase().includes(query.toLowerCase()) ||
+        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         product.category.some(category =>
-          category.toLowerCase().includes(query.toLowerCase())
+          category.toLowerCase().includes(searchQuery.toLowerCase())
         ) ||
         product.availableColors.some(
           colorOption =>
-            colorOption.color.toLowerCase().includes(query.toLowerCase()) ||
+            colorOption.color
+              .toLowerCase()
+              .includes(searchQuery.toLowerCase()) ||
             colorOption.colorCategory
               .toLowerCase()
-              .includes(query.toLowerCase())
+              .includes(searchQuery.toLowerCase())
         )
     )
     .sort(() => 0.5 - Math.random())
     .slice(0, 5);
 
-  //sho image
-
   const filteredSuggestions = data.header.suggestions.filter(suggestion =>
-    suggestion.toLowerCase().includes(query.toLowerCase())
+    suggestion.toLowerCase().includes(searchQuery.toLowerCase())
   );
   const handleShowSearchBar = () => {
     setShowSearchBar(prev => !prev);
@@ -89,12 +92,19 @@ const Header = () => {
   };
 
   const { handleCategoryClick } = useCollectionFilters();
+
   const handleGeneralSearch = (query: string) => {
-    if (query.trim().toLowerCase()) {
-      router.push(`/?query=${encodeURIComponent(query.toString())}`);
+    const currentParams = new URLSearchParams(searchParams.toString());
+    console.log(currentParams, "Logging current params");
+    if (query.trim()) {
+      currentParams.set("query", query);
+      router.push(
+        `/collections?query=${encodeURIComponent(currentParams.toString())}`
+      );
     }
     setShowSearchBar(false);
   };
+
   useEffect(() => {
     if (isMobile || showSearchBar) {
       document.body.style.overflow = "hidden"; // Disable scrolling
@@ -102,6 +112,7 @@ const Header = () => {
       document.body.style.overflow = "auto"; // Enable scrolling
     }
   });
+
   // calculate header height for dark overlay
   const [overLayTop, setOverLayTop] = useState(0);
   const bannerRef = useRef<HTMLDivElement>(null);
@@ -116,7 +127,7 @@ const Header = () => {
       console.log(
         "banner",
         bannerHeight,
-        "qury",
+        "query",
         queryHeight,
         "header",
         headerHeight,
@@ -129,7 +140,7 @@ const Header = () => {
     calculateOverlayTop();
     window.addEventListener("resize", calculateOverlayTop);
     return () => window.removeEventListener("resize", calculateOverlayTop);
-  }, [showSearchBar, query]);
+  }, [showSearchBar, searchQuery]);
 
   return (
     <>
@@ -151,25 +162,26 @@ const Header = () => {
             <div className="relative">
               <HeaderSearch
                 onClose={() => setShowSearchBar(false)}
-                term={query}
-                setTerm={setQuery}
+                term={searchQuery}
+                setTerm={setSearchQuery}
               />
 
-              {query && (
+              {searchQuery && (
                 <div>
-                  {filterProductByQuery.length === 0 || query.length === 0 ? (
+                  {filterProductByQuery.length === 0 ||
+                  searchQuery.length === 0 ? (
                     <div
                       ref={queryRef}
                       className="flex items-center justify-between px-2"
                     >
-                      <span className="">Search for: &quot;{query}&quot;</span>
+                      <span className="">
+                        Search for: &quot;{searchQuery}&quot;
+                      </span>
                       <button
                         className="flex"
-                        onClick={() => handleGeneralSearch(query)}
+                        onClick={() => handleGeneralSearch(searchQuery)}
                       >
-                        <Link href="">
-                          <FaArrowRight />
-                        </Link>
+                        <FaArrowRight />
                       </button>
                     </div> //suggestions
                   ) : (
@@ -184,7 +196,15 @@ const Header = () => {
                               <ul key={i} className=" ">
                                 <li className="w-full px-[15px] text-xs hover:bg-gray-100">
                                   <Link
-                                    href={`/?query=${suggestion}`}
+                                    href={{
+                                      pathname: "/collections",
+                                      query: {
+                                        ...Object.fromEntries(
+                                          searchParams.entries()
+                                        ), // existing filters
+                                        query: suggestion, // new query
+                                      },
+                                    }}
                                     className="flex gap-2 py-[10px] hover:underline"
                                     onClick={() => setShowSearchBar(false)}
                                   >
@@ -204,10 +224,10 @@ const Header = () => {
                               colorOption =>
                                 colorOption.color
                                   .toLowerCase()
-                                  .includes(query.trim()) ||
+                                  .includes(searchQuery.trim()) ||
                                 colorOption.colorCategory
                                   .toLowerCase()
-                                  .includes(query.trim())
+                                  .includes(searchQuery.trim())
                             );
                             const colorImage = matchingColor
                               ? matchingColor.imageUrl[0]

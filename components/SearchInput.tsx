@@ -1,4 +1,3 @@
-import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { TfiClose } from "react-icons/tfi";

@@ -12,12 +12,15 @@ const page = ({
   searchParams,
 }: {
   params: { category: string };
-  searchParams: { [key: string]: string[] | undefined };
+  searchParams: { [key: string]: string | string[] | undefined };
 }) => {
   const allProducts: ProductType[] = data.products.map(transformProduct);
   const formattedCategory = decodeURIComponent(params.category)
     .replaceAll("-", " ")
     .toLowerCase();
+
+  // get query
+
   const filteredProducts = allProducts.filter(p =>
     p.category.some(c => c.toLowerCase() === formattedCategory)
   );
@@ -30,7 +33,7 @@ const page = ({
   const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
 
   return (
-    <section className="mx-auto bg-white px-[25px] md:px-[50px] lg:max-w-6xl">
+    <section className="mx-auto w-full max-w-7xl bg-white p-4">
       <h1 className="my-[25px] text-[30px] capitalize sm:text-[40px]">
         {formattedCategory}
       </h1>

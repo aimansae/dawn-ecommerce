@@ -46,7 +46,7 @@ const Pagination = ({ products, productsPerPage = 6 }: PaginationProps) => {
   if (totalPages <= 1) return null;
 
   return (
-    <div className="text-md my-6 flex items-center justify-center gap-2">
+    <div className="mt-8 flex items-center justify-center gap-4 text-lg">
       {/*Previous Page*/}
       <button
         onClick={() => handlePageChange(currentPage - 1)}

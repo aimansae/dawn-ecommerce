@@ -58,7 +58,7 @@ export const useCollectionFilters = () => {
 
   // update url
   const updateURL = (newFilters: FiltersType, newSortBy: string | null) => {
-    const params = new URLSearchParams();
+    const params = new URLSearchParams(searchparams.toString());
 
     // Always update colors
     if (newFilters.colors.length > 0) {
@@ -76,6 +76,7 @@ export const useCollectionFilters = () => {
     if (newSortBy) {
       params.set("sort_by", newSortBy);
     }
+
     router.push(`${pathname}?${decodeURIComponent(params.toString())}`);
   };
   // sort by

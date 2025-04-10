@@ -24,7 +24,9 @@ const HeaderSearch = ({ onClose, term, setTerm }: HeaderSearchProps) => {
 
   const handleSubmit = () => {
     if (search.trim()) {
-      router.push(`/?query=${encodeURIComponent(search.toString())}`);
+      router.push(
+        `/collections/?query=${encodeURIComponent(search.toString())}`
+      );
     }
 
     onClose();

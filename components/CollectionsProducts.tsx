@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ProductType } from "@/app/types/types";
 import { useCountry } from "@/app/context/CountryContext";
+import { useCollectionFilters } from "@/app/hooks/useCollectionFilters";
 const CollectionsProducts = ({
   products,
   selectedColor,
@@ -15,12 +16,35 @@ const CollectionsProducts = ({
   selectedColor: string;
 }) => {
   const { selectedLocation } = useCountry();
-
+  const { handleClearFilters } = useCollectionFilters();
   return (
     <>
       {products.length === 0 ? (
-        <div className="flex py-10 text-lg text-gray-600">
-          <p className="my-6 text-center">No results found</p>
+        <div className="flex flex-col items-center justify-center gap-4 py-20 text-gray-500">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-14 w-14 text-gray-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={1.5}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 105.25 5.25a7.5 7.5 0 0011.4 11.4z"
+            />
+          </svg>
+          <h2 className="text-2xl font-medium">Nothing matched your filters</h2>
+          <p className="text-center text-sm">
+            Try adjusting your filters or keywords and search again.
+          </p>
+          <button
+            onClick={handleClearFilters}
+            className="mt-2 rounded-md border border-gray-300 bg-white px-5 py-2 text-sm font-medium text-gray-700 shadow-sm transition hover:border-black hover:text-black"
+          >
+            Reset Filters
+          </button>
         </div>
       ) : (
         <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">
