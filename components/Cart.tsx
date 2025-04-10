@@ -26,11 +26,13 @@ const Cart = () => {
   const totalPrice = getTotalPrice();
 
   return (
-    <section className="flex flex-col gap-4 px-[15px] py-[14px] md:mx-auto md:max-w-6xl md:px-[50px] lg:px-[50px]">
+    <section className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-7">
       {quantity > 0 && (
         <>
-          <div className="block items-center justify-between sm:flex">
-            <h1 className="text-[30px] sm:text-[40px]">{data.cart.title}</h1>
+          <div className="block items-center justify-between py-4 sm:flex md:py-9">
+            <h1 className="mb-4 text-[30px] sm:text-[40px] md:mb-9">
+              {data.cart.title}
+            </h1>
             <Link
               className="my-2 capitalize text-darkGray underline"
               href="/collections"
@@ -45,7 +47,7 @@ const Cart = () => {
                 <th className="ml-[104px] hidden md:block">
                   {data.cart.subheader.quantity}
                 </th>
-                <th className=" ">{data.cart.subheader.total}</th>
+                <th className="hidden md:block">{data.cart.subheader.total}</th>
               </tr>
             </thead>
             <tbody className="border-b border-darkGray">
@@ -61,7 +63,7 @@ const Cart = () => {
                     key={item.product.id}
                     className="my-8 flex items-center justify-between md:items-start"
                   >
-                    <td className="flex gap-4">
+                    <td className="flex gap-2 md:gap-4">
                       <div>
                         <Image
                           src={
@@ -85,7 +87,7 @@ const Cart = () => {
                         >
                           {item.product.name}
                         </Link>
-                        <p className="text-darkGray">
+                        <div className="text-darkGray">
                           <span> {selectedLocation.currencySymbol}</span>
                           <span>
                             {convertPriceToCurrency(
@@ -95,17 +97,24 @@ const Cart = () => {
                               ),
                               exchangeRate
                             )}
+                            <div className="my-2 md:hidden">
+                              {quantity}X{" "}
+                              <span className="font-bold">
+                                {selectedLocation.currencySymbol}
+                                {convertPriceToCurrency(total, exchangeRate)}
+                              </span>
+                            </div>
                           </span>
-                        </p>
-                        <div>
-                          <p className="capitalize text-darkGray">
-                            Color: {item.selectedColor}
-                          </p>
-                          {item.selectedSize && (
-                            <p className="text-darkGray">
-                              Size: {item.selectedSize}
-                            </p>
-                          )}
+                          <div className="flex flex-col">
+                            <span className="capitalize text-darkGray">
+                              Color: {item.selectedColor}
+                            </span>
+                            {item.selectedSize && (
+                              <span className="text-darkGray">
+                                Size: {item.selectedSize}
+                              </span>
+                            )}
+                          </div>{" "}
                         </div>
                         <div className="flex items-center gap-2 md:hidden">
                           <div className="w-2/3 sm:w-3/4">
@@ -166,7 +175,7 @@ const Cart = () => {
                       </button>
                     </td>
                     {/*total per product*/}
-                    <td className=" ">
+                    <td className="hidden md:block">
                       <span className="block">
                         {selectedLocation.currencySymbol}
                         {convertPriceToCurrency(total, exchangeRate)}
@@ -181,7 +190,7 @@ const Cart = () => {
       )}
       {/*Cart Footer*/}
       {quantity > 0 ? (
-        <div className="my-[30px] flex flex-col items-center justify-center gap-4 text-center md:items-end">
+        <div className="flex flex-col items-center justify-center gap-4 py-9 text-center md:items-end">
           <p>
             {data.cart.footer.estimatedTotal}
             <span className="text-lg capitalize text-darkGray">

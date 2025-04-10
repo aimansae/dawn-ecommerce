@@ -1,0 +1,27 @@
+{
+  "labels": {
+    "contact": "Contact",
+    "email": "Email",
+    "receiveEmails": "Email me with news and offers",
+    "delivery": "Delivery",
+    "country": "Country/Region",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "address": "Address",
+    "apartment": "Apartment",
+    "postalCode": "Postal Code",
+    "city": "City",
+    "shippingMethod": "Shipping method",
+    "shippingNote": "Enter your shipping address to view available shipping methods.",
+    "sendOrder": "Send order"
+  },
+  "placeholders": {
+    "email": "email",
+    "firstName": "First name (optional)",
+    "lastName": "Last name",
+    "address": "Address",
+    "apartment": "Apartment",
+    "postalCode": "Postal Code",
+    "city": "City"
+  }
+}

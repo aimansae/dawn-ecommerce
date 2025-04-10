@@ -71,16 +71,13 @@ const CheckoutForm = () => {
   };
 
   return (
-    <section className="mx-auto flex flex-col justify-between lg:max-w-6xl">
+    <section className="mx-auto flex w-full max-w-6xl flex-col justify-between">
       <div className="md:grid md:grid-cols-2 md:items-start md:justify-between">
         <OrderSummary />
 
-        <form
-          onSubmit={handleSubmit}
-          className="px-[25px] py-3 sm:gap-0 md:order-1 md:px-[50px]"
-        >
+        <form onSubmit={handleSubmit} className="px-7 py-3 sm:gap-0 md:order-1">
           {status === "error" && (
-            <div className="mb-4 rounded bg-red-100 p-3 text-center text-sm text-red-800 shadow">
+            <div className="mb-4 rounded p-3 text-center text-sm text-red-800 shadow">
               <span>{message}</span>
             </div>
           )}
@@ -106,7 +103,7 @@ const CheckoutForm = () => {
             />
           </div>
 
-          <h2 className="my-2 text-[21px] font-bold">Delivery</h2>
+          <h2 className="my-4 text-[21px] font-bold">Delivery</h2>
           <div className="flex flex-col gap-3">
             <div className="relative">
               <select
@@ -193,7 +190,7 @@ const CheckoutForm = () => {
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <h2 className="my-2 text-[21px] font-bold">Shipping method</h2>
+            <h2 className="my-4 text-[21px] font-bold">Shipping method</h2>
             <div className="my-2 rounded-md border border-gray-100 bg-gray-100 p-3">
               <p className="text-sm text-gray-600">
                 Enter your shipping address to view available shipping methods.

@@ -20,12 +20,12 @@ const OrderSummary = () => {
   const toggleSummary = () => {
     setToggleOrderSummary(prev => !prev);
   };
-  //  md:hidden md:px-[50px]
+
   return (
-    <div className="w-full bg-[#f5f5f5] md:order-2 md:h-full lg:max-w-6xl">
+    <div className="mx-auto h-full w-full max-w-7xl bg-[#f5f5f5] px-7 md:order-2 md:h-full">
       <button
         onClick={toggleSummary}
-        className="flex w-full items-center justify-between border border-b px-[25px] py-5 text-[#334FB4]"
+        className="flex w-full items-center justify-between border border-b py-5 text-[#334FB4]"
       >
         <span className="flex items-center gap-1 text-[15px]">
           Order Summary
@@ -38,9 +38,11 @@ const OrderSummary = () => {
         </span>
       </button>
 
-      <div className={`md:block ${!toggleOrderSummary ? "block" : "hidden"}`}>
+      <div
+        className={`md:block ${!toggleOrderSummary ? "block" : "hidden"} py-4`}
+      >
         {/* Product List */}
-        <div className="flex flex-col gap-6 px-[25px] py-6">
+        <div className="flex flex-col gap-6 py-6">
           {cart.map(item => {
             const imageUrl =
               Array.isArray(item.selectedImage) && item.selectedImage.length > 0
@@ -103,7 +105,7 @@ const OrderSummary = () => {
           })}
         </div>
         {/* Total Section */}
-        <div className="mt-4 flex justify-between px-[25px]">
+        <div className="mt-4 flex justify-between">
           <p>Subtotal - {quantity} items</p>
           <p className="font-semibold">
             {selectedLocation.currencySymbol}
