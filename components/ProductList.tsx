@@ -45,7 +45,7 @@ const ProductList = () => {
     : productsForMainPage;
 
   return (
-    <section className="mx-auto px-4 md:px-[50px] lg:max-w-6xl">
+    <section className="mx-auto w-full max-w-7xl p-4">
       {filteredProducts.length === 0 ? (
         <div>
           <p className="my-6 text-center">
@@ -53,7 +53,7 @@ const ProductList = () => {
             <span className="font-semibold italic">&quot;{query} &quot;</span>
           </p>
 
-          <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
             {productsForMainPage.map(product => (
               <Link
                 href={`/product/${createSlugFromName(product.name)}`}

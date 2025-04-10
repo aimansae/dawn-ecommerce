@@ -2,7 +2,7 @@ import React from "react";
 
 const VideoPlayer = () => {
   return (
-    <div className="mx-auto flex h-[250px] items-center justify-center px-4 py-[36px] md:px-[50px] lg:max-w-6xl">
+    <section className="mx-auto h-56 w-full max-w-7xl bg-yellow-200 px-4 py-9 md:h-[400px]">
       <iframe
         width="100%"
         height="100%"
@@ -12,7 +12,7 @@ const VideoPlayer = () => {
         allowFullScreen
         className="h-full w-full"
       ></iframe>
-    </div>
+    </section>
   );
 };
 

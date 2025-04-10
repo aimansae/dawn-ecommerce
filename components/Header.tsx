@@ -21,17 +21,18 @@ import HeaderSearch from "./HeaderSearch";
 import { useRouter, useSearchParams } from "next/navigation";
 import ShippingBanner from "./ShippingBanner";
 import { useCollectionFilters } from "@/app/hooks/useCollectionFilters";
+
 const Header = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [selectedLinkItem, setSelectedLinkItem] = useState<string | null>(null);
-
   const [query, setQuery] = useState("");
   const searchParams = useSearchParams();
   const router = useRouter();
-
   const searchQuery = searchParams.get("query");
   const desktopCategoryRef = useRef<HTMLDivElement | null>(null);
+  const { getTotalQuantity } = useCart();
+  const quantity = getTotalQuantity() || 0;
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -63,30 +64,29 @@ const Header = () => {
         product.name.toLowerCase().includes(query.toLowerCase()) ||
         product.category.some(category =>
           category.toLowerCase().includes(query.toLowerCase())
+        ) ||
+        product.availableColors.some(
+          colorOption =>
+            colorOption.color.toLowerCase().includes(query.toLowerCase()) ||
+            colorOption.colorCategory
+              .toLowerCase()
+              .includes(query.toLowerCase())
         )
     )
     .sort(() => 0.5 - Math.random())
     .slice(0, 5);
+
+  //sho image
+
   const filteredSuggestions = data.header.suggestions.filter(suggestion =>
     suggestion.toLowerCase().includes(query.toLowerCase())
   );
-
-  useEffect(() => {
-    if (isMobile || showSearchBar) {
-      document.body.style.overflow = "hidden"; // Disable scrolling
-    } else {
-      document.body.style.overflow = "auto"; // Enable scrolling
-    }
-  });
-
   const handleShowSearchBar = () => {
     setShowSearchBar(prev => !prev);
   };
   const handleItemClick = (label: string) => {
     setSelectedLinkItem(prev => (prev === label ? null : label));
   };
-  const { getTotalQuantity } = useCart();
-  const quantity = getTotalQuantity() || 0;
 
   const { handleCategoryClick } = useCollectionFilters();
   const handleGeneralSearch = (query: string) => {
@@ -95,98 +95,159 @@ const Header = () => {
     }
     setShowSearchBar(false);
   };
+  useEffect(() => {
+    if (isMobile || showSearchBar) {
+      document.body.style.overflow = "hidden"; // Disable scrolling
+    } else {
+      document.body.style.overflow = "auto"; // Enable scrolling
+    }
+  });
+  // calculate header height for dark overlay
+  const [overLayTop, setOverLayTop] = useState(0);
+  const bannerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const queryRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const calculateOverlayTop = () => {
+      const bannerHeight = bannerRef.current?.offsetHeight || 0;
+      const headerHeight = headerRef.current?.offsetHeight || 0;
+      const queryHeight = queryRef.current ? queryRef.current.offsetHeight : 0;
+      console.log(
+        "banner",
+        bannerHeight,
+        "qury",
+        queryHeight,
+        "header",
+        headerHeight,
+        "***********"
+      );
+
+      setOverLayTop(bannerHeight + headerHeight + queryHeight);
+    };
+
+    calculateOverlayTop();
+    window.addEventListener("resize", calculateOverlayTop);
+    return () => window.removeEventListener("resize", calculateOverlayTop);
+  }, [showSearchBar, query]);
 
   return (
     <>
-      <ShippingBanner />
+      <ShippingBanner bannerHeightRef={bannerRef} />
       <header
-        className={`top-0 z-50 border-b border-t border-gray-200 bg-white py-[14px] md:mx-auto md:max-w-6xl lg:relative lg:px-[50px] ${
-          showSearchBar ? "px-[15px] py-2" : "px-[30px]"
+        ref={headerRef}
+        className={`top-0 z-50 mx-auto w-full max-w-7xl border-b border-t border-gray-200 bg-white ${
+          showSearchBar ? "px-2 py-2" : "px-7"
         }`}
       >
+        {" "}
         {showSearchBar ? (
-          <div className="relative">
-            <HeaderSearch
-              onClose={() => setShowSearchBar(false)}
-              term={query}
-              setTerm={setQuery}
-            />
-            {query && (
-              <div>
-                {filterProductByQuery.length === 0 || query.length === 0 ? (
-                  <div className="flex items-center justify-between px-2">
-                    <span className="py-2">
-                      Search for: &quot;{query}&quot;
-                    </span>
-                    <button
-                      className="flex"
-                      onClick={() => handleGeneralSearch(query)}
+          <>
+            <div
+              onClick={() => setShowSearchBar(false)}
+              className="fixed left-0 right-0 z-40 bg-black bg-opacity-50"
+              style={{ top: `${overLayTop}px`, bottom: 0 }}
+            ></div>
+            <div className="relative">
+              <HeaderSearch
+                onClose={() => setShowSearchBar(false)}
+                term={query}
+                setTerm={setQuery}
+              />
+
+              {query && (
+                <div>
+                  {filterProductByQuery.length === 0 || query.length === 0 ? (
+                    <div
+                      ref={queryRef}
+                      className="flex items-center justify-between px-2"
                     >
-                      <Link href="">
-                        <FaArrowRight />
-                      </Link>
-                    </button>
-                  </div> //suggestions
-                ) : (
-                  <div className="fixed left-0 z-50 h-2/3 w-full overflow-y-scroll bg-white md:absolute md:mx-auto md:h-auto md:overflow-y-auto md:pt-4">
-                    <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-                      {filteredSuggestions.length > 0 && (
-                        <div className="flex flex-col">
+                      <span className="">Search for: &quot;{query}&quot;</span>
+                      <button
+                        className="flex"
+                        onClick={() => handleGeneralSearch(query)}
+                      >
+                        <Link href="">
+                          <FaArrowRight />
+                        </Link>
+                      </button>
+                    </div> //suggestions
+                  ) : (
+                    <div className="fixed left-0 z-50 h-2/3 w-full overflow-y-scroll bg-white md:absolute md:mx-auto md:h-auto md:overflow-y-auto md:pt-4">
+                      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                        {filteredSuggestions.length > 0 && (
+                          <div className="flex flex-col">
+                            <h1 className="border-b border-gray-200 px-[15px] py-2 text-[10px] uppercase text-darkGray">
+                              Suggestions
+                            </h1>
+                            {filteredSuggestions.map((suggestion, i) => (
+                              <ul key={i} className=" ">
+                                <li className="w-full px-[15px] text-xs hover:bg-gray-100">
+                                  <Link
+                                    href={`/?query=${suggestion}`}
+                                    className="flex gap-2 py-[10px] hover:underline"
+                                    onClick={() => setShowSearchBar(false)}
+                                  >
+                                    {suggestion}
+                                  </Link>
+                                </li>
+                              </ul>
+                            ))}
+                          </div>
+                        )}
+                        <div className="md:col-span-2">
                           <h1 className="border-b border-gray-200 px-[15px] py-2 text-[10px] uppercase text-darkGray">
-                            Suggestions
+                            Products
                           </h1>
-                          {filteredSuggestions.map((suggestion, i) => (
-                            <ul key={i} className=" ">
-                              <li className="w-full px-[15px] text-xs hover:bg-gray-100">
-                                <Link
-                                  href={`/?query=${suggestion}`}
-                                  className="flex gap-2 py-[10px] hover:underline"
-                                  onClick={() => setShowSearchBar(false)}
-                                >
-                                  {suggestion}
-                                </Link>
-                              </li>
-                            </ul>
-                          ))}
+                          {filterProductByQuery.map(product => {
+                            const matchingColor = product.availableColors.find(
+                              colorOption =>
+                                colorOption.color
+                                  .toLowerCase()
+                                  .includes(query.trim()) ||
+                                colorOption.colorCategory
+                                  .toLowerCase()
+                                  .includes(query.trim())
+                            );
+                            const colorImage = matchingColor
+                              ? matchingColor.imageUrl[0]
+                              : product.availableColors[0].imageUrl[0];
+
+                            return (
+                              <ul key={product.id} className="py-4">
+                                <li className="w-full px-[15px] text-xs hover:bg-gray-100">
+                                  <Link
+                                    href={`/product/${createSlugFromName(
+                                      product.name
+                                    )}`}
+                                    className="flex items-center gap-2 capitalize hover:underline"
+                                    onClick={() => setShowSearchBar(false)}
+                                  >
+                                    <Image
+                                      src={colorImage}
+                                      alt={product.name}
+                                      width={50}
+                                      height={40}
+                                      className="object-fit"
+                                    />
+                                    <h4 className="mt-2 text-[12px] text-customBlack">
+                                      {product.name}
+                                    </h4>
+                                  </Link>
+                                </li>
+                              </ul>
+                            );
+                          })}
                         </div>
-                      )}
-                      <div className="md:col-span-2">
-                        <h1 className="border-b border-gray-200 px-[15px] py-2 text-[10px] uppercase text-darkGray">
-                          Products
-                        </h1>
-                        {filterProductByQuery.map(product => (
-                          <ul key={product.id} className="py-4">
-                            <li className="w-full px-[15px] text-xs hover:bg-gray-100">
-                              <Link
-                                href={`/product/${createSlugFromName(
-                                  product.name
-                                )}`}
-                                className="flex items-center gap-2 capitalize hover:underline"
-                                onClick={() => setShowSearchBar(false)}
-                              >
-                                <Image
-                                  src={product.availableColors[0].imageUrl[0]}
-                                  alt={product.name}
-                                  width={50}
-                                  height={40}
-                                  className="object-fit"
-                                />
-                                <h4 className="mt-2 text-[12px] text-customBlack">
-                                  {product.name}
-                                </h4>
-                              </Link>
-                            </li>
-                          </ul>
-                        ))}
                       </div>
                     </div>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </>
         ) : (
-          <nav className="grid grid-cols-[1fr_2fr_1fr] items-center lg:grid-cols-[1fr_5fr_1fr]">
+          <nav className="grid grid-cols-[1fr_2fr_1fr] items-center py-4 lg:grid-cols-[1fr_5fr_1fr]">
             <div className="flex items-center justify-start lg:hidden">
               <button onClick={() => setIsMobile(prev => !prev)}>
                 {isMobile ? (

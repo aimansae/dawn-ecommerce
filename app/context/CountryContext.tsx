@@ -44,17 +44,17 @@ export const CountryProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("location", JSON.stringify(selectedLocation));
   }, [selectedLocation]);
 
-  useEffect(() => {
-    const fetchRate = async () => {
-      const rate = await fetchCurrencyRates(selectedLocation.currency);
+  // useEffect(() => {
+  //   const fetchRate = async () => {
+  //     const rate = await fetchCurrencyRates(selectedLocation.currency);
 
-      if (rate) {
-        setExchangeRate(rate);
-      }
-    };
+  //     if (rate) {
+  //       setExchangeRate(rate);
+  //     }
+  //   };
 
-    fetchRate();
-  }, [selectedLocation]);
+  //   // fetchRate();
+  // }, [selectedLocation]);
   return (
     <CountryContext.Provider
       value={{

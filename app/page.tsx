@@ -4,17 +4,17 @@ import OrderSuccessBanner from "@/components/OrderSuccessBanner";
 import ProductList from "@/components/ProductList";
 import Refinery from "@/components/Refinery";
 import VideoPlayer from "@/components/VideoPlayer";
-const Home = () => {
+const HomePage = () => {
   return (
-    <main>
+    <>
       <OrderSuccessBanner />
       <Hero />
       <ProductList />
       <BackInStock />
       <VideoPlayer />
       <Refinery />
-    </main>
+    </>
   );
 };
 
-export default Home;
+export default HomePage;

@@ -50,7 +50,7 @@ const Footer = () => {
   }, [showLocations]);
 
   return (
-    <footer className="xs:gap-8 mx-auto my-2 mt-16 grid w-full grid-cols-1 items-center px-[25px] sm:gap-0 md:px-[50px] lg:max-w-6xl">
+    <footer className="mx-auto mt-12 grid w-full max-w-7xl grid-cols-1 px-7 pt-9">
       <div className="flex flex-col justify-between gap-6 md:flex-row md:gap-3">
         {/*Links section*/}
         <section className="flex flex-1 flex-col gap-2">
@@ -144,7 +144,9 @@ const Footer = () => {
         </div>
         <div className="lg:w-full">
           <p className="text-center lg:text-left">
-            <small className="text-xs text-darkGray">{}</small>
+            <small className="text-xs text-darkGray">
+              {data.footer.copyright.description}
+            </small>
           </p>
         </div>
       </section>
