@@ -11,7 +11,7 @@ const CartGuard = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     if (pathname === "/checkout" && cart.length === 0) {
-      router.replace("/cart"); // avoid breaking sessionStorage for homepage
+      router.replace("/cart");
     } else {
       setReady(true);
     }

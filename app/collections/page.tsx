@@ -109,14 +109,14 @@ const CollectionsPage = ({
         >
           {searchQuery ? `Search for "${searchQuery}"` : `${content.title}`}
         </h1>
-        <Suspense fallback={<Loading />}>
-          <CollectionsFilters totalProducts={productCount} />
-        </Suspense>
+        <CollectionsFilters totalProducts={productCount} />
         <AppliedCollectionFilters />
-        <CollectionsProducts
-          products={paginatedProducts}
-          selectedColor={colors[0] || ""}
-        />
+        <Suspense fallback={<Loading />}>
+          <CollectionsProducts
+            products={paginatedProducts}
+            selectedColor={colors[0] || ""}
+          />
+        </Suspense>
       </div>
       <Pagination
         products={filteredProducts}

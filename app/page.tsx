@@ -4,6 +4,7 @@ import OrderSuccessBanner from "@/components/OrderSuccessBanner";
 import ProductList from "@/components/ProductList";
 import Refinery from "@/components/Refinery";
 import VideoPlayer from "@/components/VideoPlayer";
+
 const HomePage = () => {
   return (
     <>

@@ -446,7 +446,7 @@ export const SortByFilter = ({
   sortBy,
   handleSortByChange,
 }: {
-  sortBy?: string;
+  sortBy?: string ;
   handleSortByChange: React.ChangeEventHandler<HTMLSelectElement>;
 }) => {
   return (

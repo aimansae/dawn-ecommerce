@@ -6,8 +6,9 @@ const filePath = path.join(process.cwd(), "app", "data", "orders.json");
 console.log("logging filePath", filePath);
 export async function POST(req: NextRequest) {
   try {
-    const data = await req.json();
-    console.log("body is", data);
+    const body = await req.json();
+    const { cart, userInfo, selectedShipping, total } = body;
+    console.log("body is", body);
     // check existing orders
     const existingOrders = fs.existsSync(filePath)
       ? JSON.parse(fs.readFileSync(filePath, "utf-8"))
@@ -15,10 +16,16 @@ export async function POST(req: NextRequest) {
 
     // add new orders
 
-    const newOrder = { ...data, createdAt: new Date().toString() };
+    const newOrder = {
+      ...userInfo,
+      cart,
+      selectedShipping,
+      total,
+      createdAt: new Date().toString(),
+    };
     const updateOrders = [...existingOrders, newOrder];
     console.log("newOrder", newOrder, updateOrders);
-    console.log("log DATA", data);
+    console.log("log DATA", body);
     // save orders to the file
     fs.writeFileSync(filePath, JSON.stringify(updateOrders, null, 2));
 

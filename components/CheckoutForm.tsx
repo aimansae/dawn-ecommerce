@@ -6,10 +6,12 @@ import { useCart } from "@/app/context/CartContext";
 import OrderSummary from "./OrderSummary";
 import { CheckoutFormData } from "@/app/types/types";
 import data from "../app/data/header.json";
+import content from "../app/data/checkoutForm.json";
+import { useCountry } from "@/app/context/CountryContext";
 const CheckoutForm = () => {
-  const { clearCart } = useCart();
+  const { clearCart, cart } = useCart();
   const router = useRouter();
-
+  const { selectedLocation } = useCountry();
   const [formData, setFormData] = useState<CheckoutFormData>({
     email: "",
     firstName: "",
@@ -23,6 +25,16 @@ const CheckoutForm = () => {
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"success" | "error" | "">("");
   const [selectCountry, setSelectCountry] = useState("");
+
+  const [selectedShipping, setSelectedShipping] = useState<{
+    type: string;
+    price: string;
+  } | null>(null);
+  const [totalWithShipping, setTotalWithShipping] = useState(0);
+  const handleTotalChange = (total: number) => {
+    setTotalWithShipping(total);
+  };
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
@@ -40,10 +52,19 @@ const CheckoutForm = () => {
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          cart,
+          selectedShipping,
+          total: totalWithShipping,
+        }),
       });
       const data = await res.json();
       if (res.ok && data.success) {
+        sessionStorage.setItem("successMessage", data.message);
+        setTimeout(() => {
+          router.push("/");
+        }, 150);
         clearCart();
         setMessage(data.message);
         setStatus("success");
@@ -57,7 +78,9 @@ const CheckoutForm = () => {
           email: "",
           receiveEmails: false,
         });
-        sessionStorage.setItem("successMessage", data.message);
+        setSelectedShipping(null);
+        setTotalWithShipping(0);
+
         router.push("/");
       } else {
         setMessage(data.message || "Oops Something went wrong");
@@ -69,11 +92,16 @@ const CheckoutForm = () => {
       setStatus("error");
     }
   };
+  //shipping
+  console.log("Receive emails:", formData.receiveEmails);
 
   return (
     <section className="mx-auto flex w-full max-w-6xl flex-col justify-between">
       <div className="md:grid md:grid-cols-2 md:items-start md:justify-between">
-        <OrderSummary />
+        <OrderSummary
+          selectedShipping={selectedShipping}
+          onTotalChange={handleTotalChange}
+        />
 
         <form onSubmit={handleSubmit} className="px-7 py-3 sm:gap-0 md:order-1">
           {status === "error" && (
@@ -191,10 +219,48 @@ const CheckoutForm = () => {
           </div>
           <div className="flex flex-col gap-2">
             <h2 className="my-4 text-[21px] font-bold">Shipping method</h2>
-            <div className="my-2 rounded-md border border-gray-100 bg-gray-100 p-3">
-              <p className="text-sm text-gray-600">
-                Enter your shipping address to view available shipping methods.
-              </p>
+            <div className="my-2 rounded-md border border-gray-100 bg-gray-100">
+              {selectCountry ? (
+                content.shipping.map((option, index) => (
+                  <div
+                    className="flex flex-col gap-2 rounded-md border"
+                    key={index}
+                  >
+                    <div className="flex items-start justify-between gap-2 p-4">
+                      <input
+                        className={`h-6 w-6`}
+                        type="radio"
+                        name="shipping"
+                        id={option.type}
+                        value={option.type}
+                        onChange={() => {
+                          setSelectedShipping(option);
+                        }}
+                        checked={selectedShipping?.type === option.type}
+                      />
+                      <div className="w-full">
+                        <label
+                          className={`h-6 w-6 ${selectedShipping?.type === option.type ? "text-bold" : ""}`}
+                          htmlFor={option.type}
+                        >
+                          {selectedLocation.country} {option.type}
+                        </label>
+                        <p className="my-2 text-darkGray">{option.times}</p>
+                      </div>
+                      <span className="font-bold">
+                        {selectedLocation.currencySymbol}
+                        {option.price}
+                      </span>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p className="p-4 text-sm text-gray-600">
+                  Enter your shipping address to view available shipping
+                  methods.
+                </p>
+              )}
+              {/*Shipping info*/}
             </div>
             <div className="flex items-center justify-center">
               <button

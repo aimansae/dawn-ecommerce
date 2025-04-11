@@ -8,13 +8,30 @@ import {
 } from "@/app/utils/functions";
 import { useCountry } from "@/app/context/CountryContext";
 import { MdKeyboardArrowDown } from "react-icons/md";
+type ShippingOption = {
+  type: string;
+  price: string;
+} | null;
 
-const OrderSummary = () => {
+interface OrderSummaryProps {
+  selectedShipping: ShippingOption;
+  onTotalChange: (total: number) => void;
+}
+const OrderSummary = ({
+  selectedShipping,
+  onTotalChange,
+}: OrderSummaryProps) => {
   const { cart, getTotalPrice, getTotalQuantity } = useCart();
   const { selectedLocation, exchangeRate } = useCountry();
   const [toggleOrderSummary, setToggleOrderSummary] = useState(false);
-  console.log(JSON.stringify(cart), "Logging cart");
+
   const totalPrice = getTotalPrice();
+  const total =
+    totalPrice + (selectedShipping ? Number(selectedShipping.price) : 0);
+
+  onTotalChange(total);
+
+  console.log(JSON.stringify(cart), "Logging cart");
   const quantity = getTotalQuantity();
 
   const toggleSummary = () => {
@@ -105,12 +122,30 @@ const OrderSummary = () => {
           })}
         </div>
         {/* Total Section */}
-        <div className="mt-4 flex justify-between">
-          <p>Subtotal - {quantity} items</p>
-          <p className="font-semibold">
-            {selectedLocation.currencySymbol}
-            {convertPriceToCurrency(Number(totalPrice), exchangeRate)}
-          </p>
+        <div className="mt-4 flex flex-col gap-2">
+          <div className="flex justify-between">
+            <span>Subtotal - {quantity} items</span>
+            <span className="font-semibold">
+              {selectedLocation.currencySymbol}
+              {convertPriceToCurrency(Number(totalPrice), exchangeRate)}
+            </span>
+          </div>
+          {selectedShipping && (
+            <div className="flex justify-between">
+              <p>Shipping</p>
+              <span className="font-semibold">
+                {selectedLocation.currencySymbol} {selectedShipping.price}
+              </span>
+            </div>
+          )}
+
+          <div className="my-4 flex justify-between text-2xl font-bold">
+            <p>Total</p>
+            <span className="font-semibold">
+              {selectedLocation.currencySymbol}
+              {convertPriceToCurrency(total, exchangeRate)}
+            </span>
+          </div>
         </div>
       </div>
     </div>

@@ -23,5 +23,17 @@
     "apartment": "Apartment",
     "postalCode": "Postal Code",
     "city": "City"
-  }
+  },
+  "shipping": [
+    {
+      "type": "Post Small Packet International Surface",
+      "times": "20 to 60 business days",
+      "price": "16.25"
+    },
+    {
+      "type": "Post Small Packet International  ",
+      "times": "6 to 623 business days",
+      "price": "25.95"
+    }
+  ]
 }

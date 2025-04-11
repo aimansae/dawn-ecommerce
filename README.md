@@ -73,3 +73,5 @@ Remove available tag from ui
 
 loading skeleton for order summary too
 cart layout not responsive, scroll not present
+
+tags for collection

@@ -19,7 +19,9 @@ const MobileNav = ({ onClose }: MobileProps) => {
   const { handleCategoryClick } = useCollectionFilters();
 
   return (
-    <div className="grid-rows-2-[1fr_auto] fixed left-0 z-50 grid h-full w-full bg-white md:w-2/4 lg:hidden">
+    <div
+      className={`grid-rows-2-[1fr_auto] z-50 grid h-screen w-full bg-white md:w-2/4 lg:hidden`}
+    >
       <div className="flex w-full list-none flex-col text-lg">
         {data.menuItems.map((item, i) => (
           <div key={i} className="w-full">

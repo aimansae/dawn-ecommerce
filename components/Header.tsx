@@ -147,7 +147,7 @@ const Header = () => {
       <ShippingBanner bannerHeightRef={bannerRef} />
       <header
         ref={headerRef}
-        className={`top-0 z-50 mx-auto w-full max-w-7xl border-b border-t border-gray-200 bg-white ${
+        className={`relative top-0 z-50 mx-auto w-full max-w-7xl border-b border-t border-gray-200 bg-white ${
           showSearchBar ? "px-2 py-2" : "px-7"
         }`}
       >

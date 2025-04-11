@@ -87,8 +87,6 @@ const CollectionsProducts = ({
           })}
         </div>
       )}
-
-      {/* <Pagination currentPage={currentPage} totalPages={totalPages} /> */}
     </>
   );
 };
