@@ -29,8 +29,8 @@
           "tag": "sold out",
           "imageUrl": [
             "/assets/images/flexBag/flex-bag-clay.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+            "/assets/images/flexBag/flex-bag-clay-2.png",
+            "/assets/images/flexBag/flex-bag-clay-3.png"
           ]
         },
         {
@@ -39,8 +39,8 @@
           "tag": "sold out",
           "imageUrl": [
             "/assets/images/flexBag/flex-bag-denim.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+            "/assets/images/flexBag/flex-bag-denim-2.png",
+            "/assets/images/flexBag/flex-bag-denim-3.png"
           ]
         },
         {
@@ -49,8 +49,8 @@
           "tag": "sold out",
           "imageUrl": [
             "/assets/images/flexBag/flex-bag-red.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+            "/assets/images/flexBag/flex-bag-red-2.png",
+            "/assets/images/flexBag/flex-bag-red-3.png"
           ]
         }
       ],
@@ -74,8 +74,8 @@
           "tag": "available",
           "imageUrl": [
             "/assets/images/studioBag/studio-bag-oyster.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+            "/assets/images/studioBag/studio-bag-oyster-2.png",
+            "/assets/images/studioBag/studio-bag-oyster-3.png"
           ]
         },
         {
@@ -84,8 +84,8 @@
           "tag": "sold out",
           "imageUrl": [
             "/assets/images/studioBag/studio-bag-denim.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+            "/assets/images/studioBag/studio-bag-denim-2.png",
+            "/assets/images/studioBag/studio-bag-denim-3.png"
           ]
         }
       ],
@@ -110,8 +110,8 @@
           "tag": "available",
           "imageUrl": [
             "/assets/images/louiseSlideSandal/louise-slide-sandal-buttermilk.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+            "/assets/images/louiseSlideSandal/louise-slide-sandal-buttermilk-2.png",
+            "/assets/images/louiseSlideSandal/louise-slide-sandal-buttermilk-3.png"
           ]
         },
         {
@@ -120,8 +120,8 @@
           "tag": "available",
           "imageUrl": [
             "/assets/images/louiseSlideSandal/louise-slide-sandal-gummy.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+            "/assets/images/louiseSlideSandal/louise-slide-sandal-gummy-2.png",
+            "/assets/images/louiseSlideSandal/louise-slide-sandal-gummy-3.png"
           ]
         },
         {
@@ -568,7 +568,7 @@
     },
     {
       "id": "11",
-      "name": "Business Bad",
+      "name": "Business Bag",
       "category": ["Bags"],
       "prices": {
         "currency": "USD",
@@ -583,9 +583,9 @@
           "colorCategory": "black",
           "tag": "available",
           "imageUrl": [
-            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+            "/assets/images/businessBag/business-bag-black.png",
+            "/assets/images/businessBag/business-bag-earth.png",
+            "/assets/images/businessBag/business-bag-vegan-leather.png"
           ]
         },
         {
@@ -593,7 +593,7 @@
           "colorCategory": "beige",
           "tag": "available",
           "imageUrl": [
-            "/assets/images/artDecoBag/art-deco-bag-mediterranean-blue.png",
+            "/assets/images/businessBag/business-bag-earth.png",
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -603,7 +603,7 @@
           "colorCategory": "green",
           "tag": "sold out",
           "imageUrl": [
-            "/assets/images/eddiBag/eddi-bag-mocha.png",
+            "/assets/images/businessBag/business-bag-vegan-leather.png",
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -628,7 +628,7 @@
           "colorCategory": "beige",
           "tag": "available",
           "imageUrl": [
-            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+            "/assets/images/hoboLarge/hobo-large-latte.png",
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -638,7 +638,7 @@
           "colorCategory": "white",
           "tag": "available",
           "imageUrl": [
-            "/assets/images/artDecoBag/art-deco-bag-mediterranean-blue.png",
+            "/assets/images/hoboLarge/hobo-large-offWhite.png",
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -648,7 +648,8 @@
           "colorCategory": "yellow",
           "tag": "available",
           "imageUrl": [
-            "/assets/images/eddiBag/eddi-bag-mocha.png",
+            "/assets/images/hoboLarge/hobo-large-yellow.png",
+
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -673,7 +674,7 @@
           "colorCategory": "beige",
           "tag": "available",
           "imageUrl": [
-            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+            "/assets/images/hoboMedium/hobo-medium-latte.png",
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -683,7 +684,7 @@
           "colorCategory": "white",
           "tag": "available",
           "imageUrl": [
-            "/assets/images/artDecoBag/art-deco-bag-mediterranean-blue.png",
+            "/assets/images/hoboMedium/hobo-medium-offWhite.png",
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -693,7 +694,7 @@
           "colorCategory": "yellow",
           "tag": "available",
           "imageUrl": [
-            "/assets/images/artDecoBag/art-deco-bag-mediterranean-yellow.png",
+            "/assets/images/hoboMedium/hobo-medium-yellow.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
         }
@@ -713,11 +714,21 @@
       "createdAt": "2024-03-20",
       "availableColors": [
         {
-          "color": "blue",
-          "colorCategory": "blue",
+          "color": "off white",
+          "colorCategory": "white",
           "tag": "available",
           "imageUrl": [
-            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
+            "/assets/images/lanternBag/lantern-bag-offWhite.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+          ]
+        },
+        {
+          "color": "earth",
+          "colorCategory": "green",
+          "tag": "available",
+          "imageUrl": [
+            "/assets/images/lanternBag/lantern-bag-earth.png",
             "/assets/images/flexBag/flex-bag-cappuccino-2.png",
             "/assets/images/flexBag/flex-bag-cappuccino-3.png"
           ]
@@ -741,61 +752,41 @@
           "color": "butter",
           "colorCategory": "white",
           "tag": "available",
-          "imageUrl": [
-            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
-          ]
+          "imageUrl": ["/assets/images/miniSeraTote/mini-sera-tote-butter.png"]
         },
         {
           "color": "denim",
           "colorCategory": "blue",
           "tag": "available",
-          "imageUrl": [
-            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
-          ]
+          "imageUrl": ["/assets/images/miniSeraTote/mini-sera-tote-denim.png"]
         },
         {
           "color": "dry rose",
           "colorCategory": "pink",
           "tag": "available",
           "imageUrl": [
-            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+            "/assets/images/miniSeraTote/mini-sera-tote-dry-rose.png"
           ]
         },
         {
           "color": "oceania",
           "colorCategory": "blue",
           "tag": "available",
-          "imageUrl": [
-            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
-          ]
+          "imageUrl": ["/assets/images/miniSeraTote/mini-sera-tote-oceania.png"]
         },
         {
           "color": "olive leaf",
           "colorCategory": "green",
           "tag": "available",
           "imageUrl": [
-            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+            "/assets/images/miniSeraTote/mini-sera-tote-olive-leaf.png"
           ]
         },
         {
           "color": "shark",
           "colorCategory": "pink",
           "tag": "available",
-          "imageUrl": [
-            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
-          ]
+          "imageUrl": ["/assets/images/miniSeraTote/mini-sera-tote-shark.png"]
         }
       ],
       "description": "Mix of symmetry and fluid, clean lines, Mini Sera Tote is designed to carry your daily essentials, a large phone(like iPhone 11 Pro Max), mini wallet or cardholder, and lipstick, etc.Its exterior design is a surrealist dream, reminiscent of a maze-like structure protruding outwards, with sharp, clean lines, and a 3D façade. It has a suede drawstring top, securing your belongings on the go.Folding inwards like an accordion and then stretching outwards to store those last-minute belongings. The Sera Tote also features a detachable shoulder strap. Carry it your way and relish every thoughtful detail."
@@ -817,20 +808,14 @@
           "color": "latte",
           "colorCategory": "beige",
           "tag": "available",
-          "imageUrl": [
-            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
-          ]
+          "imageUrl": ["/assets/images/miniWovenBag/mini-woven-bag-latte.png"]
         },
         {
           "color": "fairy blue",
           "colorCategory": "blue",
           "tag": "sold out",
           "imageUrl": [
-            "/assets/images/artDecoBag/art-deco-bag-cyclamen.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-2.png",
-            "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+            "/assets/images/miniWovenBag/mini-woven-bag-fairy-blue.png"
           ]
         }
       ],

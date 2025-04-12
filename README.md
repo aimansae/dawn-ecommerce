@@ -42,15 +42,11 @@ COllectionsFilters : desktop, close if cicked outside
  
 HomePage:add more products
  
-Footer: create a very simple internal place where i can reftrieve all subscribers next js 14+ and show success messagr
-Homepage: add video and refinery section
-View Cart image resizing
+ View Cart image resizing
 SingleProduct: image gallery for mdplus 
 
 
-local storage after adding things to cart
-SingleProduct:json file
-MobileNav: is country is open make background blac, add x button
+ MobileNav: is country is open make background blac, add x button
  
 Struggles: filtering and js working with data , putting multiple things together, organizing the data
 remove filter and count
@@ -67,11 +63,11 @@ selketon
 product cout
 filter remove all button bigger devices
 
-7. Checkout Page (/checkout)
-
-Remove available tag from ui
-
+ 
+ 
 loading skeleton for order summary too
 cart layout not responsive, scroll not present
 
 tags for collection
+filters featured
+bogy overflow for mobile nav

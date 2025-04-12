@@ -109,9 +109,12 @@ const Header = () => {
     if (isMobile || showSearchBar) {
       document.body.style.overflow = "hidden"; // Disable scrolling
     } else {
-      document.body.style.overflow = "auto"; // Enable scrolling
+      document.body.style.overflow = ""; // Enable scrolling
     }
-  });
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobile, showSearchBar]);
 
   // calculate header height for dark overlay
   const [overLayTop, setOverLayTop] = useState(0);

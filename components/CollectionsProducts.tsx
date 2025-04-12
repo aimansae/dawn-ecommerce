@@ -8,6 +8,7 @@ import Image from "next/image";
 import { ProductType } from "@/app/types/types";
 import { useCountry } from "@/app/context/CountryContext";
 import { useCollectionFilters } from "@/app/hooks/useCollectionFilters";
+import AvailabilityTag from "./AvailabilityTag";
 const CollectionsProducts = ({
   products,
   selectedColor,
@@ -70,7 +71,12 @@ const CollectionsProducts = ({
                     fill
                     className="object-fit left-0 top-0 h-full w-full"
                     sizes="(max-width:375px)100vw,(max-width:560px)80vw, (max-width:768px) 60vw, 33vw"
-                  />
+                  />{" "}
+                  <div className="absolute bottom-2 left-4">
+                    <AvailabilityTag
+                      availability={product.availability || "available"}
+                    />
+                  </div>
                 </div>
                 <div className="my-2 flex flex-col gap-2">
                   <span className="truncate text-sm capitalize text-darkGray group-hover:underline sm:text-[13px] md:text-base">

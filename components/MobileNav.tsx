@@ -20,7 +20,7 @@ const MobileNav = ({ onClose }: MobileProps) => {
 
   return (
     <div
-      className={`grid-rows-2-[1fr_auto] z-50 grid h-screen w-full bg-white md:w-2/4 lg:hidden`}
+      className={`grid-rows-2-[1fr_auto] z-50 grid h-screen w-full overflow-y-auto bg-white md:w-2/4 lg:hidden`}
     >
       <div className="flex w-full list-none flex-col text-lg">
         {data.menuItems.map((item, i) => (

@@ -130,10 +130,27 @@ const SingleProduct = ({ product }: SingleProductType) => {
           sizes="(max-width:375px) 100vw, (max-width:768px) 50vw, (max-width:1024px) 33vw, 25vw"
         />
       </div>
+      {/* grid section */}
+      <div className="hidden grid-rows-2 gap-2 bg-yellow-200 md:grid">
+        {product.availableColors.flatMap(color =>
+          color.imageUrl.map((url, index) => (
+            <div key={index} className="relative aspect-square w-full">
+              <Image
+                src={url} // Display selected color image or default image
+                alt={`Product Image ${index + 1}`}
+                quality={75}
+                fill
+                className="left-0 top-0 h-full w-full object-cover"
+                sizes="(max-width:375px) 100vw, (max-width:768px) 50vw, (max-width:1024px) 33vw, 25vw"
+              />
+            </div>
+          ))
+        )}{" "}
+      </div>
       {/* Info section */}
       <div className="flex flex-col justify-center gap-4">
         {/* Pagination for Image */}
-        <div className="mt-4 flex items-center justify-center gap-4 text-darkGray">
+        <div className="mt-4 flex items-center justify-center gap-4 text-darkGray md:hidden">
           <button onClick={handlePreviousImage}>
             <span>
               <MdOutlineKeyboardArrowLeft />
