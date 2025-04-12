@@ -835,5 +835,19 @@
     "brown": "bg-yellow-800",
     "purple": "bg-purple-400",
     "pink": "bg-pink-400"
-  }
+  },
+
+  "moreInfo": [
+    {
+      "material": "Crafted from smooth calf leather. Velvet interior, adjustable and detachable strap, magnetic-fastening front flap, one interior zip pocket, gold hardware."
+    },
+    {
+      "shipping & returns": "Free shipping and returns available on all orders!We ship all US domestic orders within 5-10 business days!"
+    },
+    { "dimensions": "h:14 X w:26 cm (5.5 X 10 in)" },
+    {
+      "care instructions": "Use a soft damp cloth and a drop of mild soap to remove any haze. Air dry."
+    },
+    { "share": "" }
+  ]
 }
