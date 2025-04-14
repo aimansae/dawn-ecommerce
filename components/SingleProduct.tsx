@@ -12,18 +12,9 @@ import QuantitySelector from "./QuantitySelector";
 import { useCountry } from "@/app/context/CountryContext";
 import AvailabilityTag from "../components/AvailabilityTag";
 import { convertPriceToCurrency } from "@/app/utils/functions";
-import content from "../app/data/productList.json";
-import {
-  FaBox,
-  FaRulerCombined,
-  FaShippingFast,
-  FaInfoCircle,
-  FaShareAlt,
-  FaBrush,
-} from "react-icons/fa";
 import { MdKeyboardArrowUp } from "react-icons/md";
-
-import type { IconType } from "react-icons";
+import content from "../app/data/productList.json";
+import ProductInfoAccordion from "./ProductInfoAccordion";
 const SingleProduct = ({ product }: SingleProductType) => {
   const { addToCart } = useCart();
   const { selectedLocation, exchangeRate } = useCountry();
@@ -43,10 +34,6 @@ const SingleProduct = ({ product }: SingleProductType) => {
   const [quantity, setQuantity] = useState(
     Number(searchParams.get("quantity")) || 1
   );
-  const [toggleAccordion, setToggleAccordion] = useState<string | null>(null);
-  const handleToggleAccordion = (key: string) => {
-    setToggleAccordion(prev => (prev === key ? null : key));
-  };
 
   const [viewCart, setViewCart] = useState(false);
   const scrollToTop = () => {
@@ -134,17 +121,26 @@ const SingleProduct = ({ product }: SingleProductType) => {
     product.availability === "sold out" ||
     selectedColorObject?.tag === "sold out";
 
-  const iconMap: { [key: string]: IconType } = {
-    material: FaBrush,
-    shipping: FaShippingFast,
-    dimensions: FaRulerCombined,
-    care: FaBox,
-    share: FaShareAlt,
+  const replaceDefaultPicture = (url: string) => {
+    const colorMatch = product.availableColors.find(color =>
+      color.imageUrl.includes(url)
+    );
+    if (!colorMatch) return;
+    const imageIndex = colorMatch?.imageUrl.findIndex(image => image === url);
+    if (imageIndex !== -1) {
+      setSelectedColor(colorMatch.color);
+      setSelectedImage(colorMatch.imageUrl);
+      setCurrentImageIndex(imageIndex);
+
+      updateURLParams(colorMatch.color, selectedSize, quantity);
+    }
   };
+
   return (
     <section className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-start gap-2 px-4 py-7 md:grid-cols-3 md:gap-8">
       <div className="col-span-2">
         <div className="relative aspect-square w-full">
+          {/*Default Image*/}
           <Image
             src={selectedImage[currentImageIndex]} // Display selected color image or default image
             alt={product.name}
@@ -158,11 +154,15 @@ const SingleProduct = ({ product }: SingleProductType) => {
         <div className="hidden gap-4 md:grid md:grid-cols-2">
           {product.availableColors.flatMap(color =>
             color.imageUrl.slice(1).map((url, index) => (
-              <div key={index} className="relative aspect-square w-full">
+              <div
+                onClick={() => replaceDefaultPicture(url)}
+                key={index}
+                className="relative aspect-square w-full cursor-pointer"
+              >
                 <Image
                   src={url} // Display selected color image or default image
                   alt={`${product.name} ${index + 2}`}
-                  quality={75}
+                  quality={100}
                   fill
                   className="left-0 top-0 h-full w-full object-cover"
                   sizes="(max-width:375px) 100vw, (max-width:768px) 50vw, (max-width:1024px) 33vw, 25vw"
@@ -173,21 +173,23 @@ const SingleProduct = ({ product }: SingleProductType) => {
         </div>
       </div>
       {/* Info section */}
-      <div className="flex flex-col items-start justify-center gap-4">
+      <div className="flex flex-col justify-center gap-4 md:items-start">
         {/* Pagination for Image */}
         <div className="mt-4 flex items-center justify-center gap-4 text-darkGray md:hidden">
-          <button onClick={handlePreviousImage}>
-            <span>
-              <MdOutlineKeyboardArrowLeft />
-            </span>
+          <button
+            onClick={handlePreviousImage}
+            className="transform transition duration-200 ease-in-out hover:scale-125 hover:font-bold"
+          >
+            <MdOutlineKeyboardArrowLeft />
           </button>
           <span className="text-[10px]">
             {currentImageIndex + 1}/ {selectedImage.length}
           </span>
-          <button onClick={handleNextImage}>
-            <span>
-              <MdOutlineKeyboardArrowRight />
-            </span>
+          <button
+            onClick={handleNextImage}
+            className="transform transition duration-200 ease-in-out hover:scale-125 hover:font-bold"
+          >
+            <MdOutlineKeyboardArrowRight />
           </button>
         </div>
         <div className="flex flex-col items-start justify-center gap-4">
@@ -303,43 +305,12 @@ const SingleProduct = ({ product }: SingleProductType) => {
             Buy Now
           </button>
         </div>
-        {/*Additional information*/}
+        {/*Additional information accordion*/}
         <div className="flex flex-col gap-4">
           <h3 className="my-4 text-darkGray">{product.description}</h3>
           <div>
-            <ul className="flex flex-col">
-              {content.moreInfo.map((item, index) => {
-                const [key, value] = Object.entries(item)[0];
-                const Icon =
-                  iconMap[key as keyof typeof iconMap] || FaInfoCircle;
-                console.log(Icon);
-                return (
-                  <li
-                    key={index}
-                    className="flex w-full flex-col border-b border-t border-gray-100 py-2"
-                  >
-                    <button
-                      className="flex items-center justify-between capitalize"
-                      onClick={() => handleToggleAccordion(key)}
-                    >
-                      <span className="flex p-2">
-                        <Icon className="mr-2 mt-1 h-5 w-5 text-lg text-gray-600" />
-                        {key}
-                      </span>
-
-                      <span
-                        className={`${toggleAccordion === key ? "rotate-180" : ""}`}
-                      >
-                        <MdKeyboardArrowUp />
-                      </span>
-                    </button>
-                    {toggleAccordion === key && (
-                      <h4 className="p-4 text-sm text-gray-700">{value}</h4>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
+            <ProductInfoAccordion product={product.name} />
+            {/*share options*/}
           </div>
         </div>
       </div>

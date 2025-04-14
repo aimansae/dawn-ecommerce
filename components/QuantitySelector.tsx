@@ -20,10 +20,15 @@ const QuantitySelector = ({
       <span className="text-sm text-darkGray">{label}</span>
       <div className="flex items-center justify-between border border-darkGray p-3">
         <button disabled={quantity < 1} onClick={() => onChangeQuantity(-1)}>
-          <FiMinus className={`${quantity === 1 ? "text-darkGray" : ""}`} />
+          <FiMinus
+            className={`${quantity === 1 ? "text-darkGray" : ""}transform transition duration-200 ease-in-out hover:scale-125 hover:font-bold`}
+          />
         </button>
         <span>{quantity}</span>
-        <button onClick={() => onChangeQuantity(1)}>
+        <button
+          onClick={() => onChangeQuantity(1)}
+          className="transform transition duration-200 ease-in-out hover:scale-125 hover:font-bold"
+        >
           <GoPlus />
         </button>
       </div>
