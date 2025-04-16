@@ -12,9 +12,9 @@ import QuantitySelector from "./QuantitySelector";
 import { useCountry } from "@/app/context/CountryContext";
 import AvailabilityTag from "../components/AvailabilityTag";
 import { convertPriceToCurrency } from "@/app/utils/functions";
-import { MdKeyboardArrowUp } from "react-icons/md";
-import content from "../app/data/productList.json";
+
 import ProductInfoAccordion from "./ProductInfoAccordion";
+
 const SingleProduct = ({ product }: SingleProductType) => {
   const { addToCart } = useCart();
   const { selectedLocation, exchangeRate } = useCountry();
@@ -131,13 +131,16 @@ const SingleProduct = ({ product }: SingleProductType) => {
       setSelectedColor(colorMatch.color);
       setSelectedImage(colorMatch.imageUrl);
       setCurrentImageIndex(imageIndex);
-
       updateURLParams(colorMatch.color, selectedSize, quantity);
     }
   };
-
+  const allGridImages = [
+    ...new Set(
+      product.availableColors.flatMap(color => color.imageUrl.slice(1))
+    ),
+  ];
   return (
-    <section className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-start gap-2 px-4 py-7 md:grid-cols-3 md:gap-8">
+    <section className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-start gap-2 p-4 md:grid-cols-3 md:gap-8 md:p-7">
       <div className="col-span-2">
         <div className="relative aspect-square w-full">
           {/*Default Image*/}
@@ -150,26 +153,24 @@ const SingleProduct = ({ product }: SingleProductType) => {
             sizes="(max-width:375px) 100vw, (max-width:768px) 50vw, (max-width:1024px) 33vw, 25vw"
           />
         </div>
-        {/* grid section */}
-        <div className="hidden gap-4 md:grid md:grid-cols-2">
-          {product.availableColors.flatMap(color =>
-            color.imageUrl.slice(1).map((url, index) => (
-              <div
-                onClick={() => replaceDefaultPicture(url)}
-                key={index}
-                className="relative aspect-square w-full cursor-pointer"
-              >
-                <Image
-                  src={url} // Display selected color image or default image
-                  alt={`${product.name} ${index + 2}`}
-                  quality={100}
-                  fill
-                  className="left-0 top-0 h-full w-full object-cover"
-                  sizes="(max-width:375px) 100vw, (max-width:768px) 50vw, (max-width:1024px) 33vw, 25vw"
-                />
-              </div>
-            ))
-          )}
+        {/* grid section for md+ devices */}
+        <div className="my-4 hidden gap-4 md:grid md:grid-cols-2">
+          {allGridImages.map((url, index) => (
+            <div
+              onClick={() => replaceDefaultPicture(url)}
+              key={index}
+              className="relative aspect-square w-full cursor-pointer overflow-hidden"
+            >
+              <Image
+                src={url} // Display selected color image or default image
+                alt={`${product.name} ${index + 2}`}
+                quality={100}
+                fill
+                className="left-0 top-0 h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                sizes="(max-width:375px) 100vw, (max-width:768px) 50vw, (max-width:1024px) 33vw, 25vw"
+              />
+            </div>
+          ))}
         </div>
       </div>
       {/* Info section */}
@@ -193,26 +194,30 @@ const SingleProduct = ({ product }: SingleProductType) => {
           </button>
         </div>
         <div className="flex flex-col items-start justify-center gap-4">
-          <h1 className="text-[30px] capitalize">{product.name}</h1>
-          <div className="flex flex-col items-start gap-3 whitespace-nowrap text-darkGray sm:flex-row sm:items-center sm:gap-6">
-            <span className={`${product.prices.sale ? "line-through" : ""}`}>
-              {selectedLocation.currencySymbol}{" "}
-              {convertPriceToCurrency(
-                Number(parseFloat(product.prices.regular).toFixed(2)),
-                exchangeRate
-              )}
-              {selectedLocation.currency}
-            </span>
+          <h2 className="text-[30px] capitalize">{product.name}</h2>
+          <div className="flex items-center gap-2 whitespace-nowrap text-sm text-darkGray md:gap-4 md:text-base">
             {product.prices.sale !== undefined && (
-              <span>
-                {selectedLocation.currencySymbol}{" "}
+              <p>
+                {selectedLocation.currencySymbol}
                 {convertPriceToCurrency(
                   Number(parseFloat(product.prices.sale).toFixed(2)),
                   exchangeRate
                 )}
                 {selectedLocation.currency}
-              </span>
+              </p>
             )}
+            <p
+              className={`${product.availability === "sold out" ? "hidden" : " "}`}
+            >
+              <span className={`${product.prices.sale ? "line-through" : ""}`}>
+                {selectedLocation.currencySymbol}
+                {convertPriceToCurrency(
+                  Number(parseFloat(product.prices.regular).toFixed(2)),
+                  exchangeRate
+                )}
+                {selectedLocation.currency}
+              </span>
+            </p>
             <AvailabilityTag
               availability={product.availability}
             ></AvailabilityTag>
@@ -310,7 +315,6 @@ const SingleProduct = ({ product }: SingleProductType) => {
           <h3 className="my-4 text-darkGray">{product.description}</h3>
           <div>
             <ProductInfoAccordion product={product.name} />
-            {/*share options*/}
           </div>
         </div>
       </div>

@@ -77,14 +77,14 @@ const ProductInfoAccordion = ({ product }: { product: string }) => {
           return (
             <li
               key={index}
-              className="flex w-full flex-col border-b border-t border-gray-100 py-2"
+              className="flex w-full flex-col border-b border-t border-gray-200"
             >
               {key !== "share" ? (
                 <button
-                  className="flex items-center justify-between capitalize"
+                  className="flex items-center justify-between p-2 capitalize hover:bg-gray-100"
                   onClick={() => handleToggleAccordion(key)}
                 >
-                  <span className="flex p-2">
+                  <span className="flex">
                     <Icon className="mr-2 mt-1 h-5 w-5 transform text-lg text-gray-600 transition duration-200 ease-in-out hover:scale-125 hover:font-bold" />
                     {key}
                   </span>
@@ -96,23 +96,28 @@ const ProductInfoAccordion = ({ product }: { product: string }) => {
                 </button>
               ) : (
                 <button
-                  className="flex transform items-center p-2 capitalize"
+                  className="flex transform items-center p-2 capitalize hover:bg-gray-100"
                   onClick={handleShare}
                 >
-                  <IoShareOutline className="mr-2 mt-1 h-5 w-5" />
+                  <IoShareOutline className="mr-2 h-5 w-5" />
                   <span className="hover:underline">{key}</span>
                 </button>
               )}
               {toggleAccordion === key && (
-                <h4 className="p-4 text-sm text-gray-700">{value}</h4>
+                <div>
+                  <h4 className="p-4 text-sm text-gray-700">{value}</h4>
+                </div>
               )}
             </li>
           );
         })}
       </ul>
-      {/*share options*/}
+      {/*share modal*/}
       {showSharePopUp && (
-        <section className="z-60 fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4">
+        <section
+          onClick={() => setShowSharePopUp(false)}
+          className="z-60 fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4"
+        >
           <div className="flex w-full max-w-sm flex-col gap-4 rounded-lg bg-white p-4 shadow-lg sm:max-w-md md:max-w-lg">
             <div className="flex items-center justify-between">
               <h1 className="text-lg font-bold">Share</h1>
@@ -126,7 +131,7 @@ const ProductInfoAccordion = ({ product }: { product: string }) => {
             <div className="flex justify-between gap-2 border-b border-gray-300 pb-2 text-xs">
               <h2 className="truncate">{product} </h2>
               <button
-                className="flex items-center text-blue-700 hover:bg-slate-200"
+                className="flex items-center text-blue-700"
                 onClick={handleCopyURL}
               >
                 {copied ? (
@@ -149,7 +154,7 @@ const ProductInfoAccordion = ({ product }: { product: string }) => {
                   const Icon = item.icon;
                   return (
                     <li key={item.label} className="p-2 hover:bg-gray-200">
-                      <Link href={item.href}>
+                      <Link target="_blank" href={item.href}>
                         <Icon size={35} />
                       </Link>
                     </li>

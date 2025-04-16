@@ -79,14 +79,33 @@ const CollectionsProducts = ({
                   </div>
                 </div>
                 <div className="my-2 flex flex-col gap-2">
-                  <span className="truncate text-sm capitalize text-darkGray group-hover:underline sm:text-[13px] md:text-base">
+                  <h2 className="truncate text-sm capitalize text-darkGray group-hover:underline sm:text-[13px] md:text-base">
                     {product.name}
-                  </span>
-                  <span className="text-sm md:text-base">
-                    {selectedLocation.currencySymbol}{" "}
-                    {convertPriceToCurrency(Number(product.prices.regular))}{" "}
-                    {selectedLocation.currency}
-                  </span>
+                  </h2>
+
+                  <div className="flex flex-row items-center gap-2 bg-yellow-100 md:gap-4">
+                    {product.prices.sale && (
+                      <p className="text-customBlack">
+                        {selectedLocation.currencySymbol}
+                        {convertPriceToCurrency(Number(product.prices.sale))}
+                        {selectedLocation.currency}
+                      </p>
+                    )}
+
+                    <p
+                      className={`text-sm md:text-base ${
+                        product.prices.sale
+                          ? "text-gray-400 line-through"
+                          : "text-black"
+                      }`}
+                    >
+                      {selectedLocation.currencySymbol}
+                      {convertPriceToCurrency(
+                        Number(product.prices.regular)
+                      )}{" "}
+                      {selectedLocation.currency}
+                    </p>
+                  </div>
                 </div>
               </Link>
             );

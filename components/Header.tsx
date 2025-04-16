@@ -154,7 +154,6 @@ const Header = () => {
           showSearchBar ? "px-2 py-2" : "px-7"
         }`}
       >
-        {" "}
         {showSearchBar ? (
           <>
             <div
@@ -378,9 +377,12 @@ const Header = () => {
         <>
           <div
             onClick={() => setIsMobile(false)}
-            className="fixed bottom-0 left-0 right-0 top-[107px] z-40 bg-black bg-opacity-50 lg:hidden"
+            className="fixed bottom-0 left-0 right-0 top-[107px] z-30 bg-black bg-opacity-60 lg:hidden"
           />
-          <MobileNav onClose={() => setIsMobile(false)} />
+          <MobileNav
+            topOffset={overLayTop}
+            onClose={() => setIsMobile(false)}
+          />
         </>
       )}
     </>

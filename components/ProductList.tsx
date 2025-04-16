@@ -60,13 +60,13 @@ const ProductList = () => {
                 key={product.id}
                 className="group flex flex-col"
               >
-                <div className="relative aspect-square w-full">
+                <div className="relative aspect-square w-full overflow-hidden hover:shadow-md">
                   <Image
                     src={product.availableColors[0]?.imageUrl?.[0]}
                     alt={product.name}
                     quality={75}
                     fill
-                    className="left-0 top-0 h-full w-full object-cover"
+                    className="left-0 top-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                     sizes="(max-width:375px)100vw,(max-width:560px)80vw, (max-width:768px) 60vw, 33vw"
                   />
                   <div className="absolute bottom-2 left-4">
@@ -117,13 +117,13 @@ const ProductList = () => {
               key={product.id}
               className="group flex flex-col capitalize"
             >
-              <div className="relative aspect-square w-full">
+              <div className="relative aspect-square w-full overflow-hidden">
                 <Image
                   src={product.availableColors?.[0]?.imageUrl?.[0]}
                   alt={product.name}
                   quality={75}
                   fill
-                  className="left-0 top-0 h-full w-full object-cover"
+                  className="left-0 top-0 h-full w-full object-cover transition-transform duration-300 hover:scale-105"
                   sizes="(max-width:375px)100vw,(max-width:560px)80vw, (max-width:768px) 60vw, 33vw"
                 />
                 <div className="absolute bottom-2 left-4">
@@ -131,10 +131,10 @@ const ProductList = () => {
                 </div>
               </div>
               <div className="my-2 flex flex-col gap-2">
-                <span className="truncate text-xs text-customBlack group-hover:underline sm:text-[13px]">
+                <h2 className="truncate text-xs text-customBlack group-hover:underline sm:text-[13px]">
                   {product.name}
-                </span>
-                <div className="flex flex-col gap-1 text-sm sm:flex-row md:gap-2">
+                </h2>
+                <div className="flex   gap-1 text-sm  md:gap-2">
                   <span
                     className={`${
                       product.prices.sale ? "text-darkGray line-through" : ""
@@ -147,7 +147,10 @@ const ProductList = () => {
                     )}
                     {selectedLocation.currency}
                   </span>
-                  <span>
+
+                  <span
+                    className={`${product.availability === "sold out" ? "hidden" : "md:block"}}`}
+                  >
                     {product.prices.sale !== undefined && (
                       <span>
                         {selectedLocation.currencySymbol}{" "}

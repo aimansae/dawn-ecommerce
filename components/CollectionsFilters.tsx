@@ -81,7 +81,6 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
       document.body.style.overflow = "auto";
     };
   }, [showMobileFilters]);
-
   //for mobile
   const toggleMobileFilters = (filterType: keyof typeof activeFilters) => {
     setActiveFilters(prev => ({
@@ -89,6 +88,30 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
       [filterType]: !prev[filterType],
     }));
   };
+  //desktop: close filters if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const clickOutsideAvailability =
+        availabilityRefDesktop.current &&
+        !availabilityRefDesktop.current.contains(e.target as Node);
+      const clickOutsideColors =
+        colorsRefDesktop.current &&
+        !colorsRefDesktop.current.contains(e.target as Node);
+
+      if (activeFilters.availability && clickOutsideAvailability) {
+        setActiveFilters(prev => ({ ...prev, availability: false }));
+      }
+      if (activeFilters.colors && clickOutsideColors) {
+        setActiveFilters(prev => ({ ...prev, colors: false }));
+      }
+    };
+    if (activeFilters.availability || activeFilters.colors) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [activeFilters.availability, activeFilters.colors]);
   const handleGoBack = (filterType: keyof typeof activeFilters) => {
     setActiveFilters(prev => ({
       ...prev,
@@ -446,7 +469,7 @@ export const SortByFilter = ({
   sortBy,
   handleSortByChange,
 }: {
-  sortBy?: string ;
+  sortBy?: string;
   handleSortByChange: React.ChangeEventHandler<HTMLSelectElement>;
 }) => {
   return (

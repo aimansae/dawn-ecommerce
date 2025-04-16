@@ -1,5 +1,6 @@
 import React from "react";
 import Input from "./Input";
+import Swap from "@/components/Swap";
 
 const page = ({
   searchParams,
@@ -73,6 +74,7 @@ const page = ({
         <p>No products match your filter.</p>
       )}
       <Input />
+      <Swap></Swap>
     </div>
   );
 };

@@ -37,8 +37,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 TODO
 MobileNav: mobile nav add animation from left to right
-SingleProduct: refactor URL PARAMS functionality in a new hook 
-COllectionsFilters : desktop, close if cicked outside  
+LOADING STATES for all pages
+ COllectionsFilters : desktop, close if cicked outside  
  
 HomePage:add more products
  
@@ -67,7 +67,7 @@ filter remove all button bigger devices
  
 loading skeleton for order summary too
 cart layout not responsive, scroll not present
-
+mobile overlay covering content 
 tags for collection
 filters featured
 bogy overflow for mobile nav

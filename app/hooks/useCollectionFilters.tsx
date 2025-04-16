@@ -53,7 +53,7 @@ export const useCollectionFilters = () => {
       availability: { inStock, outOfStock },
       colors,
     });
-    if (sortByParams) setSortBy(sortByParams);
+    if (sortByParams) setSortBy(sortByParams.toLowerCase());
   }, [searchparams.toString()]);
 
   // update url

@@ -11,7 +11,7 @@ const AvailabilityTag = ({ availability }: { availability: string }) => {
 
   return (
     <span
-      className={`rounded-full px-3 py-1 text-xs capitalize text-white ${availabilityClass}`}
+      className={`rounded-full px-3 py-1 text-xs text-white ${availabilityClass}`}
     >
       {availability}
     </span>

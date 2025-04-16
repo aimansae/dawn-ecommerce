@@ -12,6 +12,7 @@ const CheckoutForm = () => {
   const { clearCart, cart } = useCart();
   const router = useRouter();
   const { selectedLocation } = useCountry();
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<CheckoutFormData>({
     email: "",
     firstName: "",
@@ -47,6 +48,7 @@ const CheckoutForm = () => {
   };
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       const res = await fetch("/api/checkout", {
@@ -90,6 +92,8 @@ const CheckoutForm = () => {
       console.log(err);
       setMessage("Oops, Something went wrong");
       setStatus("error");
+    } finally {
+      setIsLoading(false);
     }
   };
   //shipping
@@ -167,6 +171,7 @@ const CheckoutForm = () => {
                 value={formData.firstName}
                 onChange={handleChange}
                 label="First Name"
+                minLength={3}
               />
               <FormInput
                 type="text"
@@ -176,6 +181,7 @@ const CheckoutForm = () => {
                 value={formData.lastName}
                 onChange={handleChange}
                 label="Last Name"
+                minLength={3}
               />
             </div>
             <FormInput
@@ -186,6 +192,7 @@ const CheckoutForm = () => {
               value={formData.address}
               onChange={handleChange}
               label="Address"
+              minLength={3}
             />
             <FormInput
               type="text"
@@ -195,6 +202,7 @@ const CheckoutForm = () => {
               value={formData.apartment}
               onChange={handleChange}
               label="Apartment"
+              minLength={1}
             />
             <div className="flex flex-col gap-3 md:flex-row md:justify-between">
               <FormInput
@@ -205,6 +213,7 @@ const CheckoutForm = () => {
                 value={formData.postalCode}
                 onChange={handleChange}
                 label="Postal Code"
+                minLength={3}
               />
               <FormInput
                 type="text"
@@ -214,6 +223,7 @@ const CheckoutForm = () => {
                 value={formData.city}
                 onChange={handleChange}
                 label="City"
+                minLength={3}
               />
             </div>
           </div>
@@ -266,8 +276,9 @@ const CheckoutForm = () => {
               <button
                 className="w-full rounded-md border border-black bg-[#334FB4] px-4 py-3 text-lg font-bold text-white"
                 type="submit"
+                disabled={isLoading}
               >
-                Send order
+                {isLoading ? "Sending" : "Send Order"}
               </button>
             </div>
           </div>
@@ -288,6 +299,7 @@ export const FormInput = ({
   onChange,
   label,
   checked,
+  minLength,
 }: {
   type: string;
   id: string;
@@ -297,6 +309,7 @@ export const FormInput = ({
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   label: string;
   checked?: boolean;
+  minLength?: number;
 }) => {
   return (
     <>
@@ -325,6 +338,7 @@ export const FormInput = ({
             placeholder={placeholder}
             value={value}
             onChange={onChange}
+            minLength={minLength}
             className="w-full rounded-lg border border-gray-300 p-3 focus:border-[#334FB4] focus:outline-none focus:ring-1 focus:ring-[#334FB4]"
           />
         </>

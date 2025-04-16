@@ -31,13 +31,13 @@ const BackInStock = () => {
 
         {/*main image*/}
         <Link href="collections/bags" className="col-span-3 md:col-span-2">
-          <div className="relative aspect-square">
+          <div className="relative aspect-square overflow-hidden">
             <Image
               src={stockData.backInStock.mainImage}
               quality={100}
               alt={stockData.backInStock.alt}
               fill
-              className="left-0 top-0 h-full w-full object-cover"
+              className="translate-transform left-0 top-0 h-full w-full object-cover duration-200 hover:scale-105"
               sizes="(max-width:375px)100vw,(max-width:560px)80vw, (max-width:768px) 60vw, 33vw"
             />
           </div>
@@ -54,11 +54,11 @@ const BackInStock = () => {
             href={`/product/${createSlugFromName(showEddieBagInStock.name)}`}
             className="h-40 w-full md:flex md:h-full md:flex-col"
           >
-            <div className="relative h-full w-full">
+            <div className="relative h-full w-full overflow-hidden">
               <Image
                 src={showEddieBagInStock.availableColors[0].imageUrl[0]}
                 quality={75}
-                className="left-0 top-0 h-full w-full object-cover"
+                className="left-0 top-0 h-full w-full object-cover transition-transform duration-200 hover:scale-105"
                 sizes="(max-width:375px)100vw,(max-width:560px)80vw, (max-width:768px) 60vw, 33vw"
                 alt={showEddieBagInStock.name}
                 fill
@@ -83,12 +83,12 @@ const BackInStock = () => {
             href="collections/shoes"
             className="h-full w-full md:flex md:flex-col"
           >
-            <div className="relative h-40 w-full md:h-full">
+            <div className="relative h-40 w-full overflow-hidden md:h-full">
               <Image
                 src={stockData.shoeCollection.image}
                 alt={stockData.shoeCollection.alt}
                 quality={75}
-                className="left-0 top-0 h-full w-full object-cover"
+                className="left-0 top-0 h-full w-full object-cover transition-transform duration-100 hover:scale-105"
                 sizes="(max-width:375px)100vw,(max-width:560px)80vw, (max-width:768px) 60vw, 33vw"
                 fill
               />

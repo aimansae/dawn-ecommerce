@@ -10,7 +10,7 @@
         "sale": "227.00"
       },
       "status": "outOfStock",
-      "availability": "sale",
+      "availability": "sold out",
       "createdAt": "2024-03-21",
       "availableColors": [
         {

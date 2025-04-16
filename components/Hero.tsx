@@ -28,7 +28,7 @@ const Hero = () => {
             <span className="text-white opacity-80">
               {hero.content.subheading}
             </span>
-            <button className="mt-4 border border-white bg-transparent px-6 py-3 text-white hover:border-2">
+            <button className="mt-4 border-2 border-white border-white/40 bg-transparent px-6 py-3 text-white hover:border-white">
               <Link href="/collections/">{hero.content.button.text}</Link>
             </button>
           </div>
