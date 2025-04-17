@@ -198,30 +198,25 @@ const SingleProduct = ({ product }: SingleProductType) => {
           <div className="flex items-center gap-2 whitespace-nowrap text-sm text-darkGray md:gap-4 md:text-base">
             {product.prices.sale !== undefined && (
               <p>
-                {selectedLocation.currencySymbol}
-                {convertPriceToCurrency(
+                {`${selectedLocation.currencySymbol} ${convertPriceToCurrency(
                   Number(parseFloat(product.prices.sale).toFixed(2)),
                   exchangeRate
-                )}
-                {selectedLocation.currency}
+                )} ${selectedLocation.currency}`}
               </p>
             )}
+
             <p
-              className={`${product.availability === "sold out" ? "hidden" : " "}`}
+              className={`${product.prices.sale ? "text-sm text-darkGray line-through" : ""}`}
             >
-              <span className={`${product.prices.sale ? "line-through" : ""}`}>
-                {selectedLocation.currencySymbol}
-                {convertPriceToCurrency(
-                  Number(parseFloat(product.prices.regular).toFixed(2)),
-                  exchangeRate
-                )}
-                {selectedLocation.currency}
-              </span>
+              {`${selectedLocation.currencySymbol} ${convertPriceToCurrency(
+                Number(parseFloat(product.prices.regular).toFixed(2)),
+                exchangeRate
+              )} ${selectedLocation.currency}`}
             </p>
-            <AvailabilityTag
-              availability={product.availability}
-            ></AvailabilityTag>
           </div>
+          <AvailabilityTag
+            availability={product.availability}
+          ></AvailabilityTag>
         </div>
         {/* Color selection Selection */}
         <div className="flex flex-col gap-2">

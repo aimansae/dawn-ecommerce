@@ -24,7 +24,7 @@ const OrderSummary = ({
   const { cart, getTotalPrice, getTotalQuantity } = useCart();
   const { selectedLocation, exchangeRate } = useCountry();
   const [toggleOrderSummary, setToggleOrderSummary] = useState(false);
-
+  console.log(selectedLocation, "Selected location for order");
   const totalPrice = getTotalPrice();
   const total =
     totalPrice + (selectedShipping ? Number(selectedShipping.price) : 0);
@@ -42,7 +42,7 @@ const OrderSummary = ({
     <div className="mx-auto h-full w-full max-w-7xl bg-[#f5f5f5] px-7 md:order-2 md:h-full">
       <button
         onClick={toggleSummary}
-        className="flex w-full items-center justify-between border border-b py-5 text-[#334FB4]"
+        className="flex w-full items-center justify-between border-b py-5 text-[#334FB4]"
       >
         <span className="flex items-center gap-1 text-[15px]">
           Order Summary

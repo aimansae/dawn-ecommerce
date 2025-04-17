@@ -13,16 +13,16 @@ import { useCountry } from "../app/context/CountryContext";
 import AvailabilityTag from "../components/AvailabilityTag";
 import { useSearchParams } from "next/navigation";
 import { ProductType } from "@/app/types/types";
+type ProductsProps = {
+  productsForPage: ProductType[];
+};
 
-const ProductList = () => {
+const ProductList = ({ productsForPage }: ProductsProps) => {
   const transformedProducts = data.products.map(transformProduct);
   const searchParams = useSearchParams();
   const query = searchParams.get("query") || "";
   // const category = searchParams.get("category") || "";
 
-  const productsForMainPage: ProductType[] = transformedProducts
-    .sort(() => 0.5)
-    .slice(0, 8);
   const { selectedLocation, exchangeRate } = useCountry();
   const filteredProducts = query.trim().toLocaleLowerCase()
     ? transformedProducts.filter(product => {
@@ -42,7 +42,7 @@ const ProductList = () => {
         );
         return nameMatches || categoryMatches || colorMatches;
       })
-    : productsForMainPage;
+    : productsForPage;
 
   return (
     <section className="mx-auto w-full max-w-7xl p-4">
@@ -54,7 +54,7 @@ const ProductList = () => {
           </p>
 
           <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-            {productsForMainPage.map(product => (
+            {productsForPage.map(product => (
               <Link
                 href={`/product/${createSlugFromName(product.name)}`}
                 key={product.id}
@@ -134,34 +134,35 @@ const ProductList = () => {
                 <h2 className="truncate text-xs text-customBlack group-hover:underline sm:text-[13px]">
                   {product.name}
                 </h2>
-                <div className="flex   gap-1 text-sm  md:gap-2">
-                  <span
+                <div className="gap-4 md:flex md:items-center">
+                  {/*sale price*/}
+                  {product.prices.sale !== undefined && (
+                    <p>
+                      {`${selectedLocation.currencySymbol} ${convertPriceToCurrency(
+                        Number(parseFloat(product.prices.sale).toFixed(2)),
+                        exchangeRate
+                      )} ${selectedLocation.currency}`}
+                    </p>
+                  )}
+                  {/*regular price*/}
+                  <p
                     className={`${
-                      product.prices.sale ? "text-darkGray line-through" : ""
-                    } mr-2`}
+                      product.prices.sale
+                        ? "text-sm text-darkGray line-through"
+                        : "text-base"
+                    } `}
                   >
-                    {selectedLocation.currencySymbol}{" "}
-                    {convertPriceToCurrency(
+                    {`${selectedLocation.currencySymbol}
+                    ${convertPriceToCurrency(
                       Number(parseFloat(product.prices.regular).toFixed(2)),
                       exchangeRate
                     )}
-                    {selectedLocation.currency}
-                  </span>
+                    ${selectedLocation.currency}`}
+                  </p>
 
                   <span
                     className={`${product.availability === "sold out" ? "hidden" : "md:block"}}`}
-                  >
-                    {product.prices.sale !== undefined && (
-                      <span>
-                        {selectedLocation.currencySymbol}{" "}
-                        {convertPriceToCurrency(
-                          Number(parseFloat(product.prices.sale).toFixed(2)),
-                          exchangeRate
-                        )}
-                        {selectedLocation.currency}
-                      </span>
-                    )}
-                  </span>
+                  ></span>
                 </div>
               </div>
             </Link>

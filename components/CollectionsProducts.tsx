@@ -83,27 +83,21 @@ const CollectionsProducts = ({
                     {product.name}
                   </h2>
 
-                  <div className="flex flex-row items-center gap-2 bg-yellow-100 md:gap-4">
+                  <div className="items-center gap-4 md:flex">
                     {product.prices.sale && (
                       <p className="text-customBlack">
-                        {selectedLocation.currencySymbol}
-                        {convertPriceToCurrency(Number(product.prices.sale))}
-                        {selectedLocation.currency}
+                        {`${selectedLocation.currencySymbol} ${convertPriceToCurrency(Number(product.prices.sale))} ${selectedLocation.currency}`}
                       </p>
                     )}
 
                     <p
-                      className={`text-sm md:text-base ${
+                      className={`text-base ${
                         product.prices.sale
-                          ? "text-gray-400 line-through"
+                          ? "text-sm text-gray-400 line-through"
                           : "text-black"
                       }`}
                     >
-                      {selectedLocation.currencySymbol}
-                      {convertPriceToCurrency(
-                        Number(product.prices.regular)
-                      )}{" "}
-                      {selectedLocation.currency}
+                      {`${selectedLocation.currencySymbol} ${convertPriceToCurrency(Number(product.prices.regular))} ${selectedLocation.currency}`}
                     </p>
                   </div>
                 </div>

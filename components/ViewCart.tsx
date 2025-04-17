@@ -35,11 +35,11 @@ const AddToCart = ({
   if (!isCartOpen) return null;
 
   return (
-    <div className="absolute left-0 top-0 z-50 flex w-full flex-col gap-4 bg-white px-[30px] py-6 md:left-auto md:right-6 md:max-w-[26rem]">
+    <div className="absolute z-50 flex w-full flex-col gap-4 bg-white px-[30px] py-6 shadow-md md:right-2 md:max-w-[20rem]">
       <div className="flex items-center justify-between">
         <div className="flex flex-shrink-0 items-center gap-2">
           <IoCheckmark />
-          <span className="text-[13px]">Item added to your cart</span>
+          <h1 className="text-sm font-bold">Item added to your cart</h1>
         </div>
         <button onClick={handleCartClose}>
           <IoCloseOutline
@@ -50,28 +50,28 @@ const AddToCart = ({
       </div>
       <div className="flex items-start gap-2">
         <Image src={imageToDisplay} alt={product.name} width={70} height={65} />
-        <div className="">
-          <h3 className="text-[15px]">{product.name}</h3>
+        <div>
+          <h2 className="text-[15px]">{product.name}</h2>
           {selectedSize && (
-            <p className="text-[14px] text-darkGray">
+            <h3 className="text-[14px] text-darkGray">
               Size: <span className="capitalize">{selectedSize}</span>
-            </p>
+            </h3>
           )}
-          <h4 className="text-[14px] text-darkGray">
+          <h3 className="text-[14px] text-darkGray">
             Color: <span className="capitalize">{selectedColor}</span>
-          </h4>
+          </h3>
         </div>
       </div>
       <div className="mt-2 flex flex-col items-start justify-between gap-4">
         <Link
           href="/cart"
-          className="w-full border border-darkGray p-3 text-center sm:w-4/5 md:w-full"
+          className="w-full border border-darkGray p-3 text-center"
         >
           View cart ({getTotalQuantity()})
         </Link>
         <Link
           href="/checkout"
-          className="flex w-full items-center justify-center border border-darkGray bg-black p-3 text-white sm:w-4/5 md:w-full"
+          className="flex w-full items-center justify-center border border-darkGray bg-black p-3 text-white"
         >
           Check out
         </Link>

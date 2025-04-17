@@ -57,7 +57,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, [cart, isCartReady]);
 
-  if (!isCartReady) return null;
   const addToCart = (item: CartItemType) => {
     setCart(prevCart => {
       const existingItem = prevCart.find(

@@ -389,7 +389,7 @@
         "regular": "273.00 "
       },
       "status": "outOfStock",
-      "availability": "available",
+      "availability": "sold out",
       "createdAt": "2024-03-20",
       "availableColors": [
         {

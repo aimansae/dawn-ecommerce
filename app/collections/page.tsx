@@ -17,9 +17,9 @@ const CollectionsPage = ({
   const allProducts: ProductType[] = data.products.map(transformProduct);
   // const { selectedLocation } = useCountry();
   const page = Number(searchParams.page) || 1;
-  console.log(page?.toString(), "page from page.tsx");
+
   const searchQuery = searchParams.query;
-  console.log(searchQuery, "Query term");
+
   const inStockParams = searchParams.inStock === "true";
   const outOfStockParams = searchParams.outOfStock === "true";
   const colors = Array.isArray(searchParams.colors)

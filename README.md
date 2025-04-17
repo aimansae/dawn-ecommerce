@@ -43,7 +43,6 @@ LOADING STATES for all pages
 HomePage:add more products
  
  View Cart image resizing
-SingleProduct: image gallery for mdplus 
 
 
  MobileNav: is country is open make background blac, add x button
@@ -71,3 +70,5 @@ mobile overlay covering content
 tags for collection
 filters featured
 bogy overflow for mobile nav
+
+add to cart position

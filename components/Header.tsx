@@ -34,7 +34,6 @@ const Header = () => {
   const { getTotalQuantity } = useCart();
   const quantity = getTotalQuantity() || 0;
   const [searchQuery, setSearchQuery] = useState("");
-  console.log("queryFrom", searchQuery);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -95,7 +94,6 @@ const Header = () => {
 
   const handleGeneralSearch = (query: string) => {
     const currentParams = new URLSearchParams(searchParams.toString());
-    console.log(currentParams, "Logging current params");
     if (query.trim()) {
       currentParams.set("query", query);
       router.push(
@@ -127,15 +125,6 @@ const Header = () => {
       const bannerHeight = bannerRef.current?.offsetHeight || 0;
       const headerHeight = headerRef.current?.offsetHeight || 0;
       const queryHeight = queryRef.current ? queryRef.current.offsetHeight : 0;
-      console.log(
-        "banner",
-        bannerHeight,
-        "query",
-        queryHeight,
-        "header",
-        headerHeight,
-        "***********"
-      );
 
       setOverLayTop(bannerHeight + headerHeight + queryHeight);
     };
@@ -377,7 +366,8 @@ const Header = () => {
         <>
           <div
             onClick={() => setIsMobile(false)}
-            className="fixed bottom-0 left-0 right-0 top-[107px] z-30 bg-black bg-opacity-60 lg:hidden"
+            className="fixed bottom-0 left-0 right-0 z-30 bg-black bg-opacity-60 lg:hidden"
+            style={{ top: `${overLayTop}px` }}
           />
           <MobileNav
             topOffset={overLayTop}
