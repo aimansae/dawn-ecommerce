@@ -61,5 +61,13 @@
     "copyright": {
       "description": "© 2024, personal educational exercise project inspired by theme-dawn-demo"
     }
-  }
+  },
+  "paymentOptions": [
+    { "label": "Visa", "src": "Visa" },
+    { "label": "Mastercard", "src": "Mastercard" },
+    { "label": "Amex", "src": "Amex" },
+    { "label": "Paypal", "src": "Paypal" },
+    { "label": "Diners", "src": "Diners" },
+    { "label": "Discover", "src": "Discover" }
+  ]
 }

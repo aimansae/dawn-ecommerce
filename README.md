@@ -72,3 +72,5 @@ filters featured
 bogy overflow for mobile nav
 
 add to cart position
+loading for checkout
+for checkout select country should be the country selected

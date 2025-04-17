@@ -13,7 +13,7 @@
     "city": "City",
     "shippingMethod": "Shipping method",
     "shippingNote": "Enter your shipping address to view available shipping methods.",
-    "sendOrder": "Send order"
+    "sendOrder": "Place order"
   },
   "placeholders": {
     "email": "email",
@@ -35,5 +35,8 @@
       "times": "6 to 623 business days",
       "price": "25.95"
     }
+  ],
+  "paymentMethods": [
+   
   ]
 }

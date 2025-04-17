@@ -16,20 +16,19 @@ import Diners from "../public/assets/images/paymentMethods/diners.svg";
 import Discover from "../public/assets/images/paymentMethods/discover.svg";
 import SubscribersForm from "./SubscribersForm";
 
-const paymentIcons = [
-  { label: "Visa", src: Visa },
-  { label: "Mastercard", src: Mastercard },
-  { label: "Amex", src: Amex },
-  { label: "Paypal", src: Paypal },
-  { label: "Diners", src: Diners },
-  { label: "Discover", src: Discover },
-];
 export type Location = {
   country: string;
   currency: string;
   language?: string;
 };
-
+export const paymentIcons: Record<string, string> = {
+  Visa,
+  Mastercard,
+  Amex,
+  Paypal,
+  Diners,
+  Discover,
+};
 const Footer = () => {
   const [showLocations, setShowLocations] = useState(false);
   const { selectedLocation, setSelectedLocation } = useCountry();
@@ -129,11 +128,11 @@ const Footer = () => {
         </div>
         {/*Payment icons*/}
         <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
-          {paymentIcons.map(icon => (
-            <div key={icon.label} className="rounded-md border">
+          {data.paymentOptions.map(option => (
+            <div key={option.label} className="rounded-md border">
               <Image
-                src={icon.src}
-                alt={icon.label}
+                src={paymentIcons[option.src]}
+                alt={option.label}
                 width={25}
                 height={20}
                 className="object-fill"

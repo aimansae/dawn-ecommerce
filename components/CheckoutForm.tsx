@@ -8,10 +8,26 @@ import { CheckoutFormData } from "@/app/types/types";
 import data from "../app/data/header.json";
 import content from "../app/data/checkoutForm.json";
 import { useCountry } from "@/app/context/CountryContext";
+import paymentData from "../app/data/footer.json";
+import Visa from "../public/assets/images/paymentMethods/visa.svg";
+import Mastercard from "../public/assets/images/paymentMethods/mastercard.svg";
+import Amex from "../public/assets/images/paymentMethods/american-express.svg";
+import Paypal from "../public/assets/images/paymentMethods/paypal.svg";
+import Diners from "../public/assets/images/paymentMethods/diners.svg";
+import Discover from "../public/assets/images/paymentMethods/discover.svg";
+import Image from "next/image";
+
 const CheckoutForm = () => {
+  const paymentIcons: Record<string, string> = {
+    Visa,
+    Mastercard,
+    Amex,
+    Discover,
+    Paypal,
+    Diners,
+  };
   const { clearCart, cart } = useCart();
   const router = useRouter();
-  const { selectedLocation } = useCountry();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<CheckoutFormData>({
     email: "",
@@ -25,8 +41,7 @@ const CheckoutForm = () => {
   });
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"success" | "error" | "">("");
-  const [selectCountry, setSelectCountry] = useState("");
-
+  const { selectedLocation, setSelectedLocation } = useCountry();
   const [selectedShipping, setSelectedShipping] = useState<{
     type: string;
     price: string;
@@ -43,9 +58,7 @@ const CheckoutForm = () => {
       [name]: type === "checkbox" ? checked : value,
     }));
   };
-  const handleSelectCountry = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSelectCountry(e.target.value);
-  };
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -58,7 +71,9 @@ const CheckoutForm = () => {
           ...formData,
           cart,
           selectedShipping,
+          selectedPayment,
           total: totalWithShipping,
+          shippingCountry: selectedLocation,
         }),
       });
       const data = await res.json();
@@ -96,25 +111,29 @@ const CheckoutForm = () => {
       setIsLoading(false);
     }
   };
-  //shipping
-  console.log("Receive emails:", formData.receiveEmails);
 
+  console.log("Receive emails:", formData.receiveEmails);
+  const [selectedPayment, setSelectedPayment] = useState("");
+  console.log("paymentSelected is", selectedPayment);
   return (
-    <section className="mx-auto flex w-full max-w-6xl flex-col justify-between">
+    <section className="mx-auto flex w-full max-w-7xl flex-col justify-between">
       <div className="md:grid md:grid-cols-2 md:items-start md:justify-between">
         <OrderSummary
           selectedShipping={selectedShipping}
           onTotalChange={handleTotalChange}
         />
 
-        <form onSubmit={handleSubmit} className="px-7 py-3 sm:gap-0 md:order-1">
+        <form
+          onSubmit={handleSubmit}
+          className="px-4 py-3 sm:gap-0 sm:px-7 md:order-1"
+        >
           {status === "error" && (
             <div className="mb-4 rounded p-3 text-center text-sm text-red-800 shadow">
               <span>{message}</span>
             </div>
           )}
 
-          <h2 className="my-2 text-[21px] font-bold">Contact</h2>
+          <h2 className="my-2 font-bold md:text-[21px]">Contact</h2>
           <div className="flex flex-col gap-4">
             <FormInput
               type="email"
@@ -135,14 +154,26 @@ const CheckoutForm = () => {
             />
           </div>
 
-          <h2 className="my-4 text-[21px] font-bold">Delivery</h2>
+          <h2 className="my-4 font-bold md:text-[21px]">Delivery</h2>
           <div className="flex flex-col gap-3">
             <div className="relative">
               <select
                 id="country"
                 name="country"
-                value={selectCountry}
-                onChange={handleSelectCountry}
+                value={selectedLocation.country}
+                onChange={(e: ChangeEvent<HTMLSelectElement>) => {
+                  const selected = data.footer.locations.find(
+                    location => location.country === e.target.value
+                  );
+
+                  if (selected) {
+                    setSelectedLocation({
+                      country: selected.country,
+                      currency: selected.currency,
+                      currencySymbol: selected.currencySymbol,
+                    });
+                  }
+                }}
                 className="peer w-full appearance-none rounded-xl border-2 border-blue-500 bg-transparent px-4 pb-2 pt-6 text-base text-black focus:outline-none"
               >
                 <option disabled className="text-gray-400">
@@ -154,6 +185,8 @@ const CheckoutForm = () => {
                   </option>
                 ))}
               </select>
+              {/*IMPORT*/}
+
               {/* Floating Label */}
               <label
                 htmlFor="country"
@@ -228,9 +261,9 @@ const CheckoutForm = () => {
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <h2 className="my-4 text-[21px] font-bold">Shipping method</h2>
+            <h2 className="my-4 font-bold md:text-[21px]">Shipping method</h2>
             <div className="my-2 rounded-md border border-gray-100 bg-gray-100">
-              {selectCountry ? (
+              {selectedLocation ? (
                 content.shipping.map((option, index) => (
                   <div
                     className="flex flex-col gap-2 rounded-md border"
@@ -248,9 +281,9 @@ const CheckoutForm = () => {
                         }}
                         checked={selectedShipping?.type === option.type}
                       />
-                      <div className="w-full">
+                      <div className="w-full text-sm md:text-base">
                         <label
-                          className={`h-6 w-6 ${selectedShipping?.type === option.type ? "text-bold" : ""}`}
+                          className={` ${selectedShipping?.type === option.type ? "text-bold" : ""}`}
                           htmlFor={option.type}
                         >
                           {selectedLocation.country} {option.type}
@@ -270,15 +303,45 @@ const CheckoutForm = () => {
                   methods.
                 </p>
               )}
-              {/*Shipping info*/}
             </div>
-            <div className="flex items-center justify-center">
+            {/*Payment method*/}
+            <h2 className="my-4 font-bold md:text-[21px]">
+              Choose a payment method
+            </h2>
+            <div className="grid grid-cols-2 gap-2 bg-gray-200">
+              {paymentData.paymentOptions.map((option, index) => (
+                <div
+                  key={index}
+                  className={`flex items-center gap-1 p-4 ${selectedPayment === option.label ? "border border-black bg-blue-200" : ""}`}
+                >
+                  <input
+                    type="radio"
+                    value={option.label}
+                    name={option.label}
+                    id={option.label}
+                    checked={selectedPayment === option.label}
+                    onChange={() => setSelectedPayment(option.label)}
+                  />
+                  <label htmlFor={option.label}>
+                    <Image
+                      width={30}
+                      height={30}
+                      src={paymentIcons[option.src]}
+                      alt={option.src}
+                    />
+                  </label>
+                </div>
+              ))}
+            </div>
+            {/*Shipping info*/}
+
+            <div className="my-6 flex items-center justify-center">
               <button
-                className="w-full rounded-md border border-black bg-[#334FB4] px-4 py-3 text-lg font-bold text-white"
+                className="w-full rounded-md border border-black bg-[#334FB4] px-4 py-2 text-lg text-sm font-bold text-white md:py-3 md:text-base"
                 type="submit"
                 disabled={isLoading}
               >
-                {isLoading ? "Sending" : "Send Order"}
+                {isLoading ? "Sending" : "Place Order"}
               </button>
             </div>
           </div>
@@ -314,7 +377,7 @@ export const FormInput = ({
   return (
     <>
       {type === "checkbox" ? (
-        <label className="flex items-center gap-2 text-sm">
+        <label className="flex items-center gap-1 whitespace-nowrap text-sm">
           <input
             type="checkbox"
             id={id}

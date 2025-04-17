@@ -742,5 +742,170 @@
     },
     "total": 930.25,
     "createdAt": "Thu Apr 17 2025 12:28:39 GMT+0200 (Central European Summer Time)"
+  },
+  {
+    "cart": [
+      {
+        "product": {
+          "id": "5",
+          "name": "Helix",
+          "category": [
+            "Bags",
+            "crossbody_bags"
+          ],
+          "prices": {
+            "currency": "USD",
+            "regular": "333.00 "
+          },
+          "status": "inStock",
+          "availability": "available",
+          "createdAt": "2024-03-20",
+          "availableColors": [
+            {
+              "color": "multicolor",
+              "tag": "available",
+              "colorCategory": "multicolor",
+              "imageUrl": [
+                "/assets/images/helixBag/helix-bag-multicolor.png",
+                "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+                "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+              ]
+            },
+            {
+              "color": "denim",
+              "tag": "available",
+              "colorCategory": "blue",
+              "imageUrl": [
+                "/assets/images/helixBag/helix-bag-denim.png",
+                "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+                "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+              ]
+            },
+            {
+              "color": "off white",
+              "tag": "available",
+              "colorCategory": "white",
+              "imageUrl": [
+                "/assets/images/helixBag/helix-bag-offWhite.png",
+                "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+                "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+              ]
+            },
+            {
+              "color": "south america",
+              "tag": "available",
+              "colorCategory": "multicolor",
+              "imageUrl": [
+                "/assets/images/helixBag/helix-bag-southAmerica.png",
+                "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+                "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+              ]
+            }
+          ],
+          "description": "Featuring a unique combination of modern art and minimalist perspective, our Helix Bag is perfectly sized to fit just the essentials - think small wallet, keys, sunglasses and large phone. It has a wind spinner silhouette that will remind you summer breezes out on the porch. The top handle is cleverly linked to the body through its hidden joint; it can fall down when you use the bag with shoulder strap. Made from smooth leather and has a suede internal with a drawstring top to keep all you have stowed inside safe and secure."
+        },
+        "quantity": 1,
+        "selectedColor": "multicolor",
+        "selectedImage": [
+          "/assets/images/helixBag/helix-bag-multicolor.png",
+          "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+          "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+        ],
+        "selectedSize": ""
+      }
+    ],
+    "selectedShipping": {
+      "type": "Post Small Packet International  ",
+      "times": "6 to 623 business days",
+      "price": "25.95"
+    },
+    "selectedPayment": "Paypal",
+    "total": 358.95,
+    "createdAt": "Thu Apr 17 2025 18:26:49 GMT+0200 (Central European Summer Time)"
+  },
+  {
+    "cart": [
+      {
+        "product": {
+          "id": "5",
+          "name": "Helix",
+          "category": [
+            "Bags",
+            "crossbody_bags"
+          ],
+          "prices": {
+            "currency": "USD",
+            "regular": "333.00 "
+          },
+          "status": "inStock",
+          "availability": "available",
+          "createdAt": "2024-03-20",
+          "availableColors": [
+            {
+              "color": "multicolor",
+              "tag": "available",
+              "colorCategory": "multicolor",
+              "imageUrl": [
+                "/assets/images/helixBag/helix-bag-multicolor.png",
+                "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+                "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+              ]
+            },
+            {
+              "color": "denim",
+              "tag": "available",
+              "colorCategory": "blue",
+              "imageUrl": [
+                "/assets/images/helixBag/helix-bag-denim.png",
+                "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+                "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+              ]
+            },
+            {
+              "color": "off white",
+              "tag": "available",
+              "colorCategory": "white",
+              "imageUrl": [
+                "/assets/images/helixBag/helix-bag-offWhite.png",
+                "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+                "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+              ]
+            },
+            {
+              "color": "south america",
+              "tag": "available",
+              "colorCategory": "multicolor",
+              "imageUrl": [
+                "/assets/images/helixBag/helix-bag-southAmerica.png",
+                "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+                "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+              ]
+            }
+          ],
+          "description": "Featuring a unique combination of modern art and minimalist perspective, our Helix Bag is perfectly sized to fit just the essentials - think small wallet, keys, sunglasses and large phone. It has a wind spinner silhouette that will remind you summer breezes out on the porch. The top handle is cleverly linked to the body through its hidden joint; it can fall down when you use the bag with shoulder strap. Made from smooth leather and has a suede internal with a drawstring top to keep all you have stowed inside safe and secure."
+        },
+        "quantity": 2,
+        "selectedColor": "multicolor",
+        "selectedImage": [
+          "/assets/images/helixBag/helix-bag-multicolor.png",
+          "/assets/images/flexBag/flex-bag-cappuccino-2.png",
+          "/assets/images/flexBag/flex-bag-cappuccino-3.png"
+        ],
+        "selectedSize": ""
+      }
+    ],
+    "selectedShipping": {
+      "type": "Post Small Packet International  ",
+      "times": "6 to 623 business days",
+      "price": "25.95"
+    },
+    "selectedPayment": "Visa",
+    "total": 691.95,
+    "shippingCountry": {
+      "country": "Canada",
+      "currency": "CAD",
+      "currencySymbol": "$"
+    },
+    "createdAt": "Thu Apr 17 2025 18:30:19 GMT+0200 (Central European Summer Time)"
   }
 ]

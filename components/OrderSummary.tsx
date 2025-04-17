@@ -39,20 +39,20 @@ const OrderSummary = ({
   };
 
   return (
-    <div className="mx-auto h-full w-full max-w-7xl bg-[#f5f5f5] px-7 md:order-2 md:h-full">
+    <div className="mx-auto h-full w-full max-w-7xl bg-[#f5f5f5] px-4 sm:px-7 md:order-2 md:h-full">
       <button
         onClick={toggleSummary}
         className="flex w-full items-center justify-between border-b py-5 text-[#334FB4]"
       >
-        <span className="flex items-center gap-1 text-[15px]">
+        <span className="flex items-center whitespace-nowrap text-[15px]">
           Order Summary
           <MdKeyboardArrowDown className="md:hidden" />
         </span>
 
-        <span className="text-lg font-bold">
-          {selectedLocation.currencySymbol}
-          {convertPriceToCurrency(Number(totalPrice), exchangeRate)}
-        </span>
+        <p className="font-bold">
+          {`
+          ${convertPriceToCurrency(Number(totalPrice), exchangeRate)} ${selectedLocation.currencySymbol}`}
+        </p>
       </button>
 
       <div
@@ -75,7 +75,7 @@ const OrderSummary = ({
             return (
               <div
                 key={`${item.product.id}-${item.selectedColor}-${item.selectedSize}`}
-                className="flex items-start justify-between gap-4"
+                className="flex items-start justify-between gap-2 md:gap-2"
               >
                 {/* Image with Quantity Bubble */}
                 <div className="relative rounded-md bg-white">
@@ -94,7 +94,7 @@ const OrderSummary = ({
                   )}
                 </div>
                 {/* Product Info */}
-                <div className="text-s flex w-full items-center justify-between">
+                <div className="flex w-full items-start justify-between text-sm">
                   <div>
                     <Link
                       href={`/product/${createSlugFromName(item.product.name)}`}
@@ -112,8 +112,9 @@ const OrderSummary = ({
                   {/*Price*/}
                   <div className="mt-4 flex justify-between font-bold">
                     <p className="font-semibold">
-                      {selectedLocation.currencySymbol}
-                      {convertPriceToCurrency(Number(price), exchangeRate)}
+                      {`
+                      ${convertPriceToCurrency(Number(price), exchangeRate)}
+                      ${selectedLocation.currencySymbol}`}
                     </p>
                   </div>
                 </div>
@@ -122,13 +123,15 @@ const OrderSummary = ({
           })}
         </div>
         {/* Total Section */}
-        <div className="mt-4 flex flex-col gap-2">
-          <div className="flex justify-between">
-            <span>Subtotal - {quantity} items</span>
-            <span className="font-semibold">
-              {selectedLocation.currencySymbol}
-              {convertPriceToCurrency(Number(totalPrice), exchangeRate)}
+        <div className="mt-2 flex flex-col gap-2 md:mt-4">
+          <div className="flex items-center justify-between">
+            <span className="text-sm md:text-base">
+              Subtotal - {quantity} items
             </span>
+            <p className="font-semibold">
+              {`${convertPriceToCurrency(Number(totalPrice), exchangeRate)}
+              ${selectedLocation.currencySymbol}`}
+            </p>
           </div>
           {selectedShipping && (
             <div className="flex justify-between">
@@ -139,11 +142,10 @@ const OrderSummary = ({
             </div>
           )}
 
-          <div className="my-4 flex justify-between text-2xl font-bold">
+          <div className="my-4 flex justify-between text-xl font-bold">
             <p>Total</p>
             <span className="font-semibold">
-              {selectedLocation.currencySymbol}
-              {convertPriceToCurrency(total, exchangeRate)}
+              {`${convertPriceToCurrency(total, exchangeRate)} ${selectedLocation.currencySymbol}`}
             </span>
           </div>
         </div>

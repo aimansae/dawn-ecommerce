@@ -7,7 +7,14 @@ console.log("logging filePath", filePath);
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { cart, userInfo, selectedShipping, total } = body;
+    const {
+      cart,
+      userInfo,
+      selectedShipping,
+      selectedPayment,
+      total,
+      shippingCountry,
+    } = body;
     console.log("body is", body);
     // check existing orders
     const existingOrders = fs.existsSync(filePath)
@@ -20,7 +27,9 @@ export async function POST(req: NextRequest) {
       ...userInfo,
       cart,
       selectedShipping,
+      selectedPayment,
       total,
+      shippingCountry,
       createdAt: new Date().toString(),
     };
     const updateOrders = [...existingOrders, newOrder];

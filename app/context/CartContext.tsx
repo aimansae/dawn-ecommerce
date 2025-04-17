@@ -48,12 +48,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
+      console.log("🛒 Restored cart from localStorage:", storedCart);
       setIsCartReady(true);
+    } else {
+      console.log("🛒 No cart found in localStorage.");
+      setIsCartReady(true); // even if empty, we’re ready
     }
   }, []);
+
   useEffect(() => {
-    if (isCartReady) {
+    if (isCartReady && typeof window !== "undefined") {
       localStorage.setItem("cart", JSON.stringify(cart));
+      console.log("Cart saved to localStorage:", cart);
     }
   }, [cart, isCartReady]);
 
