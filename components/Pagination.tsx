@@ -8,38 +8,31 @@ type PaginationProps = {
   products: ProductType[];
   productsPerPage: number;
 };
+
 const Pagination = ({ products, productsPerPage = 6 }: PaginationProps) => {
   const totalPages = Math.ceil(products.length / productsPerPage);
-  console.log("totalPages", totalPages);
-
   const searchParams = useSearchParams();
   const router = useRouter();
   const pahName = usePathname();
   const currentPage = Number(searchParams.get("page") || 1);
-
-  console.log(currentPage);
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
       const params = new URLSearchParams(searchParams);
       params.set("page", page.toString());
       router.push(`${pahName}?${params.toString()}`);
-      console.log("current pages", currentPage);
     }
   };
-
   const getPageNumber = () => {
     if (totalPages <= 2) {
       return Array.from({ length: totalPages }, (_, i) => i + 1);
     }
-
     if (currentPage >= totalPages - 2) {
       return [totalPages - 2, totalPages - 1, totalPages];
     }
     if (currentPage <= 2) {
       return [1, 2];
     }
-
     return [currentPage - 1, currentPage, currentPage + 1];
   };
 
@@ -59,7 +52,6 @@ const Pagination = ({ products, productsPerPage = 6 }: PaginationProps) => {
         />
       </button>
       {/*Current Page*/}
-
       {getPageNumber().map(page => (
         <button
           key={page}
@@ -73,7 +65,6 @@ const Pagination = ({ products, productsPerPage = 6 }: PaginationProps) => {
       {/* Ellipsis */}
       {totalPages > 3 && currentPage < totalPages - 1 && <span>...</span>}
       {/*Next Page*/}
-
       <button
         disabled={currentPage >= totalPages}
         onClick={() => handlePageChange(currentPage + 1)}
@@ -82,7 +73,7 @@ const Pagination = ({ products, productsPerPage = 6 }: PaginationProps) => {
         <MdOutlineNavigateNext
           size={20}
           className="transition-transform duration-200 hover:scale-125"
-        />{" "}
+        />
       </button>
     </div>
   );

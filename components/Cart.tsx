@@ -14,6 +14,7 @@ import {
 import ProductList from "./ProductList";
 import products from "../app/data/productList.json";
 import { transformProduct } from "@/app/utils/transformProduct";
+
 const Cart = () => {
   const {
     cart,
@@ -30,6 +31,7 @@ const Cart = () => {
   const productsForCart = transformedProducts
     .sort(() => Math.random() - 0.5)
     .slice(0, 4);
+
   return (
     <>
       <section className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-7">
@@ -68,7 +70,7 @@ const Cart = () => {
                   const total = Number(price) * item.quantity;
                   return (
                     <tr
-                      key={item.product.id}
+                      key={`${item.product.id}-${item.selectedColor}-${item.selectedSize ?? ""}`}
                       className="my-8 flex items-center justify-between md:items-start"
                     >
                       <td className="flex gap-2 md:gap-4">
@@ -121,7 +123,7 @@ const Cart = () => {
                                   Size: {item.selectedSize}
                                 </span>
                               )}
-                            </div>{" "}
+                            </div>
                           </div>
                           <div className="flex items-center gap-2 md:hidden">
                             <div className="w-2/3 sm:w-3/4">
@@ -200,7 +202,7 @@ const Cart = () => {
       {quantity > 0 ? (
         <div className="flex w-full flex-col gap-4 px-7 py-9 md:items-end">
           <div className="flex items-center justify-between">
-            <h1 className="whitepac-nowrap text-sm md:text-base">
+            <h1 className="whitespace-nowrap text-sm md:text-base">
               {data.cart.footer.estimatedTotal}
             </h1>
             <h2 className="font-semibold capitalize text-darkGray">

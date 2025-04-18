@@ -7,19 +7,18 @@ import {
   IoIosArrowRoundBack,
   IoIosArrowRoundForward,
 } from "react-icons/io";
-import {
-  FiltersType,
-  useCollectionFilters,
-} from "@/app/hooks/useCollectionFilters";
+import { useCollectionFilters } from "@/app/hooks/useCollectionFilters";
 import data from "../app/data/productList.json";
 import { TfiClose } from "react-icons/tfi";
-type AvailabilityKeys = keyof FiltersType["availability"];
+import { AvailabilityFilter } from "./AvailabilityFilter";
+import { ColorFilter } from "./ColorFilter";
+import { SortByFilter } from "./SortByFilter";
 
 //close filters if clicked on X from parent
 type Props = {
   totalProducts: number;
 };
-// toggleFilters: () => void;
+
 const CollectionsFilters = ({ totalProducts }: Props) => {
   const {
     filters,
@@ -29,7 +28,7 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
     sortBy,
     handleClearFilters,
   } = useCollectionFilters();
-  //for mobile
+  // For desktop
   const [activeFilters, setActiveFilters] = useState({
     availability: false,
     colors: false,
@@ -43,7 +42,7 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
   const mobileFilterRef = useRef<HTMLElement | null>(null);
   const availabilityRefDesktop = useRef<HTMLDivElement | null>(null);
   const colorsRefDesktop = useRef<HTMLDivElement | null>(null);
-  //for desktop
+  //For desktop
   const toggleDesktopFilter = (filterType: keyof typeof activeFilters) => {
     setActiveFilters(prev => ({
       availability: false,
@@ -51,7 +50,7 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
       [filterType]: !prev[filterType],
     }));
   };
-  //close mobilefilters if open
+  // close mobile filters if clicked outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -70,7 +69,8 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showMobileFilters]);
-  // if mobile filter are open make background not scrollable
+
+  // If mobile filter are open make background not scrollable
   useEffect(() => {
     if (showMobileFilters) {
       document.documentElement.style.overflow = "hidden";
@@ -84,14 +84,8 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
       document.body.style.overflow = "auto";
     };
   }, [showMobileFilters]);
-  //for mobile
-  const toggleMobileFilters = (filterType: keyof typeof activeFilters) => {
-    setActiveFilters(prev => ({
-      ...prev,
-      [filterType]: !prev[filterType],
-    }));
-  };
-  //desktop: close filters if clicked outside
+
+  // Desktop: close filters if clicked outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const clickOutsideAvailability =
@@ -115,18 +109,10 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [activeFilters.availability, activeFilters.colors]);
-  const handleGoBack = (filterType: keyof typeof activeFilters) => {
-    setActiveFilters(prev => ({
-      ...prev,
-      [filterType]: false,
-    }));
-  };
 
-  // const totalProducts = data.products.length;
   const inStockCount = data.products.filter(
     product => product.status === "inStock"
   ).length;
-  // total of inStock products
   const outOfStockCount = data.products.filter(
     product => product.status === "outOfStock"
   ).length;
@@ -386,122 +372,3 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
 };
 
 export default CollectionsFilters;
-
-//Availability filter
-
-export const AvailabilityFilter = ({
-  filters,
-  handleAvailabilityFilterChange,
-  inStockCount,
-  outOfStockCount,
-  className,
-}: {
-  filters: FiltersType;
-  handleAvailabilityFilterChange: (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => void;
-  inStockCount: number;
-  outOfStockCount: number;
-  className?: string;
-}) => {
-  const availabilityFilter = content.filterBy.find(
-    product => product.name === "availability"
-  );
-  return (
-    <div className={`${className} flex-col items-start gap-2`}>
-      {availabilityFilter?.options &&
-        Object.entries(availabilityFilter.options).map(([key, name]) => (
-          <div key={key} className="flex items-center gap-2 py-3 text-darkGray">
-            <input
-              className="h-4 w-4 appearance-none border border-gray-400 checked:before:block checked:before:text-center checked:before:leading-4 checked:before:text-black checked:before:content-['✔']"
-              type="checkbox"
-              name={key}
-              id={key}
-              onChange={handleAvailabilityFilterChange}
-              checked={filters.availability[key as AvailabilityKeys] || false}
-            />
-            <label className="hover:underline" htmlFor={key}>
-              {name} ({name === "In Stock" ? inStockCount : outOfStockCount})
-            </label>
-          </div>
-        ))}
-    </div>
-  );
-};
-// Color filter
-
-export const ColorFilter = ({
-  uniqueColorCategory,
-  handleColorSelection,
-  filters,
-  colorCategoryCounts,
-  className,
-}: {
-  uniqueColorCategory: string[];
-  handleColorSelection: (color: string) => void;
-  filters: FiltersType;
-  colorCategoryCounts: Record<string, number>;
-  className?: string;
-}) => {
-  return (
-    <div className={`${className} flex-col items-start gap-2`}>
-      {uniqueColorCategory.map(color => (
-        <div
-          className="flex items-center gap-2 py-3 text-[14px] text-darkGray"
-          key={color}
-        >
-          <input
-            type="checkbox"
-            name={color}
-            id={color}
-            onChange={() => handleColorSelection(color)}
-            checked={filters.colors.includes(color)}
-            className={`h-6 w-6 appearance-none rounded-full checked:border checked:border-black ${
-              data.colorClasses[color as keyof typeof data.colorClasses] ||
-              "bg-gray-200"
-            }`}
-          />
-          <label
-            className={`capitalize hover:underline ${filters.colors.includes(color) ? "font-bold" : ""}`}
-            htmlFor={color}
-          >
-            {color} ({colorCategoryCounts[color]})
-          </label>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-export const SortByFilter = ({
-  sortBy,
-  handleSortByChange,
-}: {
-  sortBy?: string;
-  handleSortByChange: React.ChangeEventHandler<HTMLSelectElement>;
-}) => {
-  return (
-    <>
-      <div className="flex items-center justify-between gap-2">
-        <label
-          htmlFor="sort"
-          className="shrink-0 whitespace-nowrap text-sm md:text-[15px]"
-        >
-          Sort by:
-        </label>
-        <select
-          id="sort"
-          value={sortBy || ""}
-          onChange={handleSortByChange}
-          className="bg-blue-400w-max mr-1 py-1 text-xs hover:underline md:rounded md:border md:px-3 md:text-base"
-        >
-          {content.sortBy[0]?.options.map((option, index) => (
-            <option key={index} value={option} className="text-xs">
-              {option}
-            </option>
-          ))}
-        </select>
-      </div>
-    </>
-  );
-};

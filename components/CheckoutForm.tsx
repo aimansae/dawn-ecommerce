@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/app/context/CartContext";
 import OrderSummary from "./OrderSummary";
@@ -8,24 +8,11 @@ import { CheckoutFormData } from "@/app/types/types";
 import data from "../app/data/header.json";
 import content from "../app/data/checkoutForm.json";
 import { useCountry } from "@/app/context/CountryContext";
-import paymentData from "../app/data/footer.json";
-import Visa from "../public/assets/images/paymentMethods/visa.svg";
-import Mastercard from "../public/assets/images/paymentMethods/mastercard.svg";
-import Amex from "../public/assets/images/paymentMethods/american-express.svg";
-import Paypal from "../public/assets/images/paymentMethods/paypal.svg";
-import Diners from "../public/assets/images/paymentMethods/diners.svg";
-import Discover from "../public/assets/images/paymentMethods/discover.svg";
-import Image from "next/image";
+import PaymentOptions from "./PaymentOptions";
+import ShippingOptions from "./ShippingOptions";
+import FormInput from "./FormInput";
 
 const CheckoutForm = () => {
-  const paymentIcons: Record<string, string> = {
-    Visa,
-    Mastercard,
-    Amex,
-    Discover,
-    Paypal,
-    Diners,
-  };
   const { clearCart, cart } = useCart();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -42,11 +29,14 @@ const CheckoutForm = () => {
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"success" | "error" | "">("");
   const { selectedLocation, setSelectedLocation } = useCountry();
+  const [selectedPayment, setSelectedPayment] = useState("");
+
   const [selectedShipping, setSelectedShipping] = useState<{
     type: string;
     price: string;
   } | null>(null);
   const [totalWithShipping, setTotalWithShipping] = useState(0);
+
   const handleTotalChange = (total: number) => {
     setTotalWithShipping(total);
   };
@@ -97,7 +87,6 @@ const CheckoutForm = () => {
         });
         setSelectedShipping(null);
         setTotalWithShipping(0);
-
         router.push("/");
       } else {
         setMessage(data.message || "Oops Something went wrong");
@@ -112,8 +101,6 @@ const CheckoutForm = () => {
     }
   };
 
-  const [selectedPayment, setSelectedPayment] = useState("");
-
   return (
     <section className="mx-auto flex w-full max-w-7xl flex-col justify-between">
       <div className="md:grid md:grid-cols-2 md:items-start md:justify-between">
@@ -121,7 +108,6 @@ const CheckoutForm = () => {
           selectedShipping={selectedShipping}
           onTotalChange={handleTotalChange}
         />
-
         <form
           onSubmit={handleSubmit}
           className="px-4 py-3 sm:gap-0 sm:px-7 md:order-1"
@@ -131,7 +117,6 @@ const CheckoutForm = () => {
               <span>{message}</span>
             </div>
           )}
-
           <h2 className="my-2 font-bold md:text-[21px]">Contact</h2>
           <div className="flex flex-col gap-4">
             <FormInput
@@ -152,7 +137,6 @@ const CheckoutForm = () => {
               label="Email me with news and offers"
             />
           </div>
-
           <h2 className="my-4 font-bold md:text-[21px]">Delivery</h2>
           <div className="flex flex-col gap-3">
             <div className="relative">
@@ -184,8 +168,6 @@ const CheckoutForm = () => {
                   </option>
                 ))}
               </select>
-              {/*IMPORT*/}
-
               {/* Floating Label */}
               <label
                 htmlFor="country"
@@ -303,61 +285,13 @@ const CheckoutForm = () => {
                 </p>
               )}
             </div>
-            {/*Payment methods*/}
-            <h2 className="my-4 font-bold md:text-[21px]">
-              Choose a payment method
-            </h2>
-            <div className="grid grid-cols-1 items-center border-gray-100 bg-gray-100 sm:grid-cols-2 md:grid-cols-3">
-              {paymentData.paymentOptions.map((option, index) => (
-                <div
-                  key={index}
-                  className={`flex items-center justify-between gap-3 rounded border p-3 transition-colors duration-200 ${
-                    selectedPayment === option.label
-                      ? "border-black bg-blue-200"
-                      : "border-gray-300 bg-white"
-                  }`}
-                >
-                  <div className="flex items-center gap-2 hover:cursor-pointer">
-                    <input
-                      type="radio"
-                      value={option.label}
-                      name={option.label}
-                      id={option.label}
-                      checked={selectedPayment === option.label}
-                      onChange={() => setSelectedPayment(option.label)}
-                      className=""
-                    />
-                    <label
-                      className="whitespace-nowrap text-sm"
-                      htmlFor={option.label}
-                    >
-                      {option.label}
-                    </label>{" "}
-                  </div>
-                  <div className="h-6 w-10 shrink-0">
-                    <Image
-                      width={40}
-                      height={24}
-                      quality={100}
-                      src={paymentIcons[option.src]}
-                      alt={option.src}
-                      className="h-full w-full object-contain"
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
+            {/* Payment Options */}
+            <PaymentOptions
+              selectedPayment={selectedPayment}
+              setSelectedPayment={setSelectedPayment}
+            />
             {/*Shipping info*/}
-
-            <div className="my-6 flex items-center justify-center">
-              <button
-                className="w-full rounded-md border border-black bg-[#334FB4] p-3 px-4 py-2 font-bold text-white hover:bg-[#2c4499]"
-                type="submit"
-                disabled={isLoading}
-              >
-                {isLoading ? "Sending" : "Place Order"}
-              </button>
-            </div>
+            <ShippingOptions isLoading={isLoading} />
           </div>
         </form>
       </div>
@@ -366,60 +300,3 @@ const CheckoutForm = () => {
 };
 
 export default CheckoutForm;
-
-export const FormInput = ({
-  type,
-  id,
-  name,
-  placeholder,
-  value,
-  onChange,
-  label,
-  checked,
-  minLength,
-}: {
-  type: string;
-  id: string;
-  name: string;
-  placeholder?: string;
-  value?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  label: string;
-  checked?: boolean;
-  minLength?: number;
-}) => {
-  return (
-    <>
-      {type === "checkbox" ? (
-        <label className="flex items-center gap-1 whitespace-nowrap text-sm">
-          <input
-            type="checkbox"
-            id={id}
-            name={name}
-            checked={checked}
-            onChange={onChange}
-            className="h-4 w-4 accent-[#334FB4]"
-          />
-          {label}
-        </label>
-      ) : (
-        <>
-          <label htmlFor={id} className="sr-only">
-            {label}
-          </label>
-          <input
-            required
-            id={id}
-            name={name}
-            type={type}
-            placeholder={placeholder}
-            value={value}
-            onChange={onChange}
-            minLength={minLength}
-            className="w-full rounded-lg border border-gray-300 p-3 focus:border-[#334FB4] focus:outline-none focus:ring-1 focus:ring-[#334FB4]"
-          />
-        </>
-      )}
-    </>
-  );
-};

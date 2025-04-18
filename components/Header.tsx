@@ -19,7 +19,7 @@ import { createSlugFromName } from "@/app/utils/functions";
 import { FaArrowRight } from "react-icons/fa6";
 import { link } from "../app/utils/functions";
 import HeaderSearch from "./HeaderSearch";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import ShippingBanner from "./ShippingBanner";
 import { useCollectionFilters } from "@/app/hooks/useCollectionFilters";
 
@@ -27,13 +27,17 @@ const Header = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [selectedLinkItem, setSelectedLinkItem] = useState<string | null>(null);
-
+  const [hasMounted, setHasMounted] = useState(false);
   const searchParams = useSearchParams();
-  const router = useRouter();
+  const { searchQuery, setSearchQuery, handleGeneralSearch } =
+    useCollectionFilters();
   const desktopCategoryRef = useRef<HTMLDivElement | null>(null);
   const { getTotalQuantity } = useCart();
   const quantity = getTotalQuantity() || 0;
-  const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -44,28 +48,20 @@ const Header = () => {
         setSelectedLinkItem(null);
       }
     };
-
     if (selectedLinkItem) {
       document.addEventListener("mousedown", handleClickOutside);
     }
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [selectedLinkItem]);
 
-  useEffect(() => {
-    if (searchQuery) {
-      setSearchQuery(searchQuery);
-    }
-  }, [searchParams]);
-
   const filterProductByQuery = products.products
     .filter(
       product =>
-        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.name.toLowerCase().includes(searchQuery?.toLowerCase()) ||
         product.category.some(category =>
-          category.toLowerCase().includes(searchQuery.toLowerCase())
+          category.toLowerCase().includes(searchQuery?.toLowerCase())
         ) ||
         product.availableColors.some(
           colorOption =>
@@ -91,17 +87,6 @@ const Header = () => {
   };
 
   const { handleCategoryClick } = useCollectionFilters();
-
-  const handleGeneralSearch = (query: string) => {
-    const currentParams = new URLSearchParams(searchParams.toString());
-    if (query.trim()) {
-      currentParams.set("query", query);
-      router.push(
-        `/collections?query=${encodeURIComponent(currentParams.toString())}`
-      );
-    }
-    setShowSearchBar(false);
-  };
 
   useEffect(() => {
     const shouldDisableScroll = isMobile || showSearchBar;
@@ -151,9 +136,11 @@ const Header = () => {
               className="fixed left-0 right-0 z-40 bg-black bg-opacity-50"
               style={{ top: `${overLayTop}px`, bottom: 0 }}
             ></div>
-            <div className="relative">
+            <div className="relative bg-green-200">
               <HeaderSearch
-                onClose={() => setShowSearchBar(false)}
+                onClose={() => {
+                  setShowSearchBar(false);
+                }}
                 term={searchQuery}
                 setTerm={setSearchQuery}
               />
@@ -166,15 +153,25 @@ const Header = () => {
                       ref={queryRef}
                       className="flex items-center justify-between px-2"
                     >
-                      <span>Search for: &quot;{searchQuery}&quot;</span>
+                      <h1>
+                        ASearch for:
+                        <span className="text-base italic text-darkGray">
+                          &quot;{searchQuery}&quot;
+                        </span>
+                      </h1>
                       <button
                         className="flex"
-                        onClick={() => handleGeneralSearch(searchQuery)}
+                        onClick={() =>
+                          handleGeneralSearch(searchQuery, () =>
+                            setShowSearchBar(false)
+                          )
+                        }
                       >
                         <FaArrowRight />
                       </button>
-                    </div> //suggestions
+                    </div>
                   ) : (
+                    //suggestions
                     <div className="fixed left-0 z-50 h-2/3 w-full overflow-y-scroll bg-white md:absolute md:mx-auto md:h-auto md:overflow-y-auto md:pt-4">
                       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                         {filteredSuggestions.length > 0 && (
@@ -311,7 +308,6 @@ const Header = () => {
                         />
                       </span>
                     </button>
-
                     {selectedLinkItem === item.label && (
                       <div
                         ref={desktopCategoryRef}
@@ -351,7 +347,7 @@ const Header = () => {
                   size={26}
                   className="transform transition-transform duration-300 hover:scale-110"
                 />
-                {quantity > 0 && (
+                {hasMounted && quantity > 0 && (
                   <span className="absolute bottom-0 right-0 rounded-full bg-black px-1 text-[9px] text-white">
                     {quantity}
                   </span>

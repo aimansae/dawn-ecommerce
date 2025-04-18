@@ -36,7 +36,9 @@ const CollectionsProducts = ({
               d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 105.25 5.25a7.5 7.5 0 0011.4 11.4z"
             />
           </svg>
-          <h2 className="text-2xl font-medium">Nothing matched your filters</h2>
+          <h2 className="whitespace-nowrap text-2xl font-medium">
+            Nothing matched your filters
+          </h2>
           <p className="text-center text-sm">
             Try adjusting your filters or keywords and search again.
           </p>
@@ -56,7 +58,6 @@ const CollectionsProducts = ({
                   color.colorCategory.toLowerCase() ===
                   selectedColor?.toLowerCase()
               ) || product.availableColors[0];
-
             return (
               <Link
                 href={`/product/${createSlugFromName(product.name)}`}
@@ -71,7 +72,7 @@ const CollectionsProducts = ({
                     fill
                     className="object-fit left-0 top-0 h-full w-full"
                     sizes="(max-width:375px)100vw,(max-width:560px)80vw, (max-width:768px) 60vw, 33vw"
-                  />{" "}
+                  />
                   <div className="absolute bottom-2 left-4">
                     <AvailabilityTag
                       availability={product.availability || "available"}
@@ -82,14 +83,12 @@ const CollectionsProducts = ({
                   <h2 className="truncate text-sm capitalize text-darkGray group-hover:underline sm:text-[13px] md:text-base">
                     {product.name}
                   </h2>
-
                   <div className="items-center gap-4 md:flex">
                     {product.prices.sale && (
                       <p className="text-customBlack">
                         {`${selectedLocation.currencySymbol} ${convertPriceToCurrency(Number(product.prices.sale))} ${selectedLocation.currency}`}
                       </p>
                     )}
-
                     <p
                       className={`text-base ${
                         product.prices.sale

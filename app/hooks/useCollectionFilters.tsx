@@ -7,6 +7,8 @@ export type FiltersType = {
   colors: string[];
 };
 export const useCollectionFilters = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
   const [filters, setFilters] = useState<FiltersType>({
     availability: { inStock: false, outOfStock: false },
     colors: [],
@@ -21,7 +23,7 @@ export const useCollectionFilters = () => {
       availability: { ...filters.availability, [name]: checked },
     };
     setFilters(updatedFilters);
-    updateURL(updatedFilters, sortBy);
+    updateURL(updatedFilters, sortBy, searchQuery);
   };
   const handleColorSelection = (color: string) => {
     const updatedColors = filters.colors.includes(color)
@@ -29,7 +31,7 @@ export const useCollectionFilters = () => {
       : [...filters.colors, color];
     const updatedFilters = { ...filters, colors: updatedColors };
     setFilters(updatedFilters);
-    updateURL(updatedFilters, sortBy);
+    updateURL(updatedFilters, sortBy, searchQuery);
   };
   const searchparams = useSearchParams();
   const router = useRouter();
@@ -49,15 +51,21 @@ export const useCollectionFilters = () => {
     const colorsParam = searchparams.get("colors");
     const colors = colorsParam ? colorsParam.split(",") : [];
     const sortByParams = searchparams.get("sort_by") || "";
+    const queryParams = searchparams.get("query") || "";
     setFilters({
       availability: { inStock, outOfStock },
       colors,
     });
     if (sortByParams) setSortBy(sortByParams.toLowerCase());
+    setSearchQuery(queryParams);
   }, [searchparams.toString()]);
 
   // update url
-  const updateURL = (newFilters: FiltersType, newSortBy: string | null) => {
+  const updateURL = (
+    newFilters: FiltersType,
+    newSortBy: string | null,
+    query?: string
+  ) => {
     const params = new URLSearchParams(searchparams.toString());
 
     // Always update colors
@@ -85,18 +93,21 @@ export const useCollectionFilters = () => {
       params.delete("sort_by");
     }
 
+    if (query !== undefined) {
+      if (query.trim()) {
+        params.set("query", query);
+      } else {
+        params.delete("query");
+      }
+    }
     router.push(`${pathname}?${decodeURIComponent(params.toString())}`);
   };
-  // sort by
 
   const handleSortByChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const selectedOption = e.target.value;
     setSortBy(selectedOption);
 
-    const params = new URLSearchParams(searchparams.toString());
-    params.set("sort_by", selectedOption);
-
-    router.push(`${pathname}?${decodeURIComponent(params.toString())}`);
+    updateURL(filters, selectedOption, searchQuery);
   };
   // clear all filters
   const handleClearFilters = () => {
@@ -105,8 +116,8 @@ export const useCollectionFilters = () => {
       colors: [],
     });
     setSortBy("");
-
-    router.push(`${pathname}`);
+    setSearchQuery("");
+    router.push(pathname);
   };
 
   //check
@@ -123,8 +134,19 @@ export const useCollectionFilters = () => {
     }
 
     setFilters(updatedFilters);
-    updateURL(updatedFilters, sortBy);
+    updateURL(updatedFilters, sortBy, searchQuery);
   };
+
+  const handleGeneralSearch = (query: string, onFinish?: () => void) => {
+    const currentParams = new URLSearchParams(searchparams.toString());
+    if (query.trim()) {
+      currentParams.set("query", query);
+      router.push(`/search?query=${encodeURIComponent(query.toString())}`);
+      setSearchQuery(query);
+    }
+    if (onFinish) onFinish();
+  };
+
   return {
     handleCategoryClick,
     filters,
@@ -134,5 +156,8 @@ export const useCollectionFilters = () => {
     handleSortByChange,
     handleClearFilters,
     removeAppliedFilter,
+    searchQuery,
+    setSearchQuery,
+    handleGeneralSearch,
   };
 };

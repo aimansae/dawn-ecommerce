@@ -5,13 +5,13 @@ import { IoCloseOutline } from "react-icons/io5";
 
 const AppliedCollectionFilters = () => {
   const { filters, removeAppliedFilter } = useCollectionFilters();
-  console.log("Applied filters", filters);
+
   return (
     <div className="flex flex-wrap gap-4 pb-4">
       <ul className="flex flex-wrap gap-2 text-darkGray">
         {filters.availability?.inStock && (
           <li className="space-between flex items-center gap-2 rounded-md border px-1 text-xs shadow-md">
-            <span className="">Availability: In Stock</span>
+            <span>Availability: In Stock</span>
             <button
               className="transform text-customBlack transition-transform duration-200 hover:scale-110"
               onClick={e => {
@@ -25,7 +25,7 @@ const AppliedCollectionFilters = () => {
         )}
         {filters.availability?.outOfStock && (
           <li className="space-between flex items-center gap-2 rounded-md border px-1 text-xs shadow-md">
-            <span className="">Availability: Out of Stock</span>
+            <span>Availability: Out of Stock</span>
             <button
               className="border:customBlack transform text-customBlack transition-transform duration-200 hover:scale-110 hover:border"
               onClick={() => removeAppliedFilter("outOfStock")}

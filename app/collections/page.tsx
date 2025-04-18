@@ -105,12 +105,17 @@ const CollectionsPage = ({
     <section className="mx-auto flex w-full max-w-7xl flex-col justify-between bg-white p-4">
       <div>
         <h1
-          className={`${searchQuery ? "text-wrap" : ""} my-[25px] text-[30px] capitalize sm:text-[40px]`}
+          className={`${searchQuery ? "text-wrap text-lg font-bold text-darkGray" : ""} my-[25px] text-[30px] capitalize sm:text-[40px]`}
         >
           {searchQuery ? `Search for "${searchQuery}"` : `${content.title}`}
         </h1>
-        <CollectionsFilters totalProducts={productCount} />
-        <AppliedCollectionFilters />
+
+        {filteredProducts.length > 0 && (
+          <>
+            <CollectionsFilters totalProducts={productCount} />
+            <AppliedCollectionFilters />
+          </>
+        )}
         <Suspense fallback={<Loading />}>
           <CollectionsProducts
             products={paginatedProducts}
