@@ -6,7 +6,7 @@ import TheCutLogo from "../public/assets/images/theCutLogo.png";
 
 const Refinery = () => {
   return (
-    <section className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-2 px-4 py-9 md:flex-row">
+    <section className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 sm:py-9 md:flex-row">
       <div className="flex flex-col items-center">
         <div className="relative h-[80px] w-[150px] text-center sm:h-[100px] sm:w-[200px]">
           <Image
@@ -17,8 +17,8 @@ const Refinery = () => {
             className="object-contain"
           />
         </div>
-        <div className="p-6 text-center">
-          <h2 className="leading-loose text-darkGray">
+        <div className="text-center sm:p-6">
+          <h2 className="text-sm leading-loose text-darkGray sm:text-base">
             &quot;{content.footer.refinery.description}&quot;
           </h2>
         </div>
@@ -33,11 +33,11 @@ const Refinery = () => {
             className="object-contain"
           />
         </div>
-        <div className="p-6 text-center">
-          <h2 className="leading-loose text-darkGray">
+        <div className="text-center sm:p-6">
+          <h2 className="text-sm leading-loose text-darkGray sm:text-base">
             &quot;{content.footer.theCut.description}&apos;
           </h2>
-        </div>{" "}
+        </div>
       </div>
     </section>
   );

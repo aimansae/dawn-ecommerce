@@ -34,8 +34,8 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="my-4 flex flex-col items-center justify-center gap-6 px-10 py-4 text-center md:px-32">
-        <h2 className="text-3xl text-customBlack md:text-[40px]">
+      <div className="flex flex-col items-center justify-center gap-6 px-10 py-4 text-center sm:my-4 md:px-32">
+        <h2 className="text-2xl text-customBlack sm:text-3xl md:text-[40px]">
           {hero.content.description.title}
         </h2>
         <h3 className="text-darkGray">{hero.content.description.body}</h3>

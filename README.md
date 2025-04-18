@@ -74,3 +74,10 @@ bogy overflow for mobile nav
 add to cart position
 loading for checkout
 for checkout select country should be the country selected
+
+local storage
+
+
+
+collections filter, if clicked on the filter that  
+mot found page

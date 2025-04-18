@@ -29,11 +29,14 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
     sortBy,
     handleClearFilters,
   } = useCollectionFilters();
-
+  //for mobile
   const [activeFilters, setActiveFilters] = useState({
     availability: false,
     colors: false,
   });
+  const [activeMobilePanel, setActiveMobilePanel] = useState<
+    "availability" | "colors" | null
+  >(null);
 
   const [showMobileFilters, setShowMobileFilters] = useState(false);
 
@@ -149,7 +152,7 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
 
   const selectedColorCount = filters.colors.length;
   return (
-    <div className="">
+    <div>
       <aside className="flex w-full items-center justify-between gap-2 py-3 text-[15px] text-darkGray">
         {/*mobile*/}
         <div className="flex items-center justify-between md:hidden">
@@ -253,11 +256,10 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
           <span>{totalProducts > 1 ? " Products" : " Product"}</span>
         </div>
       </aside>
-      {/*for mobile*/}
-      {/* {showMobileFilters &&
-        (activeFilters.availability || activeFilters.colors) && (
-          <div className="fixed inset-0 z-40 bg-black bg-opacity-40"></div>
-        )} */}
+      {/* dark overlay for mobile */}
+      {showMobileFilters && (
+        <div className="absolute inset-0 z-50 bg-black bg-opacity-60"></div>
+      )}
       {showMobileFilters && (
         <section
           ref={mobileFilterRef}
@@ -267,15 +269,20 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
             <div className="flex-grow text-center">
               <h2 className="text-[15px]">{content.titleSmallDevices}</h2>
               <p className="text-darkGray">
-                {0} {content.products}
+                {totalProducts} {content.products}
               </p>
             </div>
-            <button onClick={() => setShowMobileFilters(prev => !prev)}>
+            <button
+              onClick={() => {
+                setShowMobileFilters(prev => !prev);
+                setActiveMobilePanel(null);
+              }}
+            >
               <TfiClose className="text-darkGray" size={22} />
             </button>
           </div>
-          {/*show all filters*/}
-          {!activeFilters.availability && !activeFilters.colors && (
+          {/* Default Panel mobile */}
+          {!activeMobilePanel && (
             <ul className="flex flex-grow flex-col gap-2 border-y border-gray-300 px-[25px] py-3 text-[15px] text-darkGray sm:text-sm">
               {content.filterBy.map(filter => (
                 <li
@@ -284,8 +291,8 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
                 >
                   <button
                     onClick={() =>
-                      toggleMobileFilters(
-                        filter.name as keyof typeof activeFilters
+                      setActiveMobilePanel(
+                        filter.name as "availability" | "colors"
                       )
                     }
                     className="flex w-full items-center justify-between"
@@ -295,7 +302,7 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
                   </button>
                 </li>
               ))}
-              <li className="">
+              <li>
                 <SortByFilter
                   handleSortByChange={handleSortByChange}
                   sortBy={sortBy || ""}
@@ -303,12 +310,12 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
               </li>
             </ul>
           )}
-          {/* availability filters*/}
-          {activeFilters.availability && (
+          {/* Availability Panel */}
+          {activeMobilePanel === "availability" && (
             <div className="flex-grow border-y border-gray-300 px-[25px] py-3 text-[15px] text-darkGray">
               <button
                 className="flex w-full items-center justify-start py-3"
-                onClick={() => handleGoBack("availability")}
+                onClick={() => setActiveMobilePanel(null)}
               >
                 <span>
                   <IoIosArrowRoundBack size={25} />
@@ -329,12 +336,12 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
               />
             </div>
           )}
-          {/* color filters */}
-          {activeFilters.colors && (
+          {/*  Colors Panel */}
+          {activeMobilePanel === "colors" && (
             <div className="flex-grow overflow-y-auto border-y border-gray-300 px-[25px] py-3 text-[15px] text-darkGray">
               <button
                 className="flex w-full items-center justify-start py-3"
-                onClick={() => handleGoBack("colors")}
+                onClick={() => setActiveMobilePanel(null)}
               >
                 <span>
                   <IoIosArrowRoundBack size={25} />
@@ -354,7 +361,7 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
               />
             </div>
           )}
-          {/*clear and apply  buttons*/}
+          {/*Footer buttons*/}
           <div className="sticky flex items-center justify-between gap-2 bg-white px-[15px] py-2 text-sm">
             <button
               className="flex px-4 hover:underline hover:decoration-black"
@@ -366,6 +373,7 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
               className="bg-black p-2 px-6 text-white"
               onClick={() => {
                 setShowMobileFilters(false);
+                setActiveMobilePanel(null);
               }}
             >
               {content.apply}

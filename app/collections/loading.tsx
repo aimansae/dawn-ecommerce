@@ -1,7 +1,6 @@
-import LoadingSpinner from "@/components/LoadingSpinner";
+import ProductListSkeleton from "@/components/ProductListSkeleton";
 import React from "react";
 const Loading = () => {
-  return <LoadingSpinner />;
+  return <ProductListSkeleton></ProductListSkeleton>;
 };
-
 export default Loading;

@@ -104,13 +104,14 @@ const Header = () => {
   };
 
   useEffect(() => {
-    if (isMobile || showSearchBar) {
-      document.body.style.overflow = "hidden"; // Disable scrolling
+    const shouldDisableScroll = isMobile || showSearchBar;
+    if (shouldDisableScroll) {
+      document.documentElement.style.overflow = "hidden"; // Disable scrolling
     } else {
-      document.body.style.overflow = ""; // Enable scrolling
+      document.documentElement.style.overflow = ""; // Enable scrolling
     }
     return () => {
-      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
   }, [isMobile, showSearchBar]);
 
@@ -165,9 +166,7 @@ const Header = () => {
                       ref={queryRef}
                       className="flex items-center justify-between px-2"
                     >
-                      <span className="">
-                        Search for: &quot;{searchQuery}&quot;
-                      </span>
+                      <span>Search for: &quot;{searchQuery}&quot;</span>
                       <button
                         className="flex"
                         onClick={() => handleGeneralSearch(searchQuery)}

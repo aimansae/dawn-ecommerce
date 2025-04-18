@@ -1,8 +1,9 @@
 import SingleProduct from "@/components/SingleProduct";
-import React from "react";
+import React, { Suspense } from "react";
 import data from "@/app/data/productList.json";
 import { createSlugFromName } from "@/app/utils/functions";
 import { transformProduct } from "@/app/utils/transformProduct";
+import Loading from "./loading";
 
 const ProductPage = ({ params }: { params: { slug: string } }) => {
   const getProductBySlug = (slug: string) => {
@@ -15,7 +16,11 @@ const ProductPage = ({ params }: { params: { slug: string } }) => {
 
   if (!product) return <p>Product not found</p>;
   const transformedProduct = transformProduct(product);
-  return <SingleProduct product={transformedProduct}></SingleProduct>;
+  return (
+    <Suspense fallback={<Loading />}>
+      <SingleProduct product={transformedProduct}></SingleProduct>
+    </Suspense>
+  );
 };
 
 export default ProductPage;

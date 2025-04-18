@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/app/context/CartContext";
 import OrderSummary from "./OrderSummary";
@@ -112,9 +112,8 @@ const CheckoutForm = () => {
     }
   };
 
-  console.log("Receive emails:", formData.receiveEmails);
   const [selectedPayment, setSelectedPayment] = useState("");
-  console.log("paymentSelected is", selectedPayment);
+
   return (
     <section className="mx-auto flex w-full max-w-7xl flex-col justify-between">
       <div className="md:grid md:grid-cols-2 md:items-start md:justify-between">
@@ -174,7 +173,7 @@ const CheckoutForm = () => {
                     });
                   }
                 }}
-                className="peer w-full appearance-none rounded-xl border-2 border-blue-500 bg-transparent px-4 pb-2 pt-6 text-base text-black focus:outline-none"
+                className="peer w-full appearance-none rounded-xl border bg-transparent px-4 pb-2 pt-6 text-base text-black focus:border-[#334FB4] focus:outline-none"
               >
                 <option disabled className="text-gray-400">
                   Country/Region
@@ -304,32 +303,47 @@ const CheckoutForm = () => {
                 </p>
               )}
             </div>
-            {/*Payment method*/}
+            {/*Payment methods*/}
             <h2 className="my-4 font-bold md:text-[21px]">
               Choose a payment method
             </h2>
-            <div className="grid grid-cols-2 gap-2 bg-gray-200">
+            <div className="grid grid-cols-1 items-center border-gray-100 bg-gray-100 sm:grid-cols-2 md:grid-cols-3">
               {paymentData.paymentOptions.map((option, index) => (
                 <div
                   key={index}
-                  className={`flex items-center gap-1 p-4 ${selectedPayment === option.label ? "border border-black bg-blue-200" : ""}`}
+                  className={`flex items-center justify-between gap-3 rounded border p-3 transition-colors duration-200 ${
+                    selectedPayment === option.label
+                      ? "border-black bg-blue-200"
+                      : "border-gray-300 bg-white"
+                  }`}
                 >
-                  <input
-                    type="radio"
-                    value={option.label}
-                    name={option.label}
-                    id={option.label}
-                    checked={selectedPayment === option.label}
-                    onChange={() => setSelectedPayment(option.label)}
-                  />
-                  <label htmlFor={option.label}>
+                  <div className="flex items-center gap-2 hover:cursor-pointer">
+                    <input
+                      type="radio"
+                      value={option.label}
+                      name={option.label}
+                      id={option.label}
+                      checked={selectedPayment === option.label}
+                      onChange={() => setSelectedPayment(option.label)}
+                      className=""
+                    />
+                    <label
+                      className="whitespace-nowrap text-sm"
+                      htmlFor={option.label}
+                    >
+                      {option.label}
+                    </label>{" "}
+                  </div>
+                  <div className="h-6 w-10 shrink-0">
                     <Image
-                      width={30}
-                      height={30}
+                      width={40}
+                      height={24}
+                      quality={100}
                       src={paymentIcons[option.src]}
                       alt={option.src}
+                      className="h-full w-full object-contain"
                     />
-                  </label>
+                  </div>
                 </div>
               ))}
             </div>
@@ -337,7 +351,7 @@ const CheckoutForm = () => {
 
             <div className="my-6 flex items-center justify-center">
               <button
-                className="w-full rounded-md border border-black bg-[#334FB4] px-4 py-2 text-lg text-sm font-bold text-white md:py-3 md:text-base"
+                className="w-full rounded-md border border-black bg-[#334FB4] p-3 px-4 py-2 font-bold text-white hover:bg-[#2c4499]"
                 type="submit"
                 disabled={isLoading}
               >

@@ -48,10 +48,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
-      console.log("🛒 Restored cart from localStorage:", storedCart);
       setIsCartReady(true);
     } else {
-      console.log("🛒 No cart found in localStorage.");
       setIsCartReady(true); // even if empty, we’re ready
     }
   }, []);
@@ -59,7 +57,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (isCartReady && typeof window !== "undefined") {
       localStorage.setItem("cart", JSON.stringify(cart));
-      console.log("Cart saved to localStorage:", cart);
     }
   }, [cart, isCartReady]);
 
@@ -86,7 +83,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       const selectedImage = item.product.availableColors?.find(
         color => color.color === item.selectedColor
       )?.imageUrl;
-      console.log("selected Image in context", selectedImage);
+
       return [...prevCart, { ...item, selectedImage }];
     });
   };

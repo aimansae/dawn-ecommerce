@@ -15,13 +15,13 @@ export const useCollectionFilters = () => {
 
   const handleAvailabilityFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
+
     const updatedFilters = {
       ...filters,
       availability: { ...filters.availability, [name]: checked },
     };
     setFilters(updatedFilters);
     updateURL(updatedFilters, sortBy);
-    console.log("Checkbox clicked:", name, "checked:", checked); // 👈
   };
   const handleColorSelection = (color: string) => {
     const updatedColors = filters.colors.includes(color)
@@ -63,18 +63,26 @@ export const useCollectionFilters = () => {
     // Always update colors
     if (newFilters.colors.length > 0) {
       params.set("colors", newFilters.colors.join(","));
+    } else {
+      params.delete("colors");
     }
 
     if (newFilters.availability.inStock) {
       params.set("inStock", "true");
-      console.log("FILTERSCHECK", newFilters.availability.inStock);
+    } else {
+      params.delete("inStock");
     }
 
     if (newFilters.availability.outOfStock) {
       params.set("outOfStock", "true");
+    } else {
+      params.delete("outOfStock");
     }
+
     if (newSortBy) {
       params.set("sort_by", newSortBy);
+    } else {
+      params.delete("sort_by");
     }
 
     router.push(`${pathname}?${decodeURIComponent(params.toString())}`);
@@ -107,14 +115,11 @@ export const useCollectionFilters = () => {
     value?: string
   ) => {
     const updatedFilters = { ...filters };
-
+    console.log(updatedFilters, "Logging updatedDilters");
     if (type === "colors" && value) {
       updatedFilters.colors = updatedFilters.colors.filter(c => c !== value);
     } else if (type === "inStock" || type === "outOfStock") {
-      updatedFilters.availability = {
-        ...updatedFilters.availability,
-        [type]: false,
-      };
+      updatedFilters.availability[type] = false;
     }
 
     setFilters(updatedFilters);

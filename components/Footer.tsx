@@ -49,31 +49,33 @@ const Footer = () => {
   }, [showLocations]);
 
   return (
-    <footer className="mx-auto mt-12 grid w-full max-w-7xl grid-cols-1 px-7 pt-9">
-      <div className="flex flex-col justify-between gap-6 md:flex-row md:gap-3">
+    <footer className="mx-auto grid w-full max-w-7xl grid-cols-1 px-4 pt-9 sm:mt-12 sm:px-7">
+      <div className="flex flex-col justify-between gap-3 sm:gap-6 md:flex-row md:gap-3">
         {/*Links section*/}
         <section className="flex flex-1 flex-col gap-2">
           <h3>{data.footer.quickLinks.title}</h3>
           <ul className="text-sm text-darkGray">
             {data.footer.quickLinks.links.map((item, index) => (
-              <li key={index} className="md:hover-underline my-4 py-1">
+              <li key={index} className="md:hover-underline my-2 py-1 sm:my-4">
                 <Link href={item.href}>{item.name}</Link>
               </li>
             ))}
           </ul>
         </section>
         <section className="flex flex-1 flex-col gap-2">
-          <h3 className="">{data.footer.info.title}</h3>
+          <h3>{data.footer.info.title}</h3>
           <ul className="text-sm text-darkGray">
             {data.footer.info.links.map((item, index) => (
-              <li key={index} className="md:hover-underline my-4 py-1">
+              <li key={index} className="md:hover-underline my-2 py-1 sm:my-4">
                 <Link href={item.url}>{item.name}</Link>
               </li>
             ))}
           </ul>
         </section>
         <section className="flex flex-1 flex-col gap-2">
-          <h3 className="mb-4">{data.footer.mission.title}</h3>
+          <h3 className="mb-4 text-center sm:text-left">
+            {data.footer.mission.title}
+          </h3>
           <h4 className="text-ellipsis text-sm leading-7 text-darkGray md:text-base">
             {data.footer.mission.text}
           </h4>
@@ -133,8 +135,8 @@ const Footer = () => {
               <Image
                 src={paymentIcons[option.src]}
                 alt={option.label}
-                width={25}
-                height={20}
+                width={36}
+                height={22}
                 className="object-fill"
                 quality={100}
               />

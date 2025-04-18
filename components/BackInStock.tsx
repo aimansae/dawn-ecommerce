@@ -24,11 +24,10 @@ const BackInStock = () => {
 
   return (
     <section className="mx-auto w-full max-w-7xl px-4 py-9">
-      <div className="grid grid-cols-3 items-center gap-2">
-        <h2 className="col-span-3 mb-5 text-xl md:text-2xl">
+      <div className="grid grid-cols-3 items-center gap-1 sm:gap-2">
+        <h2 className="col-span-3 mb-2 text-xl sm:mb-5 md:text-2xl">
           {stockData.title}
         </h2>
-
         {/*main image*/}
         <Link href="collections/bags" className="col-span-3 md:col-span-2">
           <div className="relative aspect-square overflow-hidden">
@@ -37,18 +36,18 @@ const BackInStock = () => {
               quality={100}
               alt={stockData.backInStock.alt}
               fill
-              className="translate-transform left-0 top-0 h-full w-full object-cover duration-200 hover:scale-105"
+              className="translate-transform left-0 top-0 h-full w-full object-fill duration-200 hover:scale-105"
               sizes="(max-width:375px)100vw,(max-width:560px)80vw, (max-width:768px) 60vw, 33vw"
             />
           </div>
-          <div className="flex items-center gap-2 hover:underline">
-            <h3 className="py-4 text-lg">{stockData.bagsLink}</h3>
+          <div className="flex items-center gap-1 hover:underline sm:gap-2">
+            <h3 className="py-4 text-base sm:text-lg">{stockData.bagsLink}</h3>
             <span>
-              <FaArrowRightLong className="transform font-thin text-customBlack transition-transform duration-300 hover:scale-110" />
+              <FaArrowRightLong className="mt-1 transform text-sm text-customBlack transition-transform duration-300 hover:scale-110 sm:text-base" />
             </span>
           </div>
         </Link>
-        {/* 2 images section */}
+        {/* 2 images - first image */}
         <div className="col-span-3 flex h-full w-full gap-2 md:col-span-1 md:flex-col">
           <Link
             href={`/product/${createSlugFromName(showEddieBagInStock.name)}`}
@@ -65,17 +64,15 @@ const BackInStock = () => {
               />
             </div>
             <div className="my-3 flex flex-col gap-2">
-              <span className="truncate text-xs text-customBlack group-hover:underline sm:text-[13px]">
+              <h4 className="truncate text-xs text-customBlack group-hover:underline sm:text-[13px]">
                 {showEddieBagInStock.name}
-              </span>
-              <span>
-                {selectedLocation.currencySymbol}
-                {convertPriceToCurrency(
+              </h4>
+              <p className="text-sm sm:text-base">
+                {`${selectedLocation.currencySymbol} ${convertPriceToCurrency(
                   Number(showEddieBagInStock.prices.regular),
                   exchangeRate
-                )}
-                {selectedLocation.currency}
-              </span>
+                )} ${selectedLocation.currency}`}
+              </p>
             </div>
           </Link>
           {/*second image*/}
@@ -93,10 +90,10 @@ const BackInStock = () => {
                 fill
               />
             </div>
-            <div className="flex items-center gap-2 hover:underline">
-              <h3 className="py-4 text-lg">{stockData.shoesLink}</h3>
+            <div className="flex items-center gap-1 hover:underline sm:gap-2">
+              <h3 className="py-4 text-sm sm:text-lg">{stockData.shoesLink}</h3>
               <span>
-                <FaArrowRightLong className="transform font-thin text-customBlack transition-transform duration-300 hover:scale-110" />
+                <FaArrowRightLong className="mt-1 transform text-sm font-thin text-customBlack transition-transform duration-300 hover:scale-110 sm:text-base" />
               </span>
             </div>
           </Link>

@@ -1,7 +1,7 @@
-import LoadingSpinner from "@/components/LoadingSpinner";
-import React from "react";
+import CheckoutFormSkeleton from "@/components/CheckoutFormSkeleton";
+
 const Loading = () => {
-  return <LoadingSpinner />;
+  return <CheckoutFormSkeleton />;
 };
 
 export default Loading;

@@ -17,7 +17,6 @@ const OrderSuccessBanner = () => {
         setMessage(msg);
         setVisible(true);
         sessionStorage.removeItem("successMessage");
-
         const timer = setTimeout(() => {
           setVisible(false);
         }, 5000);

@@ -1,6 +1,8 @@
 import React from "react";
 import Input from "./Input";
 import Swap from "@/components/Swap";
+import SingleProductSkeleton from "@/components/SingleProductSkeleton";
+import CheckoutFormSkeleton from "@/components/CheckoutFormSkeleton";
 
 const page = ({
   searchParams,
@@ -75,6 +77,7 @@ const page = ({
       )}
       <Input />
       <Swap></Swap>
+      <CheckoutFormSkeleton></CheckoutFormSkeleton>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { useCart } from "@/app/context/CartContext";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -24,14 +24,15 @@ const OrderSummary = ({
   const { cart, getTotalPrice, getTotalQuantity } = useCart();
   const { selectedLocation, exchangeRate } = useCountry();
   const [toggleOrderSummary, setToggleOrderSummary] = useState(false);
-  console.log(selectedLocation, "Selected location for order");
+
   const totalPrice = getTotalPrice();
   const total =
     totalPrice + (selectedShipping ? Number(selectedShipping.price) : 0);
 
-  onTotalChange(total);
+  useEffect(() => {
+    onTotalChange(total);
+  }, [total, onTotalChange]);
 
-  console.log(JSON.stringify(cart), "Logging cart");
   const quantity = getTotalQuantity();
 
   const toggleSummary = () => {
