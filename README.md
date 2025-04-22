@@ -81,3 +81,4 @@ local storage
 
 collections filter, if clicked on the filter that  
 mot found page
+product count

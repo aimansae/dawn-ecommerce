@@ -29,8 +29,12 @@ const Header = () => {
   const [selectedLinkItem, setSelectedLinkItem] = useState<string | null>(null);
   const [hasMounted, setHasMounted] = useState(false);
   const searchParams = useSearchParams();
-  const { searchQuery, setSearchQuery, handleGeneralSearch } =
-    useCollectionFilters();
+  const {
+    searchQuery,
+    setSearchQuery,
+    handleGeneralSearch,
+    handleClearFilters,
+  } = useCollectionFilters();
   const desktopCategoryRef = useRef<HTMLDivElement | null>(null);
   const { getTotalQuantity } = useCart();
   const quantity = getTotalQuantity() || 0;
@@ -135,73 +139,70 @@ const Header = () => {
               onClick={() => setShowSearchBar(false)}
               className="fixed left-0 right-0 z-40 bg-black bg-opacity-50"
               style={{ top: `${overLayTop}px`, bottom: 0 }}
-            ></div>
-            <div className="relative bg-green-200">
+            />
+            <div className="relative bg-white">
               <HeaderSearch
                 onClose={() => {
                   setShowSearchBar(false);
                 }}
+                onHandleSearch={handleGeneralSearch}
                 term={searchQuery}
                 setTerm={setSearchQuery}
+                handleClearFilters={handleClearFilters}
+                showCloseIcon={true}
               />
-
               {searchQuery && (
                 <div>
-                  {filterProductByQuery.length === 0 ||
-                  searchQuery.length === 0 ? (
-                    <div
-                      ref={queryRef}
-                      className="flex items-center justify-between px-2"
+                  <div
+                    ref={queryRef}
+                    className="flex items-center justify-between text-sm md:text-base"
+                  >
+                    <h1 className="my-2">
+                      Search for:
+                      <span className="italic text-darkGray">
+                        &quot;{searchQuery}&quot;
+                      </span>
+                    </h1>
+                    <button
+                      className="mr-1 flex"
+                      onClick={() =>
+                        handleGeneralSearch(searchQuery, () =>
+                          setShowSearchBar(false)
+                        )
+                      }
                     >
-                      <h1>
-                        ASearch for:
-                        <span className="text-base italic text-darkGray">
-                          &quot;{searchQuery}&quot;
-                        </span>
-                      </h1>
-                      <button
-                        className="flex"
-                        onClick={() =>
-                          handleGeneralSearch(searchQuery, () =>
-                            setShowSearchBar(false)
-                          )
-                        }
-                      >
-                        <FaArrowRight />
-                      </button>
-                    </div>
-                  ) : (
-                    //suggestions
+                      <FaArrowRight />
+                    </button>
+                  </div>
+                  {filteredSuggestions.length > 0 && (
                     <div className="fixed left-0 z-50 h-2/3 w-full overflow-y-scroll bg-white md:absolute md:mx-auto md:h-auto md:overflow-y-auto md:pt-4">
                       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-                        {filteredSuggestions.length > 0 && (
-                          <div className="flex flex-col">
-                            <h1 className="border-b border-gray-200 px-[15px] py-2 text-[10px] uppercase text-darkGray">
-                              Suggestions
-                            </h1>
-                            {filteredSuggestions.map((suggestion, i) => (
-                              <ul key={i} className=" ">
-                                <li className="w-full px-[15px] text-xs hover:bg-gray-100">
-                                  <Link
-                                    href={{
-                                      pathname: "/collections",
-                                      query: {
-                                        ...Object.fromEntries(
-                                          searchParams.entries()
-                                        ), // existing filters
-                                        query: suggestion, // new query
-                                      },
-                                    }}
-                                    className="flex gap-2 py-[10px] hover:underline"
-                                    onClick={() => setShowSearchBar(false)}
-                                  >
-                                    {suggestion}
-                                  </Link>
-                                </li>
-                              </ul>
-                            ))}
-                          </div>
-                        )}
+                        <div className="flex flex-col">
+                          <h1 className="border-b border-gray-200 px-[15px] py-2 text-[10px] uppercase text-darkGray">
+                            Suggestions
+                          </h1>
+                          {filteredSuggestions.map((suggestion, i) => (
+                            <ul key={i} className=" ">
+                              <li className="w-full px-[15px] text-xs hover:bg-gray-100">
+                                <Link
+                                  href={{
+                                    pathname: "/collections",
+                                    query: {
+                                      ...Object.fromEntries(
+                                        searchParams.entries()
+                                      ), // existing filters
+                                      query: suggestion, // new query
+                                    },
+                                  }}
+                                  className="flex gap-2 py-[10px] hover:underline"
+                                  onClick={() => setShowSearchBar(false)}
+                                >
+                                  {suggestion}
+                                </Link>
+                              </li>
+                            </ul>
+                          ))}
+                        </div>
                         <div className="md:col-span-2">
                           <h1 className="border-b border-gray-200 px-[15px] py-2 text-[10px] uppercase text-darkGray">
                             Products

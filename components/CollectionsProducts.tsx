@@ -9,19 +9,22 @@ import { ProductType } from "@/app/types/types";
 import { useCountry } from "@/app/context/CountryContext";
 import { useCollectionFilters } from "@/app/hooks/useCollectionFilters";
 import AvailabilityTag from "./AvailabilityTag";
+
 const CollectionsProducts = ({
   products,
   selectedColor,
+  query,
 }: {
   products: ProductType[];
   selectedColor: string;
+  query?: string;
 }) => {
   const { selectedLocation } = useCountry();
   const { handleClearFilters } = useCollectionFilters();
   return (
     <>
       {products.length === 0 ? (
-        <div className="flex flex-col items-center justify-center gap-4 py-20 text-gray-500">
+        <div className="flex flex-col items-center justify-center gap-4 text-gray-500 md:py-20">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-14 w-14 text-gray-400"
@@ -37,7 +40,7 @@ const CollectionsProducts = ({
             />
           </svg>
           <h2 className="whitespace-nowrap text-2xl font-medium">
-            Nothing matched your filters
+            Nothing matched &quot;{query}&quot;
           </h2>
           <p className="text-center text-sm">
             Try adjusting your filters or keywords and search again.

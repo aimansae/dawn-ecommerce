@@ -5,9 +5,10 @@ import { TfiClose } from "react-icons/tfi";
 type SearchInputProps = {
   onClose: () => void;
   onSearch: (query: string) => void;
+  className?: string;
 };
 
-const SearchInput = ({ onClose, onSearch }: SearchInputProps) => {
+const SearchInput = ({ onClose, onSearch, className }: SearchInputProps) => {
   const [search, setSearch] = useState("");
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
@@ -16,7 +17,9 @@ const SearchInput = ({ onClose, onSearch }: SearchInputProps) => {
   };
 
   return (
-    <div className="flex items-center justify-between gap-2 md:gap-1">
+    <div
+      className={`flex items-center justify-between gap-2   md:gap-1 ${className}`}
+    >
       <div className="relative flex w-[90%] md:sticky md:z-50 md:w-full">
         <label className="sr-only" htmlFor="search">
           Search
