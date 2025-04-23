@@ -49,7 +49,7 @@ const Footer = () => {
   }, [showLocations]);
 
   return (
-    <footer className="mx-auto grid w-full max-w-7xl grid-cols-1 px-4 pt-9 sm:mt-12 sm:px-7">
+    <footer className="mx-auto grid w-full max-w-7xl grid-cols-1 px-4 pt-9 sm:mt-12 sm:px-7 lg:max-w-6xl lg:px-10">
       <div className="flex flex-col justify-between gap-3 sm:gap-6 md:flex-row md:gap-3">
         {/*Links section*/}
         <section className="flex flex-1 flex-col gap-2">

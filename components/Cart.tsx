@@ -14,6 +14,7 @@ import {
 import ProductList from "./ProductList";
 import products from "../app/data/productList.json";
 import { transformProduct } from "@/app/utils/transformProduct";
+import YouMayAlsoLike from "./YouMayAlsoLike";
 
 const Cart = () => {
   const {
@@ -34,7 +35,7 @@ const Cart = () => {
 
   return (
     <>
-      <section className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-7">
+      <section className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-7 lg:max-w-6xl lg:px-10">
         {quantity > 0 && (
           <>
             <div className="block items-center justify-between py-4 sm:flex md:py-9">
@@ -200,7 +201,7 @@ const Cart = () => {
       </section>
       {/*Cart Footer*/}
       {quantity > 0 ? (
-        <div className="flex w-full flex-col gap-4 px-7 py-9 md:items-end">
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-7 py-9 md:items-end lg:max-w-6xl lg:px-10">
           <div className="flex items-center justify-between">
             <h1 className="whitespace-nowrap text-sm md:text-base">
               {data.cart.footer.estimatedTotal}
@@ -219,7 +220,7 @@ const Cart = () => {
           </Link>
         </div>
       ) : (
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-4">
+        <div className="gap-4md:gap-6 mx-auto flex w-full max-w-7xl flex-col px-7 lg:max-w-6xl lg:px-10">
           <div className="items-center justify-center py-7 text-center">
             <h1 className="my-7 text-3xl">{data.cart.footer.empty}</h1>
             <Link
@@ -234,21 +235,9 @@ const Cart = () => {
                 <span className="underline">{data.cart.footer.login}</span>
                 {data.cart.footer.checkoutFaster}
               </p>
-            </div>
+            </div>{" "}
           </div>
-          {/*You may also like*/}
-          <div className="flex max-w-7xl flex-col py-4">
-            <h1 className="px-5 text-left text-xl">You may also like</h1>
-            <ProductList productsForPage={productsForCart} />
-            <div className="flex items-center justify-center">
-              <Link
-                className="block whitespace-nowrap bg-black px-8 py-3 text-sm capitalize text-white"
-                href={"/collections"}
-              >
-                View all
-              </Link>
-            </div>
-          </div>
+          <YouMayAlsoLike productsForPage={productsForCart} />
         </div>
       )}
     </>

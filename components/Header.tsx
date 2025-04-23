@@ -22,6 +22,7 @@ import HeaderSearch from "./HeaderSearch";
 import { useSearchParams } from "next/navigation";
 import ShippingBanner from "./ShippingBanner";
 import { useCollectionFilters } from "@/app/hooks/useCollectionFilters";
+import { IoIosArrowRoundForward } from "react-icons/io";
 
 const Header = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
@@ -129,8 +130,8 @@ const Header = () => {
       <ShippingBanner bannerHeightRef={bannerRef} />
       <header
         ref={headerRef}
-        className={`relative top-0 z-50 mx-auto w-full max-w-7xl border-b border-t border-gray-200 bg-white ${
-          showSearchBar ? "px-2 py-2" : "px-7"
+        className={`relative top-0 z-50 mx-auto w-full max-w-7xl border-b border-t border-gray-200 bg-white lg:max-w-6xl lg:px-10 ${
+          showSearchBar ? "px-4 py-2" : "px-7"
         }`}
       >
         {showSearchBar ? (
@@ -140,7 +141,7 @@ const Header = () => {
               className="fixed left-0 right-0 z-40 bg-black bg-opacity-50"
               style={{ top: `${overLayTop}px`, bottom: 0 }}
             />
-            <div className="relative bg-white">
+            <div className="relative">
               <HeaderSearch
                 onClose={() => {
                   setShowSearchBar(false);
@@ -152,26 +153,26 @@ const Header = () => {
                 showCloseIcon={true}
               />
               {searchQuery && (
-                <div>
+                <div className="my-2 px-2">
                   <div
                     ref={queryRef}
                     className="flex items-center justify-between text-sm md:text-base"
                   >
-                    <h1 className="my-2">
+                    <h1 className="">
                       Search for:
                       <span className="italic text-darkGray">
                         &quot;{searchQuery}&quot;
                       </span>
                     </h1>
                     <button
-                      className="mr-1 flex"
+                      className="flex"
                       onClick={() =>
                         handleGeneralSearch(searchQuery, () =>
                           setShowSearchBar(false)
                         )
                       }
                     >
-                      <FaArrowRight />
+                      <IoIosArrowRoundForward size={20} />
                     </button>
                   </div>
                   {filteredSuggestions.length > 0 && (

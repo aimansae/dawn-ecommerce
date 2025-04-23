@@ -33,11 +33,14 @@ const page = ({
   const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
 
   return (
-    <section className="mx-auto w-full max-w-7xl bg-white p-4">
+    <section className="mx-auto w-full max-w-7xl bg-white px-7 py-4 lg:max-w-6xl lg:px-10">
       <h1 className="my-[25px] text-[30px] capitalize sm:text-[40px]">
         {formattedCategory}
       </h1>
-      <CollectionsFilters totalProducts={totalProducts} />
+      <CollectionsFilters
+        filteredProducts={filteredProducts}
+        totalProducts={totalProducts}
+      />
       <AppliedCollectionFilters />
       <CollectionsProducts products={paginatedProducts} selectedColor={""} />
       <Pagination productsPerPage={8} products={filteredProducts}></Pagination>

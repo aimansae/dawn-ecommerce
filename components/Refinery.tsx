@@ -6,7 +6,7 @@ import TheCutLogo from "../public/assets/images/theCutLogo.png";
 
 const Refinery = () => {
   return (
-    <section className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 sm:py-9 md:flex-row">
+    <section className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 sm:py-9 md:flex-row lg:max-w-6xl lg:px-10">
       <div className="flex flex-col items-center">
         <div className="relative h-[80px] w-[150px] text-center sm:h-[100px] sm:w-[200px]">
           <Image

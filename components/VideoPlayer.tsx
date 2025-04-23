@@ -2,7 +2,7 @@ import React from "react";
 
 const VideoPlayer = () => {
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 py-5 sm:py-9">
+    <section className="mx-auto w-full max-w-7xl px-4 py-5 sm:py-9 lg:max-w-6xl lg:px-10">
       <div className="aspect-video h-64 w-full">
         <iframe
           src="https://www.youtube.com/embed/yXWXFzjVnt8?autoplay=0&mute=1&loop=1&playlist=yXWXFzjVnt8"

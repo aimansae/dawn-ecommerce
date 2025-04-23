@@ -23,7 +23,7 @@ const BackInStock = () => {
   }
 
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 py-9">
+    <section className="mx-auto w-full max-w-7xl px-4 py-9 lg:max-w-6xl lg:px-10">
       <div className="grid grid-cols-3 items-center gap-1 sm:gap-2">
         <h2 className="col-span-3 mb-2 text-xl sm:mb-5 md:text-2xl">
           {stockData.title}

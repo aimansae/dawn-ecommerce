@@ -11,8 +11,8 @@ const GeneralSearchPage = () => {
   } = useCollectionFilters();
 
   return (
-    <div className="mx-auto flex max-w-7xl flex-col items-center justify-center px-4 py-7 md:px-7">
-      <h1 className="my-4 text-center">Search Results </h1>
+    <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center p-4 md:max-w-5xl lg:max-w-4xl">
+      <h1 className="my-4 text-center text-xl md:text-2xl">Search Results </h1>
       <HeaderSearch
         onClose={() => {
           console.log("clicked");
@@ -20,7 +20,7 @@ const GeneralSearchPage = () => {
         onHandleSearch={handleGeneralSearch}
         term={searchQuery}
         setTerm={setSearchQuery}
-        className="w-3/4"
+        className="w-full"
         showCloseIcon={false}
         handleClearFilters={handleClearFilters}
       />

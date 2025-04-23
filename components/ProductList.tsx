@@ -19,7 +19,7 @@ const ProductList = ({ productsForPage }: ProductsProps) => {
   const { selectedLocation, exchangeRate } = useCountry();
 
   return (
-    <section className="mx-auto w-full max-w-7xl p-4">
+    <section className=" ">
       <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">
         {productsForPage.map(product => (
           <Link

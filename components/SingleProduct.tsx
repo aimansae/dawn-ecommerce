@@ -140,7 +140,7 @@ const SingleProduct = ({ product }: SingleProductType) => {
     ),
   ];
   return (
-    <section className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-start gap-2 p-4 md:grid-cols-3 md:gap-8 md:p-7">
+    <section className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-start gap-2 p-4 md:grid-cols-3 md:gap-8 md:p-7 lg:max-w-6xl lg:px-10">
       <div className="col-span-2">
         <div className="relative aspect-square w-full">
           {/*Default Image*/}

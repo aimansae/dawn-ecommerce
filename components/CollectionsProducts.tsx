@@ -9,7 +9,9 @@ import { ProductType } from "@/app/types/types";
 import { useCountry } from "@/app/context/CountryContext";
 import { useCollectionFilters } from "@/app/hooks/useCollectionFilters";
 import AvailabilityTag from "./AvailabilityTag";
-
+import YouMayAlsoLike from "./YouMayAlsoLike";
+import { transformProduct } from "@/app/utils/transformProduct";
+import data from "../app/data/productList.json";
 const CollectionsProducts = ({
   products,
   selectedColor,
@@ -21,36 +23,29 @@ const CollectionsProducts = ({
 }) => {
   const { selectedLocation } = useCountry();
   const { handleClearFilters } = useCollectionFilters();
+  const transformedProducts = data.products.map(transformProduct);
+  const productsForPage = transformedProducts
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 4);
   return (
     <>
       {products.length === 0 ? (
-        <div className="flex flex-col items-center justify-center gap-4 text-gray-500 md:py-20">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-14 w-14 text-gray-400"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={1.5}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 105.25 5.25a7.5 7.5 0 0011.4 11.4z"
-            />
-          </svg>
-          <h2 className="whitespace-nowrap text-2xl font-medium">
-            Nothing matched &quot;{query}&quot;
-          </h2>
-          <p className="text-center text-sm">
-            Try adjusting your filters or keywords and search again.
-          </p>
-          <button
-            onClick={handleClearFilters}
-            className="mt-2 rounded-md border border-gray-300 bg-white px-5 py-2 text-sm font-medium text-gray-700 shadow-sm transition hover:border-black hover:text-black"
-          >
-            Reset Filters
-          </button>
+        <div className="flex flex-col gap-4 md:py-16">
+          <div className="mx-auto flex flex-col items-center justify-center gap-2 lg:max-w-5xl">
+            <h2 className="whitespace-nowrap text-xl font-medium text-gray-500 md:text-2xl">
+              Nothing matched &quot;{query}&quot;
+            </h2>
+            <p className="text-center text-sm">
+              Try adjusting your filters or keywords and search again.
+            </p>
+            <button
+              onClick={handleClearFilters}
+              className="mt-2 rounded-md border border-gray-300 bg-white px-5 py-2 text-sm font-medium text-gray-700 shadow-sm transition hover:border-black hover:text-black"
+            >
+              Reset Filters
+            </button>
+          </div>
+          <YouMayAlsoLike productsForPage={productsForPage} />
         </div>
       ) : (
         <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">
@@ -58,8 +53,13 @@ const CollectionsProducts = ({
             const productColor =
               product.availableColors.find(
                 color =>
-                  color.colorCategory.toLowerCase() ===
-                  selectedColor?.toLowerCase()
+                  color.color.toLowerCase() === selectedColor?.toLowerCase() ||
+                  color.color
+                    .toLowerCase()
+                    .includes(query?.toLowerCase() || "") ||
+                  color.colorCategory
+                    .toLowerCase()
+                    .includes(query?.toLowerCase() || "")
               ) || product.availableColors[0];
             return (
               <Link

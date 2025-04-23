@@ -13,13 +13,15 @@ import { TfiClose } from "react-icons/tfi";
 import { AvailabilityFilter } from "./AvailabilityFilter";
 import { ColorFilter } from "./ColorFilter";
 import { SortByFilter } from "./SortByFilter";
+import { ProductType } from "@/app/types/types";
 
 //close filters if clicked on X from parent
 type Props = {
   totalProducts: number;
+  filteredProducts: ProductType[];
 };
 
-const CollectionsFilters = ({ totalProducts }: Props) => {
+const CollectionsFilters = ({ totalProducts, filteredProducts }: Props) => {
   const {
     filters,
     handleAvailabilityFilterChange,
@@ -110,14 +112,14 @@ const CollectionsFilters = ({ totalProducts }: Props) => {
     };
   }, [activeFilters.availability, activeFilters.colors]);
 
-  const inStockCount = data.products.filter(
-    product => product.status === "inStock"
-  ).length;
-  const outOfStockCount = data.products.filter(
-    product => product.status === "outOfStock"
-  ).length;
+  const inStockCount =
+    filteredProducts.filter(product => product.status === "inStock")?.length ??
+    0;
+  const outOfStockCount =
+    filteredProducts.filter(product => product.status === "outOfStock")
+      ?.length ?? 0;
   //color count
-  const colorCategoryCounts = data.products.reduce(
+  const colorCategoryCounts = filteredProducts.reduce(
     (acc, product) => {
       product.availableColors.forEach(color => {
         const colorCategory = color.colorCategory;

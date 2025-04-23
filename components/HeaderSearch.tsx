@@ -45,15 +45,15 @@ const HeaderSearch = ({
 
   return (
     <div
-      className={`${className} flex items-center ${showCloseIcon ? "justify-between gap-2" : ""}`}
+      className={`${className} flex items-center gap-4 ${showCloseIcon ? "md:z-50" : ""}`}
     >
-      <div className="relative flex w-[90%] md:sticky md:z-50 md:w-full">
+      <div className="relative flex w-full md:sticky">
         <label className="sr-only" htmlFor="search">
           Search
         </label>
         <input
           type="text"
-          className="w-full border border-black p-2 hover:border"
+          className="w-full border border-black px-4 py-2 hover:border"
           placeholder="Search"
           value={term}
           id={search}
@@ -62,19 +62,19 @@ const HeaderSearch = ({
         />
         <button className="flex items-center bg-gray-400">
           <div className="absolute right-3 flex items-center">
-            <span className="border-r border-gray-400 pr-2">
+            <span className="border-r border-gray-200 pr-2 font-bold">
               {search && (
                 <TfiClose
                   onClick={handleClearFilters}
-                  size={20}
-                  className="border-gray transform rounded-full border p-1 text-darkGray transition-transform duration-300 hover:scale-110"
+                  size={18}
+                  className="border-gray transform rounded-full border p-1 transition-transform duration-300 hover:scale-110"
                 />
               )}
             </span>
             <span>
               <IoIosSearch
-                size={23}
-                className="transform text-darkGray transition-transform duration-300 hover:scale-110"
+                size={18}
+                className="ml-2 transform text-darkGray transition-transform duration-300 hover:scale-110"
                 onClick={() => {
                   onHandleSearch(term);
                   onClose();
@@ -88,8 +88,8 @@ const HeaderSearch = ({
         <div>
           <button>
             <TfiClose
-              size={20}
-              className={`${className} mt-1 transform text-darkGray transition-transform duration-300 hover:scale-110 md:hidden`}
+              size={18}
+              className={`${className} mr-2 mt-1 transform text-customBlack transition-transform duration-300 hover:scale-110`}
               onClick={handleCloseSearch}
             />
           </button>
