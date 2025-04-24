@@ -96,14 +96,14 @@ const Lookbook = () => {
                 title={item.alt}
                 allow="autoplay; encrypted-media"
                 allowFullScreen
-                className="absolute inset-0 h-full w-full rounded-md"
+                className="absolute inset-0 h-full w-full"
               ></iframe>
             ) : (
               <Image
                 src={item.src}
                 alt={item.alt}
                 fill
-                className="object-cover"
+                className="transform object-cover duration-200 hover:scale-105"
               />
             )}
           </div>

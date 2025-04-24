@@ -110,7 +110,7 @@ const CollectionsPageWrapper = ({
     <section className="mx-auto flex w-full max-w-7xl flex-col justify-between bg-white p-4 lg:max-w-6xl lg:px-10">
       <div>
         <h1
-          className={`${query ? "text-wrap text-lg font-bold text-darkGray" : ""} my-[25px] text-[30px] capitalize sm:text-[40px]`}
+          className={`${query ? "text-md text-wrap font-bold" : "text-[30px]"}text-darkGray my-[25px] capitalize`}
         >
           {query
             ? filteredProducts.length > 0

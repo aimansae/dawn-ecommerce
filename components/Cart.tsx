@@ -23,7 +23,7 @@ const Cart = () => {
     getTotalPrice,
     removeFromCart,
   } = useCart();
-
+ 
   const { selectedLocation, exchangeRate } = useCountry();
   const quantity = getTotalQuantity();
   const totalPrice = getTotalPrice();
@@ -68,6 +68,7 @@ const Cart = () => {
                       ? item.product.prices.sale
                       : item.product.prices.regular;
                   const total = Number(price) * item.quantity;
+
                   return (
                     <tr
                       key={`${item.product.id}-${item.selectedColor}-${item.selectedSize ?? ""}`}

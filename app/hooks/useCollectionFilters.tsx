@@ -2,6 +2,8 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
+import products from "@/app/data/productList.json";
+
 export type FiltersType = {
   availability: { inStock: boolean; outOfStock: boolean };
   colors: string[];
@@ -25,7 +27,18 @@ export const useCollectionFilters = () => {
     setFilters(updatedFilters);
     updateURL(updatedFilters, sortBy, searchQuery);
   };
+
+  const validColors = Array.from(
+    new Set(
+      products.products.flatMap(
+        product =>
+          product.availableColors?.map(color => color.color.toLowerCase()) || []
+      )
+    )
+  );
   const handleColorSelection = (color: string) => {
+    const normalizeColor = color.toLowerCase();
+    if (!validColors.includes(normalizeColor)) return;
     const updatedColors = filters.colors.includes(color)
       ? filters.colors.filter(c => c !== color)
       : [...filters.colors, color];

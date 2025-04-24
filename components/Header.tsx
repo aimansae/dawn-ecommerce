@@ -16,7 +16,6 @@ import MobileNav from "./MobileNav";
 import { useCart } from "@/app/context/CartContext";
 import products from "@/app/data/productList.json";
 import { createSlugFromName } from "@/app/utils/functions";
-import { FaArrowRight } from "react-icons/fa6";
 import { link } from "../app/utils/functions";
 import HeaderSearch from "./HeaderSearch";
 import { useSearchParams } from "next/navigation";

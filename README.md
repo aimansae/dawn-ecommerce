@@ -36,54 +36,12 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 TODO
-MobileNav: mobile nav add animation from left to right
-LOADING STATES for all pages
- COllectionsFilters : desktop, close if cicked outside  
- 
-HomePage:add more products
- 
- View Cart image resizing
+MobileNav: Add animation from left to right
+Button collections still very slow
 
-
- MobileNav: is country is open make background blac, add x button
- 
 Struggles: filtering and js working with data , putting multiple things together, organizing the data
 remove filter and count
-
-Struggles, height calculation how to avoid fixed top heights
-Button collections still very slow
-SearchParam dependency why not needed for soryby and filters
-hover for button
-products count
-nav bad for mobile open, make body not scrollable toggleFilter in CollectionFilter
-
+products count 
 About , contact pages in footer
-selketon
-product cout
-filter remove all button bigger devices
-
- 
- 
-loading skeleton for order summary too
-cart layout not responsive, scroll not present
-mobile overlay covering content 
-tags for collection
-filters featured
-bogy overflow for mobile nav
-
-add to cart position
-loading for checkout
-for checkout select country should be the country selected
-
-local storage
-
-
-
-collections filter, if clicked on the filter that  
-mot found page
 product count
-products size all pages
-
-you might like after collections product, no matchied
-
 pagination for lookbook

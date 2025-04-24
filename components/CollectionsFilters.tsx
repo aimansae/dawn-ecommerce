@@ -119,7 +119,7 @@ const CollectionsFilters = ({ totalProducts, filteredProducts }: Props) => {
     filteredProducts.filter(product => product.status === "outOfStock")
       ?.length ?? 0;
   //color count
-  const colorCategoryCounts = filteredProducts.reduce(
+  const rawColorCategoryCounts = filteredProducts.reduce(
     (acc, product) => {
       product.availableColors.forEach(color => {
         const colorCategory = color.colorCategory;
@@ -129,6 +129,7 @@ const CollectionsFilters = ({ totalProducts, filteredProducts }: Props) => {
     },
     {} as Record<string, number>
   );
+
   const allColors = data.products.flatMap(product =>
     product.availableColors.map(c => c.colorCategory)
   );
@@ -137,6 +138,14 @@ const CollectionsFilters = ({ totalProducts, filteredProducts }: Props) => {
   const selectedAvailabilityCount = Object.values(filters.availability).filter(
     Boolean
   ).length;
+  const colorCategoryCounts: Record<string, number> =
+    uniqueColorCategory.reduce(
+      (acc, color) => {
+        acc[color] = rawColorCategoryCounts[color] || 0;
+        return acc;
+      },
+      {} as Record<string, number>
+    );
 
   const selectedColorCount = filters.colors.length;
   return (

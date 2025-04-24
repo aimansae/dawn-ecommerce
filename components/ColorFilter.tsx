@@ -27,13 +27,14 @@ export const ColorFilter = ({
             id={color}
             onChange={() => handleColorSelection(color)}
             checked={filters.colors.includes(color)}
+            disabled={colorCategoryCounts[color] === 0}
             className={`h-6 w-6 appearance-none rounded-full checked:border checked:border-black ${
               data.colorClasses[color as keyof typeof data.colorClasses] ||
               "bg-gray-200"
             }`}
           />
           <label
-            className={`capitalize hover:underline ${filters.colors.includes(color) ? "font-bold" : ""}`}
+            className={`capitalize ${filters.colors.includes(color) ? "font-bold" : ""} ${colorCategoryCounts[color] === 0 ? "pointer-events-none cursor-not-allowed text-gray-300" : "cursor-pointer hover:underline"} `}
             htmlFor={color}
           >
             {color} ({colorCategoryCounts[color]})
