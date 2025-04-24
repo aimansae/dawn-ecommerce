@@ -5,11 +5,12 @@ import Link from "next/link";
 
 type YouMayAlsoLikeProps = {
   productsForPage: ProductType[];
+  title: string;
 };
-const YouMayAlsoLike = ({ productsForPage }: YouMayAlsoLikeProps) => {
+const YouMayAlsoLike = ({ productsForPage, title }: YouMayAlsoLikeProps) => {
   return (
     <div className="flex flex-col gap-4 md:gap-6">
-      <h1 className="my-5 text-left text-xl md:text-2xl">You may also like</h1>
+      <h1 className="my-5 text-left text-xl md:text-2xl">{title}</h1>
       <ProductList productsForPage={productsForPage} />
       <div className="flex items-center justify-center">
         <Link

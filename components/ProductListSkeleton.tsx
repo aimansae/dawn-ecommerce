@@ -2,7 +2,7 @@ import React from "react";
 
 const ProductListSkeleton = () => {
   return (
-    <div className="my-6 grid grid-cols-2 gap-2 px-4 lg:grid-cols-4">
+    <div className="my-6 grid grid-cols-2 gap-2 px-7 lg:grid-cols-4">
       {[...Array(8)].map((_, index) => (
         <div key={index} className="flex animate-pulse flex-col">
           <div className="relative aspect-square w-full rounded-md bg-gray-200">

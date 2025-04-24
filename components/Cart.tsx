@@ -11,7 +11,6 @@ import {
   convertPriceToCurrency,
   createSlugFromName,
 } from "@/app/utils/functions";
-import ProductList from "./ProductList";
 import products from "../app/data/productList.json";
 import { transformProduct } from "@/app/utils/transformProduct";
 import YouMayAlsoLike from "./YouMayAlsoLike";
@@ -220,7 +219,7 @@ const Cart = () => {
           </Link>
         </div>
       ) : (
-        <div className="gap-4md:gap-6 mx-auto flex w-full max-w-7xl flex-col px-7 lg:max-w-6xl lg:px-10">
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-7 md:gap-6 lg:max-w-6xl lg:px-10">
           <div className="items-center justify-center py-7 text-center">
             <h1 className="my-7 text-3xl">{data.cart.footer.empty}</h1>
             <Link
@@ -237,7 +236,10 @@ const Cart = () => {
               </p>
             </div>{" "}
           </div>
-          <YouMayAlsoLike productsForPage={productsForCart} />
+          <YouMayAlsoLike
+            title={"You may also like"}
+            productsForPage={productsForCart}
+          />
         </div>
       )}
     </>

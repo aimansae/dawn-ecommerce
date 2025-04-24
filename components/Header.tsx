@@ -290,32 +290,36 @@ const Header = () => {
               <ul className="z-10 flex list-none items-start justify-between gap-6 text-sm">
                 {data.menuItems.map((item, i) => (
                   <li key={i} className="flex items-center py-4 text-darkGray">
-                    <button
-                      onClick={() => handleItemClick(item.label)}
-                      className={`flex items-center justify-center gap-1 hover:underline ${
-                        selectedLinkItem === item.label
-                          ? "relative underline"
-                          : ""
-                      }`}
-                    >
-                      <span className="capitalize">{item.label}</span>
-                      <span>
-                        <IoIosArrowDown
-                          size={15}
-                          className={`transition-transform duration-300 ${
-                            selectedLinkItem === item.label
-                              ? "rotate-180"
-                              : "rotate-0"
-                          } `}
-                        />
-                      </span>
-                    </button>
+                    {i === 2 ? (
+                      <Link href={item.href}>{item.label}</Link>
+                    ) : (
+                      <button
+                        onClick={() => handleItemClick(item.label)}
+                        className={`flex items-center justify-center gap-1 hover:underline ${
+                          selectedLinkItem === item.label
+                            ? "relative underline"
+                            : ""
+                        }`}
+                      >
+                        <span className="capitalize">{item.label}</span>
+                        <span>
+                          <IoIosArrowDown
+                            size={15}
+                            className={`transition-transform duration-300 ${
+                              selectedLinkItem === item.label
+                                ? "rotate-180"
+                                : "rotate-0"
+                            } `}
+                          />
+                        </span>
+                      </button>
+                    )}
                     {selectedLinkItem === item.label && (
                       <div
                         ref={desktopCategoryRef}
                         className="absolute top-[60px] z-50 mt-2 w-1/5 border border-darkGray border-gray-200 bg-white p-4"
                       >
-                        <ul className="flex flex-col gap-2 text-sm capitalize text-darkGray">
+                        <ul className="flex flex-col gap-2 bg-red-400 text-sm capitalize text-darkGray">
                           {item.options?.map((option, j) => (
                             <li key={j} className="p-1 hover:cursor-pointer">
                               <Link

@@ -45,7 +45,10 @@ const CollectionsProducts = ({
               Reset Filters
             </button>
           </div>
-          <YouMayAlsoLike productsForPage={productsForPage} />
+          <YouMayAlsoLike
+            title={"You may also like"}
+            productsForPage={productsForPage}
+          />
         </div>
       ) : (
         <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">

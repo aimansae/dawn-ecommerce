@@ -85,3 +85,5 @@ product count
 products size all pages
 
 you might like after collections product, no matchied
+
+pagination for lookbook

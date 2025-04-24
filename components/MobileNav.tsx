@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 "use client";
 
 import React, { useState } from "react";
@@ -6,6 +7,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import MobileFooter from "./MobileFooter";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { useCollectionFilters } from "@/app/hooks/useCollectionFilters";
+import Link from "next/link";
 
 type MobileProps = {
   onClose: () => void;
@@ -28,7 +30,7 @@ const MobileNav = ({ onClose, topOffset }: MobileProps) => {
         {data.menuItems.map((item, i) => (
           <div key={i} className="w-full">
             {selectedLinkItem === item.label ? (
-              <div className="">
+              <div className=" ">
                 <button
                   onClick={() => setSelectedLinkItem(null)}
                   className="flex w-full items-center gap-1 bg-lightGray px-[30px] py-3"
@@ -59,19 +61,23 @@ const MobileNav = ({ onClose, topOffset }: MobileProps) => {
                   ))}
                 </ul>
               </div>
-            ) : selectedLinkItem !== "bags" && selectedLinkItem !== "shoes" ? (
-              <ul className="flex w-full flex-col">
+            ) : (
+              <ul className="flex w-full flex-col capitalize">
                 <li className="flex w-full items-center justify-between px-[30px] py-4 hover:bg-lightGray">
-                  <button
-                    onClick={() => handleItemClick(item.label)}
-                    className="flex w-full items-center justify-between"
-                  >
-                    <span className="capitalize">{item.label}</span>
-                    <FaArrowRightLong className="transform font-thin text-customBlack transition-transform duration-300 hover:scale-110" />
-                  </button>
+                  {i === 2 ? (
+                    <Link href={item.href}>{item.label}</Link>
+                  ) : (
+                    <button
+                      onClick={() => handleItemClick(item.label)}
+                      className="flex w-full items-center justify-between"
+                    >
+                      <span className="capitalize">{item.label}</span>
+                      <FaArrowRightLong className="transform font-thin text-customBlack transition-transform duration-300 hover:scale-110" />
+                    </button>
+                  )}
                 </li>
               </ul>
-            ) : null}
+            )}
           </div>
         ))}
       </div>
