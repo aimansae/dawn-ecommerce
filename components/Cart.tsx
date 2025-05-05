@@ -204,7 +204,7 @@ const Cart = () => {
       {/*Cart Footer*/}
       {quantity > 0 ? (
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-7 py-9 md:items-end lg:max-w-6xl lg:px-10">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col justify-between">
             <h1 className="whitespace-nowrap text-sm md:text-base">
               {data.cart.footer.estimatedTotal}
             </h1>

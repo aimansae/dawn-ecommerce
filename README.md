@@ -1,4 +1,18 @@
+# Shop Dawn
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+The project is inspired by [Dawn](https://theme-dawn-demo.myshopify.com/) website. It was created as part of a challenge given by my mentor to test and enhance my skills in React , Next.js , TypeScript , and Tailwind CSS . The goal was to recreate the look and feel of the original theme as closely as possible while building a modern, responsive, and component-driven frontend experience.
+
+## Features
+
+- Fully responsive layout
+- Modular component architecture
+- Styled with Tailwind CSS
+- Optimized with Next.js App Router
+- Dynamic filtering and searching (WIP)
+- TypeScript  
+- Setup for unit testing with Jest and React Testing Library (see below)
 
 ## Getting Started
 
@@ -18,7 +32,44 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tailwind Configuration
+
+Tailwind CSS is used for styling the app. If you'd like to explore or customize the setup, follow the official guide [here] (https://tailwindcss.com/docs/installation/framework-guides/nextjs) 
+
+## Testing [Setup](https://nextjs.org/docs/app/guides/testing/jest)
+To enable unit testing in the project:
+
+1. Install dependencies:
+bash
+
+npm install --save-dev jest jest-environment-jsdom \
+  @testing-library/react @testing-library/jest-dom \
+  ts-node @types/jest ts-jest \
+  @babel/preset-typescript
+2. Initialize Jest:
+bash
+
+
+npm init jest@latest
+Choose:
+TypeScript support: Yes
+Environment:jsdom
+
+convert jest.config.js to jest.config.ts and add:
+
+export default {
+  preset: 'ts-jest',
+  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['./jest.setup.ts'],
+};
+
+3. Create the jext.setup.ts file and add:
+
+import '@testing-library/jest-dom';
+
+4.Create   __tests__folder at the root of your project and add test files.
+
+4. use command npm test  to test files
 
 ## Learn More
 
@@ -31,50 +82,16 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The app is deployed using [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-TODO
-MobileNav: Add animation from left to right
-Button collections still very slow
+## TODO / Known Issues
 
-Struggles: filtering and js working with data , putting multiple things together, organizing the data
-remove filter and count
-products count 
-About , contact pages in footer
-product count
-pagination for lookbook
-
-
-Testing (setup)[https://nextjs.org/docs/app/guides/testing/jest]
-npm install --save-dev jest jest-environment-jsdom @testing-library/react @testing-library/jest-dom ts-node @types/jest
-
-Generate a basic Jest configuration file by running the following command:
-
-npm init jest@latest
-follow the terminal instructions
-change jest.config.js to ts file and add configuration
-
-install npm install --save-dev ts-jest
-create jest.setup.ts file 
-
-import '@testing-library/jest-dom' 
-Jest supports TypeScript, via Babel. First, make sure you followed the instructions on using Babel above. Next, install the @babel/preset-typescript:
-
-npm install --save-dev @babel/preset-typescript
-Then add @babel/preset-typescript to the list of presets in your babel.config.js.
-
-babel.config.js
-module.exports = {
-  presets: [
-    ['@babel/preset-env', {targets: {node: 'current'}}],
-    '@babel/preset-typescript',
-  ],
-};
-
-
-create __tests__ in project root
-
-c  in all testing files
+ MobileNav : Add slide-in animation from the left
+ Button interactions in collections are slow
+ Improve filtering logic and performance
+ Add About and Contact pages in the footer
+ Implement pagination in the Lookbook section
+ Currency conversion API not working as paid version is needed, created a json file with conversion rates
 

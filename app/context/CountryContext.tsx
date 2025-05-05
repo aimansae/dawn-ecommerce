@@ -7,6 +7,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import fetchCurrencyRates from "../utils/fetchCurrencyRates";
 // import fetchCurrencyRates from "../utils/fetchCurrencyRates";
 
 type Location = {
@@ -45,17 +46,17 @@ export const CountryProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("location", JSON.stringify(selectedLocation));
   }, [selectedLocation]);
 
-  // useEffect(() => {
-  //   const fetchRate = async () => {
-  //     const rate = await fetchCurrencyRates(selectedLocation.currency);
+  useEffect(() => {
+    const fetchRate = async () => {
+      console.log("userSelected", selectedLocation);
 
-  //     if (rate) {
-  //       setExchangeRate(rate);
-  //     }
-  //   };
+      const rate = await fetchCurrencyRates(selectedLocation.currency);
+      console.log("Conversion Rate from context", rate);
+      setExchangeRate(rate);
+    };
 
-  //   // fetchRate();
-  // }, [selectedLocation]);
+    fetchRate();
+  }, [selectedLocation]);
   return (
     <CountryContext.Provider
       value={{

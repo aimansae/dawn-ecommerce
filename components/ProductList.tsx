@@ -17,9 +17,14 @@ type ProductsProps = {
 
 const ProductList = ({ productsForPage }: ProductsProps) => {
   const { selectedLocation, exchangeRate } = useCountry();
-
+  console.log(
+    "userSelected",
+    selectedLocation,
+    "Rate for country is",
+    exchangeRate
+  );
   return (
-    <section className=" ">
+    <section className="mx-auto w-full max-w-7xl px-4 py-9 lg:max-w-6xl lg:px-10">
       <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">
         {productsForPage.map(product => (
           <Link
