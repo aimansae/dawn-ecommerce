@@ -66,7 +66,7 @@ export default {
   setupFilesAfterEnv: ['./jest.setup.ts'],
 };
 
-3. Create the jext.setup.ts file and add:
+3. Create the jest.setup.ts file and add:
 
 import '@testing-library/jest-dom';
 
@@ -98,4 +98,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
  Implement pagination in the Lookbook section
  Currency conversion API not working as paid version is needed, created a json file with conversion rates
  Add login and authentication for users
+ Image sides to be added
 

@@ -1,0 +1,25 @@
+{
+  "news": [
+    {
+      "title": "The Mlouye origin story",
+      "description": "Innovation being the key factor alongside aesthetic, Mlouye has brought unexpected shapes with smart details, functionality and a new luxury feel with a contemporary price point.",
+      "date": "January 18, 2022",
+      "image": "/assets/images/blog/originStory.png",
+      "alt": "Two women sit in a light blue car with their handbags draped outside the car windows."
+    },
+    {
+      "title": "Introducing Stormi",
+      "description": "Stormi is Objet d'art with its unique and sculptural design inspired by nature’s favorite form - swirl. It is the form of constant movement and transmitting energy from galactic scales...",
+      "date": "January 18, 2022",
+      "image": "/assets/images/blog/stormi.png",
+      "alt": "A woman lies on a pink couch with a green handbag balanced on her hip"
+    },
+    {
+      "title": "Introducing the latest creation in our Pleated Collection",
+      "description": "Introducing the latest creation in our Pleated Collection, Brick presents an architectural elegance. Its front face showcases folded leather with zigzag edges – an evolution of the technique and craftsmanship....",
+      "date": "January 18, 2022",
+      "image": "/assets/images/blog/pleated.png",
+      "alt": "Introducing the latest creation in our Pleated Collection"
+    }
+  ]
+}

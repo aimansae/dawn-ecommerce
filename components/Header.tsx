@@ -317,7 +317,7 @@ const Header = () => {
                         ref={desktopCategoryRef}
                         className="absolute top-[60px] z-50 mt-2 w-1/5 border border-darkGray border-gray-200 bg-white p-4"
                       >
-                        <ul className="flex flex-col gap-2 bg-red-400 text-sm capitalize text-darkGray">
+                        <ul className="flex flex-col gap-2 text-sm capitalize text-darkGray">
                           {item.options?.map((option, j) => (
                             <li key={j} className="p-1 hover:cursor-pointer">
                               <Link

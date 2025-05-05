@@ -19,7 +19,7 @@
       "links": [
         { "name": "About", "url": "/about" },
         { "name": "Contact Us", "url": "/contact-us" },
-        { "name": "Shipping Policy", "url": "/shipping-policy" },
+        { "name": "Shipping Policy", "url": "/shipping" },
         { "name": "Blog", "url": "/blog" }
       ]
     },
