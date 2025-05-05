@@ -4,6 +4,9 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 The project is inspired by [Dawn](https://theme-dawn-demo.myshopify.com/) website. It was created as part of a challenge given by my mentor to test and enhance my skills in React , Next.js , TypeScript , and Tailwind CSS . The goal was to recreate the look and feel of the original theme as closely as possible while building a modern, responsive, and component-driven frontend experience.
 
+Please find the Github Repo [here](https://github.com/aimansae/dawn-ecommerce)
+The Deployed live site through [Vercel](https://vercel.com/), can be found [here](https://dawn-ecommerce-amqo.vercel.app/)
+
 ## Features
 
 - Fully responsive layout
