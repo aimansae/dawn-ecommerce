@@ -38,28 +38,29 @@ type CartContextType = {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [cart, setCart] = useState<CartItemType[]>(() => {
-    if (typeof window !== "undefined") {
-      const storedCart = localStorage.getItem("cart");
-      return storedCart ? JSON.parse(storedCart) : [];
-    }
-    return [];
-  });
-  const [isCartReady, setIsCartReady] = useState(false);
+  const [cart, setCart] = useState<CartItemType[]>([]);
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  // ✅ Load cart from localStorage only on client
   useEffect(() => {
-    const storedCart = localStorage.getItem("cart");
-    if (storedCart) {
-      setIsCartReady(true);
-    } else {
-      setIsCartReady(true); // even if empty, we’re ready
+    try {
+      const storedCart = localStorage.getItem("cart");
+      if (storedCart) {
+        setCart(JSON.parse(storedCart));
+      }
+    } catch (err) {
+      console.error("Failed to parse cart from localStorage", err);
+    } finally {
+      setIsInitialized(true);
     }
   }, []);
 
+  // ✅ Save cart to localStorage after initial load
   useEffect(() => {
-    if (isCartReady && typeof window !== "undefined") {
+    if (isInitialized) {
       localStorage.setItem("cart", JSON.stringify(cart));
     }
-  }, [cart, isCartReady]);
+  }, [cart, isInitialized]);
 
   const addToCart = (item: CartItemType) => {
     setCart(prevCart => {
