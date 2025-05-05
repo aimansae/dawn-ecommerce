@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 
 const filePath = path.join(process.cwd(), "app", "data", "orders.json");
-console.log("logging filePath", filePath);
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -20,9 +20,7 @@ export async function POST(req: NextRequest) {
     const existingOrders = fs.existsSync(filePath)
       ? JSON.parse(fs.readFileSync(filePath, "utf-8"))
       : [];
-
     // add new orders
-
     const newOrder = {
       ...userInfo,
       cart,

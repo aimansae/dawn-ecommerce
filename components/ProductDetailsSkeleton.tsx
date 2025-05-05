@@ -1,6 +1,6 @@
 import React from "react";
 
-const SingleProductSkeleton = () => {
+const ProductDetailsSkeleton = () => {
   return (
     <section className="relative z-10 mx-auto grid w-full max-w-7xl animate-pulse grid-cols-1 items-start gap-2 p-4 md:grid-cols-3 md:gap-8 md:p-7">
       {/*Main Image*/}
@@ -29,13 +29,6 @@ const SingleProductSkeleton = () => {
           ))}
         </div>
       </div>
-      {/* Size options */}
-      {/* <div className="h-4 w-20 rounded-md bg-gray-300"></div>
-      <div className="flex gap-2">
-        {[...Array(3)].map((_, i) => (
-          <div key={i} className="h-8 w-16 rounded-2xl bg-gray-200"></div>
-        ))}
-      </div> */}
       {/* Quantity Selection */}
       <div className="w-1/2 rounded-md bg-gray-300"></div>
       {/* Add to Cart and Buy Now */}
@@ -49,4 +42,4 @@ const SingleProductSkeleton = () => {
   );
 };
 
-export default SingleProductSkeleton;
+export default ProductDetailsSkeleton;

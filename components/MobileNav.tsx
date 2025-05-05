@@ -1,6 +1,5 @@
 /* eslint-disable indent */
 "use client";
-
 import React, { useState } from "react";
 import data from "../app/data/header.json";
 import { FaArrowRightLong } from "react-icons/fa6";
@@ -13,12 +12,12 @@ type MobileProps = {
   onClose: () => void;
   topOffset: number;
 };
+
 const MobileNav = ({ onClose, topOffset }: MobileProps) => {
   const [selectedLinkItem, setSelectedLinkItem] = useState<string | null>(null);
   const handleItemClick = (label: string) => {
     setSelectedLinkItem(label);
   };
-
   const { handleCategoryClick } = useCollectionFilters();
 
   return (

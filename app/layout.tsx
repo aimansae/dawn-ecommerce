@@ -1,3 +1,4 @@
+import React from "react";
 import type { Metadata } from "next";
 import { Assistant } from "next/font/google";
 import "./globals.css";
@@ -30,7 +31,6 @@ export default function RootLayout({
           <CartProvider>
             <Header />
             <main className="flex flex-grow flex-col">{children}</main>
-
             <Footer />
           </CartProvider>
         </CountryProvider>

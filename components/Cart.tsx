@@ -23,7 +23,7 @@ const Cart = () => {
     getTotalPrice,
     removeFromCart,
   } = useCart();
- 
+
   const { selectedLocation, exchangeRate } = useCountry();
   const quantity = getTotalQuantity();
   const totalPrice = getTotalPrice();
@@ -117,11 +117,13 @@ const Cart = () => {
                             )}
                             <div className="mb-2 flex flex-col">
                               <span className="white-space-nowrap capitalize text-darkGray">
-                                Color: {item.selectedColor}
+                                {data.cart.productDetails.color}:
+                                {item.selectedColor}
                               </span>
                               {item.selectedSize && (
                                 <span className="text-darkGray">
-                                  Size: {item.selectedSize}
+                                  {data.cart.productDetails.size}: :{" "}
+                                  {item.selectedSize}
                                 </span>
                               )}
                             </div>

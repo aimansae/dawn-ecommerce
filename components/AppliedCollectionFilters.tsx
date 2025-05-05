@@ -1,9 +1,9 @@
 /* eslint-disable indent */
 "use client";
-
 import { useCollectionFilters } from "@/app/hooks/useCollectionFilters";
 import { IoCloseOutline } from "react-icons/io5";
 import data from "../app/data/productList.json";
+
 const AppliedCollectionFilters = () => {
   const { filters, removeAppliedFilter } = useCollectionFilters();
   const validColors = Array.from(
@@ -13,6 +13,7 @@ const AppliedCollectionFilters = () => {
       )
     )
   );
+
   return (
     <div className="flex flex-wrap gap-4 pb-4">
       <ul className="flex flex-wrap gap-2 text-darkGray">

@@ -12,6 +12,7 @@ import AvailabilityTag from "./AvailabilityTag";
 import YouMayAlsoLike from "./YouMayAlsoLike";
 import { transformProduct } from "@/app/utils/transformProduct";
 import data from "../app/data/productList.json";
+import content from "@/app/data/collectionFilter.json";
 const CollectionsProducts = ({
   products,
   selectedColor,
@@ -33,16 +34,14 @@ const CollectionsProducts = ({
         <div className="flex flex-col gap-4 md:py-16">
           <div className="mx-auto flex flex-col items-center justify-center gap-2 lg:max-w-5xl">
             <h2 className="whitespace-nowrap text-xl font-medium text-gray-500 md:text-2xl">
-              Nothing matched &quot;{query}&quot;
+              {content.noMatch} &quot;{query}&quot;
             </h2>
-            <p className="text-center text-sm">
-              Try adjusting your filters or keywords and search again.
-            </p>
+            <p className="text-center text-sm">{content.adjustFilters}</p>
             <button
               onClick={handleClearFilters}
               className="mt-2 rounded-md border border-gray-300 bg-white px-5 py-2 text-sm font-medium text-gray-700 shadow-sm transition hover:border-black hover:text-black"
             >
-              Reset Filters
+              {content.reset}
             </button>
           </div>
           <YouMayAlsoLike

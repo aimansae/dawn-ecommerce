@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import data from "../app/data/footer.json";
 import Link from "next/link";
 import SocialMedia from "./SocialMedia";
-import { FaArrowRightLong } from "react-icons/fa6";
 import SelectCountries from "./SelectCountries";
 import { IoIosArrowDown } from "react-icons/io";
 import Image from "next/image";

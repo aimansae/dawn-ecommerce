@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import {
   createContext,
   ReactNode,
@@ -90,7 +91,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const updateQuantity = (
     productId: string,
     selectedColor: string,
-    selectedSize: string,
+    selectedSize: string | undefined,
     change: number
   ) => {
     setCart(prevCart =>
@@ -109,12 +110,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
     selectedSize?: string
   ) => {
     setCart(prevCart =>
-      prevCart.filter(
-        cartItem =>
-          cartItem.product.id !== productId ||
-          cartItem.selectedColor !== selectedColor ||
-          cartItem.selectedSize !== selectedSize
-      )
+      prevCart.filter(cartItem => {
+        const sameProduct = cartItem.product.id === productId;
+        const sameColor = cartItem.selectedColor === selectedColor;
+
+        const sameSize =
+          cartItem.selectedSize === selectedSize ||
+          (!cartItem.selectedSize && !selectedSize); // handles undefined case
+
+        return !(sameProduct && sameColor && sameSize);
+      })
     );
   };
 

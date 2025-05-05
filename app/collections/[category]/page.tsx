@@ -1,13 +1,13 @@
+import React from "react";
 import AppliedCollectionFilters from "@/components/AppliedCollectionFilters";
 import CollectionsFilters from "@/components/CollectionsFilters";
 import CollectionsProducts from "@/components/CollectionsProducts";
-import React from "react";
 import data from "../../data/productList.json";
 import { transformProduct } from "@/app/utils/transformProduct";
 import { ProductType } from "@/app/types/types";
 import Pagination from "@/components/Pagination";
 
-const page = ({
+const CategoryPage = ({
   params,
   searchParams,
 }: {
@@ -18,9 +18,6 @@ const page = ({
   const formattedCategory = decodeURIComponent(params.category)
     .replaceAll("-", " ")
     .toLowerCase();
-
-  // get query
-
   const filteredProducts = allProducts.filter(p =>
     p.category.some(c => c.toLowerCase() === formattedCategory)
   );
@@ -48,4 +45,4 @@ const page = ({
   );
 };
 
-export default page;
+export default CategoryPage;

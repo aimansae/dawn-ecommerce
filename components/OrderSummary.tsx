@@ -8,6 +8,7 @@ import {
 } from "@/app/utils/functions";
 import { useCountry } from "@/app/context/CountryContext";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import data from "@/app/data/cart.json";
 type ShippingOption = {
   type: string;
   price: string;
@@ -46,7 +47,7 @@ const OrderSummary = ({
         className="flex w-full items-center justify-between border-b py-5 text-[#334FB4]"
       >
         <span className="flex items-center whitespace-nowrap text-[15px]">
-          Order Summary
+          {data.cart.orderSummary.title}
           <MdKeyboardArrowDown className="md:hidden" />
         </span>
 
@@ -127,7 +128,8 @@ const OrderSummary = ({
         <div className="mt-2 flex flex-col gap-2 md:mt-4">
           <div className="flex items-center justify-between">
             <span className="text-sm md:text-base">
-              Subtotal - {quantity} items
+              {data.cart.orderSummary.subtotal} {quantity}{" "}
+              {data.cart.orderSummary.items}
             </span>
             <p className="font-semibold">
               {`${convertPriceToCurrency(Number(totalPrice), exchangeRate)}
@@ -136,7 +138,7 @@ const OrderSummary = ({
           </div>
           {selectedShipping && (
             <div className="flex justify-between">
-              <p>Shipping</p>
+              <p>{data.cart.orderSummary.shipping}</p>
               <span className="font-semibold">
                 {selectedLocation.currencySymbol} {selectedShipping.price}
               </span>
@@ -144,7 +146,7 @@ const OrderSummary = ({
           )}
 
           <div className="my-4 flex justify-between text-xl font-bold">
-            <p>Total</p>
+            <p>{data.cart.orderSummary.total}</p>
             <span className="font-semibold">
               {`${convertPriceToCurrency(total, exchangeRate)} ${selectedLocation.currencySymbol}`}
             </span>

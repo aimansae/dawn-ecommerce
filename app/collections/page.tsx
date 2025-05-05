@@ -1,5 +1,6 @@
 import React from "react";
 import CollectionPageWrapper from "../../components/CollectionsPageWrapper";
+
 const CollectionsPage = ({
   searchParams,
 }: {

@@ -45,3 +45,36 @@ products count
 About , contact pages in footer
 product count
 pagination for lookbook
+
+
+Testing (setup)[https://nextjs.org/docs/app/guides/testing/jest]
+npm install --save-dev jest jest-environment-jsdom @testing-library/react @testing-library/jest-dom ts-node @types/jest
+
+Generate a basic Jest configuration file by running the following command:
+
+npm init jest@latest
+follow the terminal instructions
+change jest.config.js to ts file and add configuration
+
+install npm install --save-dev ts-jest
+create jest.setup.ts file 
+
+import '@testing-library/jest-dom' 
+Jest supports TypeScript, via Babel. First, make sure you followed the instructions on using Babel above. Next, install the @babel/preset-typescript:
+
+npm install --save-dev @babel/preset-typescript
+Then add @babel/preset-typescript to the list of presets in your babel.config.js.
+
+babel.config.js
+module.exports = {
+  presets: [
+    ['@babel/preset-env', {targets: {node: 'current'}}],
+    '@babel/preset-typescript',
+  ],
+};
+
+
+create __tests__ in project root
+
+c  in all testing files
+

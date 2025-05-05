@@ -8,7 +8,7 @@ import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa6";
 import { IconType } from "react-icons";
 import SelectCountries from "./SelectCountries";
 import { useCountry } from "@/app/context/CountryContext";
-
+import { Location } from "../app/types/types";
 const iconMap: { [jey: string]: IconType } = {
   FaFacebook: FaFacebook,
   FaInstagram: FaInstagram,
@@ -20,13 +20,6 @@ type SocialLink = {
   platform: string;
   link: string;
   icon: keyof typeof iconMap;
-};
-
-export type Location = {
-  country: string;
-  currency: string;
-  currencySymbol?: string;
-  language?: string;
 };
 
 const MobileFooter = () => {

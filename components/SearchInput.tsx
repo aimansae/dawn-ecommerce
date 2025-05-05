@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { TfiClose } from "react-icons/tfi";
+import data from "@/app/data/header.json";
 
 type SearchInputProps = {
   onClose: () => void;
@@ -18,11 +19,11 @@ const SearchInput = ({ onClose, onSearch, className }: SearchInputProps) => {
 
   return (
     <div
-      className={`flex items-center justify-between gap-2   md:gap-1 ${className}`}
+      className={`flex items-center justify-between gap-2 md:gap-1 ${className}`}
     >
       <div className="relative flex w-[90%] md:sticky md:z-50 md:w-full">
         <label className="sr-only" htmlFor="search">
-          Search
+          {data.header.searchLabel}
         </label>
         <input
           type="text"

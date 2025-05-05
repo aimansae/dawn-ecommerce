@@ -1,6 +1,5 @@
 /* eslint-disable indent */
 "use client";
-
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
@@ -157,8 +156,8 @@ const Header = () => {
                     ref={queryRef}
                     className="flex items-center justify-between text-sm md:text-base"
                   >
-                    <h1 className="">
-                      Search for:
+                    <h1>
+                      {data.header.searchFor}
                       <span className="italic text-darkGray">
                         &quot;{searchQuery}&quot;
                       </span>
@@ -179,7 +178,7 @@ const Header = () => {
                       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                         <div className="flex flex-col">
                           <h1 className="border-b border-gray-200 px-[15px] py-2 text-[10px] uppercase text-darkGray">
-                            Suggestions
+                            {data.header.suggestionsTitle}
                           </h1>
                           {filteredSuggestions.map((suggestion, i) => (
                             <ul key={i} className=" ">
@@ -205,7 +204,7 @@ const Header = () => {
                         </div>
                         <div className="md:col-span-2">
                           <h1 className="border-b border-gray-200 px-[15px] py-2 text-[10px] uppercase text-darkGray">
-                            Products
+                            {data.header.productsTitle}
                           </h1>
                           {filterProductByQuery.map(product => {
                             const matchingColor = product.availableColors.find(

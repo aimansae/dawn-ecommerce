@@ -1,5 +1,5 @@
 "use client ";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoShareOutline } from "react-icons/io5";
 import type { IconType } from "react-icons";
 import content from "../app/data/productList.json";
@@ -49,7 +49,6 @@ const ProductInfoAccordion = ({ product }: { product: string }) => {
   const handleCopyURL = () => {
     navigator.clipboard.writeText(fullURL);
     setCopied(true);
-    console.log(fullURL, "copy fullURL", fullURL);
   };
   const shareIcons = [
     {
@@ -73,7 +72,7 @@ const ProductInfoAccordion = ({ product }: { product: string }) => {
         {content.moreInfo.map((item, index) => {
           const [key, value] = Object.entries(item)[0];
           const Icon = iconMap[key as keyof typeof iconMap] || FaInfoCircle;
-          console.log(Icon);
+
           return (
             <li
               key={index}

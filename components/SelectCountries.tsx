@@ -1,21 +1,20 @@
+/* eslint-disable indent */
 "use client";
 import React, { useState } from "react";
-import { Location } from "./MobileFooter";
+import { Location } from "@/app/types/types";
 import { BsCheck2 } from "react-icons/bs";
+import data from "../app/data/header.json";
+import SearchInput from "./SearchInput";
+import { useCountry } from "@/app/context/CountryContext";
 
 type SelectCountriesProps = {
   onSelectCountry: (location: Location) => void;
   onClose: () => void;
   currentlySelectedLocation: string;
 };
-import data from "../app/data/header.json";
-
-import SearchInput from "./SearchInput";
-import { useCountry } from "@/app/context/CountryContext";
 
 const SelectCountries = ({ onClose }: SelectCountriesProps) => {
   const [query, setQuery] = useState("");
-
   const { selectedLocation, setSelectedLocation } = useCountry();
 
   const sortLocations = (locations: Location[]) => {
@@ -25,6 +24,7 @@ const SelectCountries = ({ onClose }: SelectCountriesProps) => {
       } else return 2;
     });
   };
+
   const sortedLocations = sortLocations(data.footer.locations);
   const lowerCaseQuery = query.toLowerCase();
   const filteredData = query

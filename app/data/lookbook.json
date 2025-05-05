@@ -1,0 +1,75 @@
+{
+  "lookbook": {
+    "heading": "Summer Inspiration",
+    "imageGroup": [
+      {
+        "src": "/assets/images/lookbook/beige-bag.png",
+        "alt": "beige-bag",
+        "colSpan": "col-span-1 md:col-span-2",
+        "aspect": "aspect-square md:aspect-[2/3]"
+      },
+      {
+        "src": "/assets/images/lookbook/helix-bag.png",
+        "alt": "helix",
+        "colSpan": "col-span-1",
+        "aspect": "aspect-square md:aspect-[1/3]"
+      },
+      {
+        "src": "/assets/images/lookbook/blue-bag.png",
+        "alt": "helix-bag",
+        "colSpan": "col-span-1",
+        "aspect": "aspect-square md:aspect-[1/3]"
+      },
+      {
+        "src": "https://www.youtube.com/embed/JbeuTrPSV2w?autoplay=1&mute=1&loop=1&playlist=JbeuTrPSV2w",
+        "alt": "video1",
+        "isVideo": true,
+        "colSpan": "col-span-1 md:col-span-2",
+        "aspect": "aspect-square md:aspect-[2/3]"
+      },
+      {
+        "src": "/assets/images/lookbook/fence.png",
+        "alt": "fence",
+        "colSpan": "col-span-2 md:col-span-2 md:row-span-2",
+        "aspect": "aspect-square md:aspect-[3/4]"
+      },
+      {
+        "src": "/assets/images/lookbook/black-white-bag.png",
+        "alt": "black bag",
+        "colSpan": "col-span-1",
+        "aspect": "aspect-square md:aspect-[3/4]"
+      },
+      {
+        "src": "https://www.youtube.com/embed/PbEXxU6aW6o?autoplay=1&mute=1&loop=1&playlist=PbEXxU6aW6o",
+        "alt": "video2",
+        "isVideo": true,
+        "colSpan": "col-span-1",
+        "aspect": "aspect-square md:aspect-[3/4]"
+      },
+      {
+        "src": "/assets/images/lookbook/3-bags.png",
+        "alt": "3 bags",
+        "colSpan": "col-span-2 md:col-span-1",
+        "aspect": "aspect-square md:aspect-[1/3]"
+      },
+      {
+        "src": "/assets/images/lookbook/sera-tote-blue.png",
+        "alt": "sera tote",
+        "colSpan": "col-span-2",
+        "aspect": "aspect-square md:aspect-[2/3]"
+      },
+      {
+        "src": "/assets/images/lookbook/pink-cropped.png",
+        "alt": "pink",
+        "colSpan": "col-span-2 md:col-span-2",
+        "aspect": "aspect-square md:aspect-[2/3]"
+      },
+      {
+        "src": "/assets/images/lookbook/rounded-light-blue-bag.png",
+        "alt": "rounded blue",
+        "colSpan": "col-span-2 md:col-span-1",
+        "aspect": "aspect-square md:aspect-[1/3]"
+      }
+    ]
+  }
+}

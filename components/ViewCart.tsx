@@ -5,6 +5,7 @@ import { IoCheckmark } from "react-icons/io5";
 import { ProductType } from "@/app/types/types";
 import Link from "next/link";
 import { useCart } from "@/app/context/CartContext";
+import data from "@/app/data/cart.json";
 
 type AddToCartProps = {
   product: ProductType;
@@ -39,7 +40,7 @@ const AddToCart = ({
       <div className="flex items-center justify-between">
         <div className="flex flex-shrink-0 items-center gap-2">
           <IoCheckmark />
-          <h1 className="text-sm font-bold">Item added to your cart</h1>
+          <h1 className="text-sm font-bold">{data.cart.viewCart.itemAdded}</h1>
         </div>
         <button onClick={handleCartClose}>
           <IoCloseOutline
@@ -54,11 +55,13 @@ const AddToCart = ({
           <h2 className="text-[15px]">{product.name}</h2>
           {selectedSize && (
             <h3 className="text-[14px] text-darkGray">
-              Size: <span className="capitalize">{selectedSize}</span>
+              {data.cart.productDetails.size}:
+              <span className="capitalize">{selectedSize}</span>
             </h3>
           )}
           <h3 className="text-[14px] text-darkGray">
-            Color: <span className="capitalize">{selectedColor}</span>
+            {data.cart.productDetails.color}:
+            <span className="capitalize">{selectedColor}</span>
           </h3>
         </div>
       </div>
@@ -67,16 +70,18 @@ const AddToCart = ({
           href="/cart"
           className="w-full border border-darkGray p-3 text-center"
         >
-          View cart ({getTotalQuantity()})
+          {data.cart.viewCart.title} ({getTotalQuantity()})
         </Link>
         <Link
           href="/checkout"
           className="flex w-full items-center justify-center border border-darkGray bg-black p-3 text-white"
         >
-          Check out
+          {data.cart.viewCart.checkout}
         </Link>
         <button className="w-full text-center" onClick={handleCartClose}>
-          <span className="underline">Continue Shopping</span>
+          <span className="underline">
+            {data.cart.viewCart.continueShopping}
+          </span>
         </button>
       </div>
     </div>

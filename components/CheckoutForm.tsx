@@ -280,8 +280,7 @@ const CheckoutForm = () => {
                 ))
               ) : (
                 <p className="p-4 text-sm text-gray-600">
-                  Enter your shipping address to view available shipping
-                  methods.
+                  {content.labels.shippingNote}
                 </p>
               )}
             </div>

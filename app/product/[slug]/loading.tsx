@@ -1,8 +1,8 @@
-import SingleProductSkeleton from "@/components/SingleProductSkeleton";
+import ProductDetailsSkeleton from "@/components/ProductDetailsSkeleton";
 import React from "react";
 
 const Loading = () => {
-  return <SingleProductSkeleton />;
+  return <ProductDetailsSkeleton />;
 };
 
 export default Loading;

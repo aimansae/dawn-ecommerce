@@ -10,12 +10,12 @@ import { Color, SingleProductType, Size } from "@/app/types/types";
 import { useCart } from "@/app/context/CartContext";
 import QuantitySelector from "./QuantitySelector";
 import { useCountry } from "@/app/context/CountryContext";
-import AvailabilityTag from "../components/AvailabilityTag";
+import AvailabilityTag from "./AvailabilityTag";
 import { convertPriceToCurrency } from "@/app/utils/functions";
 
 import ProductInfoAccordion from "./ProductInfoAccordion";
 
-const SingleProduct = ({ product }: SingleProductType) => {
+const ProductDetails = ({ product }: SingleProductType) => {
   const { addToCart } = useCart();
   const { selectedLocation, exchangeRate } = useCountry();
   const searchParams = useSearchParams();
@@ -326,4 +326,4 @@ const SingleProduct = ({ product }: SingleProductType) => {
   );
 };
 
-export default SingleProduct;
+export default ProductDetails;

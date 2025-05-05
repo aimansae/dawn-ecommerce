@@ -4,6 +4,7 @@ export type Color = {
   tag: string;
   imageUrl: string[];
 };
+
 export type Size = string;
 
 export type ProductType = {
@@ -22,6 +23,7 @@ export type ProductType = {
   category: string[];
   description?: string;
 };
+
 export type SingleProductType = {
   product: ProductType;
 };
@@ -35,4 +37,11 @@ export type CheckoutFormData = {
   postalCode: string;
   city: string;
   receiveEmails: boolean;
+};
+
+export type Location = {
+  country: string;
+  currency: string;
+  currencySymbol?: string;
+  language?: string;
 };

@@ -7,10 +7,16 @@
       "quantity": "quantity",
       "total": "total"
     },
-
+    "viewCart": {
+      "itemAdded": "Item added to your cart",
+      "title": "ViewCart",
+      "checkout": "Check out",
+      "continueShopping": "Continue Shopping"
+    },
     "productDetails": {
       "color": "color",
-      "quantity": "quantity"
+      "quantity": "quantity",
+      "size": "Size"
     },
     "footer": {
       "estimatedTotal": "Estimated total:",
@@ -20,6 +26,13 @@
       "account": "Have an account?",
       "login": "Log in",
       "checkoutFaster": "to check out faster"
+    },
+    "orderSummary": {
+      "title": "Order Summary",
+      "subtotal": "Subtotal -",
+      "items": "items",
+      "shipping": "Shipping",
+      "total": "Total"
     }
   }
 }

@@ -4,6 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { TfiClose } from "react-icons/tfi";
+import data from "../app/data/header.json";
 
 type HeaderSearchProps = {
   onHandleSearch: (query: string, onFinish?: () => void) => void;
@@ -25,12 +26,11 @@ const HeaderSearch = ({
   handleClearFilters,
 }: HeaderSearchProps) => {
   const [search, setSearch] = useState(term || "");
-
   const router = useRouter();
   const pathname = usePathname();
+
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const term = e.target.value;
-
     setSearch(term.toLocaleLowerCase());
     setTerm(term.toLocaleLowerCase());
   };
@@ -39,7 +39,6 @@ const HeaderSearch = ({
     setSearch("");
     setTerm("");
     router.push(pathname);
-
     onClose();
   };
 
@@ -49,7 +48,7 @@ const HeaderSearch = ({
     >
       <div className="relative flex w-full md:sticky">
         <label className="sr-only" htmlFor="search">
-          Search
+          {data.header.searchLabel}
         </label>
         <input
           type="text"

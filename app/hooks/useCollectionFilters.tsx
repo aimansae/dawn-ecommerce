@@ -8,9 +8,9 @@ export type FiltersType = {
   availability: { inStock: boolean; outOfStock: boolean };
   colors: string[];
 };
+
 export const useCollectionFilters = () => {
   const [searchQuery, setSearchQuery] = useState("");
-
   const [filters, setFilters] = useState<FiltersType>({
     availability: { inStock: false, outOfStock: false },
     colors: [],
@@ -19,7 +19,6 @@ export const useCollectionFilters = () => {
 
   const handleAvailabilityFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
-
     const updatedFilters = {
       ...filters,
       availability: { ...filters.availability, [name]: checked },
@@ -139,7 +138,6 @@ export const useCollectionFilters = () => {
     value?: string
   ) => {
     const updatedFilters = { ...filters };
-    console.log(updatedFilters, "Logging updatedDilters");
     if (type === "colors" && value) {
       updatedFilters.colors = updatedFilters.colors.filter(c => c !== value);
     } else if (type === "inStock" || type === "outOfStock") {

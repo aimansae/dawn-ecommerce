@@ -2,8 +2,10 @@
   "title": "Products",
   "titleSmallDevices": "Filter and sort",
   "titleMediumDevices": "Filter",
-
   "products": "products",
+  "noMatch": "Nothing matched for",
+  "adjustFilters": "Try adjusting your filters or keywords and search again.",
+  "reset": "Reset filters",
   "sortBy": [
     {
       "label": "Sort by",
