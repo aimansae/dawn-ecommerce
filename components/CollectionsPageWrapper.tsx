@@ -10,30 +10,20 @@ import AppliedCollectionFilters from "@/components/AppliedCollectionFilters";
 import CollectionsFilters from "@/components/CollectionsFilters";
 import Pagination from "@/components/Pagination";
 import { ProductType } from "@/app/types/types";
+import { useSearchParams } from "next/navigation";
 
-const CollectionsPageWrapper = ({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) => {
+const CollectionsPageWrapper = () => {
+  const searchParams = useSearchParams();
   const allProducts: ProductType[] = data.products.map(transformProduct);
-  // const { selectedLocation } = useCountry();
-  const page = Number(searchParams.page) || 1;
-  const query =
-    typeof searchParams.query === "string"
-      ? searchParams.query
-      : Array.isArray(searchParams.query)
-        ? searchParams.query[0]
-        : undefined;
-  const inStockParams = searchParams.inStock === "true";
-  const outOfStockParams = searchParams.outOfStock === "true";
-  const colors = Array.isArray(searchParams.colors)
-    ? searchParams.colors.map(c => c.toLowerCase().trim())
-    : searchParams.colors
-      ? searchParams.colors.split(",").map(c => c.toLowerCase().trim())
-      : [];
-
-  const sortByParams = searchParams.sort_by || undefined;
+  const page = Number(searchParams.get("page")) || 1;
+  const query = searchParams.get("query") || "";
+  const inStockParams = searchParams.get("inStock") === "true";
+  const outOfStockParams = searchParams.get("outOfStock") === "true";
+  const colorParams = searchParams.get("colors");
+  const colors = colorParams
+    ? colorParams.split(",").map(c => c.toLowerCase().trim())
+    : [];
+  const sortByParams = searchParams.get("sort_by") || "";
 
   const isFiltering =
     query || inStockParams || outOfStockParams || colors.length > 0;
@@ -50,8 +40,10 @@ const CollectionsPageWrapper = ({
 
         const matchesColor =
           colors.length === 0 ||
-          product.availableColors.some(color =>
-            colors.includes(color.colorCategory.toLowerCase().trim())
+          product.availableColors.some(
+            color =>
+              colors.includes(color.colorCategory.toLowerCase().trim()) ||
+              colors.includes(color.color.toLowerCase().trim())
           );
 
         const matchesQuery =
@@ -62,7 +54,7 @@ const CollectionsPageWrapper = ({
           product.category.some(cat =>
             cat.toLowerCase().includes((query as string).toLowerCase())
           ) ||
-          product.availableColors.some(
+          product.availableColors?.some(
             color =>
               color.color
                 .toLowerCase()
@@ -93,10 +85,10 @@ const CollectionsPageWrapper = ({
       return Number(b.prices.regular) - Number(a.prices.regular);
     }
     if (sortByParams?.includes("Date: Old to new")) {
-      return new Date(a.createdAt).getDate() - new Date(b.createdAt).getDate();
+      return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
     }
     if (sortByParams?.includes("Date: New to old")) {
-      return new Date(b.createdAt).getDate() - new Date(a.createdAt).getDate();
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     }
     return 0;
   });
@@ -105,12 +97,12 @@ const CollectionsPageWrapper = ({
   const startIndex = (page - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
   const paginatedProducts = sortedProducts.slice(startIndex, endIndex);
-
+  console.log(colors, "**");
   return (
     <section className="mx-auto flex w-full max-w-7xl flex-col justify-between bg-white p-4 lg:max-w-6xl lg:px-10">
       <div>
         <h1
-          className={`${query ? "text-md text-wrap font-bold" : "text-[30px]"}text-darkGray my-[25px] capitalize`}
+          className={`${query ? "text-md text-wrap font-bold" : "text-[30px]"} my-[25px] capitalize text-darkGray`}
         >
           {query
             ? filteredProducts.length > 0
@@ -129,11 +121,7 @@ const CollectionsPageWrapper = ({
           </>
         )}
         <Suspense fallback={<Loading />}>
-          <CollectionsProducts
-            query={query}
-            products={paginatedProducts}
-            selectedColor={colors[0] || ""}
-          />
+          <CollectionsProducts query={query} products={paginatedProducts} />
           <Pagination
             products={filteredProducts}
             productsPerPage={productsPerPage}

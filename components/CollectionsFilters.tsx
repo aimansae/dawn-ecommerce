@@ -119,7 +119,7 @@ const CollectionsFilters = ({ totalProducts, filteredProducts }: Props) => {
     filteredProducts.filter(product => product.status === "outOfStock")
       ?.length ?? 0;
   //color count
-  const rawColorCategoryCounts = filteredProducts.reduce(
+  const rawColorCategoryCounts = data.products.reduce(
     (acc, product) => {
       product.availableColors.forEach(color => {
         const colorCategory = color.colorCategory;

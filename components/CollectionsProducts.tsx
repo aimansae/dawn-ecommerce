@@ -13,21 +13,28 @@ import YouMayAlsoLike from "./YouMayAlsoLike";
 import { transformProduct } from "@/app/utils/transformProduct";
 import data from "../app/data/productList.json";
 import content from "@/app/data/collectionFilter.json";
+import { useSearchParams } from "next/navigation";
+
 const CollectionsProducts = ({
   products,
-  selectedColor,
   query,
 }: {
   products: ProductType[];
-  selectedColor: string;
   query?: string;
 }) => {
   const { selectedLocation } = useCountry();
   const { handleClearFilters } = useCollectionFilters();
   const transformedProducts = data.products.map(transformProduct);
+  const searchParams = useSearchParams();
+
+  const selectedColorParam = searchParams.get("colors");
+  const selectedColor = selectedColorParam
+    ? selectedColorParam.split(",").map(c => c.toLowerCase().trim())
+    : [];
   const productsForPage = transformedProducts
     .sort(() => Math.random() - 0.5)
     .slice(0, 4);
+  console.log("selectedColor is", selectedColor);
   return (
     <>
       {products.length === 0 ? (
@@ -53,16 +60,30 @@ const CollectionsProducts = ({
         <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">
           {products.map(product => {
             const productColor =
-              product.availableColors.find(
-                color =>
-                  color.color.toLowerCase() === selectedColor?.toLowerCase() ||
-                  color.color
-                    .toLowerCase()
-                    .includes(query?.toLowerCase() || "") ||
-                  color.colorCategory
-                    .toLowerCase()
-                    .includes(query?.toLowerCase() || "")
-              ) || product.availableColors[0];
+              product.availableColors.find(color => {
+                const colorName = (color.color || "").toLowerCase().trim();
+                const colorCategory = (color.colorCategory || "")
+                  .toLowerCase()
+                  .trim();
+                const lowerQuery = (query || "").toLowerCase().trim();
+
+                const matchesSelected =
+                  selectedColor.length > 0 &&
+                  selectedColor.includes(colorCategory);
+
+                const matchesQuery = query
+                  ? colorName.includes(query.toLowerCase()) ||
+                    colorCategory.includes(query.toLowerCase())
+                  : false;
+
+                const matched = matchesSelected || matchesQuery;
+
+                if (matched) {
+                  console.log(`Matched color for ${product.name}:`, colorName);
+                }
+
+                return matched;
+              }) || product.availableColors[0];
             return (
               <Link
                 href={`/product/${createSlugFromName(product.name)}`}

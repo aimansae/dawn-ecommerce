@@ -15,10 +15,7 @@ const About = () => {
     <section className="mx-auto w-full max-w-7xl px-7 py-9 lg:max-w-6xl lg:px-10">
       <div className="my-8 grid grid-cols-1 gap-2 sm:grid-cols-3">
         {images.map((img, index) => (
-          <div
-            key={index}
-            className="relative aspect-square overflow-hidden bg-green-200"
-          >
+          <div key={index} className="relative aspect-square overflow-hidden">
             <Image
               src={img.src}
               fill

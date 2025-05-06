@@ -36,11 +36,10 @@ export const useCollectionFilters = () => {
     )
   );
   const handleColorSelection = (color: string) => {
-    const normalizeColor = color.toLowerCase();
-    if (!validColors.includes(normalizeColor)) return;
-    const updatedColors = filters.colors.includes(color)
-      ? filters.colors.filter(c => c !== color)
-      : [...filters.colors, color];
+    const normalizedColor = color.toLowerCase().replace(/\s+/g, "-");
+    const updatedColors = filters.colors.includes(normalizedColor)
+      ? filters.colors.filter(c => c !== normalizedColor)
+      : [...filters.colors, normalizedColor];
     const updatedFilters = { ...filters, colors: updatedColors };
     setFilters(updatedFilters);
     updateURL(updatedFilters, sortBy, searchQuery);

@@ -9,7 +9,7 @@ const AppliedCollectionFilters = () => {
   const validColors = Array.from(
     new Set(
       data.products.flatMap(product =>
-        product.availableColors.map(color => color.color.toLowerCase())
+        product.availableColors.map(color => color.colorCategory.toLowerCase())
       )
     )
   );

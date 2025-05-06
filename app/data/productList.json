@@ -152,7 +152,7 @@
       "availableColors": [
         {
           "color": "harvest",
-          "colorCategory": "yellow",
+          "colorCategory": "multicolor",
           "tag": "sold out",
           "imageUrl": [
             "/assets/images/naomiBag/naomi-bag-harvest.png",
@@ -542,7 +542,7 @@
         },
         {
           "color": "vegan leather",
-          "colorCategory": "green",
+          "colorCategory": "beige",
           "tag": "sold out",
           "imageUrl": [
             "/assets/images/businessBag/business-bag-vegan-leather.png",
@@ -661,7 +661,7 @@
         },
         {
           "color": "earth",
-          "colorCategory": "green",
+          "colorCategory": "gray",
           "tag": "available",
           "imageUrl": [
             "/assets/images/lanternBag/lantern-bag-earth.png",
