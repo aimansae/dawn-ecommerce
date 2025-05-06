@@ -7,8 +7,9 @@ import { TfiClose } from "react-icons/tfi";
 import data from "../app/data/header.json";
 
 type HeaderSearchProps = {
+  onClose?: () => void;
   onHandleSearch: (query: string, onFinish?: () => void) => void;
-   term: string;
+  term: string;
   setTerm: (term: string) => void;
   className?: string;
   showCloseIcon: boolean;
@@ -38,7 +39,7 @@ const HeaderSearch = ({
     setSearch("");
     setTerm("");
     router.push(pathname);
-    onClose();
+    onClose?.();
   };
 
   return (
@@ -75,7 +76,7 @@ const HeaderSearch = ({
                 className="ml-2 transform text-darkGray transition-transform duration-300 hover:scale-110"
                 onClick={() => {
                   onHandleSearch(term);
-                  onClose();
+                  onClose?.();
                 }}
               />
             </span>

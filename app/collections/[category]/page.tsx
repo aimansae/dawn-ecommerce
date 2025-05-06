@@ -39,7 +39,7 @@ const CategoryPage = ({
         totalProducts={totalProducts}
       />
       <AppliedCollectionFilters />
-      <CollectionsProducts products={paginatedProducts} selectedColor={""} />
+      <CollectionsProducts products={paginatedProducts} />
       <Pagination productsPerPage={8} products={filteredProducts}></Pagination>
     </section>
   );

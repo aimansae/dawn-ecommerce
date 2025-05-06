@@ -1,17 +1,13 @@
-import React from "react";
+import React, { Suspense } from "react";
 import CollectionsPageWrapper from "@/components/CollectionsPageWrapper";
 import GeneralSearchPage from "@/components/GeneralSearchPage";
 
-const SearchPage = ({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) => {
+const SearchPage = () => {
   return (
-    <div>
+    <Suspense fallback={<div>Loading search results...</div>}>
       <GeneralSearchPage />
-      <CollectionsPageWrapper searchParams={searchParams} />
-    </div>
+      <CollectionsPageWrapper />
+    </Suspense>
   );
 };
 

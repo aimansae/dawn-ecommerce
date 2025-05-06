@@ -48,9 +48,8 @@ export const CountryProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const fetchRate = async () => {
- 
       const rate = await fetchCurrencyRates(selectedLocation.currency);
-       setExchangeRate(rate);
+      setExchangeRate(rate);
     };
 
     fetchRate();
