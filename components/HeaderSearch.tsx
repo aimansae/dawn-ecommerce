@@ -8,8 +8,7 @@ import data from "../app/data/header.json";
 
 type HeaderSearchProps = {
   onHandleSearch: (query: string, onFinish?: () => void) => void;
-  onClose: () => void;
-  term: string;
+   term: string;
   setTerm: (term: string) => void;
   className?: string;
   showCloseIcon: boolean;

@@ -98,4 +98,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
  Implement pagination in the Lookbook section
  Currency conversion API not working as paid version is needed, created a json file with conversion rates
  Add login and authentication for users
+ Email registration for subscribers does not work after deployment
 

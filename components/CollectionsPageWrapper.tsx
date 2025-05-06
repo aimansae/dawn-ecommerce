@@ -97,7 +97,6 @@ const CollectionsPageWrapper = () => {
   const startIndex = (page - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
   const paginatedProducts = sortedProducts.slice(startIndex, endIndex);
-  console.log(colors, "**");
   return (
     <section className="mx-auto flex w-full max-w-7xl flex-col justify-between bg-white p-4 lg:max-w-6xl lg:px-10">
       <div>

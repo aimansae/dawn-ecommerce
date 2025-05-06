@@ -17,6 +17,8 @@ import ProductInfoAccordion from "./ProductInfoAccordion";
 
 const ProductDetails = ({ product }: SingleProductType) => {
   const { addToCart } = useCart();
+  const [sizeError, setSizeError] = useState("");
+
   const { selectedLocation, exchangeRate } = useCountry();
   const searchParams = useSearchParams();
   const [selectedColor, setSelectedColor] = useState(() => {
@@ -86,12 +88,12 @@ const ProductDetails = ({ product }: SingleProductType) => {
   };
 
   const handleAddToCart = () => {
-    if (!selectedColor) {
-      console.log("error: No color selected");
-    }
     if (!selectedSize && product.availableSizes) {
-      console.log("No size selected");
+      setSizeError("Please select a size.");
+      return;
     }
+
+    setSizeError("");
     const image = selectedImage[currentImageIndex]; // Get the selected image
     addToCart({
       product,
@@ -262,6 +264,11 @@ const ProductDetails = ({ product }: SingleProductType) => {
                     )}
                   </ul>
                 </div>
+                {sizeError && (
+                  <p className="mt-1 text-xs font-medium text-red-500">
+                    {sizeError}
+                  </p>
+                )}
               </div>
             )}
           </div>

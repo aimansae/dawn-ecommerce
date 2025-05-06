@@ -34,7 +34,6 @@ const CollectionsProducts = ({
   const productsForPage = transformedProducts
     .sort(() => Math.random() - 0.5)
     .slice(0, 4);
-  console.log("selectedColor is", selectedColor);
   return (
     <>
       {products.length === 0 ? (
@@ -65,28 +64,25 @@ const CollectionsProducts = ({
                 const colorCategory = (color.colorCategory || "")
                   .toLowerCase()
                   .trim();
-                const lowerQuery = (query || "").toLowerCase().trim();
 
                 const matchesSelected =
                   selectedColor.length > 0 &&
                   selectedColor.includes(colorCategory);
 
                 const matchesQuery = query
-                  ? colorName.includes(query.toLowerCase()) ||
+                  ? colorName.includes(query.toLowerCase().trim()) ||
                     colorCategory.includes(query.toLowerCase())
                   : false;
 
                 const matched = matchesSelected || matchesQuery;
 
-                if (matched) {
-                  console.log(`Matched color for ${product.name}:`, colorName);
-                }
-
                 return matched;
               }) || product.availableColors[0];
             return (
               <Link
-                href={`/product/${createSlugFromName(product.name)}`}
+                href={`/product/${createSlugFromName(product.name)}?color=${encodeURIComponent(
+                  productColor.color
+                )}`}
                 key={product.id}
                 className="group flex flex-col"
               >

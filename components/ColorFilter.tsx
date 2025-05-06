@@ -14,7 +14,6 @@ export const ColorFilter = ({
   colorCategoryCounts: Record<string, number>;
   className?: string;
 }) => {
-  console.log(colorCategoryCounts, "CCCCCCccc");
   return (
     <div className={`${className} flex-col items-start gap-2`}>
       {uniqueColorCategory.map(color => {
@@ -40,7 +39,6 @@ export const ColorFilter = ({
               checked={isSelected}
               onChange={() => {
                 handleColorSelection(color);
-                console.log("Clicked:", color);
               }}
               className={`h-6 w-6 appearance-none rounded-full checked:border-2 checked:border-black ${colorClass}`}
             />
