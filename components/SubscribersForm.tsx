@@ -17,13 +17,13 @@ const SubscribersForm = () => {
     try {
       const res = await fetch("/api/subscribers", {
         method: "Post",
-        headers: { "Content-Type": "application.json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
 
       const data = await res.json();
 
-      if (res.ok && data.success) {
+      if (res.ok) {
         setStatus("success");
         setMessage(data.message);
         setEmail("");
@@ -33,10 +33,12 @@ const SubscribersForm = () => {
         }, 3000);
       } else {
         setStatus("error");
-        setMessage(data.message || "Oops, something went wrong");
+        setMessage(data.error || "Oops, something went wrong");
+
         setTimeout(() => {
           setStatus("");
           setMessage("");
+          setEmail("");
         }, 3000);
       }
     } catch (e) {
@@ -60,7 +62,7 @@ const SubscribersForm = () => {
           placeholder="Email"
           className="w-full border-y border-l border-gray-400 px-3 py-2 outline-none"
           onChange={handleChange}
-        />{" "}
+        />
         <label className="sr-only" htmlFor="subscribe">
           Subscribe with your email
         </label>
@@ -79,7 +81,7 @@ const SubscribersForm = () => {
         </div>
       )}
       {status === "error" && (
-        <div className="my-2 flex items-center justify-center bg-red-300 p-1 text-red-700">
+        <div className="my-2 flex items-center justify-center bg-red-200 p-1 text-red-700">
           <p>{message}</p>
         </div>
       )}

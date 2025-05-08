@@ -29,7 +29,7 @@ const MobileNav = ({ onClose, topOffset }: MobileProps) => {
         {data.menuItems.map((item, i) => (
           <div key={i} className="w-full">
             {selectedLinkItem === item.label ? (
-              <div className=" ">
+              <div>
                 <button
                   onClick={() => setSelectedLinkItem(null)}
                   className="flex w-full items-center gap-1 bg-lightGray px-[30px] py-3"
@@ -38,7 +38,7 @@ const MobileNav = ({ onClose, topOffset }: MobileProps) => {
                     size={30}
                     className="transform font-thin capitalize text-customBlack transition-transform duration-300 hover:scale-110"
                   />
-                  <span className="capitalize"> {item.label}</span>
+                  <span className="capitalize">{item.label}</span>
                 </button>
                 {/* Scrollable Options List */}
                 <ul className="flex max-h-[200px] w-full flex-col overflow-y-auto md:h-full md:overflow-y-hidden">
@@ -64,13 +64,21 @@ const MobileNav = ({ onClose, topOffset }: MobileProps) => {
               <ul className="flex w-full flex-col capitalize">
                 <li className="flex w-full items-center justify-between px-[30px] py-4 hover:bg-lightGray">
                   {i === 2 ? (
-                    <Link href={item.href}>{item.label}</Link>
+                    <Link
+                      href={item.href}
+                      onClick={() => {
+                        onClose();
+                      }}
+                    >
+                      {item.label}
+                    </Link>
                   ) : (
                     <button
                       onClick={() => handleItemClick(item.label)}
                       className="flex w-full items-center justify-between"
                     >
                       <span className="capitalize">{item.label}</span>
+
                       <FaArrowRightLong className="transform font-thin text-customBlack transition-transform duration-300 hover:scale-110" />
                     </button>
                   )}

@@ -8,7 +8,7 @@ const ShippingOptions = ({ isLoading }: { isLoading: boolean }) => {
         type="submit"
         disabled={isLoading}
       >
-        {isLoading ? "Sending" : "Place Order"}
+        {isLoading ? "Loading..." : "Place Order"}
       </button>
     </div>
   );

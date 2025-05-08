@@ -1,9 +1,9 @@
 import React, { Suspense } from "react";
 import Cart from "@/components/Cart";
-
+import LoadingSpinner from "@/components/LoadingSpinner";
 const CartPage = () => {
   return (
-    <Suspense fallback={<div>Loading cart...</div>}>
+    <Suspense fallback={<LoadingSpinner></LoadingSpinner>}>
       <Cart />
     </Suspense>
   );

@@ -28,7 +28,7 @@ const PaymentOptions = ({
   return (
     <>
       <h2 className="my-4 font-bold md:text-[21px]">Choose a payment method</h2>
-      <div className="grid grid-cols-1 items-center border-gray-100 bg-gray-100 sm:grid-cols-2 md:grid-cols-3">
+      <div className="grid grid-cols-1 items-center border-gray-100 bg-gray-100 sm:grid-cols-2">
         {paymentData.paymentOptions.map((option, index) => (
           <div
             key={index}
@@ -48,7 +48,7 @@ const PaymentOptions = ({
                 onChange={() => setSelectedPayment(option.label)}
               />
               <label
-                className="whitespace-nowrap text-sm"
+                className="mr-1 whitespace-nowrap text-sm"
                 htmlFor={option.label}
               >
                 {option.label}

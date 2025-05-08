@@ -1,47 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
-
-const filePath = path.join(process.cwd(), "app", "data", "orders.json");
-
+import connectToMongoDB from "@/libs/mongodb";
+import Order from "@/models/Orders";
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const {
-      cart,
-      userInfo,
-      selectedShipping,
-      selectedPayment,
-      total,
-      shippingCountry,
-    } = body;
-    console.log("body is", body);
-    // check existing orders
-    const existingOrders = fs.existsSync(filePath)
-      ? JSON.parse(fs.readFileSync(filePath, "utf-8"))
-      : [];
-    // add new orders
-    const newOrder = {
-      ...userInfo,
-      cart,
-      selectedShipping,
-      selectedPayment,
-      total,
-      shippingCountry,
-      createdAt: new Date().toString(),
-    };
-    const updateOrders = [...existingOrders, newOrder];
-    console.log("newOrder", newOrder, updateOrders);
-    console.log("log DATA", body);
-    // save orders to the file
-    fs.writeFileSync(filePath, JSON.stringify(updateOrders, null, 2));
-
+    const orderData = await req.json();
+    await connectToMongoDB();
+    const newOrder = await Order.create(orderData);
+    console.log(orderData, "ORDER DATA");
     return NextResponse.json({
       success: true,
       message: "Order placed successfully!",
+      orderId: newOrder._id,
     });
   } catch (error) {
-    console.log(error);
+    console.log("order error", error);
     return NextResponse.json(
       {
         success: false,
@@ -49,5 +21,17 @@ export async function POST(req: NextRequest) {
       },
       { status: 500 }
     );
+  }
+}
+
+export async function GET() {
+  try {
+    await connectToMongoDB();
+
+    const orderList = await Order.find().sort({ createdAt: -1 });
+    return NextResponse.json(orderList);
+  } catch (error) {
+    console.error("Get orders", error);
+    return NextResponse.json({ error: "Failed to fetch list of orders" });
   }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 "use client";
 
 import React, { ChangeEvent, FormEvent, useState } from "react";
@@ -11,9 +12,20 @@ import { useCountry } from "@/app/context/CountryContext";
 import PaymentOptions from "./PaymentOptions";
 import ShippingOptions from "./ShippingOptions";
 import FormInput from "./FormInput";
-
+import cartContent from "@/app/data/cart.json";
+import Link from "next/link";
 const CheckoutForm = () => {
   const { clearCart, cart } = useCart();
+  const flattenedCart = cart.map(item => ({
+    id: item.product.id,
+    name: item.product.name,
+    price: item.product.prices.sale || item.product.prices.regular,
+    quantity: item.quantity,
+    color: item.selectedColor,
+    image: item.selectedImage || "", // or provide a fallback
+    size: item.selectedSize,
+  }));
+  console.log("Flattened Cart", flattenedCart);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<CheckoutFormData>({
@@ -48,7 +60,23 @@ const CheckoutForm = () => {
       [name]: type === "checkbox" ? checked : value,
     }));
   };
-
+  const clearForm = () => {
+    setFormData({
+      email: "",
+      firstName: "",
+      lastName: "",
+      address: "",
+      apartment: "",
+      postalCode: "",
+      city: "",
+      receiveEmails: false,
+    });
+    setSelectedShipping(null);
+    setSelectedPayment("");
+    setTotalWithShipping(0);
+    setMessage("");
+    setStatus("");
+  };
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -59,37 +87,36 @@ const CheckoutForm = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
-          cart,
-          selectedShipping,
-          selectedPayment,
-          total: totalWithShipping,
+          cart: flattenedCart,
+          selectedShipping: selectedShipping
+            ? {
+                method: selectedShipping.type,
+                price: selectedShipping.price,
+              }
+            : null,
+          selectedPaymentMethod: selectedPayment,
+          totalToPay: totalWithShipping,
           shippingCountry: selectedLocation,
         }),
       });
       const data = await res.json();
-      if (res.ok && data.success) {
-        sessionStorage.setItem("successMessage", data.message);
-        setTimeout(() => {
-          router.push("/");
-        }, 150);
-        clearCart();
-        setMessage(data.message);
-        setStatus("success");
-        setFormData({
-          firstName: "",
-          lastName: "",
-          address: "",
-          apartment: "",
-          postalCode: "",
-          city: "",
-          email: "",
-          receiveEmails: false,
-        });
-        setSelectedShipping(null);
-        setTotalWithShipping(0);
-        router.push("/");
+      if (data.success) {
+        const orderSummary = {
+          cart,
+          totalToPay: totalWithShipping,
+          shipping: selectedShipping,
+          paymentMethod: selectedPayment,
+          shippingCountry: selectedLocation,
+          formData,
+        };
+
+        localStorage.setItem("orderSummary", JSON.stringify(orderSummary));
+
+        router.push(`/order-confirmation/${data.orderId}`);
+        // clearCart();
+        clearForm();
       } else {
-        setMessage(data.message || "Oops Something went wrong");
+        setMessage(data.error || "Oops Something went wrong");
         setStatus("error");
       }
     } catch (err) {
@@ -100,7 +127,25 @@ const CheckoutForm = () => {
       setIsLoading(false);
     }
   };
-
+  if (cart.length === 0)
+    return (
+      <div className="items-center justify-center py-7 text-center">
+        <h1 className="my-7 text-3xl">{cartContent.cart.footer.empty}</h1>
+        <Link
+          className="inline-block whitespace-nowrap bg-black p-3 text-center text-sm capitalize text-white"
+          href={"/collections"}
+        >
+          {cartContent.cart.continueShopping}
+        </Link>
+        <div className="mt-7">
+          <h2 className="my-2 text-xl">{cartContent.cart.footer.account}</h2>
+          <p>
+            <span className="underline">{cartContent.cart.footer.login}</span>
+            {cartContent.cart.footer.checkoutFaster}
+          </p>
+        </div>
+      </div>
+    );
   return (
     <section className="mx-auto flex w-full max-w-7xl flex-col justify-between">
       <div className="md:grid md:grid-cols-2 md:items-start md:justify-between">

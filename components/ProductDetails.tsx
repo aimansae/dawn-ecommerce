@@ -300,7 +300,7 @@ const ProductDetails = ({ product }: SingleProductType) => {
             onClick={() => {
               if (!isDisabled) {
                 handleAddToCart();
-                router.push("/cart");
+                router.push("/checkout");
               }
             }}
             className={`w-full border border-darkGray p-3 text-center sm:w-4/5 md:w-full ${

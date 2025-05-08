@@ -70,7 +70,7 @@
       "availableColors": [
         {
           "color": "oyster",
-          "colorCategory": "gray",
+          "colorCategory": "beige",
           "tag": "available",
           "imageUrl": [
             "/assets/images/studioBag/studio-bag-oyster.png",
@@ -661,7 +661,7 @@
         },
         {
           "color": "earth",
-          "colorCategory": "gray",
+          "colorCategory": "brown",
           "tag": "available",
           "imageUrl": [
             "/assets/images/lanternBag/lantern-bag-earth.png",
