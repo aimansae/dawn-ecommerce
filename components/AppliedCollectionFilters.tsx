@@ -5,7 +5,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import data from "../app/data/productList.json";
 
 const AppliedCollectionFilters = () => {
-  const { filters, removeAppliedFilter } = useCollectionFilters();
+  const { filters, removeAppliedFilter, sortBy } = useCollectionFilters();
   const validColors = Array.from(
     new Set(
       data.products.flatMap(product =>
@@ -46,6 +46,7 @@ const AppliedCollectionFilters = () => {
               </button>
             </li>
           )}
+        {/* colors */}
         {filters.colors &&
           filters.colors.length > 0 &&
           filters.colors
@@ -64,6 +65,18 @@ const AppliedCollectionFilters = () => {
                 </button>
               </li>
             ))}
+        {/* sort by*/}
+        {sortBy && (
+          <div className="space-between flex items-center gap-1 rounded-md border px-1 text-xs shadow-md">
+            <span className="capitalize">Sort by: {sortBy}</span>
+            <button
+              className="border:customBlack transform text-customBlack transition-transform duration-200 hover:scale-110 hover:border"
+              onClick={() => removeAppliedFilter("colors", color)}
+            >
+              <IoCloseOutline />
+            </button>
+          </div>
+        )}
       </ul>
     </div>
   );

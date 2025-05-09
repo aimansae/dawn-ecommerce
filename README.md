@@ -98,31 +98,36 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
  Implement pagination in the Lookbook section
  Currency conversion API not working as paid version is needed, created a json file with conversion rates
  Add login and authentication for users
- Email registration for subscribers does not work after deployment
-
-STEP 1: Set Up MongoDB Atlas
-Go to https://www.mongodb.com/cloud/atlas
-
-Create an account (or log in)
-
-Create a free cluster
-
-create New project, next, create prohect
-in VS code create .en file
-
-to connect mongoDb to vs code paste in command plaette the comnnection string
-
-paste the connection string un .env with the credentials 
-mongodb+srv://saeedaimann:<db_password>@cluster0.buvbw8u.mongodb.net/
-
-npm i mongodb mongoose
+ Email registration for subscribers does not work after deployment used MongoDb
+ When clicking on Collections button, the page takes too long to render, same for when checkout page is accessed
 
 
-create libs folder
-aff mondodb.ts filte and connect to env file
-create models folder adn add subscrbers file
+## Set Up [MongoDB Atlas](https://www.mongodb.com/products/platform/atlas-database)
+ 
+1. Create an account (or log in if you already have one)
+2. Create a free cluster
+3. Set up a new project
+4. Create a cluster within the project
 
-more on https://medium.com/yavar/how-to-create-and-connect-database-in-mongodb-atlas-using-next-js-25305a925eec
-clear cart after order confirmation
-deny access to order confirmation page if no item is in cart
-order submission too slow
+In your VS Code project:
+
+- create a .env.local file in root directory 
+
+- Copy the MongoDB connection string from Atlas, and paste it into .env like this:
+ 
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.buvbw8u.mongodb.net/
+
+Replace <username>and <password>with your current credentials.
+
+- Install required packages:
+ 
+npm install mongodb mongoose
+
+### Set up project structure:
+
+- Create a libs folder
+- Inside, add mongodb.ts to handle DB connection using the .env file
+- Create a models folder
+- Add a subscriber.ts file (or relevant model files)
+
+ 

@@ -11,16 +11,19 @@ const page = async ({ params }: { params: { id: string } }) => {
     cache: "no-store",
   });
   if (!res.ok) {
-    return <p className="bg-red-300 p-2">Order not found or failed to load.</p>;
+    return (
+      <p className="bg-red-300 p-2 text-center">
+        Order not found or failed to load.
+      </p>
+    );
   }
   const order = await res.json();
-  console.log(order)
+  console.log("Your order", order);
   return (
     <div>
-      <OrderConfirmation order={order} id={params.id} />
+      <OrderConfirmation order={order} params={params.id} />
     </div>
   );
 };
-
 
 export default page;

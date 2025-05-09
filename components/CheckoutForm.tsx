@@ -113,7 +113,7 @@ const CheckoutForm = () => {
         localStorage.setItem("orderSummary", JSON.stringify(orderSummary));
 
         router.push(`/order-confirmation/${data.orderId}`);
-        // clearCart();
+        clearCart();
         clearForm();
       } else {
         setMessage(data.error || "Oops Something went wrong");

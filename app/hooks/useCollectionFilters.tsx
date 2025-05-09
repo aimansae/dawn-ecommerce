@@ -58,9 +58,9 @@ export const useCollectionFilters = () => {
       availability: { inStock, outOfStock },
       colors,
     });
-    if (sortByParams) setSortBy(sortByParams.toLowerCase());
+    setSortBy(sortByParams);
     setSearchQuery(queryParams);
-  }, [searchparams.toString()]);
+  }, [searchparams]);
 
   // update url
   const updateURL = (

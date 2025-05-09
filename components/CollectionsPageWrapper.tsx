@@ -79,10 +79,14 @@ const CollectionsPageWrapper = () => {
     }
 
     if (sortByParams?.includes("Price: Low to high")) {
-      return Number(a.prices.regular) - Number(b.prices.regular);
+      const priceA = a.prices.sale ?? a.prices.regular;
+      const priceB = b.prices.sale ?? b.prices.regular;
+      return Number(priceA) - Number(priceB);
     }
     if (sortByParams?.includes("Price: High to Low")) {
-      return Number(b.prices.regular) - Number(a.prices.regular);
+      const priceA = a.prices.sale ?? a.prices.regular;
+      const priceB = b.prices.sale ?? b.prices.regular;
+      return Number(priceB) - Number(priceA);
     }
     if (sortByParams?.includes("Date: Old to new")) {
       return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
