@@ -289,7 +289,7 @@ const ProductDetails = ({ product }: SingleProductType) => {
               selectedColorObject?.tag === "sold out"
             }
             className={`w-full border border-darkGray p-3 sm:w-4/5 md:w-full ${product.availability === "sold out" || selectedColorObject?.tag === "sold out" ? "cursor-not-allowed border-darkGray text-darkGray" : "text-customBlack"}`}
-            onClick={handleAddToCart}
+            onClick={() => handleAddToCart}
           >
             {product.availability === "sold out" ||
             selectedColorObject?.tag === "sold out"
