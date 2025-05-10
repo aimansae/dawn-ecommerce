@@ -71,7 +71,7 @@ const AppliedCollectionFilters = () => {
             <span className="capitalize">Sort by: {sortBy}</span>
             <button
               className="border:customBlack transform text-customBlack transition-transform duration-200 hover:scale-110 hover:border"
-              onClick={() => removeAppliedFilter("colors", color)}
+              onClick={() => removeAppliedFilter("sortBy", sortBy)}
             >
               <IoCloseOutline />
             </button>

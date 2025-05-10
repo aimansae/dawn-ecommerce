@@ -129,5 +129,4 @@ npm install mongodb mongoose
 - Inside, add mongodb.ts to handle DB connection using the .env file
 - Create a models folder
 - Add a subscriber.ts file (or relevant model files)
-
- 
+Learn [more](https://medium.com/yavar/how-to-create-and-connect-database-in-mongodb-atlas-using-next-js-25305a925eec) 

@@ -1,10 +1,9 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { createSlugFromName } from "@/app/utils/functions";
-type Image = {
-  image: string;
-};
+import { useCart } from "@/app/context/CartContext";
 
 type LocationInfo = {
   country: string;
@@ -21,7 +20,7 @@ type Cart = {
   price: number;
   quantity: number;
   color: string;
-  image: Image[];
+  image: string[];
   size?: string;
   _id: string;
 };
@@ -56,7 +55,12 @@ const OrderConfirmation = ({ params, order }: OrderConfirmationProps) => {
     hour: "2-digit",
     minute: "2-digit",
   });
-  console.log("Formatted date", formattedDate);
+  const { clearCart } = useCart();
+
+  useEffect(() => {
+    clearCart();
+    localStorage.removeItem("orderSummary");
+  }, []);
 
   return (
     <main className="mx-auto w-full max-w-7xl bg-[#f5f5f5] px-4 py-10 sm:px-7">

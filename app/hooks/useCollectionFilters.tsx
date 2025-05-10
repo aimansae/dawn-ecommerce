@@ -124,7 +124,7 @@ export const useCollectionFilters = () => {
 
   //check
   const removeAppliedFilter = (
-    type: "inStock" | "outOfStock" | "colors",
+    type: "inStock" | "outOfStock" | "colors" | "sortBy",
     value?: string
   ) => {
     const updatedFilters = { ...filters };
@@ -132,10 +132,12 @@ export const useCollectionFilters = () => {
       updatedFilters.colors = updatedFilters.colors.filter(c => c !== value);
     } else if (type === "inStock" || type === "outOfStock") {
       updatedFilters.availability[type] = false;
+    } else if (type === "sortBy") {
+      setSortBy("");
     }
 
     setFilters(updatedFilters);
-    updateURL(updatedFilters, sortBy, searchQuery);
+    updateURL(updatedFilters, "", searchQuery);
   };
 
   const handleGeneralSearch = (query: string, onFinish?: () => void) => {

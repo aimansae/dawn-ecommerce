@@ -2,7 +2,7 @@ import React from "react";
 import OrderConfirmation from "@/components/OrderConfirmation";
 import { headers } from "next/headers";
 
-const page = async ({ params }: { params: { id: string } }) => {
+const Page = async ({ params }: { params: { id: string } }) => {
   const host = headers().get("host"); // dynamically get current host
   const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
   const baseUrl = `${protocol}://${host}`;
@@ -18,12 +18,7 @@ const page = async ({ params }: { params: { id: string } }) => {
     );
   }
   const order = await res.json();
-  console.log("Your order", order);
-  return (
-    <div>
-      <OrderConfirmation order={order} params={params.id} />
-    </div>
-  );
+  return <OrderConfirmation order={order} params={params.id} />;
 };
 
-export default page;
+export default Page;

@@ -31,6 +31,6 @@ export async function GET() {
     return NextResponse.json(subscribersList);
   } catch (error) {
     console.error("Get subscribers error", error);
-    return nextResponse.json({ error: "Failed to fetch list of subscribers" });
+    return NextResponse.json({ error: "Failed to fetch list of subscribers" });
   }
 }

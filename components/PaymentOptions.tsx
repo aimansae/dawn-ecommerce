@@ -30,15 +30,15 @@ const PaymentOptions = ({
       <h2 className="my-4 font-bold md:text-[21px]">Choose a payment method</h2>
       <div className="grid grid-cols-1 items-center border-gray-100 bg-gray-100 sm:grid-cols-2">
         {paymentData.paymentOptions.map((option, index) => (
-          <div
+          <label
             key={index}
-            className={`flex items-center justify-between gap-3 rounded border p-3 transition-colors duration-200 ${
+            className={`flex cursor-pointer items-center justify-between gap-3 rounded border p-3 transition-colors duration-200 ${
               selectedPayment === option.label
                 ? "border-black bg-blue-200"
                 : "border-gray-300 bg-white"
             }`}
           >
-            <div className="flex items-center gap-2 hover:cursor-pointer">
+            <div className="flex items-center gap-2">
               <input
                 type="radio"
                 value={option.label}
@@ -64,7 +64,7 @@ const PaymentOptions = ({
                 className="h-full w-full object-contain"
               />
             </div>
-          </div>
+          </label>
         ))}
       </div>
     </>

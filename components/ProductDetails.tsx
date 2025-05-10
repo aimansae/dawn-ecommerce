@@ -5,14 +5,13 @@ import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import { usePathname, useSearchParams } from "next/navigation";
-import AddToCart from "./ViewCart";
+import ViewCart from "./ViewCart";
 import { Color, SingleProductType, Size } from "@/app/types/types";
 import { useCart } from "@/app/context/CartContext";
 import QuantitySelector from "./QuantitySelector";
 import { useCountry } from "@/app/context/CountryContext";
 import AvailabilityTag from "./AvailabilityTag";
 import { convertPriceToCurrency } from "@/app/utils/functions";
-
 import ProductInfoAccordion from "./ProductInfoAccordion";
 
 const ProductDetails = ({ product }: SingleProductType) => {
@@ -87,7 +86,7 @@ const ProductDetails = ({ product }: SingleProductType) => {
     updateURLParams(selectedColor, selectedSize, newQuantity);
   };
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (skipCartView = false) => {
     if (!selectedSize && product.availableSizes) {
       setSizeError("Please select a size.");
       return;
@@ -102,8 +101,10 @@ const ProductDetails = ({ product }: SingleProductType) => {
       selectedImage: [image],
       selectedSize,
     });
-    setViewCart(true);
-    scrollToTop();
+    if (!skipCartView) {
+      setViewCart(true);
+      scrollToTop();
+    }
   };
 
   const handlePreviousImage = () => {
@@ -299,7 +300,7 @@ const ProductDetails = ({ product }: SingleProductType) => {
             disabled={isDisabled}
             onClick={() => {
               if (!isDisabled) {
-                handleAddToCart();
+                handleAddToCart(true);
                 router.push("/checkout");
               }
             }}
@@ -322,7 +323,7 @@ const ProductDetails = ({ product }: SingleProductType) => {
       </div>
       {/* View Cart Div */}
       {viewCart && (
-        <AddToCart
+        <ViewCart
           quantity={quantity}
           product={product}
           selectedColor={selectedColor}

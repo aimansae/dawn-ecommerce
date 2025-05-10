@@ -3,7 +3,6 @@
 
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useCart } from "@/app/context/CartContext";
 import OrderSummary from "./OrderSummary";
 import { CheckoutFormData } from "@/app/types/types";
 import data from "../app/data/header.json";
@@ -14,8 +13,10 @@ import ShippingOptions from "./ShippingOptions";
 import FormInput from "./FormInput";
 import cartContent from "@/app/data/cart.json";
 import Link from "next/link";
+import { useCart } from "@/app/context/CartContext";
+
 const CheckoutForm = () => {
-  const { clearCart, cart } = useCart();
+  const { cart } = useCart();
   const flattenedCart = cart.map(item => ({
     id: item.product.id,
     name: item.product.name,
@@ -25,7 +26,6 @@ const CheckoutForm = () => {
     image: item.selectedImage || "", // or provide a fallback
     size: item.selectedSize,
   }));
-  console.log("Flattened Cart", flattenedCart);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<CheckoutFormData>({
@@ -113,7 +113,6 @@ const CheckoutForm = () => {
         localStorage.setItem("orderSummary", JSON.stringify(orderSummary));
 
         router.push(`/order-confirmation/${data.orderId}`);
-        clearCart();
         clearForm();
       } else {
         setMessage(data.error || "Oops Something went wrong");
