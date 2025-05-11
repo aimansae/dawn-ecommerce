@@ -42,12 +42,12 @@ const mockProduct: ProductType = {
   createdAt: "May 2 2025",
   description: "A stylish tote bag",
 };
-jest.mock("@/app/utils/functions", () => ({
+jest.mock("@/utils/functions", () => ({
   convertPriceToCurrency: (price: number) => price.toFixed(2),
 }));
 
-jest.mock("@/app/context/CountryContext", () => {
-  const original = jest.requireActual("@/app/context/CountryContext");
+jest.mock("@/context/CountryContext", () => {
+  const original = jest.requireActual("@/context/CountryContext");
   return {
     ...original,
     useCountry: () => ({
@@ -117,6 +117,6 @@ describe("ProductDetails", () => {
     );
     const buyNowButton = screen.getByText(/buy now/i);
     await userEvent.click(buyNowButton);
-    expect(mockPush).toHaveBeenCalledWith("/cart");
+    expect(mockPush).toHaveBeenCalledWith("/checkout");
   });
 });

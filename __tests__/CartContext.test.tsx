@@ -30,7 +30,6 @@ const mockProduct: ProductType = {
 const wrapper = ({ children }: { children: React.ReactNode }) => (
   <CartProvider>{children}</CartProvider>
 );
-
 describe("Cart Context", () => {
   beforeEach(() => {
     localStorage.clear();
