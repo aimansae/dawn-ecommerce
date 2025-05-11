@@ -18,7 +18,7 @@
       "title": "Info",
       "links": [
         { "name": "About", "url": "/about" },
-        { "name": "Contact Us", "url": "/contact-us" },
+        { "name": "Contact Us", "url": "/contact" },
         { "name": "Shipping Policy", "url": "/shipping" },
         { "name": "Blog", "url": "/blog" }
       ]

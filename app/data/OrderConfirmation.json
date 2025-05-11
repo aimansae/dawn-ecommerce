@@ -1,0 +1,29 @@
+{
+  "header": {
+    "title": "Dear [FirstName] [LastName],",
+    "subtitle": "Thank you for your order! We hope you enjoyed shopping with us."
+  },
+  "sectionTitle": "Order Confirmation",
+  "orderDetails": {
+    "orderDate": "Order Date:",
+    "orderNumber": "Order Number:",
+    "totalAmount": "Total Amount:",
+    "paymentMethod": "Payment Method:",
+    "shippingMethod": "Shipping Method:"
+  },
+  "shippingAddress": {
+    "title": "Shipping Address:"
+  },
+  "itemsOrdered": {
+    "title": "Items Ordered:",
+    "labels": {
+      "color": "Color:",
+      "size": "Size:",
+      "quantity": "Quantity:",
+      "price": "Price:"
+    }
+  },
+  "footer": {
+    "buttonText": "Continue Shopping"
+  }
+}

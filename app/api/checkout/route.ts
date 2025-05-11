@@ -27,7 +27,6 @@ export async function POST(req: NextRequest) {
 export async function GET() {
   try {
     await connectToMongoDB();
-
     const orderList = await Order.find().sort({ createdAt: -1 });
     return NextResponse.json(orderList);
   } catch (error) {
