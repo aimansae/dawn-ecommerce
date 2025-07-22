@@ -1,57 +1,131 @@
 # Shop Dawn
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Shop Dawn is a responsive e-commerce frontend inspired by [Shopify's Dawn Theme](https://theme-dawn-demo.myshopify.com/), built with modern web technologies including [Next.js](https://nextjs.org/) [TypeScript](https://www.typescriptlang.org/), [Tailwind CSS ](https://tailwindcss.com/), and [MongoDB Atlas](https://www.mongodb.com/products/platform/atlas-database).
 
-The project is inspired by [Dawn](https://theme-dawn-demo.myshopify.com/) website. It was created as part of a challenge given by my mentor to test and enhance my skills in React , Next.js , TypeScript , and Tailwind CSS . The goal was to recreate the look and feel of the original theme as closely as possible while building a modern, responsive, and component-driven frontend experience.
+
+
+![Shop Dawn Preview](/public/assets/images/preview.PNG)
+
+This project was developed as part of the biggest challenge so far, from my mentor Amal K. , focusing on advanced features such as search params, dynamic filtering, form handling, and saving data to a real database.
 
 Please find the Github Repo [here](https://github.com/aimansae/dawn-ecommerce)
 The Deployed live site through [Vercel](https://vercel.com/), can be found [here](https://dawn-ecommerce.vercel.app/)
 
+## Table of Contents
+
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Challenges Faced](#challenges-faced)
+- [Getting Started](#getting-started)
+- [Tailwind Configuration](#tailwind-configuration)
+- [Testing](#testing)
+- [Deploy on Vercel](#deploy-on-vercel)
+- [Future Improvements](#future-improvements)
+- [MongoDB Setup](#mongodb-setup)
+- [Credits](#credits)
+
+
 ## Features
 
+- Clean and modern design inspired by Shopify
 - Fully responsive layout
-- Modular component architecture
-- Styled with Tailwind CSS
-- Optimized with Next.js App Router
-- Dynamic filtering and searching (WIP)
-- TypeScript  
-- Setup for unit testing with Jest and React Testing Library (see below)
+- Modular, reusable components
+- Tailwind CSS for styling
+- Dynamic filtering by color, availability, and more
+- Updates URL params for filter, sort, and product variations
+- Fully functional shopping cart with quantity management
+- Custom hooks for filtering and query syncing
+- Price converting functionality
+- Dynamic links update based on filter or selection
+- Color selection updates product image and product URL
+- Newsletter subscription form with DB storage
+- Contact form with backend submission
+- MongoDB Atlas for storing subscribers and form data
+- Mocked checkout flow with form validation and database save
+- Built with Next.js App Router and TypeScript
+mail subscription and contact forms with MongoDB storage
+- Next.js App Router with API routes for checkout, subscribers, and contact
+- Server-side rendering (SSR) for product and collection pages
+- MongoDB Atlas integration for storing users, forms, and payments
+- Partial Unit testing with Jest and React Testing Library
+
+## Technologies Used
+
+- [Next.js App Router](https://nextjs.org/docs/app) – File-based routing system with layouts and server components
+- [TypeScript](https://www.typescriptlang.org/) – Strongly typed superset of JavaScript
+- [Tailwind CSS](https://tailwindcss.com/docs) – Utility-first CSS framework for rapid styling
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) – Cloud-hosted NoSQL database
+- [Mongoose](https://mongoosejs.com/) – ODM library for MongoDB in Node.js
+- [Jest](https://jestjs.io/) – Delightful JavaScript testing framework
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) – UI testing focused on user interaction
+- [Vercel](https://vercel.com/) – Frontend hosting and deployment platform
+
+## Challenges Faced
+- Data Persistence
+Initially used JSON to simulate storage but moved to MongoDB Atlas for persistent storage of subscribers, contact forms, and orders.
+
+- Complex filtering by color, availability, sort 
+Built a custom filter hook using [`useSearchParams`](https://nextjs.org/docs/app/api-reference/functions/use-search-params) and [`useRouter`](https://nextjs.org/docs/app/api-reference/functions/use-router) 
+
+- Color selection with dynamic image and URL updates 
+Used dynamic routing and `router.push()` to sync color variants with product state
+
+- Payment simulation
+Created a mocked checkout flow using a custom [App Router API route](https://nextjs.org/docs/app/building-your-application/routing/api-routes) and MongoDB storage 
+
+- Email and contact form data 
+Submitted via `/api/subscribe` and `/api/contact` routes using [`POST` request handling](https://nextjs.org/docs/app/building-your-application/routing/api-routes) 
+
+- SSR for collections and product pages 
+Implemented [`generateStaticParams`](https://nextjs.org/docs/app/api-reference/functions/generate-static-params) and server-side `fetch()` 
+
+- Full shopping cart logic 
+Used global state via custom hooks context to manage cart state and sync with UI 
+
+- Securing credentials 
+Used `.env.local` with `process.env.MONGODB_URI` to hide sensitive info
 
 ## Getting Started
 
-First, run the development server:
-
+1. Clone the repo and install dependencies
 ```bash
+
+git clone https://github.com/aimansae/dawn-ecommerce.git
+cd dawn-ecommerce
+npm install
+2. Add environment variables
+Create .env.local:
+
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/
+Replace with your MongoDB Atlas credentials.
+
+3. Start the dev server
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Go to: http://localhost:3000
+
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 ## Tailwind Configuration
 
-Tailwind CSS is used for styling the app. If you'd like to explore or customize the setup, follow the official guide [here] (https://tailwindcss.com/docs/installation/framework-guides/nextjs) 
+Tailwind CSS is used for styling the app. If you'd like to explore or customize the setup, follow the official guide [here](https://tailwindcss.com/docs/installation/framework-guides/nextjs) 
 
-## Testing [Setup](https://nextjs.org/docs/app/guides/testing/jest)
+## [Testing](https://nextjs.org/docs/app/guides/testing/jest)
+
 To enable unit testing in the project:
 
 1. Install dependencies:
-bash
+``` bash
 
 npm install --save-dev jest jest-environment-jsdom \
   @testing-library/react @testing-library/jest-dom \
   ts-node @types/jest ts-jest \
   @babel/preset-typescript
-2. Initialize Jest:
-bash
 
+2. Initialize Jest:
 
 npm init jest@latest
 Choose:
@@ -70,39 +144,13 @@ export default {
 
 import '@testing-library/jest-dom';
 
-4.Create   __tests__folder at the root of your project and add test files.
+4. Create a `__tests__` folder at the root of your project and add test files.
 
-4. use command npm test  to test files
+5. Run tests using: npm test
 
-## Learn More
+```
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The app is deployed using [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-## TODO / Known Issues
-
- MobileNav : Add slide-in animation from the left
- Button interactions in collections are slow
- Improve filtering logic and performance
- Add About and Contact pages in the footer
- Implement pagination in the Lookbook section
- Currency conversion API not working as paid version is needed, created a json file with conversion rates
- Add login and authentication for users
- Email registration for subscribers does not work after deployment used MongoDb
- When clicking on Collections button, the page takes too long to render, same for when checkout page is accessed
-
-
-## Set Up [MongoDB Atlas](https://www.mongodb.com/products/platform/atlas-database)
+##  [MongoDB Setup](https://www.mongodb.com/products/platform/atlas-database)
  
 1. Create an account (or log in if you already have one)
 2. Create a free cluster
@@ -130,3 +178,22 @@ npm install mongodb mongoose
 - Create a models folder
 - Add a subscriber.ts file (or relevant model files)
 Learn [more](https://medium.com/yavar/how-to-create-and-connect-database-in-mongodb-atlas-using-next-js-25305a925eec) 
+
+## Future Improvements
+
+- **MobileNav** – Add slide-in animation from the left side for better UX
+- **Slow Button Interactions** – Improve responsiveness on collection filter buttons
+- **Dynamic Metadata**
+- **Filtering Performance** – Optimize filtering logic and performance for large datasets
+- **Footer Expansion** – Add “About” and “Contact” pages in the footer section for mobile view
+- **Pagination** – Implement pagination in the Lookbook or product list pages
+- **Currency Conversion** – Replace hardcoded JSON conversion with a real (free) currency API
+- **Authentication** – Add user login, register, and protected routes (e.g. for checkout)
+- **Subscriber Issue** – Investigate form failure after deployment and improve MongoDB logic
+- **Rendering Delays** – Optimize the rendering delay when navigating to "Collections" or "Checkout" pages
+- **Dark Mode** – Add a toggle for light/dark mode theme
+- **Real Payment** – Integrate Stripe or PayPal for real payment instead of mock flow
+- **Admin Panel** – Create a basic admin dashboard to view subscribers or orders
+
+## Credits
+Special thanks to my mentor, whose challenge, guidance, and feedback helped me explore real-world use cases in frontend architecture, dynamic data handling, and full-stack e-commerce workflows.
