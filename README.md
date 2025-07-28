@@ -85,6 +85,11 @@ Used global state via custom hooks context to manage cart state and sync with UI
 - Securing credentials 
 Used `.env.local` with `process.env.MONGODB_URI` to hide sensitive info
 
+Overall This project was developed as part of the biggest challenge so far
+
+I'm incredibly proud of this project. It combined everything I learned from previous projects and pushed me to think like a developer. There were many moments where I realized, "I could’ve done this better," especially around prop handling, component reusability, and state management. 
+Features like the navbar, filtering,footer and search were time-consuming . I iterated on them constantly as I learned better implementation techniques.
+
 ## Getting Started
 
 1. Clone the repo and install dependencies
